@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>CUPPILO — Help Us Build Your Dream Café in Kerala</title>
+  <meta name="description" content="CUPPILO co-creation platform. Help curate the menu, choose the vibe, and name fair prices for Kerala's first community-built artisanal café."/>
+
+  <!-- Preconnect Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+
+  <!-- Google Fonts: Plus Jakarta Sans + Newsreader -->
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Shared custom CSS -->
+  <link href="css/styles.css" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+  <!-- Navbar will be injected by shared.js initPage('index') -->
+  <div id="navbar-placeholder"></div>
+
+  <main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]">
+    <div class="flex flex-col w-full">
+
+      <!-- Subtle ambient decorative glow backdrop -->
+      <div class="relative w-full overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[920px] h-[480px] bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+        <div class="absolute top-72 -left-20 w-[420px] h-[420px] bg-secondary/5 rounded-full blur-2xl pointer-events-none -z-10"></div>
+
+        <!-- MAIN ONBOARDING CONTAINER -->
+        <div class="max-w-[1080px] mx-auto px-margin md:px-margin-md pt-space-lg md:pt-space-xl pb-margin-lg flex flex-col gap-space-xl">
+
+          <!-- TOP ANNOUNCEMENT & LIVE ACTIVITY PILL -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm items-start">
+            <!-- Live Counter Pill -->
+            <div class="inline-flex items-center gap-space-xs bg-brass-soft/80 text-deep-clay px-space-md py-1.5 rounded-full shadow-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-live-pulse animate-ping"></span>
+              <span class="w-2 h-2 -ml-3.5 rounded-full bg-live-pulse"></span>
+              <span class="font-label-sm text-label-sm tracking-wide font-semibold text-deep-clay">
+                1,480+ co-creators joined across Kochi, Calicut &amp; Trivandrum
+              </span>
+            </div>
+            <!-- Step Indicator Pill -->
+            <div class="inline-flex items-center gap-space-xs bg-surface-container-high px-space-sm py-1 rounded-full text-on-surface-variant font-label-sm text-label-sm">
+              <span class="material-symbols-outlined text-[16px] text-terracotta-dark">explore</span>
+              <span>Phase 0 • Pre-Opening Studio</span>
+            </div>
+          </div>
+
+          <!-- HERO HEADLINE & MALAYALAM SOUL CALLOUT -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+            <div class="lg:col-span-8 flex flex-col gap-space-md">
+              <!-- Malayalam Brand Accent Tag -->
+              <div class="flex items-center gap-space-sm">
+                <span class="font-headline-sm text-headline-sm text-terracotta-dark font-semibold">കപ്പിലോ?</span>
+                <span class="font-label-md text-label-md text-secondary font-medium tracking-wide uppercase">In the cup, of course.</span>
+              </div>
+              <!-- Bold Hero Headline -->
+              <h1 class="font-display-hero text-display-hero text-deep-clay tracking-tight leading-none">
+                Before We Open: <br/>
+                <span class="text-primary font-extrabold">Help Us Build Your Dream Café</span> in Kerala.
+              </h1>
+              <!-- Body Subheading -->
+              <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                We are ditching boardroom guesswork. Tell us what signature brews, reimagined bites, and late-night ambiance Kerala is actually missing — and unlock exclusive Founding Patron perks before doors unlock.
+              </p>
+              <!-- Primary CTA & Social Proof Strip -->
+              <div class="pt-space-xs flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md">
+                <a class="inline-flex items-center justify-center gap-space-sm bg-primary hover:bg-terracotta-dark text-cream-canvas font-label-lg text-label-lg px-space-lg py-3.5 rounded-lg shadow-md hover:shadow-xl transition-all duration-200 active:scale-[0.99]" data-path="menu-ballot" href="menu-ballot.html">
+                  <span>Start Co-Creating (Takes 2 mins)</span>
+                  <span class="material-symbols-outlined text-[20px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+                </a>
+                <!-- Quick time estimate badge -->
+                <div class="flex items-center gap-space-xs px-space-sm py-2 text-on-surface-variant font-label-sm text-label-sm">
+                  <span class="material-symbols-outlined text-[18px] text-secondary">bolt</span>
+                  <span>100% Free • No login required to vote</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- HERO EDITORIAL TILE / TACTILE CARD -->
+            <div class="lg:col-span-4 flex flex-col gap-space-sm bg-cream-canvas p-space-md rounded-xl shadow-[0_4px_16px_-2px_rgba(35,31,32,0.06)] relative overflow-hidden">
+              <div class="absolute -right-10 -bottom-10 w-36 h-36 bg-heritage-brass/10 rounded-full blur-xl pointer-events-none"></div>
+              <div class="relative w-full h-48 rounded-lg overflow-hidden shadow-inner">
+                <img class="w-full h-full object-cover" alt="Warm artisanal Kerala cafe interior with laterite brick walls, traditional teak wooden stools, brass filter coffee tumblers steaming on a counter, natural sunlight streaming through wooden louvers, warm terracotta and cream tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-1kirvGFGJHto_-tTlLcMKHgashcAdydvyqNWneEsi9TwoAeSlG2gSuLbmF8mVu-6QajVwBUvfc2UQejk4-4vozOdq746WjvOoFzSDeI42HqYPTcCELaHDYvxQTe7Xc-b2S3MLmhA3ROBYpEbmKlk8anG654Vj_mzYcKt8ltp_GQ7AI0VW-iOMon-NUX2VQEFWRB926Ea8bRHSmFKVjRJ3CCL_wohbGf6CFAy2tVqeMU4oFfLBHvl"/>
+                <div class="absolute bottom-2 left-2 bg-deep-clay/85 backdrop-blur-md text-cream-canvas px-space-sm py-1 rounded font-label-sm text-label-sm flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-[14px] text-secondary-container">local_cafe</span>
+                  <span>Kochi First Flagship • Early 2025</span>
+                </div>
+              </div>
+              <div class="flex flex-col gap-space-xs pt-space-xs">
+                <span class="font-label-md text-label-md text-deep-clay font-bold">Why Co-Creation?</span>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Every card you tap directly shapes our interior seating, milk chemistry, and late-night operating hours. You make the call.
+                </p>
+              </div>
+              <!-- Mini live voting pulse indicator -->
+              <div class="flex items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg">
+                <div class="flex flex-col">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant">Leading Brew</span>
+                  <span class="font-label-md text-label-md font-bold text-primary">Tender Coconut Cold Brew</span>
+                </div>
+                <div class="bg-surface-container-high px-space-sm py-1 rounded-full text-secondary font-label-sm text-label-sm font-bold">
+                  84% favor
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3-PILLAR PREVIEW BENTO GRID -->
+          <div class="flex flex-col gap-space-md pt-space-md">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-space-xs">
+                <span class="w-2 h-6 bg-primary rounded-full"></span>
+                <h2 class="font-headline-sm text-headline-sm text-deep-clay font-bold">What You Will Decide Today</h2>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant">3 quick chapters</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+
+              <!-- Pillar 1: Curate The Menu -->
+              <a href="menu-ballot.html" class="group flex flex-col justify-between bg-surface-container-lowest hover:bg-cream-canvas p-space-md rounded-xl shadow-[0_4px_16px_-2px_rgba(35,31,32,0.05)] transition-all duration-300">
+                <div class="flex flex-col gap-space-sm">
+                  <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors duration-200">
+                    <span class="material-symbols-outlined text-[26px]">restaurant_menu</span>
+                  </div>
+                  <div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm font-bold tracking-wider uppercase">
+                    <span>01. Culinary Direction</span>
+                  </div>
+                  <h3 class="font-headline-sm text-headline-sm text-deep-clay">Curate The Menu</h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant">
+                    Vote for signature brews and reimagined Malabar snacks: Tender Coconut Cold Brew, authentic Malabar Kozhi roast sliders, or heritage Karupatti Chaya.
+                  </p>
+                </div>
+                <div class="pt-space-md flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+                  <span class="flex items-center gap-1"><span class="font-bold text-primary">12</span> items on ballot</span>
+                  <span class="text-terracotta-dark font-semibold">Tap to vote →</span>
+                </div>
+              </a>
+
+              <!-- Pillar 2: Choose The Vibe -->
+              <a href="ambiance.html" class="group flex flex-col justify-between bg-surface-container-lowest hover:bg-cream-canvas p-space-md rounded-xl shadow-[0_4px_16px_-2px_rgba(35,31,32,0.05)] transition-all duration-300">
+                <div class="flex flex-col gap-space-sm">
+                  <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-200">
+                    <span class="material-symbols-outlined text-[26px]">cottage</span>
+                  </div>
+                  <div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm font-bold tracking-wider uppercase">
+                    <span>02. Architecture &amp; Tone</span>
+                  </div>
+                  <h3 class="font-headline-sm text-headline-sm text-deep-clay">Choose The Vibe</h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant">
+                    Cast your vote for Kerala Heritage Laterite &amp; teak wood, Minimal Concrete Courtyards, Earth &amp; Terracotta unglazed pottery, or fairy-lit Night Verandas.
+                  </p>
+                </div>
+                <div class="pt-space-md flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+                  <span class="flex items-center gap-1"><span class="font-bold text-secondary">4</span> aesthetic routes</span>
+                  <span class="text-secondary font-semibold">Explore moodboard →</span>
+                </div>
+              </a>
+
+              <!-- Pillar 3: Name Your Price & Claim Rewards -->
+              <a href="pricing.html" class="group flex flex-col justify-between bg-surface-container-lowest hover:bg-cream-canvas p-space-md rounded-xl shadow-[0_4px_16px_-2px_rgba(35,31,32,0.05)] transition-all duration-300">
+                <div class="flex flex-col gap-space-sm">
+                  <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-success-leaf group-hover:bg-success-leaf group-hover:text-cream-canvas transition-colors duration-200">
+                    <span class="material-symbols-outlined text-[26px]">local_activity</span>
+                  </div>
+                  <div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm font-bold tracking-wider uppercase">
+                    <span>03. Pricing &amp; Perks</span>
+                  </div>
+                  <h3 class="font-headline-sm text-headline-sm text-deep-clay">Fair Price &amp; Pass</h3>
+                  <p class="font-body-md text-body-md text-on-surface-variant">
+                    Adjust fair cup pricing sliders for everyday accessible coffee. Unlock your numbered Digital Founding Patron Pass with launch-week vouchers.
+                  </p>
+                </div>
+                <div class="pt-space-md flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+                  <span class="flex items-center gap-1"><span class="font-bold text-success-leaf">10% Off</span> launch voucher</span>
+                  <span class="text-success-leaf font-semibold">Claim pass →</span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- INTERACTIVE PREVIEW: QUICK TASTER BALLOT TEASER -->
+          <div class="bg-surface-container p-space-md md:p-space-lg rounded-xl flex flex-col gap-space-md shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+              <div>
+                <span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Quick Tasting Teaser</span>
+                <h3 class="font-headline-md text-headline-md text-deep-clay">Which would you order first on opening morning?</h3>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-space-sm py-1 rounded-full self-start sm:self-auto">
+                Interactive micro-poll
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="miniPollGrid">
+
+              <!-- Item A: Wayanad Filter Kaapi -->
+              <div class="teaser-card cursor-pointer bg-surface-container-lowest hover:bg-cream-canvas p-space-md rounded-xl transition-all duration-200 shadow-sm flex flex-col gap-space-xs relative" onclick="selectTeaser(this, '88%')">
+                <div class="h-32 w-full rounded-lg overflow-hidden mb-space-xs relative">
+                  <img class="w-full h-full object-cover" alt="Traditional hot South Indian brass tumbler of frothy filter coffee steaming on a wooden table, warm golden morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO_9XBvvl6qLjb5hTL0U2QiIzTuI9_8vtJWZ4ltmNpdfsUSxH7B6rFRnd8K8DvzAIV2V_KRieYAwFm4KG1_ungCRxxVmvcSI-IkY5DlOZDKx8AI-Qys7SqI4DA5a9BhRsiqLvqvCo78VjNeDjOhVzl1QwlhsQ9JDDQHC4dc0T8z0wwNTXlW9MhoQ2E17so6O8rGEPLPCoLUKPa6V1CClph5iaptJpAmC7tJw2ppNL0V9zPvhsEsGME"/>
+                  <span class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur text-deep-clay w-7 h-7 rounded-full flex items-center justify-center text-[14px] shadow-sm">❤️</span>
+                </div>
+                <span class="font-label-md text-label-md font-bold text-deep-clay">Wayanad Filter Kaapi</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Single-origin Robusta + Arabica roasted dark</span>
+                <div class="consensus-bar hidden pt-2 mt-auto">
+                  <div class="w-full bg-muted-latte h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-primary h-full rounded-full" style="width: 88%"></div>
+                  </div>
+                  <span class="font-label-sm text-label-sm text-primary font-bold mt-1 block">88% agree with you</span>
+                </div>
+              </div>
+
+              <!-- Item B: Elaneer Cold Brew -->
+              <div class="teaser-card cursor-pointer bg-surface-container-lowest hover:bg-cream-canvas p-space-md rounded-xl transition-all duration-200 shadow-sm flex flex-col gap-space-xs relative" onclick="selectTeaser(this, '76%')">
+                <div class="h-32 w-full rounded-lg overflow-hidden mb-space-xs relative">
+                  <img class="w-full h-full object-cover" alt="Tender coconut cold brew coffee in a ribbed glass tumbler with fresh coconut cream layered, served with artisanal bamboo straw, Kerala aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALXlyGiGIj5PEm6oks1DHKVDAZqjpQzTF75_NcPkSSJwd6n2oIZKkgERVHqeOz9Ur9ku7NJ-uvnYNKyaKC2fC1XIKs0Wx1y7a81jA8hzLQgIkbf8e84n_lJ3UvieqeI-ZeDcoSDhd61uoSGD3nmLgEp7n2ycOvqjiLoWUHJ2VokcmNvkEwRmdEI4NM0N0VAhu_QkUSdJo2IoMfHbXrdIZ5YQ5y2LmhwERBBF1YuIf0AiM5unBm4zaL"/>
+                  <span class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur text-deep-clay w-7 h-7 rounded-full flex items-center justify-center text-[14px] shadow-sm">❤️</span>
+                </div>
+                <span class="font-label-md text-label-md font-bold text-deep-clay">Elaneer Cold Brew</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">14-hour steep cut with fresh sweet tender coconut water</span>
+                <div class="consensus-bar hidden pt-2 mt-auto">
+                  <div class="w-full bg-muted-latte h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-primary h-full rounded-full" style="width: 76%"></div>
+                  </div>
+                  <span class="font-label-sm text-label-sm text-primary font-bold mt-1 block">76% agree with you</span>
+                </div>
+              </div>
+
+              <!-- Item C: Nendran Pazham Pori -->
+              <div class="teaser-card cursor-pointer bg-surface-container-lowest hover:bg-cream-canvas p-space-md rounded-xl transition-all duration-200 shadow-sm flex flex-col gap-space-xs relative" onclick="selectTeaser(this, '91%')">
+                <div class="h-32 w-full rounded-lg overflow-hidden mb-space-xs relative">
+                  <img class="w-full h-full object-cover" alt="Crispy golden Kerala Pazham Pori banana fritters presented on an artisanal ceramic plate with roasted coconut dip, warm rustic light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4NLXY_WOU3izHZy2HK-QdHkqAHzfToxSSGJ_jmzmOBJW7KlUlkqx3jsjm-s3AdlPlHpa_4PJ2Wa5eEIJqHqzKgLLqO2eRHCxWX4xRtJV1VppQn8mgmv9thRjLMM2xQZDgQA_vwYpivYZFvFkENuDsFHCHb_9EgWOV4hTnkP2r0-OhjPHzU-OLLQ_Gg8ajkLsEi7IyhJ4-pBo7fnVLCbuMYqiirh5PG5opg-dS1mBhTUNzjVpIdTZh"/>
+                  <span class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur text-deep-clay w-7 h-7 rounded-full flex items-center justify-center text-[14px] shadow-sm">❤️</span>
+                </div>
+                <span class="font-label-md text-label-md font-bold text-deep-clay">Nendran Pazham Pori Crisp</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Cardamom-infused batter with smoked date drizzle</span>
+                <div class="consensus-bar hidden pt-2 mt-auto">
+                  <div class="w-full bg-muted-latte h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-primary h-full rounded-full" style="width: 91%"></div>
+                  </div>
+                  <span class="font-label-sm text-label-sm text-primary font-bold mt-1 block">91% agree with you</span>
+                </div>
+              </div>
+
+              <!-- Item D: Karupatti Ginger Chaya -->
+              <div class="teaser-card cursor-pointer bg-surface-container-lowest hover:bg-cream-canvas p-space-md rounded-xl transition-all duration-200 shadow-sm flex flex-col gap-space-xs relative" onclick="selectTeaser(this, '64%')">
+                <div class="h-32 w-full rounded-lg overflow-hidden mb-space-xs relative">
+                  <img class="w-full h-full object-cover" alt="Steaming glass of spiced Karupatti palm jaggery black tea with crushed ginger, fresh mint leaf garnish on brass saucer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBewBm5413cdvy6mrOU1g2lVP4EgT1hVDhVFvrIIIbX4_3r7wI0qziLO6gkErTnLn4pp97efMyllqIpxR-D8xvccb7TEDO3aX-QwNnhiy4YbkpebvF4AYup79xKsG350V5C8IO_LVXPRrRg0IWjujeyw4WDo0vlDfSyY2b8QVkU7fnYf8EaFf4U27bJTyWprEogSKjz_1ixv1IH9JLW930hRercx72TTvx_cqlZQnd8YUe5q6SgsfGd"/>
+                  <span class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur text-deep-clay w-7 h-7 rounded-full flex items-center justify-center text-[14px] shadow-sm">❤️</span>
+                </div>
+                <span class="font-label-md text-label-md font-bold text-deep-clay">Karupatti Ginger Chaya</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Pure palm jaggery, crushed dried ginger &amp; Munnar tea leaves</span>
+                <div class="consensus-bar hidden pt-2 mt-auto">
+                  <div class="w-full bg-muted-latte h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-primary h-full rounded-full" style="width: 64%"></div>
+                  </div>
+                  <span class="font-label-sm text-label-sm text-primary font-bold mt-1 block">64% agree with you</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="flex items-center justify-between pt-space-xs">
+              <p class="font-body-sm text-body-sm text-on-surface-variant">
+                Tap an item above to test the live voting mechanic, or jump into the full ballot.
+              </p>
+              <a class="font-label-sm text-label-sm font-bold text-primary hover:text-terracotta-dark flex items-center gap-1" data-path="menu-ballot" href="menu-ballot.html">
+                <span>View all 12 items</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- CO-CREATION GUARANTEE / COMMUNITY TRUST TICKER -->
+          <div class="w-full bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-md">
+              <div class="w-10 h-10 rounded-full bg-brass-soft flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[20px]">shield_person</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-md text-label-md font-bold text-deep-clay">Co-Creation Guarantee</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">
+                  100% Free to participate • Zero spam guarantee • Governed by DPDP Act 2023
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center gap-space-sm flex-wrap text-on-surface-variant font-label-sm text-label-sm">
+              <span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full">
+                <span class="material-symbols-outlined text-[14px] text-success-leaf">check_circle</span>
+                No payment required
+              </span>
+              <span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full">
+                <span class="material-symbols-outlined text-[14px] text-success-leaf">check_circle</span>
+                Instant 10% Launch Voucher
+              </span>
+              <span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full">
+                <span class="material-symbols-outlined text-[14px] text-success-leaf">check_circle</span>
+                Founding Patron Pass
+              </span>
+            </div>
+          </div>
+
+          <!-- BOTTOM ACTION LAUNCHPAD -->
+          <div class="flex flex-col items-center justify-center gap-space-sm pt-space-xs text-center">
+            <p class="font-editorial-quote text-editorial-quote text-on-surface-variant italic max-w-lg">
+              "A great café belongs to the people who walk in at dusk, smelling freshly roasted beans and listening to gentle monsoon drizzle."
+            </p>
+            <a class="inline-flex items-center gap-space-sm bg-primary hover:bg-terracotta-dark text-on-primary font-label-lg text-label-lg px-space-xl py-3.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200" data-path="menu-ballot" href="menu-ballot.html">
+              <span>Start Co-Creating (Takes 2 mins)</span>
+              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            </a>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Chapter 1 of 5: The Artisanal Menu Ballot</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container py-margin-lg">
+    <div class="max-w-[1080px] mx-auto px-margin md:px-margin-md flex flex-col gap-space-xl">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-space-lg items-start">
+
+        <!-- Footer: Brand & Mission -->
+        <div class="md:col-span-5 flex flex-col gap-space-sm">
+          <div class="flex items-center gap-space-xs">
+            <span class="font-headline-md text-headline-md font-extrabold text-primary">CUPPILO</span>
+            <span class="font-headline-sm text-headline-sm text-secondary font-medium">കപ്പിലോ</span>
+          </div>
+          <p class="font-editorial-quote text-editorial-quote text-on-surface-variant italic">
+            "Bringing artisanal specialty roasts, shade-grown Western Ghats heritage beans, and warm veranda conversations back to our towns."
+          </p>
+          <div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm pt-space-xs">
+            <span class="material-symbols-outlined text-[18px] text-success-leaf">eco</span>
+            <span>Single-estate Wayanad &amp; Nelliyampathy Arabica sourcing</span>
+          </div>
+        </div>
+
+        <!-- Footer: Co-Creation Chapters -->
+        <div class="md:col-span-3 flex flex-col gap-space-xs">
+          <span class="font-label-md text-label-md text-on-surface font-semibold">Co-Creation Chapters</span>
+          <nav class="flex flex-col gap-space-xs">
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="welcome-and-intro" href="index.html">Veranda Orientation</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="menu-ballot" href="menu-ballot.html">Artisanal Menu Ballot</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="ambiance-vibe" href="ambiance.html">Nadumuttam Architecture</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="fair-pricing" href="pricing.html">Fair Cup Pricing</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="wishlist-and-patron-pass" href="patron-pass.html">Founding Patron Pass</a>
+          </nav>
+        </div>
+
+        <!-- Footer: DPDP Compliance -->
+        <div class="md:col-span-4 flex flex-col gap-space-sm bg-surface-container-low p-space-md rounded-xl">
+          <div class="flex items-center gap-space-xs text-secondary">
+            <span class="material-symbols-outlined text-[20px]">verified_user</span>
+            <span class="font-label-md text-label-md font-bold">Digital Personal Data Protection (DPDP)</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">
+            Your feedback and contact preferences are strictly confidential. Encrypted, spam-free, and purely community-owned co-creation.
+          </p>
+          <div class="flex items-center gap-space-xs text-success-leaf">
+            <span class="material-symbols-outlined text-[16px]">lock</span>
+            <span class="font-label-sm text-label-sm">DPDP India Act 2023 Compliant</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer: Copyright -->
+      <div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant">
+        <p class="font-label-sm text-label-sm">© 2025 CUPPILO Specialty Artisanal Café. Crafting modern Kerala third spaces.</p>
+        <div class="flex items-center gap-space-md">
+          <span class="font-label-sm text-label-sm">Kochi • Kozhikode • Thrissur</span>
+          <span class="font-label-sm text-label-sm text-heritage-brass font-bold">#CuppiloKerala</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Teaser card interaction script -->
+  <script>
+    function selectTeaser(cardElement, percentage) {
+      var allCards = document.querySelectorAll('.teaser-card');
+      allCards.forEach(function(c) {
+        c.classList.remove('bg-cream-canvas', 'shadow-md');
+        c.classList.add('bg-surface-container-lowest');
+        var bar = c.querySelector('.consensus-bar');
+        if (bar) bar.classList.add('hidden');
+      });
+
+      cardElement.classList.remove('bg-surface-container-lowest');
+      cardElement.classList.add('bg-cream-canvas', 'shadow-md');
+
+      var bar = cardElement.querySelector('.consensus-bar');
+      if (bar) {
+        bar.classList.remove('hidden');
+      }
+    }
+  </script>
+
+  <!-- Supabase config -->
+  <script src="js/supabase-config.js"></script>
+  <!-- Shared utilities & navbar injection -->
+  <script src="js/shared.js"></script>
+  <!-- Initialize page -->
+  <script>initPage('index');</script>
+
+</body>
+</html>

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fair Cup Pricing — CUPPILO Co-Creation</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/supabase-config.js" defer></script>
+  <script src="js/shared.js" defer></script>
+  <style>
+    /* Pricing-specific styles */
+    .price-value {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .median-bar {
+      height: 4px;
+      border-radius: 9999px;
+      background: var(--muted-latte);
+      position: relative;
+      margin-top: 0.5rem;
+    }
+    .median-indicator {
+      position: absolute;
+      height: 100%;
+      background: var(--brass);
+      border-radius: 9999px;
+      transition: left 0.3s ease, width 0.3s ease;
+    }
+    .median-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      position: absolute;
+      top: -1.25rem;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+    .chip-toggle {
+      transition: all 0.2s ease;
+    }
+    .chip-toggle.active {
+      background: var(--charcoal);
+      color: var(--cream);
+      border-color: var(--charcoal);
+    }
+    .char-counter {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      text-align: right;
+      margin-top: 0.25rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .char-counter.warning { color: var(--primary); }
+    .char-counter.danger { color: #ba1a1a; }
+    .testimony-quote {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      border-left: 3px solid var(--brass);
+      padding-left: 1.25rem;
+    }
+    .influence-score-ring {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      background: conic-gradient(var(--primary) 0% 92%, var(--muted-latte) 92% 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .influence-score-ring::after {
+      content: '';
+      width: 3.75rem;
+      height: 3.75rem;
+      border-radius: 50%;
+      background: white;
+      position: absolute;
+    }
+    .influence-score-inner {
+      position: relative;
+      z-index: 1;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .founding-pass {
+      background: linear-gradient(135deg, #231F20 0%, #3a3536 100%);
+      border-radius: 1rem;
+      overflow: hidden;
+      color: var(--cream);
+      position: relative;
+    }
+    .founding-pass-header {
+      background: var(--primary);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .founding-pass-body {
+      padding: 1.25rem;
+    }
+    .perforation {
+      border-top: 2px dashed rgba(247,244,235,0.2);
+      margin: 0;
+    }
+    .pass-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+    }
+    .pass-label {
+      color: var(--brass);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.625rem;
+      margin-bottom: 0.125rem;
+    }
+    .pass-value {
+      color: var(--cream);
+      font-weight: 500;
+    }
+    .voucher-section {
+      border: 1.5px dashed var(--brass);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+      position: relative;
+    }
+    .voucher-code {
+      font-family: 'Courier New', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--brass);
+    }
+    .qr-placeholder {
+      width: 3.5rem;
+      height: 3.5rem;
+      border: 1.5px dashed var(--brass);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.5rem auto 0;
+      font-size: 0.625rem;
+      color: var(--brass);
+      opacity: 0.7;
+    }
+    .tier-card {
+      border: 1.5px solid var(--muted-latte);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .tier-card:hover {
+      border-color: var(--outline);
+    }
+    .tier-card.selected {
+      border-color: var(--primary);
+      background: var(--surface-low);
+    }
+    .tier-radio {
+      width: 1.125rem;
+      height: 1.125rem;
+      border-radius: 50%;
+      border: 2px solid var(--muted-latte);
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .tier-card.selected .tier-radio {
+      border-color: var(--primary);
+    }
+    .tier-card.selected .tier-radio::after {
+      content: '';
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--primary);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .consent-checkbox {
+      width: 1.125rem;
+      height: 1.125rem;
+      border-radius: 0.25rem;
+      border: 1.5px solid var(--muted-latte);
+      flex-shrink: 0;
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+    .referral-banner {
+      background: linear-gradient(135deg, var(--charcoal) 0%, #2a2627 100%);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    .referral-banner::after {
+      content: '';
+      position: absolute;
+      top: -2rem;
+      right: -2rem;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      background: rgba(200,157,92,0.15);
+    }
+    @media (max-width: 768px) {
+      .price-value { font-size: 1.5rem; }
+      .influence-score-ring { width: 4rem; height: 4rem; }
+      .influence-score-ring::after { width: 3rem; height: 3rem; }
+      .influence-score-inner { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="navbar"></div>
+
+  <main class="section">
+    <div class="container">
+      <!-- Stepper -->
+      <div id="stepper"></div>
+
+      <!-- Page Header -->
+      <div style="margin-bottom:2rem">
+        <h1 class="font-display" style="font-size:1.75rem;color:var(--charcoal);margin-bottom:0.25rem">Fair Cup Pricing</h1>
+        <p style="font-size:0.9375rem;color:var(--on-surface-variant)">You name the price. We'll build the café around what feels fair.</p>
+      </div>
+
+      <!-- 2-Column Layout -->
+      <div style="display:grid;grid-template-columns:1fr;gap:1.5rem" id="pricing-grid">
+
+        <!-- LEFT COLUMN -->
+        <div id="left-col">
+
+          <!-- 1. Price Discovery Sliders -->
+          <div class="card" style="margin-bottom:1.25rem">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1.25rem">
+              <span class="material-symbols-outlined" style="color:var(--primary)">sell</span>
+              <h2 class="font-display" style="font-size:1rem;color:var(--charcoal)">Price Discovery</h2>
+            </div>
+
+            <!-- Coffee Slider -->
+            <div style="margin-bottom:1.5rem">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.5rem">
+                <span style="font-size:0.875rem;font-weight:600;color:var(--charcoal)">Signature Cold Brew</span>
+                <span class="price-value" id="coffee-price">₹65</span>
+              </div>
+              <input type="range" id="coffee-slider" min="30" max="120" value="65" step="1">
+              <div style="display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--on-surface-variant);margin-top:0.25rem">
+                <span>₹30</span>
+                <span>₹120</span>
+              </div>
+              <div class="median-bar">
+                <div class="median-indicator" id="coffee-median" style="left:33%;width:11%"></div>
+                <span class="median-label" style="left:38%">Community median: ₹60–70</span>
+              </div>
+            </div>
+
+            <!-- Tea Slider -->
+            <div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.5rem">
+                <span style="font-size:0.875rem;font-weight:600;color:var(--charcoal)">Premium Kerala Chaya</span>
+                <span class="price-value" id="tea-price">₹20</span>
+              </div>
+              <input type="range" id="tea-slider" min="15" max="40" value="20" step="1">
+              <div style="display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--on-surface-variant);margin-top:0.25rem">
+                <span>₹15</span>
+                <span>₹40</span>
+              </div>
+              <div class="median-bar">
+                <div class="median-indicator" id="tea-median" style="left:20%;width:8%"></div>
+                <span class="median-label" style="left:24%">Community median: ₹20</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Dream Café Wishlist -->
+          <div class="card" style="margin-bottom:1.25rem">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem">
+              <span class="material-symbols-outlined" style="color:var(--brass)">emoji_objects</span>
+              <h2 class="font-display" style="font-size:1rem;color:var(--charcoal)">Dream Café Wishlist</h2>
+            </div>
+
+            <p style="font-size:0.8125rem;color:var(--on-surface-variant);margin-bottom:0.75rem">Toggle what matters most to you:</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem" id="wishlist-chips">
+              <button class="chip chip-toggle" data-tag="late-night" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">dark_mode</span> Late-night Hours
+              </button>
+              <button class="chip chip-toggle" data-tag="restrooms" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">clean_hands</span> Clean Restrooms
+              </button>
+              <button class="chip chip-toggle" data-tag="charging" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">bolt</span> Charging Sockets
+              </button>
+              <button class="chip chip-toggle" data-tag="quiet" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">self_improvement</span> Quiet Work Zone
+              </button>
+              <button class="chip chip-toggle" data-tag="parking" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">local_parking</span> Parking
+              </button>
+            </div>
+
+            <label style="font-size:0.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:0.5rem">
+              If you could fix ONE thing about cafés in Kerala?
+            </label>
+            <textarea class="input" id="wishlist-textarea" maxlength="280" placeholder="The chai is too sweet, the chairs are uncomfortable, there's no plug point..." rows="3" oninput="updateCharCount()">The WiFi is always flaky, and there's never a quiet corner to actually think.</textarea>
+            <div class="char-counter" id="char-counter">86/280</div>
+          </div>
+
+          <!-- 3. Testimonial Quote -->
+          <div class="card" style="margin-bottom:1.25rem">
+            <div class="testimony-quote">
+              "Kerala deserves spaces that don't mimic European sterility — but ones that honour the veranda, the monsoon, the shared brass tumbler. CUPPILO is the antidote to cookie-cutter café culture."
+            </div>
+            <p style="font-size:0.75rem;font-weight:600;color:var(--on-surface-variant);margin-top:0.75rem">— Founding Patron, Wayanad Chapter</p>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div id="right-col">
+
+          <!-- 4. Influence Score Card -->
+          <div class="card" style="margin-bottom:1.25rem;text-align:center">
+            <span class="pill pill-brass" style="margin-bottom:1rem;display:inline-flex">
+              <span class="material-symbols-outlined" style="font-size:14px">workspace_premium</span>
+              Founding Visionary
+            </span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:1.25rem">
+              <div class="influence-score-ring">
+                <span class="influence-score-inner">92</span>
+              </div>
+              <div style="text-align:left">
+                <p style="font-size:0.75rem;font-weight:600;color:var(--on-surface-variant)">Influence Score</p>
+                <p style="font-size:1.5rem;font-weight:800;color:var(--primary);line-height:1">92<span style="font-size:0.875rem;font-weight:600;color:var(--on-surface-variant)">/100</span></p>
+                <p style="font-size:0.6875rem;color:var(--on-surface-variant)">Top 3% of contributors</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Digital Founding Pass -->
+          <div class="founding-pass" style="margin-bottom:1.25rem">
+            <div class="founding-pass-header">
+              <span>Founding Patron Pass</span>
+              <span style="font-family:'Courier New',monospace;font-size:0.75rem;letter-spacing:0.1em">PASS: #0842</span>
+            </div>
+            <hr class="perforation">
+            <div class="founding-pass-body">
+              <div style="text-align:center;margin-bottom:1rem">
+                <div style="font-weight:800;font-size:1.25rem;letter-spacing:0.04em">CUPPILO</div>
+                <div style="font-size:0.875rem;color:var(--brass);margin-top:0.125rem">കപ്പിലോ</div>
+              </div>
+              <div class="pass-grid">
+                <div>
+                  <div class="pass-label">Patron</div>
+                  <div class="pass-value" id="pass-name">You, Founding Visionary</div>
+                </div>
+                <div>
+                  <div class="pass-label">Redemption</div>
+                  <div class="pass-value">Within 90 days</div>
+                </div>
+                <div>
+                  <div class="pass-label">Locations</div>
+                  <div class="pass-value">Wayanad · Nelliyampathy</div>
+                </div>
+                <div>
+                  <div class="pass-label">Status</div>
+                  <div class="pass-value" style="color:var(--brass)">
+                    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brass);margin-right:0.375rem;animation:pulse 2s ease-in-out infinite"></span>
+                    Founding
+                  </div>
+                </div>
+              </div>
+              <div class="voucher-section">
+                <p style="font-size:0.625rem;font-weight:600;color:var(--brass);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.375rem">Your Voucher Code</p>
+                <div class="voucher-code" id="voucher-code">CUPPILO-842</div>
+                <div class="qr-placeholder">
+                  <span class="material-symbols-outlined" style="font-size:18px">qr_code_2</span>
+                </div>
+                <p style="font-size:0.625rem;color:var(--brass);margin-top:0.375rem;opacity:0.8">Show at counter or scan to redeem</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Supporter Tiers -->
+          <div class="card" style="margin-bottom:1.25rem">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem">
+              <span class="material-symbols-outlined" style="color:var(--primary)">volunteer_activism</span>
+              <h2 class="font-display" style="font-size:1rem;color:var(--charcoal)">Supporter Tier</h2>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:0.75rem">
+              <div class="tier-card" data-tier="pioneer" onclick="selectTier(this, 'pioneer')">
+                <div class="tier-radio"></div>
+                <div style="flex:1">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between">
+                    <span style="font-size:0.875rem;font-weight:700;color:var(--charcoal)">Pioneer</span>
+                    <span style="font-size:1rem;font-weight:800;color:var(--primary)">₹10</span>
+                  </div>
+                  <p style="font-size:0.75rem;color:var(--on-surface-variant);margin-top:0.125rem">Name on the digital Founding Wall · Early access invites</p>
+                </div>
+              </div>
+
+              <div class="tier-card" data-tier="first-brew" onclick="selectTier(this, 'first-brew')">
+                <div class="tier-radio"></div>
+                <div style="flex:1">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between">
+                    <div style="display:flex;align-items:center;gap:0.5rem">
+                      <span style="font-size:0.875rem;font-weight:700;color:var(--charcoal)">First-Brew Pass</span>
+                      <span class="pill pill-primary" style="font-size:0.625rem;padding:0.125rem 0.5rem">POPULAR</span>
+                    </div>
+                    <span style="font-size:1rem;font-weight:800;color:var(--primary)">₹49</span>
+                  </div>
+                  <p style="font-size:0.75rem;color:var(--on-surface-variant);margin-top:0.125rem">Free opening-week cold brew · Founding Patron badge · Priority seating</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Phone Capture & Consent -->
+          <div class="card" style="margin-bottom:1.25rem">
+            <label style="font-size:0.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:0.5rem">Phone Number</label>
+            <div style="display:flex;gap:0.5rem;margin-bottom:1rem">
+              <div style="display:flex;align-items:center;gap:0.25rem;padding:0 0.75rem;background:var(--surface-container);border-radius:0.5rem;border:1px solid var(--muted-latte);min-height:48px">
+                <span style="font-size:0.875rem;font-weight:600;color:var(--on-surface-variant)">+91</span>
+              </div>
+              <input type="tel" id="phone-input" class="input" placeholder="98765 43210" maxlength="12" style="flex:1">
+            </div>
+
+            <label style="display:flex;align-items:flex-start;gap:0.625rem;cursor:pointer;margin-bottom:1.25rem">
+              <input type="checkbox" id="consent-checkbox" class="consent-checkbox" style="margin-top:0.1875rem">
+              <span style="font-size:0.75rem;color:var(--on-surface-variant);line-height:1.5">
+                I consent to CUPPILO storing my phone number for co-creation updates, in accordance with the DPDP Act 2023. I understand I can opt out anytime.
+              </span>
+            </label>
+
+            <button class="btn btn-primary" style="width:100%" onclick="claimVoucher()">
+              <span class="material-symbols-outlined" style="font-size:18px">ticket</span>
+              Claim My Voucher
+            </button>
+          </div>
+
+          <!-- 8. Referral Banner -->
+          <div class="referral-banner">
+            <div style="position:relative;z-index:1">
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+                <span class="material-symbols-outlined" style="color:var(--brass);font-size:20px">group_add</span>
+                <span style="font-size:0.8125rem;font-weight:700;color:var(--cream)">Referral Bonus</span>
+              </div>
+              <p style="font-size:0.9375rem;font-weight:600;color:var(--cream);margin-bottom:0.5rem">
+                Invite 3 friends to unlock <span style="color:var(--brass);font-weight:800">free banana cake</span> on your first visit.
+              </p>
+              <p style="font-size:0.75rem;color:var(--outline-variant);margin-bottom:0.75rem">
+                Share your unique link. When 3 friends complete their ballot, you both get a treat.
+              </p>
+              <button class="btn" style="background:var(--brass);color:var(--charcoal);font-weight:700;padding:0.625rem 1.25rem;font-size:0.8125rem" onclick="shareReferral()">
+                <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
+                Copy My Referral Link
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    // State
+    let selectedTier = null;
+    let consentGiven = false;
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      initPage('pricing');
+
+      // Render stepper
+      document.getElementById('stepper').innerHTML = renderStepper(3, 4);
+
+      // Load saved ballot data
+      const ballot = getBallotLocal();
+      if (ballot.priceCoffee) {
+        document.getElementById('coffee-slider').value = ballot.priceCoffee;
+        updateCoffeePrice();
+      }
+      if (ballot.priceChaya) {
+        document.getElementById('tea-slider').value = ballot.priceChaya;
+        updateTeaPrice();
+      }
+      if (ballot.wishlistText) {
+        document.getElementById('wishlist-textarea').value = ballot.wishlistText;
+        updateCharCount();
+      }
+      if (ballot.wishlistTags) {
+        ballot.wishlistTags.forEach(tag => {
+          const chip = document.querySelector(`[data-tag="${tag}"]`);
+          if (chip) chip.classList.add('active');
+        });
+      }
+      if (ballot.tier) {
+        const tierCard = document.querySelector(`[data-tier="${ballot.tier}"]`);
+        if (tierCard) selectTier(tierCard, ballot.tier);
+      }
+    });
+
+    // Coffee slider
+    const coffeeSlider = document.getElementById('coffee-slider');
+    coffeeSlider.addEventListener('input', updateCoffeePrice);
+
+    function updateCoffeePrice() {
+      const val = coffeeSlider.value;
+      document.getElementById('coffee-price').textContent = '₹' + val;
+      saveBallotLocal({ priceCoffee: parseInt(val) });
+    }
+
+    // Tea slider
+    const teaSlider = document.getElementById('tea-slider');
+    teaSlider.addEventListener('input', updateTeaPrice);
+
+    function updateTeaPrice() {
+      const val = teaSlider.value;
+      document.getElementById('tea-price').textContent = '₹' + val;
+      saveBallotLocal({ priceChaya: parseInt(val) });
+    }
+
+    // Wishlist chip toggle
+    function toggleChip(el) {
+      el.classList.toggle('active');
+      saveWishlistTags();
+    }
+
+    function saveWishlistTags() {
+      const tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(c => c.dataset.tag);
+      saveBallotLocal({ wishlistTags: tags });
+    }
+
+    // Character counter
+    function updateCharCount() {
+      const textarea = document.getElementById('wishlist-textarea');
+      const counter = document.getElementById('char-counter');
+      const len = textarea.value.length;
+      counter.textContent = len + '/280';
+      counter.className = 'char-counter' + (len > 250 ? ' danger' : len > 200 ? ' warning' : '');
+      saveBallotLocal({ wishlistText: textarea.value });
+    }
+
+    // Tier selection
+    function selectTier(el, tier) {
+      document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedTier = tier;
+      saveBallotLocal({ tier: tier });
+    }
+
+    // Claim voucher
+    async function claimVoucher() {
+      const phone = document.getElementById('phone-input').value.trim();
+      const consent = document.getElementById('consent-checkbox').checked;
+
+      if (!phone || phone.length < 10) {
+        showToast('Please enter a valid 10-digit phone number', 'error');
+        return;
+      }
+
+      if (!consent) {
+        showToast('Please accept the DPDP consent to continue', 'error');
+        return;
+      }
+
+      try {
+        const coffeeVal = parseInt(coffeeSlider.value);
+        const teaVal = parseInt(teaSlider.value);
+        const tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(c => c.dataset.tag);
+        const text = document.getElementById('wishlist-textarea').value;
+
+        const ballotData = {
+          menuVotes: {},
+          vibeVote: '',
+          priceCoffee: coffeeVal,
+          priceChaya: teaVal,
+          wishlist: text,
+          suggestedItems: tags
+        };
+
+        const result = await submitBallot(ballotData);
+
+        if (result.error) throw result.error;
+
+        const participantResult = await registerParticipant(result.refCode, {
+          phone: '+91' + phone,
+          consent: true,
+          tier: selectedTier || 'free'
+        });
+
+        showToast('Your voucher is ready! Welcome, Founding Patron.', 'success');
+
+        // Update pass display
+        document.getElementById('pass-name').textContent = '+91 ' + phone.replace(/(\d{5})(\d{5})/, '$1 $2');
+        if (participantResult.voucherCode) {
+          document.getElementById('voucher-code').textContent = participantResult.voucherCode;
+        }
+
+        clearBallotLocal();
+      } catch (err) {
+        console.error('Claim error:', err);
+        showToast('Something went wrong. Please try again.', 'error');
+      }
+    }
+
+    // Share referral
+    function shareReferral() {
+      const ballot = getBallotLocal();
+      const refCode = ballot.refCode || generateRefCode();
+      const url = window.location.origin + '/index.html?ref=' + refCode;
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('Referral link copied to clipboard!', 'success');
+        });
+      } else {
+        showToast('Referral: ' + url, 'info');
+      }
+    }
+  </script>
+
+</body>
+</html>
