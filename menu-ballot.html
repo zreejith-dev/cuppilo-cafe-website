@@ -547,9 +547,9 @@
   <div class="sticky-bottom" id="sticky-bottom">
     <div class="container sticky-inner">
       <span class="sticky-votes"><span id="sticky-count">0</span> / 5 <span data-en="votes cast" data-ml="വോട്ടുകൾ നൽകി">votes cast</span></span>
-      <a href="ambiance.html" class="btn btn-primary" style="padding:.625rem 1.25rem;font-size:.8125rem">
+      <button onclick="submitAndNavigate()" class="btn btn-primary" style="padding:.625rem 1.25rem;font-size:.8125rem">
         <span data-en="Next: Choose Vibe →" data-ml="അടുത്തത്: വൈബ് തിരഞ്ഞെടുക്കുക →">Next: Choose Vibe →</span>
-      </a>
+      </button>
     </div>
   </div>
 
@@ -759,6 +759,11 @@
       } catch (e) {
         console.error('Error loading ballot count:', e);
       }
+    }
+
+    async function submitAndNavigate() {
+      await saveBallotToSupabase();
+      window.location.href = 'ambiance.html';
     }
 
     document.addEventListener('DOMContentLoaded', function() {

@@ -4,7 +4,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 // Supabase client (lightweight, no SDK dependency)
 const supabase = {
-  async from(table) {
+  from(table) {
     return {
       async select(columns = '*') {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=${columns}`, {
@@ -61,6 +61,14 @@ const supabase = {
     };
   }
 };
+
+// Generic Supabase helpers
+async function sbInsert(table, data) {
+  return await supabase.from(table).insert(data);
+}
+async function sbSelect(table, columns = '*') {
+  return await supabase.from(table).select(columns);
+}
 
 // Utility: Generate unique ref code
 function generateRefCode() {

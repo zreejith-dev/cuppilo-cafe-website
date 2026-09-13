@@ -109,11 +109,11 @@
               <span class="tag-pill" data-en="Kathakali Prints" data-ml="കഥകളി പ്രിന്റുകൾ">Kathakali Prints</span>
             </div>
             <div class="vote-row">
-              <span class="vote-count" data-en="0 votes" data-ml="0 വോട്ടുകൾ">0 votes</span>
-              <span class="vote-pct">0%</span>
+              <span class="vote-count" id="vibe-a-count" data-en="0 votes" data-ml="0 വോട്ടുകൾ">0 votes</span>
+              <span class="vote-pct" id="vibe-a-pct">0%</span>
             </div>
             <div class="vote-bar">
-              <div class="vote-bar-fill" style="width:0%;background:#fff"></div>
+              <div class="vote-bar-fill" id="vibe-a-bar" style="width:0%;background:#fff"></div>
             </div>
             <span class="selection-badge" data-en="Your Selection" data-ml="നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ്">Your Selection</span>
           </div>
@@ -139,11 +139,11 @@
               <span class="tag-pill" data-en="Cane" data-ml="കെയ്ന്">Cane</span>
             </div>
             <div class="vote-row">
-              <span class="vote-count" data-en="0 votes" data-ml="0 വോട്ടുകൾ">0 votes</span>
-              <span class="vote-pct">0%</span>
+              <span class="vote-count" id="vibe-b-count" data-en="0 votes" data-ml="0 വോട്ടുകൾ">0 votes</span>
+              <span class="vote-pct" id="vibe-b-pct">0%</span>
             </div>
             <div class="vote-bar">
-              <div class="vote-bar-fill" style="width:0%;background:var(--brass)"></div>
+              <div class="vote-bar-fill" id="vibe-b-bar" style="width:0%;background:var(--brass)"></div>
             </div>
             <span class="selection-badge" data-en="Your Selection" data-ml="നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ്">Your Selection</span>
           </div>
@@ -169,11 +169,11 @@
               <span class="tag-pill" data-en="Clean" data-ml="വൃത്തിയുള്ളത്">Clean</span>
             </div>
             <div class="vote-row">
-              <span class="vote-count" data-en="0 votes" data-ml="0 വോട്ടുകൾ">0 votes</span>
-              <span class="vote-pct">0%</span>
+              <span class="vote-count" id="vibe-c-count" data-en="0 votes" data-ml="0 വോട്ടുകൾ">0 votes</span>
+              <span class="vote-pct" id="vibe-c-pct">0%</span>
             </div>
             <div class="vote-bar">
-              <div class="vote-bar-fill" style="width:0%;background:rgba(255,255,255,.7)"></div>
+              <div class="vote-bar-fill" id="vibe-c-bar" style="width:0%;background:rgba(255,255,255,.7)"></div>
             </div>
             <span class="selection-badge" data-en="Your Selection" data-ml="നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ്">Your Selection</span>
           </div>
@@ -199,11 +199,11 @@
               <span class="tag-pill" style="background:rgba(139,92,246,.2);color:#c4b5fd;border-color:rgba(196,181,253,.2)" data-en="Live" data-ml="ലൈവ്">Live</span>
             </div>
             <div class="vote-row">
-              <span class="vote-count" data-en="0 votes" data-ml="0 വോട്ടുകൾ">0 votes</span>
-              <span class="vote-pct" style="color:#c4b5fd">0%</span>
+              <span class="vote-count" id="vibe-d-count" data-en="0 votes" data-ml="0 വോട്ടുകൾ">0 votes</span>
+              <span class="vote-pct" id="vibe-d-pct" style="color:#c4b5fd">0%</span>
             </div>
             <div class="vote-bar">
-              <div class="vote-bar-fill" style="width:0%;background:#a78bfa"></div>
+              <div class="vote-bar-fill" id="vibe-d-bar" style="width:0%;background:#a78bfa"></div>
             </div>
             <span class="selection-badge" data-en="Your Selection" data-ml="നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ്">Your Selection</span>
           </div>
@@ -290,6 +290,34 @@
     });
 
     initPage('ambiance');
+
+    // Fetch live vibe tally
+    async function loadVibeTally() {
+      try {
+        if (typeof fetchVibeTally === 'function') {
+          const tally = await fetchVibeTally();
+          if (tally && !tally.error && tally.length > 0) {
+            const total = tally.reduce((sum, t) => sum + (t.vote_count || 0), 0);
+            const options = { A: 'vibe-a', B: 'vibe-b', C: 'vibe-c', D: 'vibe-d' };
+            tally.forEach(t => {
+              const key = options[t.vibe_vote];
+              if (!key) return;
+              const count = t.vote_count || 0;
+              const pct = total > 0 ? Math.round(count / total * 100) : 0;
+              const countEl = document.getElementById(key + '-count');
+              const pctEl = document.getElementById(key + '-pct');
+              const barEl = document.getElementById(key + '-bar');
+              if (countEl) countEl.textContent = count + ' votes';
+              if (pctEl) pctEl.textContent = pct + '%';
+              if (barEl) barEl.style.width = pct + '%';
+            });
+          }
+        }
+      } catch (e) {
+        console.log('Vibe tally fetch skipped:', e);
+      }
+    }
+    loadVibeTally();
   </script>
 
 </body>

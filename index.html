@@ -394,7 +394,23 @@
 
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
-  <script>initPage('index');</script>
+  <script>
+    initPage('index');
+
+    // Fetch live participant count
+    async function loadLiveCount() {
+      try {
+        if (typeof sbSelect === 'function') {
+          const data = await sbSelect('participants', 'id=count');
+          const count = Array.isArray(data) ? data.length : 0;
+          document.querySelector('.hero-badge span[data-en]').textContent = count + ' co-creators joined';
+        }
+      } catch (e) {
+        console.log('Live count fetch skipped:', e);
+      }
+    }
+    loadLiveCount();
+  </script>
 
 </body>
 </html>
