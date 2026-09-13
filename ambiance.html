@@ -6,170 +6,301 @@
   <title>Ambiance & Interior — Cuppilo Café</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#A93B2B',
+            'primary-dark': '#882E21',
+            cream: '#F7F4EB',
+            charcoal: '#231F20',
+            brass: '#C89D5C',
+            'muted-latte': '#E8E2D2',
+            'brass-soft': '#F4EBD9',
+            surface: '#fff8f8',
+            'surface-container': '#f5eced',
+            'surface-low': '#fbf1f2',
+            'surface-high': '#efe6e7',
+            'on-surface': '#1e1b1c',
+            'on-surface-variant': '#57423e',
+            success: '#2D6A4F',
+            'live-pulse': '#E0533C',
+          },
+          fontFamily: {
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+            editorial: ['Newsreader', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F7F4EB; }
+    ::-webkit-scrollbar { display: none; }
+    body { scrollbar-width: none; }
+    .moodboard-card { transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+    .moodboard-card:hover { transform: translateY(-4px); }
+    .moodboard-card.selected-halo { box-shadow: 0 0 0 3px rgba(200,157,92,0.45), 0 8px 32px rgba(200,157,92,0.15); }
+    .radio-dot { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(200,157,92,0.4); }
+      70% { box-shadow: 0 0 0 8px rgba(200,157,92,0); }
+      100% { box-shadow: 0 0 0 0 rgba(200,157,92,0); }
+    }
+    .selected-halo .radio-icon { animation: pulse-ring 2s infinite; }
+  </style>
 </head>
-<body class="bg-[#1a1108] text-[#f5f0e8] min-h-screen font-sans">
+<body class="bg-cream text-charcoal min-h-screen flex flex-col">
 
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#1a1108]/90 backdrop-blur-sm border-b border-[#3d2c14]/40"></nav>
-
-  <main class="pt-20 pb-24 max-w-5xl mx-auto px-4">
-
-    <div id="progress-section" class="mb-8">
-      <p class="text-sm text-[#c4a265] mb-2 font-medium">Step 2 of 4 &bull; Architectural Vision</p>
-      <div class="w-full h-2 bg-[#3d2c14]/50 rounded-full overflow-hidden">
-        <div id="progress-bar" class="h-full bg-gradient-to-r from-[#c4a265] to-[#e8c97a] rounded-full transition-all duration-500" style="width:50%"></div>
+  <!-- Navbar -->
+  <nav id="navbar" style="position:sticky;top:0;z-index:40;background:rgba(247,244,235,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #E8E2D2">
+    <div style="max-width:1080px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:3.5rem">
+      <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none">
+        <img src="img/logo.png" alt="Cuppilo Logo" style="height:28px;width:auto">
+        <span style="font-weight:800;font-size:1.125rem;color:#A93B2B">CUPPILO</span>
+        <span style="font-size:0.75rem;color:#C89D5C">കപ്പിലോ</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:0.25rem">
+        <a href="index.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Home</a>
+        <a href="menu-ballot.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Menu</a>
+        <a href="ambiance.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;background:#A93B2B;color:#F7F4EB">Vibe</a>
+        <a href="pricing.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Pricing</a>
+        <a href="founding-wall.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Wall</a>
       </div>
     </div>
+  </nav>
 
-    <section class="mb-10 text-center">
-      <h1 class="text-3xl md:text-5xl font-bold text-[#e8c97a] leading-tight mb-2">നടമുറ്റം മുതൽ വരാന്ത വരെ</h1>
-      <p class="text-lg md:text-xl text-[#c4a265]/80">Shape the Space &amp; Architectural Vibe</p>
-    </section>
+  <main class="flex-1 pb-24">
 
-    <section id="moodboard-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-
-      <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-[#c4a265]/40 transition-all duration-300" data-option="A">
-        <input type="radio" name="ambiance-choice" value="A" class="hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#5c3a1e] via-[#8b6914] to-[#3d2c14]"></div>
-        <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[320px]">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold uppercase tracking-wider bg-[#c4a265]/20 text-[#e8c97a] px-3 py-1 rounded-full">Option A</span>
-            <div class="radio-icon w-6 h-6 rounded-full border-2 border-[#c4a265]/50 flex items-center justify-center transition-all">
-              <div class="radio-dot w-3 h-3 rounded-full bg-[#e8c97a] scale-0 transition-transform"></div>
-            </div>
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-[#f5f0e8] mb-1">Kerala Heritage</h3>
-          <p class="text-sm text-[#c4a265]/70 mb-4">Laterite, teak, brass, Edison lamps</p>
-          <p class="text-sm text-[#f5f0e8]/70 mb-5 flex-1">Rooted in the warmth of Kerala's architectural soul — exposed laterite walls, hand-carved teak furniture, soft Edison glow, and brass accents that tell stories of time.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="chip text-xs bg-[#3d2c14]/60 text-[#c4a265] px-2 py-1 rounded-full border border-[#c4a265]/20">Laterite Stone</span>
-            <span class="chip text-xs bg-[#3d2c14]/60 text-[#c4a265] px-2 py-1 rounded-full border border-[#c4a265]/20">Teak Wood</span>
-            <span class="chip text-xs bg-[#3d2c14]/60 text-[#c4a265] px-2 py-1 rounded-full border border-[#c4a265]/20">Brass Fixtures</span>
-            <span class="chip text-xs bg-[#3d2c14]/60 text-[#c4a265] px-2 py-1 rounded-full border border-[#c4a265]/20">Edison Lamps</span>
-          </div>
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs text-[#c4a265]/60 vote-count">1,478 votes</span>
-            <span class="text-xs font-bold text-[#e8c97a] vote-pct">38%</span>
-          </div>
-          <div class="w-full h-1.5 bg-[#3d2c14]/60 rounded-full overflow-hidden">
-            <div class="consensus-bar h-full bg-[#c4a265] rounded-full transition-all duration-500" style="width:38%"></div>
+    <!-- Progress -->
+    <section class="bg-white border-b border-gray-200 py-3">
+      <div class="max-w-[1080px] mx-auto px-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2 text-sm">
+            <span class="font-bold text-primary">Step 2 of 4</span>
+            <span class="text-gray-300">•</span>
+            <span class="text-gray-600">Architectural Vision</span>
           </div>
         </div>
-      </label>
-
-      <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-[#c4a265] hover:border-[#e8c97a] transition-all duration-300 selected-halo" data-option="B">
-        <input type="radio" name="ambiance-choice" value="B" class="hidden" checked>
-        <div class="absolute inset-0 bg-gradient-to-br from-[#8b4513] via-[#cd853f] to-[#a0522d]"></div>
-        <div class="absolute -inset-1 rounded-2xl border-2 border-[#e8c97a]/50 animate-pulse pointer-events-none z-10"></div>
-        <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[320px]">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold uppercase tracking-wider bg-[#e8c97a]/20 text-[#e8c97a] px-3 py-1 rounded-full">Option B</span>
-              <span class="text-[10px] font-bold uppercase tracking-wider bg-[#c4a265] text-[#1a1108] px-2 py-0.5 rounded-full">Your Selection</span>
-            </div>
-            <div class="radio-icon w-6 h-6 rounded-full border-2 border-[#e8c97a] flex items-center justify-center bg-[#e8c97a]/20 transition-all">
-              <div class="radio-dot w-3 h-3 rounded-full bg-[#e8c97a] scale-100 transition-transform"></div>
-            </div>
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-[#f5f0e8] mb-1">Earth &amp; Clay</h3>
-          <p class="text-sm text-[#e8c97a]/80 mb-4">Terracotta, ceramics, bamboo, earth tones</p>
-          <p class="text-sm text-[#f5f0e8]/70 mb-5 flex-1">Grounded in the raw beauty of earth — terracotta tiles, hand-thrown ceramics, bamboo screens, and a palette drawn straight from the soil beneath our feet.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="chip text-xs bg-[#cd853f]/30 text-[#f5f0e8] px-2 py-1 rounded-full border border-[#e8c97a]/30">Terracotta</span>
-            <span class="chip text-xs bg-[#cd853f]/30 text-[#f5f0e8] px-2 py-1 rounded-full border border-[#e8c97a]/30">Ceramics</span>
-            <span class="chip text-xs bg-[#cd853f]/30 text-[#f5f0e8] px-2 py-1 rounded-full border border-[#e8c97a]/30">Bamboo</span>
-            <span class="chip text-xs bg-[#cd853f]/30 text-[#f5f0e8] px-2 py-1 rounded-full border border-[#e8c97a]/30">Earth Tones</span>
-          </div>
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs text-[#c4a265]/60 vote-count">1,712 votes</span>
-            <span class="text-xs font-bold text-[#e8c97a] vote-pct">44%</span>
-          </div>
-          <div class="w-full h-1.5 bg-[#3d2c14]/60 rounded-full overflow-hidden">
-            <div class="consensus-bar h-full bg-[#e8c97a] rounded-full transition-all duration-500" style="width:44%"></div>
-          </div>
-        </div>
-      </label>
-
-      <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-[#c4a265]/40 transition-all duration-300" data-option="C">
-        <input type="radio" name="ambiance-choice" value="C" class="hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#4a4a4a] via-[#708090] to-[#2f4f4f]"></div>
-        <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[320px]">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold uppercase tracking-wider bg-[#708090]/30 text-[#b0c4de] px-3 py-1 rounded-full">Option C</span>
-            <div class="radio-icon w-6 h-6 rounded-full border-2 border-[#708090]/50 flex items-center justify-center transition-all">
-              <div class="radio-dot w-3 h-3 rounded-full bg-[#b0c4de] scale-0 transition-transform"></div>
-            </div>
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-[#f5f0e8] mb-1">Modern Tropical Minimal</h3>
-          <p class="text-sm text-[#708090]/80 mb-4">Concrete, glass, clean lines</p>
-          <p class="text-sm text-[#f5f0e8]/70 mb-5 flex-1">A contemporary retreat where tropical greenery meets minimalist architecture — polished concrete, floor-to-ceiling glass, and clean geometric lines.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="chip text-xs bg-[#4a4a4a]/60 text-[#b0c4de] px-2 py-1 rounded-full border border-[#708090]/30">Concrete</span>
-            <span class="chip text-xs bg-[#4a4a4a]/60 text-[#b0c4de] px-2 py-1 rounded-full border border-[#708090]/30">Glass</span>
-            <span class="chip text-xs bg-[#4a4a4a]/60 text-[#b0c4de] px-2 py-1 rounded-full border border-[#708090]/30">Clean Lines</span>
-          </div>
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs text-[#c4a265]/60 vote-count">467 votes</span>
-            <span class="text-xs font-bold text-[#b0c4de] vote-pct">12%</span>
-          </div>
-          <div class="w-full h-1.5 bg-[#3d2c14]/60 rounded-full overflow-hidden">
-            <div class="consensus-bar h-full bg-[#708090] rounded-full transition-all duration-500" style="width:12%"></div>
-          </div>
-        </div>
-      </label>
-
-      <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-[#c4a265]/40 transition-all duration-300" data-option="D">
-        <input type="radio" name="ambiance-choice" value="D" class="hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#1a0a2e] via-[#2d1b4e] to-[#0f0f2d]"></div>
-        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_30%,#e8c97a_0%,transparent_40%),radial-gradient(circle_at_80%_60%,#c4a265_0%,transparent_30%),radial-gradient(circle_at_50%_80%,#e8c97a_0%,transparent_35%)]"></div>
-        <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[320px]">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold uppercase tracking-wider bg-[#2d1b4e]/80 text-[#d8b4fe] px-3 py-1 rounded-full">Option D</span>
-            <div class="radio-icon w-6 h-6 rounded-full border-2 border-[#d8b4fe]/50 flex items-center justify-center transition-all">
-              <div class="radio-dot w-3 h-3 rounded-full bg-[#d8b4fe] scale-0 transition-transform"></div>
-            </div>
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-[#f5f0e8] mb-1">Late Night Acoustic Courtyard</h3>
-          <p class="text-sm text-[#d8b4fe]/80 mb-4">Fairy lights, lo-fi, floor cushions</p>
-          <p class="text-sm text-[#f5f0e8]/70 mb-5 flex-1">An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations.</p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="chip text-xs bg-[#2d1b4e]/60 text-[#d8b4fe] px-2 py-1 rounded-full border border-[#d8b4fe]/20">Fairy Lights</span>
-            <span class="chip text-xs bg-[#2d1b4e]/60 text-[#d8b4fe] px-2 py-1 rounded-full border border-[#d8b4fe]/20">Lo-Fi</span>
-            <span class="chip text-xs bg-[#2d1b4e]/60 text-[#d8b4fe] px-2 py-1 rounded-full border border-[#d8b4fe]/20">Floor Cushions</span>
-          </div>
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs text-[#c4a265]/60 vote-count">235 votes</span>
-            <span class="text-xs font-bold text-[#d8b4fe] vote-pct">6%</span>
-          </div>
-          <div class="w-full h-1.5 bg-[#3d2c14]/60 rounded-full overflow-hidden">
-            <div class="consensus-bar h-full bg-[#d8b4fe] rounded-full transition-all duration-500" style="width:6%"></div>
-          </div>
-        </div>
-      </label>
-
-    </section>
-
-    <section class="mb-10 bg-[#3d2c14]/40 border border-[#c4a265]/20 rounded-2xl p-5 md:p-6">
-      <div class="flex items-start gap-3">
-        <div class="text-2xl mt-0.5">💡</div>
-        <div>
-          <h3 class="text-lg font-bold text-[#e8c97a] mb-1">Consensus Insight</h3>
-          <p class="text-sm text-[#f5f0e8]/80 leading-relaxed">Terracotta &amp; Heritage are neck-and-neck! We are blending elements of both.</p>
+        <div class="w-full bg-gray-200 rounded-full h-1.5">
+          <div class="bg-primary h-1.5 rounded-full transition-all duration-500" style="width:50%"></div>
         </div>
       </div>
     </section>
 
-    <nav class="flex flex-col sm:flex-row gap-4 justify-between items-center">
-      <a href="menu-ballot.html" class="w-full sm:w-auto text-center px-6 py-3 rounded-xl border border-[#c4a265]/30 text-[#c4a265] hover:bg-[#c4a265]/10 transition-all font-medium">
-        &larr; Back to Menu Ballot
-      </a>
-      <a href="pricing.html" class="w-full sm:w-auto text-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#c4a265] to-[#e8c97a] text-[#1a1108] font-bold hover:shadow-lg hover:shadow-[#c4a265]/20 transition-all">
-        Continue to Fair Pricing &amp; Wishlist &rarr;
-      </a>
-    </nav>
+    <!-- Title -->
+    <section class="max-w-[1080px] mx-auto px-4 pt-8 pb-6 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mb-2" style="font-family:'Plus Jakarta Sans',sans-serif">
+        നടമുറ്റം മുതൽ വരാന്ത വരെ
+      </h1>
+      <p class="text-lg md:text-xl text-on-surface-variant">Shape the Space &amp; Architectural Vibe</p>
+    </section>
+
+    <!-- 2x2 Moodboard Grid -->
+    <section class="max-w-[1080px] mx-auto px-4 mb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        <!-- Option A: Kerala Heritage -->
+        <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-gray-200 hover:border-brass/60 transition-all duration-300" data-option="A">
+          <input type="radio" name="ambiance-choice" value="A" class="hidden">
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#8B4513,#CD853F)"></div>
+          <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[340px]">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider bg-white/20 text-white px-3 py-1 rounded-full backdrop-blur-sm">Option A</span>
+              <div class="radio-icon w-7 h-7 rounded-full border-2 border-white/50 flex items-center justify-center bg-white/10 backdrop-blur-sm">
+                <div class="radio-dot w-3.5 h-3.5 rounded-full bg-white scale-0 transition-transform"></div>
+              </div>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-1">Kerala Heritage</h3>
+            <p class="text-sm text-white/80 mb-4">Laterite, teak, brass, Edison lamps</p>
+            <p class="text-sm text-white/70 mb-5 flex-1">Rooted in the warmth of Kerala's architectural soul — exposed laterite walls, hand-carved teak furniture, soft Edison glow, and brass accents that tell stories of time.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Laterite Stone</span>
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Teak Wood</span>
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Brass Fixtures</span>
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Edison Lamps</span>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-white/60 vote-count">1,478 votes</span>
+              <span class="text-xs font-bold text-white vote-pct">38%</span>
+            </div>
+            <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+              <div class="consensus-bar h-full bg-white rounded-full transition-all duration-500" style="width:38%"></div>
+            </div>
+          </div>
+        </label>
+
+        <!-- Option B: Earth & Clay (DEFAULT SELECTED) -->
+        <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-brass selected-halo transition-all duration-300" data-option="B">
+          <input type="radio" name="ambiance-choice" value="B" class="hidden" checked>
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#D2691E,#DEB887)"></div>
+          <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[340px]">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider bg-white/20 text-white px-3 py-1 rounded-full backdrop-blur-sm">Option B</span>
+                <span class="your-selection-badge text-[10px] font-bold uppercase tracking-wider bg-brass text-charcoal px-2.5 py-0.5 rounded-full">Your Selection</span>
+              </div>
+              <div class="radio-icon w-7 h-7 rounded-full border-2 border-brass flex items-center justify-center bg-brass/20 backdrop-blur-sm">
+                <div class="radio-dot w-3.5 h-3.5 rounded-full bg-brass scale-100 transition-transform"></div>
+              </div>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-1">Earth &amp; Clay</h3>
+            <p class="text-sm text-white/80 mb-4">Terracotta, ceramics, bamboo, earth tones</p>
+            <p class="text-sm text-white/70 mb-5 flex-1">Grounded in the raw beauty of earth — terracotta tiles, hand-thrown ceramics, bamboo screens, and a palette drawn straight from the soil beneath our feet.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Terracotta</span>
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Ceramics</span>
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Bamboo</span>
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Earth Tones</span>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-white/60 vote-count">1,712 votes</span>
+              <span class="text-xs font-bold text-white vote-pct">44%</span>
+            </div>
+            <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+              <div class="consensus-bar h-full bg-brass rounded-full transition-all duration-500" style="width:44%"></div>
+            </div>
+          </div>
+        </label>
+
+        <!-- Option C: Modern Tropical Minimal -->
+        <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-gray-200 hover:border-gray-400 transition-all duration-300" data-option="C">
+          <input type="radio" name="ambiance-choice" value="C" class="hidden">
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#808080,#C0C0C0)"></div>
+          <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[340px]">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider bg-white/20 text-white px-3 py-1 rounded-full backdrop-blur-sm">Option C</span>
+              <div class="radio-icon w-7 h-7 rounded-full border-2 border-white/50 flex items-center justify-center bg-white/10 backdrop-blur-sm">
+                <div class="radio-dot w-3.5 h-3.5 rounded-full bg-white scale-0 transition-transform"></div>
+              </div>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-1">Modern Tropical Minimal</h3>
+            <p class="text-sm text-white/80 mb-4">Concrete, glass, clean lines</p>
+            <p class="text-sm text-white/70 mb-5 flex-1">A contemporary retreat where tropical greenery meets minimalist architecture — polished concrete, floor-to-ceiling glass, and clean geometric lines.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Concrete</span>
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Glass</span>
+              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Clean Lines</span>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-white/60 vote-count">467 votes</span>
+              <span class="text-xs font-bold text-white vote-pct">12%</span>
+            </div>
+            <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+              <div class="consensus-bar h-full bg-white/70 rounded-full transition-all duration-500" style="width:12%"></div>
+            </div>
+          </div>
+        </label>
+
+        <!-- Option D: Late Night Acoustic Courtyard -->
+        <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-gray-700 hover:border-purple-400/60 transition-all duration-300" data-option="D">
+          <input type="radio" name="ambiance-choice" value="D" class="hidden">
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"></div>
+          <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_25%_25%,#facc15_0%,transparent_40%),radial-gradient(circle_at_75%_60%,#c084fc_0%,transparent_30%),radial-gradient(circle_at_50%_85%,#facc15_0%,transparent_35%)]"></div>
+          <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[340px]">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider bg-purple-500/30 text-purple-200 px-3 py-1 rounded-full backdrop-blur-sm">Option D</span>
+              <div class="radio-icon w-7 h-7 rounded-full border-2 border-purple-300/50 flex items-center justify-center bg-white/10 backdrop-blur-sm">
+                <div class="radio-dot w-3.5 h-3.5 rounded-full bg-purple-300 scale-0 transition-transform"></div>
+              </div>
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-1">Late Night Acoustic Courtyard</h3>
+            <p class="text-sm text-purple-300/80 mb-4">Fairy lights, lo-fi, floor cushions</p>
+            <p class="text-sm text-white/70 mb-5 flex-1">An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-purple-500/20 text-purple-200 px-2.5 py-1 rounded-full border border-purple-400/20 backdrop-blur-sm">Fairy Lights</span>
+              <span class="text-xs bg-purple-500/20 text-purple-200 px-2.5 py-1 rounded-full border border-purple-400/20 backdrop-blur-sm">Lo-Fi</span>
+              <span class="text-xs bg-purple-500/20 text-purple-200 px-2.5 py-1 rounded-full border border-purple-400/20 backdrop-blur-sm">Floor Cushions</span>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-white/60 vote-count">235 votes</span>
+              <span class="text-xs font-bold text-purple-300 vote-pct">6%</span>
+            </div>
+            <div class="w-full h-1.5 bg-white/15 rounded-full overflow-hidden">
+              <div class="consensus-bar h-full bg-purple-400 rounded-full transition-all duration-500" style="width:6%"></div>
+            </div>
+          </div>
+        </label>
+
+      </div>
+    </section>
+
+    <!-- Consensus Insight Box -->
+    <section class="max-w-[1080px] mx-auto px-4 mb-10">
+      <div class="bg-white rounded-2xl border border-gray-200 p-5 md:p-6 shadow-sm">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-full bg-brass-soft flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-xl text-brass" style="font-variation-settings:'FILL' 1">lightbulb</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-primary mb-1">Consensus Insight</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Terracotta &amp; Heritage are neck-and-neck! We are blending elements of both.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="max-w-[1080px] mx-auto px-4 mb-12">
+      <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+        <a href="menu-ballot.html" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl border-2 border-gray-300 text-on-surface-variant hover:bg-gray-100 transition-all font-semibold text-sm flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined" style="font-size:18px">arrow_back</span>
+          Back to Menu Ballot
+        </a>
+        <a href="pricing.html" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 active:scale-95">
+          Continue to Fair Pricing
+          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+        </a>
+      </div>
+    </section>
 
   </main>
 
-  <footer id="site-footer" class="border-t border-[#3d2c14]/40 py-6 mt-16"></footer>
+  <!-- Footer -->
+  <footer class="w-full bg-surface-container py-8">
+    <div class="max-w-[1080px] mx-auto px-4 flex flex-col gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <div class="md:col-span-5 flex flex-col gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-extrabold text-primary">CUPPILO</span>
+            <span class="text-sm text-brass">കപ്പിലോ</span>
+          </div>
+          <p class="font-editorial text-sm text-on-surface-variant italic">"Bringing artisanal specialty roasts, shade-grown Western Ghats heritage beans, and warm veranda conversations back to our towns."</p>
+          <div class="flex items-center gap-2 text-on-surface-variant text-xs pt-1">
+            <span class="material-symbols-outlined" style="font-size:14px;color:#2D6A4F">eco</span>
+            Single-estate Wayanad &amp; Nelliyampathy Arabica sourcing
+          </div>
+        </div>
+        <div class="md:col-span-3 flex flex-col gap-2">
+          <span class="text-sm font-semibold text-on-surface">Co-Creation Chapters</span>
+          <nav class="flex flex-col gap-2">
+            <a href="index.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Veranda Orientation</a>
+            <a href="menu-ballot.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Artisanal Menu Ballot</a>
+            <a href="ambiance.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Nadumuttam Architecture</a>
+            <a href="pricing.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Fair Cup Pricing</a>
+            <a href="founding-wall.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Founding Patron Wall</a>
+          </nav>
+        </div>
+        <div class="md:col-span-4 flex flex-col gap-3 bg-surface-low p-4 rounded-xl">
+          <div class="flex items-center gap-2 text-brass">
+            <span class="material-symbols-outlined" style="font-size:18px">verified_user</span>
+            <span class="text-sm font-bold">DPDP India Act 2023 Compliant</span>
+          </div>
+          <p class="text-xs text-on-surface-variant">Your feedback and contact preferences are strictly confidential. Encrypted, spam-free, and purely community-owned co-creation.</p>
+        </div>
+      </div>
+      <div class="pt-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-on-surface-variant">
+        <p class="text-xs">&copy; 2026 CUPPILO Specialty Artisanal Café. Crafting modern Kerala third spaces.</p>
+        <div class="flex items-center gap-3 text-xs">
+          <span>Kochi • Kozhikode • Thrissur</span>
+          <span class="text-brass font-bold">#CuppiloKerala</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
@@ -184,7 +315,11 @@
           const radio = c.querySelector('.radio-icon');
           const dot = c.querySelector('.radio-dot');
           const inp = c.querySelector('input[type="radio"]');
-          if (radio) { radio.classList.remove('bg-[#e8c97a]/20'); radio.style.borderColor = ''; }
+          if (radio) {
+            radio.classList.remove('bg-brass/20', 'border-brass');
+            radio.style.borderColor = '';
+            radio.classList.add('bg-white/10', 'border-white/50');
+          }
           if (dot) { dot.classList.remove('scale-100'); dot.classList.add('scale-0'); }
           if (inp) inp.checked = false;
           const badge = c.querySelector('.your-selection-badge');
@@ -192,18 +327,21 @@
         });
 
         card.classList.add('selected-halo');
-        card.style.borderColor = '#e8c97a';
         const radio = card.querySelector('.radio-icon');
         const dot = card.querySelector('.radio-dot');
         const inp = card.querySelector('input[type="radio"]');
-        if (radio) { radio.classList.add('bg-[#e8c97a]/20'); radio.style.borderColor = '#e8c97a'; }
+        if (radio) {
+          radio.classList.remove('bg-white/10', 'border-white/50');
+          radio.classList.add('bg-brass/20');
+          radio.style.borderColor = 'var(--brass)';
+        }
         if (dot) { dot.classList.remove('scale-0'); dot.classList.add('scale-100'); }
         if (inp) inp.checked = true;
 
         const headerArea = card.querySelector('.flex.items-center.justify-between.mb-4 .flex.items-center.gap-2, .flex.items-center.justify-between.mb-4 > span:first-child');
         if (headerArea && !card.querySelector('.your-selection-badge')) {
           const tag = document.createElement('span');
-          tag.className = 'your-selection-badge text-[10px] font-bold uppercase tracking-wider bg-[#c4a265] text-[#1a1108] px-2 py-0.5 rounded-full';
+          tag.className = 'your-selection-badge text-[10px] font-bold uppercase tracking-wider bg-brass text-charcoal px-2.5 py-0.5 rounded-full';
           tag.textContent = 'Your Selection';
           headerArea.appendChild(tag);
         }

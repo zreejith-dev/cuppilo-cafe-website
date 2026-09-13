@@ -4,11 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fair Cup Pricing — CUPPILO Co-Creation</title>
+  <meta name="description" content="Name fair prices for Kerala's first community-built artisanal café. Claim your Digital Founding Patron Pass and unlock exclusive launch-week vouchers."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/supabase-config.js" defer></script>
-  <script src="js/shared.js" defer></script>
   <style>
-    /* Pricing-specific styles */
+    :root {
+      --muted-latte: #E8E2D2;
+      --surface-low: #fbf1f2;
+      --on-surface-variant: #57423e;
+      --outline-variant: #8b716d;
+    }
+
     .price-value {
       font-size: 2rem;
       font-weight: 800;
@@ -172,7 +182,7 @@
       gap: 0.75rem;
     }
     .tier-card:hover {
-      border-color: var(--outline);
+      border-color: var(--outline-variant);
     }
     .tier-card.selected {
       border-color: var(--primary);
@@ -228,11 +238,54 @@
       border-radius: 50%;
       background: rgba(200,157,92,0.15);
     }
+
+    /* Step indicator */
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 9999px;
+      background: var(--primary);
+      color: var(--cream);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .step-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+    .step-dots {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+    .step-dot {
+      height: 0.375rem;
+      border-radius: 9999px;
+      transition: all 0.3s;
+    }
+
     @media (max-width: 768px) {
       .price-value { font-size: 1.5rem; }
       .influence-score-ring { width: 4rem; height: 4rem; }
       .influence-score-ring::after { width: 3rem; height: 3rem; }
       .influence-score-inner { font-size: 1rem; }
+      .pricing-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (min-width: 769px) {
+      .pricing-grid {
+        grid-template-columns: 7fr 5fr;
+        gap: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -242,8 +295,21 @@
 
   <main class="section">
     <div class="container">
-      <!-- Stepper -->
-      <div id="stepper"></div>
+
+      <!-- Step Indicator -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:0.75rem 0">
+        <div class="step-pill">
+          <span class="step-num">4</span>
+          <span class="step-text">Step 4 of 5 &bull; Community Co-Creation</span>
+        </div>
+        <div class="step-dots">
+          <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
+          <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
+          <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
+          <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
+          <span class="step-dot" style="width:0.625rem;background:var(--muted-latte)"></span>
+        </div>
+      </div>
 
       <!-- Page Header -->
       <div style="margin-bottom:2rem">
@@ -251,11 +317,11 @@
         <p style="font-size:0.9375rem;color:var(--on-surface-variant)">You name the price. We'll build the café around what feels fair.</p>
       </div>
 
-      <!-- 2-Column Layout -->
-      <div style="display:grid;grid-template-columns:1fr;gap:1.5rem" id="pricing-grid">
+      <!-- 2-Column Layout: 7fr / 5fr -->
+      <div class="pricing-grid">
 
-        <!-- LEFT COLUMN -->
-        <div id="left-col">
+        <!-- ═══════ LEFT COLUMN (7 cols) ═══════ -->
+        <div>
 
           <!-- 1. Price Discovery Sliders -->
           <div class="card" style="margin-bottom:1.25rem">
@@ -328,8 +394,8 @@
             <label style="font-size:0.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:0.5rem">
               If you could fix ONE thing about cafés in Kerala?
             </label>
-            <textarea class="input" id="wishlist-textarea" maxlength="280" placeholder="The chai is too sweet, the chairs are uncomfortable, there's no plug point..." rows="3" oninput="updateCharCount()">The WiFi is always flaky, and there's never a quiet corner to actually think.</textarea>
-            <div class="char-counter" id="char-counter">86/280</div>
+            <textarea class="input" id="wishlist-textarea" maxlength="280" placeholder="The chai is too sweet, the chairs are uncomfortable, there's no plug point..." rows="3" oninput="updateCharCount()"></textarea>
+            <div class="char-counter" id="char-counter">0/280</div>
           </div>
 
           <!-- 3. Testimonial Quote -->
@@ -341,12 +407,12 @@
           </div>
         </div>
 
-        <!-- RIGHT COLUMN -->
-        <div id="right-col">
+        <!-- ═══════ RIGHT COLUMN (5 cols) ═══════ -->
+        <div>
 
           <!-- 4. Influence Score Card -->
           <div class="card" style="margin-bottom:1.25rem;text-align:center">
-            <span class="pill pill-brass" style="margin-bottom:1rem;display:inline-flex">
+            <span class="pill pill-live" style="margin-bottom:1rem;display:inline-flex">
               <span class="material-symbols-outlined" style="font-size:14px">workspace_premium</span>
               Founding Visionary
             </span>
@@ -491,73 +557,31 @@
 
   <div id="footer"></div>
 
+  <script src="js/supabase-config.js"></script>
+  <script src="js/shared.js"></script>
   <script>
-    // State
     let selectedTier = null;
-    let consentGiven = false;
 
-    // Initialize page
     document.addEventListener('DOMContentLoaded', function() {
       initPage('pricing');
-
-      // Render stepper
-      document.getElementById('stepper').innerHTML = renderStepper(3, 4);
-
-      // Load saved ballot data
-      const ballot = getBallotLocal();
-      if (ballot.priceCoffee) {
-        document.getElementById('coffee-slider').value = ballot.priceCoffee;
-        updateCoffeePrice();
-      }
-      if (ballot.priceChaya) {
-        document.getElementById('tea-slider').value = ballot.priceChaya;
-        updateTeaPrice();
-      }
-      if (ballot.wishlistText) {
-        document.getElementById('wishlist-textarea').value = ballot.wishlistText;
-        updateCharCount();
-      }
-      if (ballot.wishlistTags) {
-        ballot.wishlistTags.forEach(tag => {
-          const chip = document.querySelector(`[data-tag="${tag}"]`);
-          if (chip) chip.classList.add('active');
-        });
-      }
-      if (ballot.tier) {
-        const tierCard = document.querySelector(`[data-tier="${ballot.tier}"]`);
-        if (tierCard) selectTier(tierCard, ballot.tier);
-      }
+      updateCharCount();
     });
 
     // Coffee slider
     const coffeeSlider = document.getElementById('coffee-slider');
-    coffeeSlider.addEventListener('input', updateCoffeePrice);
-
-    function updateCoffeePrice() {
-      const val = coffeeSlider.value;
-      document.getElementById('coffee-price').textContent = '₹' + val;
-      saveBallotLocal({ priceCoffee: parseInt(val) });
-    }
+    coffeeSlider.addEventListener('input', function() {
+      document.getElementById('coffee-price').textContent = '₹' + this.value;
+    });
 
     // Tea slider
     const teaSlider = document.getElementById('tea-slider');
-    teaSlider.addEventListener('input', updateTeaPrice);
-
-    function updateTeaPrice() {
-      const val = teaSlider.value;
-      document.getElementById('tea-price').textContent = '₹' + val;
-      saveBallotLocal({ priceChaya: parseInt(val) });
-    }
+    teaSlider.addEventListener('input', function() {
+      document.getElementById('tea-price').textContent = '₹' + this.value;
+    });
 
     // Wishlist chip toggle
     function toggleChip(el) {
       el.classList.toggle('active');
-      saveWishlistTags();
-    }
-
-    function saveWishlistTags() {
-      const tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(c => c.dataset.tag);
-      saveBallotLocal({ wishlistTags: tags });
     }
 
     // Character counter
@@ -567,15 +591,13 @@
       const len = textarea.value.length;
       counter.textContent = len + '/280';
       counter.className = 'char-counter' + (len > 250 ? ' danger' : len > 200 ? ' warning' : '');
-      saveBallotLocal({ wishlistText: textarea.value });
     }
 
     // Tier selection
     function selectTier(el, tier) {
-      document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('.tier-card').forEach(function(c) { c.classList.remove('selected'); });
       el.classList.add('selected');
       selectedTier = tier;
-      saveBallotLocal({ tier: tier });
     }
 
     // Claim voucher
@@ -587,46 +609,40 @@
         showToast('Please enter a valid 10-digit phone number', 'error');
         return;
       }
-
       if (!consent) {
         showToast('Please accept the DPDP consent to continue', 'error');
         return;
       }
 
       try {
-        const coffeeVal = parseInt(coffeeSlider.value);
-        const teaVal = parseInt(teaSlider.value);
-        const tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(c => c.dataset.tag);
-        const text = document.getElementById('wishlist-textarea').value;
+        if (typeof submitBallot === 'function') {
+          const coffeeVal = parseInt(coffeeSlider.value);
+          const teaVal = parseInt(teaSlider.value);
+          const tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(function(c) { return c.dataset.tag; });
+          const text = document.getElementById('wishlist-textarea').value;
 
-        const ballotData = {
-          menuVotes: {},
-          vibeVote: '',
-          priceCoffee: coffeeVal,
-          priceChaya: teaVal,
-          wishlist: text,
-          suggestedItems: tags
-        };
+          const result = await submitBallot({
+            menuVotes: {},
+            vibeVote: '',
+            priceCoffee: coffeeVal,
+            priceChaya: teaVal,
+            wishlist: text,
+            suggestedItems: tags
+          });
 
-        const result = await submitBallot(ballotData);
+          if (result.error) throw result.error;
 
-        if (result.error) throw result.error;
-
-        const participantResult = await registerParticipant(result.refCode, {
-          phone: '+91' + phone,
-          consent: true,
-          tier: selectedTier || 'free'
-        });
-
-        showToast('Your voucher is ready! Welcome, Founding Patron.', 'success');
-
-        // Update pass display
-        document.getElementById('pass-name').textContent = '+91 ' + phone.replace(/(\d{5})(\d{5})/, '$1 $2');
-        if (participantResult.voucherCode) {
-          document.getElementById('voucher-code').textContent = participantResult.voucherCode;
+          if (typeof registerParticipant === 'function') {
+            await registerParticipant(result.refCode, {
+              phone: '+91' + phone,
+              consent: true,
+              tier: selectedTier || 'free'
+            });
+          }
         }
 
-        clearBallotLocal();
+        showToast('Your voucher is ready! Welcome, Founding Patron.', 'success');
+        document.getElementById('pass-name').textContent = '+91 ' + phone.replace(/(\d{5})(\d{5})/, '$1 $2');
       } catch (err) {
         console.error('Claim error:', err);
         showToast('Something went wrong. Please try again.', 'error');
@@ -635,12 +651,9 @@
 
     // Share referral
     function shareReferral() {
-      const ballot = getBallotLocal();
-      const refCode = ballot.refCode || generateRefCode();
-      const url = window.location.origin + '/index.html?ref=' + refCode;
-
+      const url = window.location.origin + '/index.html?ref=CUPPILO-842';
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => {
+        navigator.clipboard.writeText(url).then(function() {
           showToast('Referral link copied to clipboard!', 'success');
         });
       } else {

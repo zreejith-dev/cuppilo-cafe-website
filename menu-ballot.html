@@ -1,694 +1,776 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Interactive Menu Ballot — CUPPILO കപ്പിലോ</title>
-  <meta name="description" content="Vote for your favourite artisanal brews and Malabar bites. Help curate CUPPILO's opening day menu."/>
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="css/styles.css" rel="stylesheet"/>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#A93B2B',
-            'primary-dark': '#882E21',
-            cream: '#F7F4EB',
-            charcoal: '#231F20',
-            brass: '#C89D5C',
-            'muted-latte': '#E8E2D2',
-            'brass-soft': '#F4EBD9',
-            surface: '#fff8f8',
-            'surface-container': '#f5eced',
-            'surface-low': '#fbf1f2',
-            'surface-high': '#efe6e7',
-            'on-surface': '#1e1b1c',
-            'on-surface-variant': '#57423e',
-            success: '#2D6A4F',
-            'live-pulse': '#E0533C',
-          },
-          fontFamily: {
-            display: ['Plus Jakarta Sans', 'sans-serif'],
-            editorial: ['Newsreader', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F7F4EB; }
-    ::-webkit-scrollbar { display: none; }
-    body { scrollbar-width: none; }
-    .heart-btn { transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
-    .heart-btn:hover { transform: scale(1.15); }
-    .heart-btn.active .heart-icon { font-variation-settings: 'FILL' 1; color: #A93B2B; }
-    @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.35); } 100% { transform: scale(1); } }
-    @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
-    .shake { animation: shake 0.5s ease-in-out; }
-    .ballot-card { transition: all 0.3s ease; }
-    .ballot-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
-    .ballot-card.voted { border: 2.5px solid #A93B2B; box-shadow: 0 0 0 1px rgba(169,59,43,0.06); }
-    .consensus-bar { transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-    .filter-tab { transition: all 0.2s ease; }
-    .filter-tab.active { background-color: #231F20; color: #F7F4EB; }
-    .filter-tab:not(.active):hover { background-color: #E8E2D2; }
-    .suggest-card { border: 2px dashed #A93B2B; transition: all 0.2s ease; }
-    .suggest-card:hover { background-color: rgba(169,59,43,0.03); transform: scale(1.01); }
-    .sticky-bar { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-up { animation: fadeUp 0.4s ease-out forwards; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Ballot — CUPPILO</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-cream min-h-screen flex flex-col">
+<body>
 
   <!-- Navbar -->
-  <nav style="position:sticky;top:0;z-index:40;background:rgba(247,244,235,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #E8E2D2">
-    <div style="max-width:1080px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:3.5rem">
-      <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none">
-        <span style="font-weight:800;font-size:1.125rem;color:#A93B2B">CUPPILO</span>
-        <span style="font-size:0.75rem;color:#C89D5C">കപ്പിലോ</span>
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <img src="img/logo.png" alt="CUPPILO" class="navbar-logo">
+        <span class="navbar-brand-text">കപ്പിലോ</span>
       </a>
-      <div style="display:flex;align-items:center;gap:0.25rem">
-        <a href="index.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Home</a>
-        <a href="menu-ballot.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;background:#A93B2B;color:#F7F4EB">Menu</a>
-        <a href="ambiance.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Vibe</a>
-        <a href="pricing.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Pricing</a>
-        <a href="founding-wall.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Wall</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu-ballot.html" class="nav-link active">Menu</a>
+        <a href="vibe.html" class="nav-link">Vibe</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="wall.html" class="nav-link">Wall</a>
       </div>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     </div>
   </nav>
 
   <!-- Progress Bar -->
-  <section class="bg-white border-b border-gray-200 py-3 sticky top-14 z-30">
-    <div class="max-w-[1080px] mx-auto px-4">
-      <div class="flex items-center justify-between mb-2">
-        <div class="flex items-center gap-2 text-sm">
-          <span class="font-bold text-primary">Step 1 of 4</span>
-          <span class="text-gray-300">•</span>
-          <span class="text-gray-600">Opening Menu Curation</span>
-        </div>
-        <div id="vote-badge" class="flex items-center gap-1.5 bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-sm font-bold">
-          <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1">how_to_vote</span>
-          <span id="vote-badge-text">0 of 5 votes used</span>
-        </div>
-      </div>
-      <div class="w-full bg-gray-200 rounded-full h-1.5">
-        <div id="progress-fill" class="bg-primary h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-      </div>
+  <section class="container" style="padding-top:1.5rem;">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width:25%"></div>
+    </div>
+    <div class="progress-meta">
+      <span>Step 1 of 4 • Opening Menu Curation</span>
+      <span class="badge" id="vote-counter-badge">0 / 5 votes</span>
     </div>
   </section>
 
-  <main class="flex-1 pb-24">
+  <!-- Header -->
+  <header class="container ballot-header">
+    <p class="ballot-subtitle">മേശപ്പുറത്തേക്ക് / Community Flavor Co-Design</p>
+    <h1 class="ballot-title">Curate the Opening Menu</h1>
+    <p class="ballot-desc">Vote for your favourite items and set the price you'd pay. The community median wins — every vote shapes what lands on our menu.</p>
+  </header>
 
-    <!-- Editorial Header -->
-    <section class="max-w-[1080px] mx-auto px-4 pt-8 pb-6">
-      <div class="bg-cream rounded-xl p-6 md:p-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div class="flex flex-col gap-2 max-w-2xl">
-            <div class="flex items-center gap-2">
-              <span class="text-primary-dark font-semibold text-lg">മേശപ്പുറത്തേക്ക്</span>
-              <span class="text-gray-400 text-sm">/</span>
-              <span class="text-xs font-bold uppercase tracking-wider text-gray-500">Community Flavor Co-Design</span>
-            </div>
-            <h1 class="text-3xl md:text-5xl font-extrabold text-primary tracking-tight" style="font-family:'Plus Jakarta Sans',sans-serif">
-              Curate the Opening Menu
-            </h1>
-            <p class="text-gray-600 text-base md:text-lg">
-              Tap the heart <span class="text-primary font-bold">❤️</span> on up to 5 artisanal brews and plates you genuinely want prepared on launch day. Community ballots shape our kitchen roasts in real time.
-            </p>
-          </div>
-          <div class="flex items-center gap-3 text-success bg-green-50 px-3 py-1.5 rounded-full shadow-sm self-start md:self-auto">
-            <span class="material-symbols-outlined" style="font-size:18px">verified</span>
-            <span class="text-sm font-semibold">Zero-waste batch planning</span>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Category Filters -->
+  <section class="container">
+    <div class="chip-group" id="chip-group">
+      <button class="chip active" data-filter="all">☕ All Items</button>
+      <button class="chip" data-filter="kaapi">Filter Kaapi</button>
+      <button class="chip" data-filter="chaya">Chaya</button>
+      <button class="chip" data-filter="cold">Cold Drinks</button>
+      <button class="chip" data-filter="food">Food</button>
+      <button class="chip" data-filter="bakery">Bakery</button>
+    </div>
+  </section>
 
-    <!-- Category Filter Tabs -->
-    <section class="max-w-[1080px] mx-auto px-4 mb-6">
-      <div class="flex items-center gap-2 overflow-x-auto pb-1">
-        <button class="filter-tab active flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold" data-filter="all">All Brews & Bites</button>
-        <button class="filter-tab flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-700" data-filter="coffee">Specialty Coffee</button>
-        <button class="filter-tab flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-700" data-filter="tea">Authentic Chaya</button>
-        <button class="filter-tab flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-700" data-filter="snack">Signature Snacks</button>
-        <button class="filter-tab flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold bg-white border border-gray-200 text-gray-700" data-filter="bakery">Malabar Bakery</button>
-      </div>
-    </section>
+  <!-- Menu Items -->
+  <section class="container menu-grid" id="menu-grid">
 
-    <!-- Menu Ballot Grid -->
-    <section class="max-w-[1080px] mx-auto px-4 mb-12">
-      <div id="ballot-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-        <!-- Card 1: Tender Coconut Cold Brew -->
-        <article class="ballot-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col" data-category="coffee" data-item-id="coconut-brew" data-votes="84">
-          <div class="relative aspect-[16/10] overflow-hidden bg-gray-100">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Tender coconut cold brew coffee in a ribbed glass tumbler with fresh coconut cream layered" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUOKdVIIiVQeQxJTCsUOeRjIJBed1RKfddgeYg676KZFciH-_OE-Lad9WMzj5xz2YfoaHPqNfjC8Ppzc7bQx0fGl-UUavz4wgT--A6EiuM4OiHacJnTceeBaJEcc8Ql8Z6FPqqCjexFykfb7bCNy8XO6veCU1iqdfLRu_Om7LKyGeDlX4vGrh0OBlRQcKpJx-NJAjh7LMHpkcgLbkuqe_JmJK_W6J-nH7C7PyivLmXf75dp5uMoCmP"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-full text-amber-200">
-              <span class="material-symbols-outlined" style="font-size:14px">local_cafe</span>
-              <span class="text-xs font-semibold">Single-Estate Wayanad</span>
-            </div>
-            <button class="heart-btn absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center" data-id="1" aria-label="Vote for Tender Coconut Cold Brew">
-              <span class="material-symbols-outlined text-2xl text-primary heart-icon" style="font-variation-settings:'FILL' 0">favorite</span>
-            </button>
-          </div>
-          <div class="p-4 flex flex-col flex-1">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-bold text-primary-dark">കരിക്ക് കോൾഡ് ബ്രൂ</span>
-              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">₹120 Target</span>
-            </div>
-            <h3 class="font-bold text-gray-900 text-lg leading-tight">Tender Coconut Cold Brew</h3>
-            <p class="text-sm text-gray-500 mt-1 mb-3">Light roast Wayanad Arabica cold steeped for 18 hours, layered directly over fresh local tender coconut water.</p>
-            <div class="consensus-wrapper hidden mt-auto pt-3 border-t border-gray-100">
-              <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
-                <span>Live Community Consensus</span>
-                <span class="consensus-pct font-bold text-primary">84%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                <div class="consensus-bar bg-primary h-full rounded-full" style="width: 84%"></div>
-              </div>
-              <span class="text-xs text-primary font-bold mt-1 block">84% want this on the launch menu</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 2: Classic Kerala Filter Kaapi -->
-        <article class="ballot-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col" data-category="coffee" data-item-id="filter-kaapi" data-votes="91">
-          <div class="relative aspect-[16/10] overflow-hidden bg-gray-100">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Traditional brass davara tumbler with hot foaming artisanal filter coffee being poured from height" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjMQl567q6cDQBPhaEGD282BZpm2U0FIhpyXdimneOgyS1QsJ2WRvB6EfoytGHpQ76DBPLTV6wB2MtvZqnrvwL1B5cwRach_JN7PbeMNWseeMbLH21IpKqT6jVvxu5fdsF8lXZjvagJ_3c8-2Shi4_I0tokNJkv1Jl86g7mKf3b6tpr5zszh3yUwQ3RIBhtzQe8uojLhfdM4nlgfB5aA1Ika4NHlvdcKQdsEUgDGZFw4zTZCNV_awA"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-full text-amber-200">
-              <span class="material-symbols-outlined" style="font-size:14px">bolt</span>
-              <span class="text-xs font-semibold">High-Altitude Chicory Blend</span>
-            </div>
-            <button class="heart-btn absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center" data-id="2" aria-label="Vote for Classic Kerala Filter Kaapi">
-              <span class="material-symbols-outlined text-2xl text-primary heart-icon" style="font-variation-settings:'FILL' 0">favorite</span>
-            </button>
-          </div>
-          <div class="p-4 flex flex-col flex-1">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-bold text-primary-dark">നാടൻ ഫിൽറ്റർ കാപ്പി</span>
-              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">₹60 Target</span>
-            </div>
-            <h3 class="font-bold text-gray-900 text-lg leading-tight">Classic Kerala Filter Kaapi</h3>
-            <p class="text-sm text-gray-500 mt-1 mb-3">Brewed in traditional brass davara tumblers using fresh thick buffalo milk and 85:15 Nelliyampathy peaberry chicory decoction.</p>
-            <div class="consensus-wrapper hidden mt-auto pt-3 border-t border-gray-100">
-              <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
-                <span>Live Community Consensus</span>
-                <span class="consensus-pct font-bold text-primary">91%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                <div class="consensus-bar bg-primary h-full rounded-full" style="width: 91%"></div>
-              </div>
-              <span class="text-xs text-primary font-bold mt-1 block">91% want this on the launch menu</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 3: Spiced Cardamom Sulaimani -->
-        <article class="ballot-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col" data-category="tea" data-item-id="cardamom-sulaimani" data-votes="78">
-          <div class="relative aspect-[16/10] overflow-hidden bg-gray-100">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Amber golden Malabar Sulaimani tea served in a glass tumbler with fresh crushed green cardamom pods and mint leaf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXF9d79G96LAwBzEMTcKYOHBWCh1gYM9qmAdwJxrVs9OG5ScF-tTg91_pSfTs46D2e6VGlHwUtX9nUrnMyZIomK99kLafkwTvKhwN5nUJDi47aGAFXju0CKZOdGqp1KZ_hfItKwZiaIxv_LUpW5rxeHzg2Z-T7BRJFekb0-VA6vh-kAM2gnj4vm03fV_2MX-vCxFM4KA5f5QjkrQ1E_prJuFkw8Sbv62aD0KE_wn_MzzTHsiCnKPNd"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-full text-amber-200">
-              <span class="material-symbols-outlined" style="font-size:14px">eco</span>
-              <span class="text-xs font-semibold">Munnar Orthodox Leaf</span>
-            </div>
-            <button class="heart-btn absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center" data-id="3" aria-label="Vote for Spiced Cardamom Sulaimani">
-              <span class="material-symbols-outlined text-2xl text-primary heart-icon" style="font-variation-settings:'FILL' 0">favorite</span>
-            </button>
-          </div>
-          <div class="p-4 flex flex-col flex-1">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-bold text-primary-dark">ഏലക്ക സുലൈമാനി</span>
-              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">₹40 Target</span>
-            </div>
-            <h3 class="font-bold text-gray-900 text-lg leading-tight">Spiced Cardamom Sulaimani</h3>
-            <p class="text-sm text-gray-500 mt-1 mb-3">Slow-steeped fragrant black tea infused with bruised Idukki green cardamom, raw palm rock sugar, and fresh Meyer lemon.</p>
-            <div class="consensus-wrapper hidden mt-auto pt-3 border-t border-gray-100">
-              <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
-                <span>Live Community Consensus</span>
-                <span class="consensus-pct font-bold text-primary">78%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                <div class="consensus-bar bg-primary h-full rounded-full" style="width: 78%"></div>
-              </div>
-              <span class="text-xs text-primary font-bold mt-1 block">78% want this on the launch menu</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 4: Pazham Pori & Beef Dip -->
-        <article class="ballot-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col" data-category="snack" data-item-id="pazham-pori-beef" data-votes="88">
-          <div class="relative aspect-[16/10] overflow-hidden bg-gray-100">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Crispy golden Kerala banana fritters pazham pori paired with slow-roasted pulled beef gravy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDVPJC_PuX2LJX98B05s3Vr6btsFwx3mDUyJdHZqGx0GGzGtMBtZCYSVq15ksSZiNZP6CgwupC-RhDm7bmOgwAWPCw610p_zuZaqFSW4w5CT9ruClbC_1-Wcmr5caVoNUBOE5gkjZMOd-96WbnUBxy09di2RvEbaE8RNGjSCejOjzZ1vKBaykNrmelF5IYQxZzPP42YeIsMp5zMjgaoWWgqCtcJ1LWTNXbG5xdsk-UhX3lWzE3fjF"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-full text-amber-200">
-              <span class="material-symbols-outlined" style="font-size:14px">star</span>
-              <span class="text-xs font-semibold">Crowd Cult Classic</span>
-            </div>
-            <button class="heart-btn absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center" data-id="4" aria-label="Vote for Pazham Pori and Beef Dip">
-              <span class="material-symbols-outlined text-2xl text-primary heart-icon" style="font-variation-settings:'FILL' 0">favorite</span>
-            </button>
-          </div>
-          <div class="p-4 flex flex-col flex-1">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-bold text-primary-dark">പഴംപൊരി &amp; ബീഫ്</span>
-              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">₹190 Target</span>
-            </div>
-            <h3 class="font-bold text-gray-900 text-lg leading-tight">Pazham Pori &amp; Beef Dip</h3>
-            <p class="text-sm text-gray-500 mt-1 mb-3">Crispy golden caramelized Nendran banana fritters accompanied by a rich 6-hour spiced tender beef roast reduction.</p>
-            <div class="consensus-wrapper hidden mt-auto pt-3 border-t border-gray-100">
-              <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
-                <span>Live Community Consensus</span>
-                <span class="consensus-pct font-bold text-primary">88%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                <div class="consensus-bar bg-primary h-full rounded-full" style="width: 88%"></div>
-              </div>
-              <span class="text-xs text-primary font-bold mt-1 block">88% want this on the launch menu</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 5: Ghee Roast Banana Bread -->
-        <article class="ballot-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col" data-category="bakery" data-item-id="banana-bread" data-votes="72">
-          <div class="relative aspect-[16/10] overflow-hidden bg-gray-100">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Thick warm slice of roasted banana bread drizzled with dark Kerala jaggery syrup and roasted cashew nuts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANTD0V2vA7hHZcoMUkSILI8FLeJVo38uUrGciUewgYszmsMXhZm4CeTOR5n0XMeoh0wtuI4x_HRKMY086MNYLpRqPEGxUWox0vzr1u2WMAZNFhZ-mCzHmdPaY8Fgp3_kGJGeDiTVkeYwQk2B8z0yk1pHYCExvo47tb4-KzNDjlLMnrwOHmrpJItK6FYBIFZaLs_Cuyg7YULise-oKnxP6mUGXBE-nyJoT5ALRAvuUAC69Ntk7VJlz1"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-full text-amber-200">
-              <span class="material-symbols-outlined" style="font-size:14px">bakery_dining</span>
-              <span class="text-xs font-semibold">Marayoor Jaggery</span>
-            </div>
-            <button class="heart-btn absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center" data-id="5" aria-label="Vote for Ghee Roast Banana Bread">
-              <span class="material-symbols-outlined text-2xl text-primary heart-icon" style="font-variation-settings:'FILL' 0">favorite</span>
-            </button>
-          </div>
-          <div class="p-4 flex flex-col flex-1">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-bold text-primary-dark">നെയ്യപ്പം ബനാന ബ്രെഡ്</span>
-              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">₹140 Target</span>
-            </div>
-            <h3 class="font-bold text-gray-900 text-lg leading-tight">Ghee Roast Banana Bread</h3>
-            <p class="text-sm text-gray-500 mt-1 mb-3">Oven-warm cake loaf prepared with ghee-sautéed Nendran bananas, spiced with nutmeg and glazed with liquid Marayoor jaggery.</p>
-            <div class="consensus-wrapper hidden mt-auto pt-3 border-t border-gray-100">
-              <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
-                <span>Live Community Consensus</span>
-                <span class="consensus-pct font-bold text-primary">72%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                <div class="consensus-bar bg-primary h-full rounded-full" style="width: 72%"></div>
-              </div>
-              <span class="text-xs text-primary font-bold mt-1 block">72% want this on the launch menu</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 6: Gunpowder Hand-Cut Fries -->
-        <article class="ballot-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col" data-category="snack" data-item-id="gunpowder-fries" data-votes="69">
-          <div class="relative aspect-[16/10] overflow-hidden bg-gray-100">
-            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Rustic skin-on crispy potato french fries coated with fiery red South Indian podi masala spices and fresh curry leaves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdD7Nf57sQ924QOiLiMw4q_qc7Vi5eCN9iZt9bg_yG705kTYwlMaecwHRVWN9aISIu2ZNXAqjl3Ss2PelHBX-S9m1cHn_OPfE7MoW-ZK-7DTSA9J3EZaoxOW0byEa9-pDCx5LnH0qFyNtCVzMJcSOMrvEcFuJOhfTHe6G2rTkx-NWbS-w7MyF_0cI_Dj-jp8qBTaDzz--hecVf2IdXLQuGeRt_b-OrbgQqOx63JjunwiquR_DPoPCB"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-full text-amber-200">
-              <span class="material-symbols-outlined" style="font-size:14px">local_fire_department</span>
-              <span class="text-xs font-semibold">Malabar Podi Dust</span>
-            </div>
-            <button class="heart-btn absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center" data-id="6" aria-label="Vote for Gunpowder Hand-Cut Fries">
-              <span class="material-symbols-outlined text-2xl text-primary heart-icon" style="font-variation-settings:'FILL' 0">favorite</span>
-            </button>
-          </div>
-          <div class="p-4 flex flex-col flex-1">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-bold text-primary-dark">പൊടി മസാല ഫ്രൈസ്</span>
-              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">₹110 Target</span>
-            </div>
-            <h3 class="font-bold text-gray-900 text-lg leading-tight">Gunpowder Hand-Cut Fries</h3>
-            <p class="text-sm text-gray-500 mt-1 mb-3">Triple-cooked rustic skin-on potatoes tossed in fragrant roasted lentil podi spices, ghee drizzle, and flash-fried curry leaves.</p>
-            <div class="consensus-wrapper hidden mt-auto pt-3 border-t border-gray-100">
-              <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
-                <span>Live Community Consensus</span>
-                <span class="consensus-pct font-bold text-primary">69%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-                <div class="consensus-bar bg-primary h-full rounded-full" style="width: 69%"></div>
-              </div>
-              <span class="text-xs text-primary font-bold mt-1 block">69% want this on the launch menu</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Suggest Menu Item Card -->
-        <div id="suggest-card" class="suggest-card bg-white rounded-2xl shadow-sm flex flex-col items-center justify-center min-h-[380px] cursor-pointer" onclick="openSuggestModal()">
-          <div class="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mb-3">
-            <span class="material-symbols-outlined text-3xl text-primary">add_circle</span>
-          </div>
-          <p class="font-bold text-gray-900 text-lg mb-1">Suggest a Menu Item</p>
-          <p class="text-sm text-gray-500 text-center px-6 max-w-xs">Have a favourite you'd love to see? Submit it for the community to vote on.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Live Co-Creation Barometer -->
-    <section class="max-w-[1080px] mx-auto px-4 mb-12">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-2xl text-amber-700">groups</span>
-          </div>
+    <!-- 1. Classic Kerala Filter Kaapi -->
+    <div class="menu-row" data-category="kaapi" data-id="1">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#3e2723,#795548);">☕</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
           <div>
-            <p class="font-bold text-gray-900 text-lg">1,420 ballots submitted this week</p>
-            <p class="text-sm text-gray-500">Items reaching over 80% consensus lock into CUPPILO's Day 1 Kitchen Prep schedule.</p>
+            <span class="menu-row-name-mal">കേരള ഫിൽറ്റർ കാപ്പി</span>
+            <h3 class="menu-row-name">Classic Kerala Filter Kaapi</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Slow-dripped through a brass filter, dark-roasted beans meet condensed milk in the way Ammachi makes it.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-kaapi">☕ Kaapi</span>
+          <span class="pill pill-origin">Origin: Wayanad Estate</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="15" max="120" step="5" value="60" class="price-slider" data-id="1" oninput="updatePrice(1,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-1">₹60</span>
+            <span class="slider-labels">₹15 — ₹120</span>
+            <span class="slider-median">Community median ₹55–65</span>
           </div>
         </div>
-        <div class="flex items-center gap-2 bg-gray-900 px-4 py-2 rounded-full">
-          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-          <span class="text-sm text-white font-semibold">Tallying Live from Kerala</span>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:91%"></div></div>
+          <span class="vote-pct">91%</span>
         </div>
       </div>
-    </section>
+    </div>
 
-  </main>
+    <!-- 2. Tender Coconut Cold Brew -->
+    <div class="menu-row" data-category="cold" data-id="2">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#e0f2f1,#80cbc4);">🥥</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">തേങ്ങ കോൾഡ് ബ്രൂ</span>
+            <h3 class="menu-row-name">Tender Coconut Cold Brew</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">16-hour cold brew blended with fresh tender coconut water — summer in a glass.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-cold">Cold Drinks</span>
+          <span class="pill pill-origin">Origin: Vypeen Island</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="40" max="200" step="10" value="120" class="price-slider" data-id="2" oninput="updatePrice(2,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-2">₹120</span>
+            <span class="slider-labels">₹40 — ₹200</span>
+            <span class="slider-median">Community median ₹100–130</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:84%"></div></div>
+          <span class="vote-pct">84%</span>
+        </div>
+      </div>
+    </div>
 
-  <!-- Sticky Floating Action Bar -->
-  <div class="sticky-bar fixed bottom-0 left-0 right-0 bg-gray-900/95 text-white shadow-2xl z-50 py-3 px-4">
-    <div class="max-w-[1080px] mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div id="floating-vote-count" class="bg-primary text-white px-3 py-1 rounded-full text-sm font-bold flex items-center justify-center min-w-[2rem]">
-          0
+    <!-- 3. Karupatti Ginger Chaya -->
+    <div class="menu-row" data-category="chaya" data-id="3">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#fff3e0,#ffb74d);">🍵</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">കരുപ്പട്ടി ഇഞ്ചി ചായ</span>
+            <h3 class="menu-row-name">Karupatti Ginger Chaya</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
         </div>
-        <div class="flex flex-col">
-          <span class="text-sm font-bold leading-tight">Items Curated</span>
-          <span id="counter-subtext" class="text-xs text-gray-400">5 slots open for your vote</span>
+        <p class="menu-row-desc">Palm jaggery and crushed ginger steeped with Nilgiri tea leaves — sweet heat for monsoon mornings.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-chaya">🍵 Chaya</span>
+          <span class="pill pill-origin">Origin: Idukki Hills</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="10" max="60" step="5" value="25" class="price-slider" data-id="3" oninput="updatePrice(3,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-3">₹25</span>
+            <span class="slider-labels">₹10 — ₹60</span>
+            <span class="slider-median">Community median ₹20–30</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:88%"></div></div>
+          <span class="vote-pct">88%</span>
         </div>
       </div>
-      <div class="flex items-center gap-3">
-        <button id="reset-btn" class="px-4 py-2 rounded-lg text-sm text-gray-400 hover:text-white transition-colors">Reset</button>
-        <a href="ambiance.html" id="next-btn" class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all active:scale-95 opacity-50 pointer-events-none">
-          <span>Next: Choose Café Vibe</span>
-          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
-        </a>
+    </div>
+
+    <!-- 4. Spiced Cardamom Sulaimani -->
+    <div class="menu-row" data-category="chaya" data-id="4">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#fce4ec,#f48fb1);">🫖</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">ഏലക്കാ സുലൈമാനി</span>
+            <h3 class="menu-row-name">Spiced Cardamom Sulaimani</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Black tea infused with cardamom, cinnamon & a squeeze of lime — Mappila heritage in every sip.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-chaya">🍵 Chaya</span>
+          <span class="pill pill-origin">Origin: Malabar Coast</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="10" max="80" step="5" value="35" class="price-slider" data-id="4" oninput="updatePrice(4,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-4">₹35</span>
+            <span class="slider-labels">₹10 — ₹80</span>
+            <span class="slider-median">Community median ₹30–40</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:78%"></div></div>
+          <span class="vote-pct">78%</span>
+        </div>
       </div>
+    </div>
+
+    <!-- 5. Pazham Pori & Beef Dip -->
+    <div class="menu-row" data-category="food" data-id="5">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#fff8e1,#ffd54f);">🍌</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">പഴം പൊരി &amp; ബീഫ് ഡിപ്</span>
+            <h3 class="menu-row-name">Pazham Pori & Beef Dip</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Crispy plantain fritters meet slow-braised beef roast — the ultimate Kerala teatime mashup.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-food">🍌 Food</span>
+          <span class="pill pill-origin">Origin: Thrissur Feast</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="60" max="300" step="10" value="180" class="price-slider" data-id="5" oninput="updatePrice(5,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-5">₹180</span>
+            <span class="slider-labels">₹60 — ₹300</span>
+            <span class="slider-median">Community median ₹150–200</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:88%"></div></div>
+          <span class="vote-pct">88%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Malabar Kozhi Roast Slider -->
+    <div class="menu-row" data-category="food" data-id="6">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#fbe9e7,#ff8a65);">🍗</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">മലബാർ കോഴി റോസ്റ്റ്</span>
+            <h3 class="menu-row-name">Malabar Kozhi Roast Slider</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Spicy Malabar chicken roast tucked into a soft milk bun with pickled onion and curry leaf mayo.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-food">🍗 Food</span>
+          <span class="pill pill-origin">Origin: Kozhikode Backstreets</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="80" max="400" step="10" value="220" class="price-slider" data-id="6" oninput="updatePrice(6,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-6">₹220</span>
+            <span class="slider-labels">₹80 — ₹400</span>
+            <span class="slider-median">Community median ₹200–250</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:76%"></div></div>
+          <span class="vote-pct">76%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Gunpowder Hand-Cut Fries -->
+    <div class="menu-row" data-category="food" data-id="7">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#f1f8e9,#aed581);">🍟</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">ഗൺപൗഡർ ഫ്രൈസ്</span>
+            <h3 class="menu-row-name">Gunpowder Hand-Cut Fries</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Thick-cut fries tossed in Kerala gunpowder spice blend with coconut oil and curry leaves.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-food">🍟 Food</span>
+          <span class="pill pill-origin">Origin: Palakkad Kitchen</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="40" max="200" step="10" value="110" class="price-slider" data-id="7" oninput="updatePrice(7,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-7">₹110</span>
+            <span class="slider-labels">₹40 — ₹200</span>
+            <span class="slider-median">Community median ₹90–120</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:69%"></div></div>
+          <span class="vote-pct">69%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Ghee Roast Banana Bread -->
+    <div class="menu-row" data-category="bakery" data-id="8">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#efebe9,#a1887f);">🍞</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">നെയ്യ് റോസ്റ്റ് പഴം ബ്രഡ്</span>
+            <h3 class="menu-row-name">Ghee Roast Banana Bread</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Nendran banana bread roasted in ghee with jaggery glaze and a hint of cardamom — comfort, sliced.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-bakery">🍞 Bakery</span>
+          <span class="pill pill-origin">Origin: Alleppey Home Baker</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="50" max="250" step="10" value="140" class="price-slider" data-id="8" oninput="updatePrice(8,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-8">₹140</span>
+            <span class="slider-labels">₹50 — ₹250</span>
+            <span class="slider-median">Community median ₹120–150</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:72%"></div></div>
+          <span class="vote-pct">72%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Loaded Pazham Pori Nachos -->
+    <div class="menu-row" data-category="food" data-id="9">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#fff3e0,#ffcc80);">🫓</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">ലോഡഡ് പഴം പൊരി നച്ചോസ്</span>
+            <h3 class="menu-row-name">Loaded Pazham Pori Nachos</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Plantain chip nachos piled with Kerala cheese, beef fry crumble, and tomato-onion salsa.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-food">🫓 Food</span>
+          <span class="pill pill-origin">Origin: Ernakulam Fusion</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="60" max="280" step="10" value="160" class="price-slider" data-id="9" oninput="updatePrice(9,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-9">₹160</span>
+            <span class="slider-labels">₹60 — ₹280</span>
+            <span class="slider-median">Community median ₹140–170</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:65%"></div></div>
+          <span class="vote-pct">65%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Elaneer Payasam -->
+    <div class="menu-row" data-category="bakery" data-id="10">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#e8f5e9,#81c784);">🍮</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">എളനീർ പായസം</span>
+            <h3 class="menu-row-name">Elaneer Payasam</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Tender coconut milk payasam with vermicelli, jaggery, and roasted cashews — served chilled in a clay cup.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-bakery">🍮 Dessert</span>
+          <span class="pill pill-origin">Origin: Palakkad Temple Fair</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="30" max="180" step="10" value="90" class="price-slider" data-id="10" oninput="updatePrice(10,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-10">₹90</span>
+            <span class="slider-labels">₹30 — ₹180</span>
+            <span class="slider-median">Community median ₹80–100</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:82%"></div></div>
+          <span class="vote-pct">82%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Wayanad Single Estate Pour Over -->
+    <div class="menu-row" data-category="kaapi" data-id="11">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#e3f2fd,#64b5f6);">🫗</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">വയനാട് പോർ ഓവർ</span>
+            <h3 class="menu-row-name">Wayanad Single Estate Pour Over</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Single-origin Arabica from Wayanad, hand-poured with precision — chocolate, citrus, clean finish.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-kaapi">☕ Kaapi</span>
+          <span class="pill pill-origin">Origin: Wayanad Single Estate</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="50" max="250" step="10" value="150" class="price-slider" data-id="11" oninput="updatePrice(11,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-11">₹150</span>
+            <span class="slider-labels">₹50 — ₹250</span>
+            <span class="slider-median">Community median ₹130–160</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:70%"></div></div>
+          <span class="vote-pct">70%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Beef Ularthiyathu Fry -->
+    <div class="menu-row" data-category="food" data-id="12">
+      <div class="menu-row-img" style="background:linear-gradient(135deg,#d32f2f,#ef9a9a);">🥩</div>
+      <div class="menu-row-body">
+        <div class="menu-row-head">
+          <div>
+            <span class="menu-row-name-mal">ബീഫ് ഉലർത്തിയത്</span>
+            <h3 class="menu-row-name">Beef Ularthiyathu Fry</h3>
+          </div>
+          <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+        </div>
+        <p class="menu-row-desc">Dry-fried beef tossed with coconut slices, curry leaves, and Kashmiri chilli — the Malabar pub snack.</p>
+        <div class="menu-row-meta">
+          <span class="pill pill-food">🥩 Food</span>
+          <span class="pill pill-origin">Origin: Malabar Coast</span>
+        </div>
+        <div class="menu-row-slider">
+          <label class="slider-label">Your Price</label>
+          <input type="range" min="80" max="350" step="10" value="200" class="price-slider" data-id="12" oninput="updatePrice(12,this.value)">
+          <div class="slider-row">
+            <span class="slider-value" id="price-12">₹200</span>
+            <span class="slider-labels">₹80 — ₹350</span>
+            <span class="slider-median">Community median ₹180–220</span>
+          </div>
+        </div>
+        <div class="menu-row-votes">
+          <div class="vote-bar"><div class="vote-bar-fill" style="width:85%"></div></div>
+          <span class="vote-pct">85%</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Live Barometer Banner -->
+  <section class="container">
+    <div class="barometer-banner">
+      <span class="barometer-icon">📊</span>
+      <span class="barometer-text"><strong>1,420</strong> ballots submitted this week</span>
+    </div>
+  </section>
+
+  <!-- Suggest Item Card -->
+  <section class="container">
+    <div class="suggest-card" onclick="openSuggestModal()">
+      <span class="suggest-icon">+</span>
+      <span class="suggest-text">Suggest an Item</span>
+      <span class="suggest-sub">Add your own flavour to the ballot</span>
+    </div>
+  </section>
+
+  <!-- Sticky Bottom Bar -->
+  <div class="sticky-bottom" id="sticky-bottom">
+    <div class="container sticky-inner">
+      <span class="sticky-votes"><span id="sticky-count">0</span> / 5 votes cast</span>
+      <a href="vibe.html" class="btn btn-primary">Next: Choose Vibe →</a>
     </div>
   </div>
 
   <!-- Suggest Item Modal -->
-  <div id="suggest-modal" class="fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeSuggestModal()"></div>
-    <div class="absolute inset-4 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-full sm:max-w-md bg-cream rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between p-5 border-b border-gray-200">
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-2xl">badge</span>
-          <h3 class="font-bold text-lg text-gray-900">Suggest a Menu Item</h3>
-        </div>
-        <button onclick="closeSuggestModal()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
-          <span class="material-symbols-outlined text-lg text-gray-500">close</span>
-        </button>
+  <div class="modal-overlay" id="suggest-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Suggest a Menu Item</h2>
+        <button class="modal-close" onclick="closeSuggestModal()">✕</button>
       </div>
-      <form id="suggest-form" class="p-5 flex flex-col gap-4 flex-1" onsubmit="handleSuggestSubmit(event)">
-        <p class="text-sm text-gray-500">Your suggestion will appear in the ballot grid for other community members to vote on.</p>
-        <div>
-          <label class="block text-sm font-bold text-gray-900 uppercase mb-1">Item Name *</label>
-          <input type="text" id="item-name" required maxlength="60" placeholder="e.g. Karupatti Chaya / Jackfruit Biriyani" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-white">
+      <form id="suggest-form" onsubmit="submitSuggest(event)">
+        <div class="form-group">
+          <label for="suggest-name">Item Name (English)</label>
+          <input type="text" id="suggest-name" class="input" placeholder="e.g. Jackfruit Biryani" required maxlength="60">
         </div>
-        <div>
-          <label class="block text-sm font-bold text-gray-900 uppercase mb-1">Description (max 120 chars)</label>
-          <textarea id="item-desc" maxlength="120" rows="2" placeholder="A short description of the dish" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-white resize-none"></textarea>
-          <p class="text-xs text-gray-400 mt-1"><span id="char-count">0</span>/120</p>
+        <div class="form-group">
+          <label for="suggest-desc">Description</label>
+          <input type="text" id="suggest-desc" class="input" placeholder="Short description..." required maxlength="120">
+          <span class="char-count"><span id="desc-count">0</span>/120</span>
         </div>
-        <div>
-          <label class="block text-sm font-bold text-gray-900 uppercase mb-1">Category *</label>
-          <select id="item-category" required class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-white">
-            <option value="">Select a category</option>
-            <option value="coffee">Specialty Coffee</option>
-            <option value="tea">Authentic Chaya</option>
-            <option value="snack">Signature Snacks</option>
-            <option value="bakery">Malabar Bakery</option>
+        <div class="form-group">
+          <label for="suggest-category">Category</label>
+          <select id="suggest-category" class="input" required>
+            <option value="">Select category</option>
+            <option value="kaapi">☕ Kaapi</option>
+            <option value="chaya">🍵 Chaya</option>
+            <option value="cold">Cold Drinks</option>
+            <option value="food">Food</option>
+            <option value="bakery">Bakery / Dessert</option>
           </select>
         </div>
-        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-lg transition-colors mt-auto flex items-center justify-center gap-2">
-          <span class="material-symbols-outlined" style="font-size:20px">check_circle</span>
-          Submit Suggestion
-        </button>
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem;">Add to Ballot</button>
       </form>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="w-full bg-surface-container py-8">
-    <div class="max-w-[1080px] mx-auto px-4 flex flex-col gap-8">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        <div class="md:col-span-5 flex flex-col gap-3">
-          <div class="flex items-center gap-2">
-            <span class="text-xl font-extrabold text-primary">CUPPILO</span>
-            <span class="text-sm text-brass">കപ്പിലോ</span>
-          </div>
-          <p class="font-editorial text-sm text-gray-500 italic">"Bringing artisanal specialty roasts, shade-grown Western Ghats heritage beans, and warm veranda conversations back to our towns."</p>
-          <div class="flex items-center gap-2 text-gray-500 text-xs pt-1">
-            <span class="material-symbols-outlined" style="font-size:14px;color:#2D6A4F">eco</span>
-            Single-estate Wayanad & Nelliyampathy Arabica sourcing
-          </div>
-        </div>
-        <div class="md:col-span-3 flex flex-col gap-2">
-          <span class="text-sm font-semibold text-gray-900">Co-Creation Chapters</span>
-          <nav class="flex flex-col gap-2">
-            <a href="index.html" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Veranda Orientation</a>
-            <a href="menu-ballot.html" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Artisanal Menu Ballot</a>
-            <a href="ambiance.html" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Nadumuttam Architecture</a>
-            <a href="pricing.html" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Fair Cup Pricing</a>
-            <a href="founding-wall.html" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Founding Patron Wall</a>
-          </nav>
-        </div>
-        <div class="md:col-span-4 flex flex-col gap-3 bg-surface-container-low p-4 rounded-xl">
-          <div class="flex items-center gap-2 text-brass">
-            <span class="material-symbols-outlined" style="font-size:18px">verified_user</span>
-            <span class="text-sm font-bold">DPDP India Act 2023 Compliant</span>
-          </div>
-          <p class="text-xs text-gray-500">Your feedback and contact preferences are strictly confidential. Encrypted, spam-free, and purely community-owned co-creation.</p>
-        </div>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">കപ്പിലോ</span>
+        <span class="footer-tagline">CUPPILO — Kerala's Community Café</span>
       </div>
-      <div class="pt-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500">
-        <p class="text-xs">© 2026 CUPPILO Specialty Artisanal Café. Crafting modern Kerala third spaces.</p>
-        <div class="flex items-center gap-3 text-xs">
-          <span>Kochi • Kozhikode • Thrissur</span>
-          <span class="text-brass font-bold">#CuppiloKerala</span>
-        </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="menu-ballot.html">Menu Ballot</a>
+        <a href="vibe.html">Vibe Survey</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="wall.html">Wall</a>
       </div>
+      <p class="footer-copy">&copy; 2026 CUPPILO. Curated by Kerala, for Kerala.</p>
     </div>
   </footer>
 
-  <!-- Supabase -->
   <script src="js/supabase-config.js"></script>
+  <script src="js/shared.js"></script>
   <script>
+    // ---- State ----
     let votes = 0;
     const MAX_VOTES = 5;
-    const votedItems = new Set();
+    let votedItems = new Set();
+    let ballot = {};
 
-    // Heart toggle
-    document.querySelectorAll('.heart-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const id = this.dataset.id;
-        const card = this.closest('.ballot-card');
-        const icon = this.querySelector('.heart-icon');
+    // ---- Vote Toggle ----
+    function toggleVote(btn) {
+      const row = btn.closest('.menu-row');
+      const id = row.dataset.id;
+      const isVoted = btn.textContent.trim() === '❤️';
 
-        if (votedItems.has(id)) {
-          votedItems.delete(id);
-          votes--;
-          this.classList.remove('active');
-          card.classList.remove('voted');
-          if (icon) icon.style.fontVariationSettings = "'FILL' 0";
-          card.querySelector('.consensus-wrapper')?.classList.add('hidden');
-        } else {
-          if (votes >= MAX_VOTES) {
-            this.classList.add('shake');
-            setTimeout(() => this.classList.remove('shake'), 500);
-            showToast('Maximum 5 votes reached!');
-            return;
-          }
-          votedItems.add(id);
-          votes++;
-          this.classList.add('active');
-          card.classList.add('voted');
-          if (icon) icon.style.fontVariationSettings = "'FILL' 1";
-          card.querySelector('.consensus-wrapper')?.classList.remove('hidden');
-        }
-        updateUI();
-      });
-    });
-
-    function updateUI() {
-      document.getElementById('vote-badge-text').textContent = `${votes} of 5 votes used`;
-      document.getElementById('floating-vote-count').textContent = votes;
-      const remaining = MAX_VOTES - votes;
-      document.getElementById('counter-subtext').textContent = remaining > 0 ? `${remaining} slots open for your vote` : 'All 5 votes placed!';
-      document.getElementById('progress-fill').style.width = `${(votes / MAX_VOTES) * 100}%`;
-
-      const nextBtn = document.getElementById('next-btn');
-      if (votes > 0) {
-        nextBtn.classList.remove('opacity-50', 'pointer-events-none');
+      if (isVoted) {
+        btn.textContent = '🤍';
+        votes--;
+        votedItems.delete(id);
+        delete ballot[id];
       } else {
-        nextBtn.classList.add('opacity-50', 'pointer-events-none');
+        if (votes >= MAX_VOTES) {
+          btn.classList.add('shake');
+          setTimeout(() => btn.classList.remove('shake'), 400);
+          return;
+        }
+        btn.textContent = '❤️';
+        votes++;
+        votedItems.add(id);
+        ballot[id] = ballot[id] || {};
       }
+
+      updateVoteUI();
+      saveBallotLocal();
     }
 
-    function showToast(msg) {
-      const toast = document.createElement('div');
-      toast.className = 'fixed top-20 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium z-50 shadow-lg';
-      toast.style.animation = 'fadeUp 0.3s ease';
-      toast.textContent = msg;
-      document.body.appendChild(toast);
-      setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.3s'; setTimeout(() => toast.remove(), 300); }, 2500);
+    // ---- Update Vote UI ----
+    function updateVoteUI() {
+      document.getElementById('vote-counter-badge').textContent = votes + ' / 5 votes';
+      document.getElementById('sticky-count').textContent = votes;
     }
 
-    // Category filter
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-      tab.addEventListener('click', function() {
-        document.querySelectorAll('.filter-tab').forEach(t => {
-          t.classList.remove('active');
-          t.classList.add('bg-white', 'border', 'border-gray-200', 'text-gray-700');
-        });
-        this.classList.add('active');
-        this.classList.remove('bg-white', 'border', 'border-gray-200', 'text-gray-700');
+    // ---- Price Slider ----
+    function updatePrice(id, val) {
+      document.getElementById('price-' + id).textContent = '₹' + val;
+      if (!ballot[id]) ballot[id] = {};
+      ballot[id].price = parseInt(val);
+      saveBallotLocal();
+    }
 
-        const filter = this.dataset.filter;
-        document.querySelectorAll('.ballot-card, #suggest-card').forEach(card => {
-          if (filter === 'all' || card.dataset.category === filter || card.id === 'suggest-card') {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+    // ---- Category Filter ----
+    document.getElementById('chip-group').addEventListener('click', function(e) {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+
+      const filter = chip.dataset.filter;
+      const rows = document.querySelectorAll('.menu-row');
+
+      rows.forEach(row => {
+        if (filter === 'all' || row.dataset.category === filter) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
       });
     });
 
-    // Reset
-    document.getElementById('reset-btn').addEventListener('click', () => {
-      votedItems.clear();
-      votes = 0;
-      document.querySelectorAll('.heart-btn').forEach(btn => {
-        btn.classList.remove('active');
-        const icon = btn.querySelector('.heart-icon');
-        if (icon) icon.style.fontVariationSettings = "'FILL' 0";
-      });
-      document.querySelectorAll('.ballot-card').forEach(card => {
-        card.classList.remove('voted');
-        card.querySelector('.consensus-wrapper')?.classList.add('hidden');
-      });
-      updateUI();
-    });
-
-    // Suggest modal
-    const suggestModal = document.getElementById('suggest-modal');
-    const suggestForm = document.getElementById('suggest-form');
-    const descInput = document.getElementById('item-desc');
-    const charCount = document.getElementById('char-count');
-
-    descInput?.addEventListener('input', function() {
-      charCount.textContent = this.value.length;
-    });
-
+    // ---- Suggest Modal ----
     function openSuggestModal() {
-      suggestModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+      document.getElementById('suggest-modal').classList.add('open');
     }
 
     function closeSuggestModal() {
-      suggestModal.classList.add('hidden');
-      document.body.style.overflow = '';
-      suggestForm.reset();
-      charCount.textContent = '0';
+      document.getElementById('suggest-modal').classList.remove('open');
+      document.getElementById('suggest-form').reset();
+      document.getElementById('desc-count').textContent = '0';
     }
 
-    function handleSuggestSubmit(e) {
+    // Description char counter
+    document.getElementById('suggest-desc').addEventListener('input', function() {
+      document.getElementById('desc-count').textContent = this.value.length;
+    });
+
+    function submitSuggest(e) {
       e.preventDefault();
-      const name = document.getElementById('item-name').value.trim();
-      const desc = document.getElementById('item-desc').value.trim();
-      const category = document.getElementById('item-category').value;
-      if (!name || !category) return;
 
-      const categoryLabels = { coffee: 'Coffee', tea: 'Chaya', snack: 'Snack', bakery: 'Bakery' };
-      const emojis = { coffee: '☕', tea: '🍵', snack: '🍛', bakery: '🥖' };
-      const newId = 'suggested-' + Date.now();
+      const name = document.getElementById('suggest-name').value.trim();
+      const desc = document.getElementById('suggest-desc').value.trim();
+      const cat = document.getElementById('suggest-category').value;
 
-      const card = document.createElement('article');
-      card.className = 'ballot-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col fade-up';
-      card.dataset.category = category;
-      card.dataset.votes = '0';
-      card.innerHTML = `
-        <div class="relative aspect-[16/10] overflow-hidden bg-gray-100 flex items-center justify-center" style="background:linear-gradient(135deg,#f5f0e8,#e8ddd0)">
-          <span class="text-6xl">${emojis[category]}</span>
-          <div class="absolute bottom-2 left-2 flex items-center gap-1 bg-primary px-2 py-0.5 rounded-full text-white">
-            <span class="material-symbols-outlined" style="font-size:14px">new_releases</span>
-            <span class="text-xs font-semibold">Community Pick</span>
-          </div>
-          <button class="heart-btn absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md shadow-md flex items-center justify-center" data-id="${newId}" aria-label="Vote for ${name}">
-            <span class="material-symbols-outlined text-2xl text-primary heart-icon" style="font-variation-settings:'FILL' 0">favorite</span>
-          </button>
-        </div>
-        <div class="p-4 flex flex-col flex-1">
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-xs font-bold text-primary-dark">${categoryLabels[category]}</span>
-            <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold">New</span>
-          </div>
-          <h3 class="font-bold text-gray-900 text-lg leading-tight">${name}</h3>
-          <p class="text-sm text-gray-500 mt-1 mb-3">${desc || 'A community-suggested addition to the menu'}</p>
-          <div class="consensus-wrapper hidden mt-auto pt-3 border-t border-gray-100">
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
-              <span>Live Community Consensus</span>
-              <span class="consensus-pct font-bold text-primary">0%</span>
+      if (!name || !desc || !cat) return;
+
+      const catLabels = { kaapi: '☕ Kaapi', chaya: '🍵 Chaya', cold: 'Cold Drinks', food: 'Food', bakery: '🍞 Bakery' };
+      const catEmojis = { kaapi: '☕', chaya: '🍵', cold: '🥤', food: '🍛', bakery: '🍞' };
+      const gradients = { kaapi: '#3e2723,#795548', chaya: '#fff3e0,#ffb74d', cold: '#e0f2f1,#80cbc4', food: '#fbe9e7,#ff8a65', bakery: '#efebe9,#a1887f' };
+
+      const id = 'custom-' + Date.now();
+      const gradient = gradients[cat] || '#37474f,#78909c';
+      const emoji = catEmojis[cat] || '🍽️';
+
+      const html = `
+        <div class="menu-row" data-category="${cat}" data-id="${id}">
+          <div class="menu-row-img" style="background:linear-gradient(135deg,${gradient});">${emoji}</div>
+          <div class="menu-row-body">
+            <div class="menu-row-head">
+              <div>
+                <span class="menu-row-name-mal"></span>
+                <h3 class="menu-row-name">${name}</h3>
+              </div>
+              <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
             </div>
-            <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
-              <div class="consensus-bar bg-primary h-full rounded-full" style="width: 0%"></div>
+            <p class="menu-row-desc">${desc}</p>
+            <div class="menu-row-meta">
+              <span class="pill pill-${cat}">${catLabels[cat]}</span>
+              <span class="pill pill-origin">Suggested by you</span>
+            </div>
+            <div class="menu-row-votes">
+              <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
+              <span class="vote-pct">0%</span>
             </div>
           </div>
-        </div>
-      `;
+        </div>`;
 
-      const suggestCard = document.getElementById('suggest-card');
-      suggestCard.parentElement.insertBefore(card, suggestCard);
-
-      // Attach heart listener
-      const newHeartBtn = card.querySelector('.heart-btn');
-      newHeartBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const id = this.dataset.id;
-        const icon = this.querySelector('.heart-icon');
-
-        if (votedItems.has(id)) {
-          votedItems.delete(id);
-          votes--;
-          this.classList.remove('active');
-          card.classList.remove('voted');
-          if (icon) icon.style.fontVariationSettings = "'FILL' 0";
-          card.querySelector('.consensus-wrapper')?.classList.add('hidden');
-        } else {
-          if (votes >= MAX_VOTES) {
-            this.classList.add('shake');
-            setTimeout(() => this.classList.remove('shake'), 500);
-            showToast('Maximum 5 votes reached!');
-            return;
-          }
-          votedItems.add(id);
-          votes++;
-          this.classList.add('active');
-          card.classList.add('voted');
-          if (icon) icon.style.fontVariationSettings = "'FILL' 1";
-          card.querySelector('.consensus-wrapper')?.classList.remove('hidden');
-        }
-        updateUI();
-      });
-
+      document.getElementById('menu-grid').insertAdjacentHTML('beforeend', html);
       closeSuggestModal();
-      showToast(`"${name}" added to the ballot!`);
     }
+
+    // ---- Local Storage ----
+    function saveBallotLocal() {
+      try { localStorage.setItem('cuppilo_ballot', JSON.stringify(ballot)); } catch(e) {}
+    }
+
+    // ---- Mobile Nav Toggle ----
+    document.querySelector('.nav-toggle')?.addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+
+    // ---- Modal close on overlay click ----
+    document.getElementById('suggest-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeSuggestModal();
+    });
+
+    // ---- Init ----
+    updateVoteUI();
   </script>
+
+  <style>
+    .ballot-header { text-align: center; padding: 2rem 1rem 1rem; }
+    .ballot-subtitle { font-size: .85rem; color: var(--accent); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .5rem; }
+    .ballot-title { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin: 0 0 .75rem; }
+    .ballot-desc { color: var(--text-muted); max-width: 560px; margin: 0 auto; font-size: .95rem; line-height: 1.6; }
+
+    .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-top: .5rem; font-size: .8rem; color: var(--text-muted); }
+    .badge { background: var(--accent); color: #000; padding: .25rem .6rem; border-radius: 999px; font-weight: 600; font-size: .75rem; }
+
+    .chip-group { display: flex; gap: .5rem; flex-wrap: wrap; padding: 1rem 0; }
+    .chip { padding: .4rem 1rem; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; font-size: .8rem; transition: all .2s; }
+    .chip:hover, .chip.active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+    .menu-grid { display: flex; flex-direction: column; gap: 1rem; padding-bottom: 2rem; }
+    .menu-row { display: flex; gap: 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; transition: transform .2s; }
+    .menu-row:hover { transform: translateY(-2px); }
+    .menu-row-img { width: 100px; min-width: 100px; height: 100px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0; }
+    .menu-row-body { flex: 1; min-width: 0; }
+    .menu-row-head { display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; }
+    .menu-row-name-mal { font-size: .7rem; color: var(--accent); display: block; margin-bottom: .15rem; }
+    .menu-row-name { font-size: 1.05rem; font-weight: 700; margin: 0 0 .35rem; }
+    .menu-row-desc { font-size: .82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: .5rem; }
+    .menu-row-meta { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .6rem; }
+    .pill { padding: .15rem .5rem; border-radius: 999px; font-size: .65rem; font-weight: 600; }
+    .pill-kaapi { background: #3e2723; color: #d7ccc8; }
+    .pill-chaya { background: #fff3e0; color: #e65100; }
+    .pill-cold { background: #e0f2f1; color: #00695c; }
+    .pill-food { background: #fbe9e7; color: #bf360c; }
+    .pill-bakery { background: #efebe9; color: #4e342e; }
+    .pill-origin { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+
+    .menu-row-slider { margin-bottom: .5rem; }
+    .slider-label { font-size: .7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; display: block; margin-bottom: .3rem; }
+    .price-slider { width: 100%; accent-color: var(--accent); height: 4px; cursor: pointer; }
+    .slider-row { display: flex; align-items: center; gap: .75rem; margin-top: .3rem; flex-wrap: wrap; }
+    .slider-value { font-weight: 700; font-size: .95rem; color: var(--accent); min-width: 48px; }
+    .slider-labels { font-size: .7rem; color: var(--text-muted); }
+    .slider-median { font-size: .7rem; color: var(--text-muted); font-style: italic; }
+
+    .menu-row-votes { display: flex; align-items: center; gap: .5rem; }
+    .vote-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .vote-bar-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width .3s; }
+    .vote-pct { font-size: .75rem; font-weight: 700; color: var(--accent); min-width: 32px; text-align: right; }
+
+    .vote-btn { background: none; border: none; font-size: 1.3rem; cursor: pointer; padding: .25rem; transition: transform .15s; flex-shrink: 0; }
+    .vote-btn:hover { transform: scale(1.2); }
+    .vote-btn.shake { animation: shake .4s ease; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-4px)} 40%,80%{transform:translateX(4px)} }
+
+    .barometer-banner { display: flex; align-items: center; justify-content: center; gap: .5rem; padding: 1rem; margin: 1.5rem 0; background: var(--card); border: 1px solid var(--border); border-radius: 10px; font-size: .9rem; }
+    .barometer-icon { font-size: 1.2rem; }
+
+    .suggest-card { border: 2px dashed var(--border); border-radius: 12px; padding: 2rem; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; margin-bottom: 2rem; }
+    .suggest-card:hover { border-color: var(--accent); background: rgba(255,255,255,.03); }
+    .suggest-icon { display: block; font-size: 2rem; color: var(--accent); margin-bottom: .5rem; }
+    .suggest-text { display: block; font-weight: 700; font-size: 1rem; }
+    .suggest-sub { display: block; font-size: .8rem; color: var(--text-muted); margin-top: .25rem; }
+
+    .sticky-bottom { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); z-index: 100; padding: .75rem 0; }
+    .sticky-inner { display: flex; justify-content: space-between; align-items: center; }
+    .sticky-votes { font-weight: 600; font-size: .85rem; }
+
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .modal { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; width: 90%; max-width: 440px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .modal-header h2 { font-size: 1.1rem; margin: 0; }
+    .modal-close { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); padding: .25rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: .75rem; font-weight: 600; margin-bottom: .3rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); }
+    .input { width: 100%; padding: .6rem .8rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: .9rem; font-family: inherit; box-sizing: border-box; }
+    .input:focus { outline: none; border-color: var(--accent); }
+    select.input { appearance: auto; }
+    .char-count { font-size: .65rem; color: var(--text-muted); display: block; text-align: right; margin-top: .2rem; }
+
+    .footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 2rem; text-align: center; }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .footer-brand { display: flex; flex-direction: column; gap: .25rem; }
+    .footer-logo { font-size: 1.2rem; font-weight: 800; }
+    .footer-tagline { font-size: .75rem; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { font-size: .8rem; color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: .7rem; color: var(--text-muted); }
+
+    .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.3rem; cursor: pointer; }
+
+    @media (max-width: 640px) {
+      .menu-row { flex-direction: column; }
+      .menu-row-img { width: 100%; min-width: 0; height: 140px; border-radius: 10px; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card); border-bottom: 1px solid var(--border); flex-direction: column; padding: 1rem; gap: .5rem; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      .progress-meta { flex-direction: column; gap: .4rem; text-align: center; }
+    }
+
+    @media (min-width: 641px) {
+      .menu-row { flex-direction: row; }
+      .menu-row-img { width: 100px; min-width: 100px; height: 100px; }
+    }
+  </style>
+
 </body>
 </html>
