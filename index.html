@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -17,11 +17,6 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{overscroll-behavior:none}
-
-    .nav-link{padding:.375rem .75rem;border-radius:9999px;font-size:.8125rem;font-weight:600;text-decoration:none;transition:all .2s}
-    .nav-link.active{background:var(--primary);color:var(--cream)}
-    .nav-link:not(.active){color:var(--on-sv)}
-    .nav-link:not(.active):hover{background:var(--surface-h)}
 
     .hero-section{padding:2rem 0 3rem}
     .hero-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
@@ -130,55 +125,13 @@
     .bottom-cta{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;text-align:center;padding:1.5rem 0}
     .bottom-cta blockquote{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(.9375rem,2.5vw,1.125rem);color:var(--on-sv);max-width:32rem;line-height:1.6}
     .bottom-cta .chapter{font-size:.8125rem;color:var(--on-sv)}
-
-    .footer{background:var(--surface-c);padding:3rem 0}
-    .footer a{color:var(--on-sv);text-decoration:none;font-size:.875rem;transition:color .2s}
-    .footer a:hover{color:var(--charcoal)}
-    .footer-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:start}
-    @media(min-width:768px){.footer-grid{grid-template-columns:5fr 3fr 4fr}}
-    .footer-brand{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem}
-    .footer-brand img{height:32px;width:auto;border-radius:4px}
-    .footer-brand .en{font-weight:800;font-size:1.25rem;color:var(--primary)}
-    .footer-brand .ml{font-size:.875rem;color:var(--brass)}
-    .footer-mission{font-family:'Newsreader',serif;font-style:italic;font-size:.9375rem;color:var(--on-sv);max-width:280px;line-height:1.6}
-    .footer-eco{display:flex;align-items:center;gap:.5rem;font-size:.8125rem;color:var(--on-sv);padding-top:.75rem}
-    .footer-eco .material-symbols-outlined{font-size:18px;color:var(--success)}
-    .footer h4{font-size:.875rem;font-weight:600;margin-bottom:.75rem;color:var(--charcoal)}
-    .footer nav{display:flex;flex-direction:column;gap:.5rem}
-    .footer-dpdp{background:var(--surface-l);padding:1rem;border-radius:1rem;display:flex;flex-direction:column;gap:.75rem}
-    .footer-dpdp-header{display:flex;align-items:center;gap:.5rem;color:var(--brass)}
-    .footer-dpdp-header .material-symbols-outlined{font-size:20px}
-    .footer-dpdp-header span{font-weight:700}
-    .footer-dpdp p{font-size:.8125rem;color:var(--on-sv);line-height:1.55}
-    .footer-dpdp .dpdp-badge{display:flex;align-items:center;gap:.375rem;color:var(--success)}
-    .footer-dpdp .dpdp-badge .material-symbols-outlined{font-size:16px}
-    .footer-dpdp .dpdp-badge span{font-size:.8125rem}
-    .footer-bottom{border-top:1px solid var(--muted);margin-top:2rem;padding-top:1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem}
-    .footer-bottom p{font-size:.8125rem;color:var(--on-sv)}
-    .footer-bottom-locs{display:flex;align-items:center;gap:1rem;font-size:.8125rem;color:var(--on-sv)}
-    .footer-bottom-locs .tag{font-weight:700;color:var(--brass)}
   </style>
 </head>
 
-<body style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--cream);color:var(--charcoal);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden">
+<body>
 
   <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="container navbar-inner">
-      <a href="index.html" class="navbar-brand">
-        <img src="img/logo.png" alt="CUPPILO" class="navbar-logo">
-        <span class="navbar-brand-text">കപ്പിലോ</span>
-      </a>
-      <div class="nav-links" id="nav-links">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="menu-ballot.html" class="nav-link">Menu</a>
-        <a href="ambiance.html" class="nav-link">Vibe</a>
-        <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="founding-wall.html" class="nav-link">Wall</a>
-      </div>
-      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
-    </div>
-  </nav>
+  <nav class="navbar" id="navbar"></nav>
 
   <main style="padding-top:5rem;padding-bottom:3rem">
 
@@ -188,251 +141,235 @@
 
       <div class="container">
 
-        <!-- ======================== -->
         <!-- 1. HERO SECTION -->
-        <!-- ======================== -->
         <section class="hero-section">
-          <!-- Live Counter Pill + Phase Badge -->
           <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1.5rem">
             <div class="hero-badge">
               <span class="dot"></span>
-              <span>1,480+ co-creators joined across Kochi, Calicut &amp; Trivandrum</span>
+              <span data-en="1,480+ co-creators joined across Kochi, Calicut & Trivandrum" data-ml="1,480+ കോ-ക്രിയേറ്റർമാർ കൂടി">1,480+ co-creators joined across Kochi, Calicut & Trivandrum</span>
             </div>
             <div style="display:inline-flex;align-items:center;gap:.375rem;background:var(--surface-h);padding:.375rem .75rem;border-radius:9999px;font-size:.8125rem;color:var(--on-sv)">
               <span class="material-symbols-outlined" style="font-size:16px;color:var(--primary)">explore</span>
-              <span>Phase 0 · Pre-Opening Studio</span>
+              <span data-en="Phase 0 · Pre-Opening Studio" data-ml="ഘട്ടം 0 · പ്രീ-ഓപ്പണിംഗ് സ്റ്റുഡിയോ">Phase 0 · Pre-Opening Studio</span>
             </div>
           </div>
 
           <div class="hero-grid">
-            <!-- Left: Headline block -->
             <div style="display:flex;flex-direction:column;gap:1.25rem">
-              <!-- Malayalam tag -->
               <div class="malayalam-tag">
                 <span class="ml">കപ്പിലോ?</span>
                 <span class="en">In the cup, of course.</span>
               </div>
 
-              <!-- Headline -->
               <h1 class="hero-title">
-                Before We Open: Help Us Build Your Dream <span>Café</span> in Kerala.
+                <span data-en="Before We Open: Help Us Build Your Dream " data-ml="ഞങ്ങൾ തുറക്കുന്നതിന് മുമ്പ്: നിങ്ങളുടെ സ്വപ്ന കഫേ നിർമ്മിക്കാൻ ഞങ്ങളെ സഹായിക്കൂ ">Before We Open: Help Us Build Your Dream </span><span data-en="Café" data-ml="കഫേ">Café</span><span data-en=" in Kerala." data-ml=" കേരളത്തിൽ."> in Kerala.</span>
               </h1>
 
-              <!-- Subtitle -->
-              <p class="hero-subtitle">
+              <p class="hero-subtitle" data-en="We are ditching boardroom guesswork. Tell us what signature brews, reimagined bites, and late-night ambiance Kerala is actually missing — and unlock exclusive Founding Patron perks before doors unlock." data-ml="ബോർഡ്‌റൂം ഊഹാപോഹങ്ങൾ ഉപേക്ഷിക്കുന്നു. കേരളത്തിൽ യഥാർത്ഥത്തിൽ എന്താണ് വേണ്ടതെന്ന് ഞങ്ങളെ അറിയിക്കൂ.">
                 We are ditching boardroom guesswork. Tell us what signature brews, reimagined bites, and late-night ambiance Kerala is actually missing — and unlock exclusive Founding Patron perks before doors unlock.
               </p>
 
-              <!-- CTA + badge -->
               <div class="hero-cta-row">
                 <a href="menu-ballot.html" class="btn btn-primary" style="font-size:1rem;padding:.875rem 2rem">
-                  <span>Start Co-Creating (Takes 2 mins)</span>
+                  <span data-en="Start Co-Creating (Takes 2 mins)" data-ml="സഹ-നിർമ്മാണം ആരംഭിക്കുക (2 മിനിറ്റ്)">Start Co-Creating (Takes 2 mins)</span>
                   <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
                 </a>
                 <div class="cta-badge">
                   <span class="material-symbols-outlined">bolt</span>
-                  <span>100% Free · No login required to vote</span>
+                  <span data-en="100% Free · No login required to vote" data-ml="100% സൗജന്യം · വോട്ട് ചെയ്യാൻ ലോഗിൻ ആവശ്യമില്ല">100% Free · No login required to vote</span>
                 </div>
               </div>
             </div>
 
-            <!-- Right: Editorial tile card -->
             <div class="hero-card">
               <div style="position:relative">
                 <img class="hero-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-1kirvGFGJHto_-tTlLcMKHgashcAdydvyqNWneEsi9TwoAeSlG2gSuLbmF8mVu-6QajVwBUvfc2UQejk4-4vozOdq746WjvOoFzSDeI42HqYPTcCELaHDYvxQTe7Xc-b2S3MLmhA3ROBYpEbmKlk8anG654Vj_mzYcKt8ltp_GQ7AI0VW-iOMon-NUX2VQEFWRB926Ea8bRHSmFKVjRJ3CCL_wohbGf6CFAy2tVqeMU4oFfLBHvl" alt="Warm artisanal Kerala café interior"/>
                 <div class="hero-card-badge">
                   <span class="material-symbols-outlined">local_cafe</span>
-                  <span>Kochi First Flagship · Early 2025</span>
+                  <span data-en="Kochi First Flagship · Early 2025" data-ml="കൊച്ചി ഫസ്റ്റ് ഫ്ലാഗ്‌ഷിപ്പ് · 2025 ആദ്യം">Kochi First Flagship · Early 2025</span>
                 </div>
               </div>
               <div class="hero-card-body">
-                <h4>Why Co-Creation?</h4>
-                <p>Every card you tap directly shapes our interior seating, milk chemistry, and late-night operating hours. You make the call.</p>
+                <h4 data-en="Why Co-Creation?" data-ml="എന്തുകൊണ്ട് സഹ-നിർമ്മാണം?">Why Co-Creation?</h4>
+                <p data-en="Every card you tap directly shapes our interior seating, milk chemistry, and late-night operating hours. You make the call." data-ml="നിങ്ങൾ ടാപ്പ് ചെയ്യുന്ന ഓരോ കാർഡും ഞങ്ങളുടെ ഇന്റീരിയർ സീറ്റിംഗ്, പാൽ രസതന്ത്രം, രാത്രി പ്രവർത്തന സമയം എന്നിവ നേരിട്ട് രൂപപ്പെടുത്തുന്നു. നിങ്ങൾ വിളിക്കുക.">
+                  Every card you tap directly shapes our interior seating, milk chemistry, and late-night operating hours. You make the call.
+                </p>
               </div>
               <div class="hero-card-stat">
                 <div>
-                  <span class="label">Leading Brew</span><br/>
-                  <span class="value">Tender Coconut Cold Brew</span>
+                  <span class="label" data-en="Leading Brew" data-ml="നേതൃത്വം നൽകുന്ന ബ്രൂ">Leading Brew</span><br/>
+                  <span class="value" data-en="Tender Coconut Cold Brew" data-ml="എളനീർ കോൾഡ് ബ്രൂ">Tender Coconut Cold Brew</span>
                 </div>
-                <span class="pct">84% favor</span>
+                <span class="pct">84%</span>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ======================== -->
         <!-- 2. 3-PILLAR BENTO GRID -->
-        <!-- ======================== -->
         <section class="pillar-section">
           <div class="pillar-header">
             <div class="pillar-header-left">
               <span class="bar"></span>
-              <h2>What You Will Decide Today</h2>
+              <h2 data-en="What You Will Decide Today" data-ml="ഇന്ന് നിങ്ങൾ തീരുമാനിക്കുന്നത്">What You Will Decide Today</h2>
             </div>
-            <span class="count">3 quick chapters</span>
+            <span class="count" data-en="3 quick chapters" data-ml="3 വേഗത്തിലുള്ള അധ്യായങ്ങൾ">3 quick chapters</span>
           </div>
 
           <div class="pillar-grid">
-            <!-- Pillar 1: Curate The Menu -->
             <a href="menu-ballot.html" class="pillar-card pc1">
               <div>
                 <div class="pillar-card-icon">
                   <span class="material-symbols-outlined">restaurant_menu</span>
                 </div>
-                <div class="pillar-card-step">01. Culinary Direction</div>
-                <h3>Curate The Menu</h3>
-                <p>Vote for signature brews and reimagined Malabar snacks: Tender Coconut Cold Brew, authentic Malabar Kozhi roast sliders, or heritage Karupatti Chaya.</p>
+                <div class="pillar-card-step" data-en="01. Culinary Direction" data-ml="01. പാകശാല ദിശ">01. Culinary Direction</div>
+                <h3 data-en="Curate The Menu" data-ml="മെനു ക്രമീകരിക്കുക">Curate The Menu</h3>
+                <p data-en="Vote for signature brews and reimagined Malabar snacks: Tender Coconut Cold Brew, authentic Malabar Kozhi roast sliders, or heritage Karupatti Chaya." data-ml="സിഗ്നേച്ചർ ബ്രൂകളും പുനർരൂപപ്പെടുത്തിയ മലബാർ സ്നാക്കുകളും വോട്ട് ചെയ്യുക: എളനീർ കോൾഡ് ബ്രൂ, യഥാർത്ഥ മലബാർ കോഴി റോസ്റ്റ് സ്ലൈഡറുകൾ, അല്ലെങ്കിൽ പൈതൃക കരുപ്പട്ടി ചായ.">
+                  Vote for signature brews and reimagined Malabar snacks: Tender Coconut Cold Brew, authentic Malabar Kozhi roast sliders, or heritage Karupatti Chaya.
+                </p>
               </div>
               <div class="pillar-card-footer">
-                <span><span class="bold" style="color:var(--primary)">12</span> items on ballot</span>
-                <span class="action">Tap to vote →</span>
+                <span><span class="bold" style="color:var(--primary)">12</span> <span data-en="items on ballot" data-ml="ബാലറ്റിൽ ഇനങ്ങൾ">items on ballot</span></span>
+                <span class="action" data-en="Tap to vote →" data-ml="വോട്ട് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക →">Tap to vote →</span>
               </div>
             </a>
 
-            <!-- Pillar 2: Choose The Vibe -->
             <a href="ambiance.html" class="pillar-card pc2">
               <div>
                 <div class="pillar-card-icon">
                   <span class="material-symbols-outlined">cottage</span>
                 </div>
-                <div class="pillar-card-step">02. Architecture &amp; Tone</div>
-                <h3>Choose The Vibe</h3>
-                <p>Cast your vote for Kerala Heritage Laterite &amp; teak wood, Minimal Concrete Courtyards, Earth &amp; Terracotta unglazed pottery, or fairy-lit Night Verandas.</p>
+                <div class="pillar-card-step" data-en="02. Architecture & Tone" data-ml="02. വാസ്തുവിദ്യയും ടോണും">02. Architecture & Tone</div>
+                <h3 data-en="Choose The Vibe" data-ml="വൈബ് തിരഞ്ഞെടുക്കുക">Choose The Vibe</h3>
+                <p data-en="Cast your vote for Kerala Heritage Laterite & teak wood, Minimal Concrete Courtyards, Earth & Terracotta unglazed pottery, or fairy-lit Night Verandas." data-ml="കേരള പൈതൃക ലാറ്ററൈറ്റ് & തേക്ക് മരം, മിനിമൽ കോൺക്രീറ്റ് കോർട്ട്‌യാർഡുകൾ, എർത്ത് & ടെറാക്കോട്ട അൺഗ്ലേസ്ഡ് പോട്ടറി, അല്ലെങ്കിൽ ഫെയറി-ലിറ്റ് നൈറ്റ് വരാന്തകൾ എന്നിവയ്ക്ക് വോട്ട് ചെയ്യുക.">
+                  Cast your vote for Kerala Heritage Laterite & teak wood, Minimal Concrete Courtyards, Earth & Terracotta unglazed pottery, or fairy-lit Night Verandas.
+                </p>
               </div>
               <div class="pillar-card-footer">
-                <span><span class="bold" style="color:var(--brass)">4</span> aesthetic routes</span>
-                <span class="action">Explore moodboard →</span>
+                <span><span class="bold" style="color:var(--brass)">4</span> <span data-en="aesthetic routes" data-ml="എസ്തറ്റിക് റൂട്ടുകൾ">aesthetic routes</span></span>
+                <span class="action" data-en="Explore moodboard →" data-ml="മൂഡ്‌ബോർഡ് എക്സ്പ്ലോർ ചെയ്യുക →">Explore moodboard →</span>
               </div>
             </a>
 
-            <!-- Pillar 3: Fair Price & Pass -->
             <a href="pricing.html" class="pillar-card pc3">
               <div>
                 <div class="pillar-card-icon">
                   <span class="material-symbols-outlined">local_activity</span>
                 </div>
-                <div class="pillar-card-step">03. Pricing &amp; Perks</div>
-                <h3>Fair Price &amp; Pass</h3>
-                <p>Adjust fair cup pricing sliders for everyday accessible coffee. Unlock your numbered Digital Founding Patron Pass with launch-week vouchers.</p>
+                <div class="pillar-card-step" data-en="03. Pricing & Perks" data-ml="03. വിലയും പ്രത്യേകതകളും">03. Pricing & Perks</div>
+                <h3 data-en="Fair Price & Pass" data-ml="ന്യായമായ വില & പാസ്">Fair Price & Pass</h3>
+                <p data-en="Adjust fair cup pricing sliders for everyday accessible coffee. Unlock your numbered Digital Founding Patron Pass with launch-week vouchers." data-ml="പ്രതിദിന പ്രാപ്യമായ കാപ്പിക്ക് ന്യായമായ വില സ്ലൈഡറുകൾ ക്രമീകരിക്കുക. ലോഞ്ച്-വീക്ക് വൗച്ചറുകളോടെ നിങ്ങളുടെ നമ്പർ ചെയ്ത ഡിജിറ്റൽ സ്ഥാപക പാട്രൺ പാസ് അൺലോക്ക് ചെയ്യുക.">
+                  Adjust fair cup pricing sliders for everyday accessible coffee. Unlock your numbered Digital Founding Patron Pass with launch-week vouchers.
+                </p>
               </div>
               <div class="pillar-card-footer">
-                <span><span class="bold" style="color:var(--success)">10% Off</span> launch voucher</span>
-                <span class="action">Claim pass →</span>
+                <span><span class="bold" style="color:var(--success)">10%</span> <span data-en="Off launch voucher" data-ml="ലോഞ്ച് വൗച്ചർ ഓഫ്">Off launch voucher</span></span>
+                <span class="action" data-en="Claim pass →" data-ml="പാസ് ക്ലെയിം ചെയ്യുക →">Claim pass →</span>
               </div>
             </a>
           </div>
         </section>
 
-        <!-- ======================== -->
         <!-- 3. QUICK TASTING TEASER -->
-        <!-- ======================== -->
         <section class="teaser-section" style="margin-top:1.5rem">
           <div class="teaser-header">
             <div>
-              <span class="tag">Quick Tasting Teaser</span>
-              <h3>Which would you order first on opening morning?</h3>
+              <span class="tag" data-en="Quick Tasting Teaser" data-ml="വേഗത്തിലുള്ള ടേസ്റ്റിംഗ് ടീസർ">Quick Tasting Teaser</span>
+              <h3 data-en="Which would you order first on opening morning?" data-ml="ഓപ്പണിംഗ് രാവിലെ നിങ്ങൾ ആദ്യം ഓർഡർ ചെയ്യുന്നത് ഏത്?">Which would you order first on opening morning?</h3>
             </div>
-            <span class="micro">Interactive micro-poll</span>
+            <span class="micro" data-en="Interactive micro-poll" data-ml="ഇന്ററാക്ടീവ് മൈക്രോ-പോൾ">Interactive micro-poll</span>
           </div>
 
           <div class="teaser-grid" id="miniPollGrid">
-            <!-- Wayanad Filter Kaapi -->
             <div class="teaser-card" onclick="selectTeaser(this,88)">
               <img class="teaser-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO_9XBvvl6qLjb5hTL0U2QiIzTuI9_8vtJWZ4ltmNpdfsUSxH7B6rFRnd8K8DvzAIV2V_KRieYAwFm4KG1_ungCRxxVmvcSI-IkY5DlOZDKx8AI-Qys7SqI4DA5a9BhRsiqLvqvCo78VjNeDjOhVzl1QwlhsQ9JDDQHC4dc0T8z0wwNTXlW9MhoQ2E17so6O8rGEPLPCoLUKPa6V1CClph5iaptJpAmC7tJw2ppNL0V9zPvhsEsGME" alt="Traditional hot South Indian brass tumbler of frothy filter coffee"/>
               <span class="teaser-card-heart">❤️</span>
-              <h4>Wayanad Filter Kaapi</h4>
-              <span class="desc">Single-origin Robusta + Arabica roasted dark</span>
+              <h4 data-en="Wayanad Filter Kaapi" data-ml="വയനാട് ഫിൽട്ടർ കാപ്പി">Wayanad Filter Kaapi</h4>
+              <span class="desc" data-en="Single-origin Robusta + Arabica roasted dark" data-ml="ഒറിജിൻ റോബസ്റ്റ + അറേബിക്ക ഡാർക്ക് റോസ്റ്റ്">Single-origin Robusta + Arabica roasted dark</span>
               <div class="teaser-consensus">
                 <div class="bar"><div class="fill" style="width:88%"></div></div>
-                <span class="label">88% agree with you</span>
+                <span class="label">88% agree</span>
               </div>
             </div>
 
-            <!-- Elaneer Cold Brew -->
             <div class="teaser-card" onclick="selectTeaser(this,76)">
               <img class="teaser-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALXlyGiGIj5PEm6oks1DHKVDAZqjpQzTF75_NcPkSSJwd6n2oIZKkgERVHqeOz9Ur9ku7NJ-uvnYNKyaKC2fC1XIKs0Wx1y7a81jA8hzLQgIkbf8e84n_lJ3UvieqeI-ZeDcoSDhd61uoSGD3nmLgEp7n2ycOvqjiLoWUHJ2VokcmNvkEwRmdEI4NM0N0VAhu_QkUSdJo2IoMfHbXrdIZ5YQ5y2LmhwERBBF1YuIf0AiM5unBm4zaL" alt="Tender coconut cold brew coffee in a ribbed glass"/>
               <span class="teaser-card-heart">❤️</span>
-              <h4>Elaneer Cold Brew</h4>
-              <span class="desc">14-hour steep cut with fresh sweet tender coconut water</span>
+              <h4 data-en="Elaneer Cold Brew" data-ml="എളനീർ കോൾഡ് ബ്രൂ">Elaneer Cold Brew</h4>
+              <span class="desc" data-en="14-hour steep cut with fresh sweet tender coconut water" data-ml="14 മണിക്കൂർ സ്റ്റീപ്പ് ഫ്രഷ് എളനീരുമായി">14-hour steep cut with fresh sweet tender coconut water</span>
               <div class="teaser-consensus">
                 <div class="bar"><div class="fill" style="width:76%"></div></div>
-                <span class="label">76% agree with you</span>
+                <span class="label">76% agree</span>
               </div>
             </div>
 
-            <!-- Nendran Pazham Pori Crisp -->
             <div class="teaser-card" onclick="selectTeaser(this,91)">
               <img class="teaser-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4NLXY_WOU3izHZy2HK-QdHkqAHzfToxSSGJ_jmzmOBJW7KlUlkqx3jsjm-s3AdlPlHpa_4PJ2Wa5eEIJqHqzKgLLqO2eRHCxWX4xRtJV1VppQn8mgmv9thRjLMM2xQZDgQA_vwYpivYZFvFkENuDsFHCHb_9EgWOV4hTnkP2r0-OhjPHzU-OLLQ_Gg8ajkLsEi7IyhJ4-pBo7fnVLCbuMYqiirh5PG5opg-dS1mBhTUNzjVpIdTZh" alt="Crispy golden Kerala Pazham Pori banana fritters"/>
               <span class="teaser-card-heart">❤️</span>
-              <h4>Nendran Pazham Pori Crisp</h4>
-              <span class="desc">Cardamom-infused batter with smoked date drizzle</span>
+              <h4 data-en="Nendran Pazham Pori Crisp" data-ml="നേന്ത്രൻ പഴം പൊരി ക്രിസ്പ്">Nendran Pazham Pori Crisp</h4>
+              <span class="desc" data-en="Cardamom-infused batter with smoked date drizzle" data-ml="ഏലക്ക ഇൻഫ്യൂസ്ഡ് ബാറ്റർ സ്മോക്ഡ് ഡേറ്റ് ഡ്രിസ്സിളുമായി">Cardamom-infused batter with smoked date drizzle</span>
               <div class="teaser-consensus">
                 <div class="bar"><div class="fill" style="width:91%"></div></div>
-                <span class="label">91% agree with you</span>
+                <span class="label">91% agree</span>
               </div>
             </div>
 
-            <!-- Karupatti Ginger Chaya -->
             <div class="teaser-card" onclick="selectTeaser(this,64)">
               <img class="teaser-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBewBm5413cdvy6mrOU1g2lVP4EgT1hVDhVFvrIIIbX4_3r7wI0qziLO6gkErTnLn4pp97efMyllqIpxR-D8xvccb7TEDO3aX-QwNnhiy4YbkpebvF4AYup79xKsG350V5C8IO_LVXPRrRg0IWjujeyw4WDo0vlDfSyY2b8QVkU7fnYf8EaFf4U27bJTyWprEogSKjz_1ixv1IH9JLW930hRercx72TTvx_cqlZQnd8YUe5q6SgsfGd" alt="Steaming glass of spiced Karupatti palm jaggery black tea"/>
               <span class="teaser-card-heart">❤️</span>
-              <h4>Karupatti Ginger Chaya</h4>
-              <span class="desc">Pure palm jaggery, crushed dried ginger &amp; Munnar tea leaves</span>
+              <h4 data-en="Karupatti Ginger Chaya" data-ml="കരുപ്പട്ടി ഇഞ്ചി ചായ">Karupatti Ginger Chaya</h4>
+              <span class="desc" data-en="Pure palm jaggery, crushed dried ginger & Munnar tea leaves" data-ml="ശുദ്ധ കരുപ്പട്ടി, ഉടച്ച ഉണക്ക ഇഞ്ചി & മൂന്നാർ ചായ ഇലകൾ">Pure palm jaggery, crushed dried ginger & Munnar tea leaves</span>
               <div class="teaser-consensus">
                 <div class="bar"><div class="fill" style="width:64%"></div></div>
-                <span class="label">64% agree with you</span>
+                <span class="label">64% agree</span>
               </div>
             </div>
           </div>
 
           <div class="teaser-footer">
-            <p>Tap an item above to test the live voting mechanic, or jump into the full ballot.</p>
+            <p data-en="Tap an item above to test the live voting mechanic, or jump into the full ballot." data-ml="ലൈവ് വോട്ടിംഗ് മെക്കാനിക് പരീക്ഷിക്കാൻ മുകളിലുള്ള ഒരു ഇനം ടാപ്പ് ചെയ്യുക, അല്ലെങ്കിൽ പൂർണ്ണ ബാലറ്റിലേക്ക് ചാടുക.">Tap an item above to test the live voting mechanic, or jump into the full ballot.</p>
             <a href="menu-ballot.html">
-              <span>View all 12 items</span>
+              <span data-en="View all 12 items" data-ml="എല്ലാ 12 ഇനങ്ങളും കാണുക">View all 12 items</span>
               <span class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
         </section>
 
-        <!-- ======================== -->
         <!-- 4. CO-CREATION GUARANTEE -->
-        <!-- ======================== -->
         <section class="guarantee-section" style="margin-top:1.5rem">
           <div class="guarantee-left">
             <div class="guarantee-icon">
               <span class="material-symbols-outlined">shield_person</span>
             </div>
             <div class="guarantee-text">
-              <h4>Co-Creation Guarantee</h4>
-              <p>100% Free to participate · Zero spam guarantee · Governed by DPDP Act 2023</p>
+              <h4 data-en="Co-Creation Guarantee" data-ml="സഹ-നിർമ്മാണ ഗ്യാരന്റി">Co-Creation Guarantee</h4>
+              <p data-en="100% Free to participate · Zero spam guarantee · Governed by DPDP Act 2023" data-ml="പങ്കെടുക്കാൻ 100% സൗജന്യം · സ്പാം ഇല്ലാത്ത ഗ്യാരന്റി · DPDP ആക്ട് 2023 അനുസരിച്ച്">100% Free to participate · Zero spam guarantee · Governed by DPDP Act 2023</p>
             </div>
           </div>
           <div class="guarantee-chips">
             <span class="guarantee-chip">
               <span class="material-symbols-outlined">check_circle</span>
-              No payment required
+              <span data-en="No payment required" data-ml="പേയ്‌മെന്റ് ആവശ്യമില്ല">No payment required</span>
             </span>
             <span class="guarantee-chip">
               <span class="material-symbols-outlined">check_circle</span>
-              Instant 10% Launch Voucher
+              <span data-en="Instant 10% Launch Voucher" data-ml="തത്സമയം 10% ലോഞ്ച് വൗച്ചർ">Instant 10% Launch Voucher</span>
             </span>
             <span class="guarantee-chip">
               <span class="material-symbols-outlined">check_circle</span>
-              Founding Patron Pass
+              <span data-en="Founding Patron Pass" data-ml="സ്ഥാപക പാട്രൺ പാസ്">Founding Patron Pass</span>
             </span>
           </div>
         </section>
 
-        <!-- ======================== -->
         <!-- 5. BOTTOM CTA -->
-        <!-- ======================== -->
         <section class="bottom-cta" style="margin-top:1.5rem">
-          <blockquote>"A great café belongs to the people who walk in at dusk, smelling freshly roasted beans and listening to gentle monsoon drizzle."</blockquote>
+          <blockquote data-en="&quot;A great café belongs to the people who walk in at dusk, smelling freshly roasted beans and listening to gentle monsoon drizzle.&quot;" data-ml="&quot;ഒരു മികച്ച കഫേ സന്ധ്യയ്ക്ക് കയറിവരുന്ന, പുതുതായി വറുത്ത ബീൻസുകളുടെ മണം നുകർന്ന്, മൃദുവായ മൺസൂൺ ചാറ്റൽ കേൾക്കുന്ന ആളുകൾക്ക് ഉടമസ്ഥരാണ്.&quot;">"A great café belongs to the people who walk in at dusk, smelling freshly roasted beans and listening to gentle monsoon drizzle."</blockquote>
           <a href="menu-ballot.html" class="btn btn-primary" style="font-size:1rem;padding:.875rem 2rem">
-            <span>Start Co-Creating (Takes 2 mins)</span>
+            <span data-en="Start Co-Creating (Takes 2 mins)" data-ml="സഹ-നിർമ്മാണം ആരംഭിക്കുക (2 മിനിറ്റ്)">Start Co-Creating (Takes 2 mins)</span>
             <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
           </a>
-          <span class="chapter">Chapter 1 of 5: The Artisanal Menu Ballot</span>
+          <span class="chapter" data-en="Chapter 1 of 5: The Artisanal Menu Ballot" data-ml="5-ൽ 1-ാമത്തെ അധ്യായം: കലാത്മക മെനു ബാലറ്റ്">Chapter 1 of 5: The Artisanal Menu Ballot</span>
         </section>
 
       </div>
@@ -440,62 +377,8 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
+  <footer class="footer" id="footer"></footer>
 
-        <!-- Brand & Mission -->
-        <div>
-          <div class="footer-brand">
-            <img src="img/logo.png" alt="CUPPILO"/>
-            <span class="en">CUPPILO</span>
-            <span class="ml">കപ്പിലോ</span>
-          </div>
-          <p class="footer-mission">"Bringing artisanal specialty roasts, shade-grown Western Ghats heritage beans, and warm veranda conversations back to our towns."</p>
-          <div class="footer-eco">
-            <span class="material-symbols-outlined">eco</span>
-            <span>Single-estate Wayanad &amp; Nelliyampathy Arabica sourcing</span>
-          </div>
-        </div>
-
-        <!-- Co-Creation Chapters -->
-        <div>
-          <h4>Co-Creation Chapters</h4>
-          <nav>
-            <a href="index.html">Veranda Orientation</a>
-            <a href="menu-ballot.html">Artisanal Menu Ballot</a>
-            <a href="ambiance.html">Nadumuttam Architecture</a>
-            <a href="pricing.html">Fair Cup Pricing</a>
-            <a href="founding-wall.html">Founding Patron Wall</a>
-          </nav>
-        </div>
-
-        <!-- DPDP Compliance -->
-        <div class="footer-dpdp">
-          <div class="footer-dpdp-header">
-            <span class="material-symbols-outlined">verified_user</span>
-            <span>Digital Personal Data Protection (DPDP)</span>
-          </div>
-          <p>Your feedback and contact preferences are strictly confidential. Encrypted, spam-free, and purely community-owned co-creation.</p>
-          <div class="dpdp-badge">
-            <span class="material-symbols-outlined">lock</span>
-            <span>DPDP India Act 2023 Compliant</span>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2026 CUPPILO Specialty Artisanal Café. Crafting modern Kerala third spaces.</p>
-        <div class="footer-bottom-locs">
-          <span>Kochi · Kozhikode · Thrissur</span>
-          <span class="tag">#CuppiloKerala</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Teaser card interaction -->
   <script>
     function selectTeaser(card, pct) {
       var allCards = document.querySelectorAll('.teaser-card');
@@ -512,6 +395,7 @@
 
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
+  <script>initPage('index');</script>
 
 </body>
 </html>

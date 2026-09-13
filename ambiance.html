@@ -3,225 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ambiance & Interior — Cuppilo Café</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Ambiance & Interior — CUPPILO Co-Creation</title>
+  <meta name="description" content="Shape the space and architectural vibe of CUPPILO — Kerala's first community-built artisanal café. Vote for your favourite ambiance direction.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#A93B2B',
-            'primary-dark': '#882E21',
-            cream: '#F7F4EB',
-            charcoal: '#231F20',
-            brass: '#C89D5C',
-            'muted-latte': '#E8E2D2',
-            'brass-soft': '#F4EBD9',
-            surface: '#fff8f8',
-            'surface-container': '#f5eced',
-            'surface-low': '#fbf1f2',
-            'surface-high': '#efe6e7',
-            'on-surface': '#1e1b1c',
-            'on-surface-variant': '#57423e',
-            success: '#2D6A4F',
-            'live-pulse': '#E0533C',
-          },
-          fontFamily: {
-            display: ['Plus Jakarta Sans', 'sans-serif'],
-            editorial: ['Newsreader', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F7F4EB; }
-    ::-webkit-scrollbar { display: none; }
-    body { scrollbar-width: none; }
-    .moodboard-card { transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
-    .moodboard-card:hover { transform: translateY(-4px); }
-    .moodboard-card.selected-halo { box-shadow: 0 0 0 3px rgba(200,157,92,0.45), 0 8px 32px rgba(200,157,92,0.15); }
-    .radio-dot { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-    @keyframes pulse-ring {
-      0% { box-shadow: 0 0 0 0 rgba(200,157,92,0.4); }
-      70% { box-shadow: 0 0 0 8px rgba(200,157,92,0); }
-      100% { box-shadow: 0 0 0 0 rgba(200,157,92,0); }
-    }
-    .selected-halo .radio-icon { animation: pulse-ring 2s infinite; }
+    .ambiance-progress{background:var(--bg-card);border-bottom:1px solid var(--muted);padding:.75rem 0}
+    .ambiance-progress-meta{display:flex;align-items:center;gap:.5rem;font-size:.875rem}
+    .ambiance-progress-meta .step{font-weight:700;color:var(--primary)}
+    .ambiance-progress-meta .sep{color:var(--muted)}
+    .ambiance-progress-meta .label{color:var(--on-sv)}
+    .ambiance-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-.02em;color:var(--primary);text-align:center;margin-bottom:.25rem}
+    .ambiance-subtitle{font-size:1rem;color:var(--on-sv);text-align:center;margin-bottom:2rem}
+    .moodboard-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
+    @media(min-width:768px){.moodboard-grid{grid-template-columns:1fr 1fr}}
+    .moodboard-card{position:relative;border-radius:1rem;overflow:hidden;cursor:pointer;border:2px solid var(--muted);transition:all .3s cubic-bezier(.4,0,.2,1)}
+    .moodboard-card:hover{transform:translateY(-4px)}
+    .moodboard-card.selected{border-color:var(--brass);box-shadow:0 0 0 3px rgba(200,157,92,.35),0 8px 32px rgba(200,157,92,.12)}
+    .moodboard-card.selected .radio-icon{background:rgba(200,157,92,.25);border-color:var(--brass)}
+    .moodboard-card.selected .radio-dot{transform:scale(1)}
+    .moodboard-card.selected .selection-badge{opacity:1}
+    .moodboard-gradient{position:absolute;inset:0}
+    .moodboard-body{position:relative;padding:1.25rem;display:flex;flex-direction:column;min-height:320px}
+    .moodboard-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+    .option-tag{font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:rgba(255,255,255,.2);color:#fff;padding:.25rem .75rem;border-radius:9999px;backdrop-filter:blur(4px)}
+    .radio-icon{width:1.75rem;height:1.75rem;border-radius:50%;border:2px solid rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);backdrop-filter:blur(4px);transition:all .25s}
+    .radio-dot{width:.875rem;height:.875rem;border-radius:50%;background:#fff;transform:scale(0);transition:transform .2s cubic-bezier(.4,0,.2,1)}
+    .moodboard-title{font-size:1.25rem;font-weight:800;color:#fff;margin-bottom:.25rem}
+    .moodboard-subtitle{font-size:.8125rem;color:rgba(255,255,255,.8);margin-bottom:1rem}
+    .moodboard-desc{font-size:.8125rem;color:rgba(255,255,255,.7);flex:1;margin-bottom:1.25rem;line-height:1.6}
+    .tag-row{display:flex;flex-wrap:wrap;gap:.375rem;margin-bottom:1rem}
+    .tag-pill{font-size:.6875rem;background:rgba(255,255,255,.15);color:#fff;padding:.25rem .625rem;border-radius:9999px;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(4px)}
+    .vote-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.375rem}
+    .vote-count{font-size:.75rem;color:rgba(255,255,255,.6)}
+    .vote-pct{font-size:.75rem;font-weight:700;color:#fff}
+    .vote-bar{width:100%;height:6px;background:rgba(255,255,255,.2);border-radius:9999px;overflow:hidden}
+    .vote-bar-fill{height:100%;border-radius:9999px;transition:width .5s}
+    .selection-badge{position:absolute;top:4.5rem;left:1.25rem;font-size:.625rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--brass);color:var(--charcoal);padding:.1875rem .625rem;border-radius:9999px;opacity:0;transition:opacity .2s}
+    .consensus-box{background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;display:flex;align-items:flex-start;gap:.75rem;box-shadow:var(--shadow)}
+    .consensus-icon{width:2.5rem;height:2.5rem;border-radius:50%;background:var(--brass-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .consensus-icon .material-symbols-outlined{font-size:1.25rem;color:var(--brass)}
+    .consensus-heading{font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:.25rem}
+    .consensus-text{font-size:.8125rem;color:var(--on-sv);line-height:1.6}
+    .nav-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+    .nav-back,.nav-next{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;border-radius:.75rem;font-weight:600;font-size:.8125rem;text-decoration:none;transition:all .2s;min-height:48px}
+    .nav-back{border:1.5px solid var(--muted);color:var(--on-sv);background:transparent}
+    .nav-back:hover{background:var(--surface-h)}
+    .nav-next{background:var(--primary);color:#fff;border:none}
+    .nav-next:hover{background:var(--primary-dark)}
+    .nav-next:active{transform:scale(.97)}
+    .nav-next .material-symbols-outlined,.nav-back .material-symbols-outlined{font-size:18px}
+    /* Option D glow overlay */
+    .moodboard-card[data-option="D"] .moodboard-gradient{background:radial-gradient(circle at 25% 25%,rgba(250,204,21,.15),transparent 40%),radial-gradient(circle at 75% 60%,rgba(192,132,252,.12),transparent 30%),radial-gradient(circle at 50% 85%,rgba(250,204,21,.1),transparent 35%)}
   </style>
 </head>
-<body class="bg-cream text-charcoal min-h-screen flex flex-col">
+<body>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container navbar-inner">
-      <a href="index.html" class="navbar-brand">
-        <img src="img/logo.png" alt="CUPPILO" class="navbar-logo">
-        <span class="navbar-brand-text">കപ്പിലോ</span>
-      </a>
-      <div class="nav-links" id="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="menu-ballot.html" class="nav-link">Menu</a>
-        <a href="ambiance.html" class="nav-link active">Vibe</a>
-        <a href="pricing.html" class="nav-link">Pricing</a>
-        <a href="founding-wall.html" class="nav-link">Wall</a>
-      </div>
-      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
-    </div>
-  </nav>
+  <nav class="navbar" id="navbar"></nav>
 
-  <main class="flex-1 pb-24">
+  <main style="flex:1;padding-bottom:3rem">
 
     <!-- Progress -->
-    <section class="bg-white border-b border-gray-200 py-3">
-      <div class="max-w-[1080px] mx-auto px-4">
-        <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-2 text-sm">
-            <span class="font-bold text-primary">Step 2 of 4</span>
-            <span class="text-gray-300">•</span>
-            <span class="text-gray-600">Architectural Vision</span>
-          </div>
+    <section class="ambiance-progress">
+      <div class="container">
+        <div class="ambiance-progress-meta">
+          <span class="step" data-en="Step 2 of 4" data-ml="ഘട്ടം 2 of 4">Step 2 of 4</span>
+          <span class="sep">•</span>
+          <span class="label" data-en="Architectural Vision" data-ml="വാസ്തുവിദ്യ ദർശനം">Architectural Vision</span>
         </div>
-        <div class="w-full bg-gray-200 rounded-full h-1.5">
-          <div class="bg-primary h-1.5 rounded-full transition-all duration-500" style="width:50%"></div>
+        <div class="progress-bar" style="margin-top:.5rem">
+          <div class="progress-fill" style="width:50%"></div>
         </div>
       </div>
     </section>
 
     <!-- Title -->
-    <section class="max-w-[1080px] mx-auto px-4 pt-8 pb-6 text-center">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mb-2" style="font-family:'Plus Jakarta Sans',sans-serif">
-        നടമുറ്റം മുതൽ വരാന്ത വരെ
-      </h1>
-      <p class="text-lg md:text-xl text-on-surface-variant">Shape the Space &amp; Architectural Vibe</p>
+    <section class="container" style="padding-top:2rem;padding-bottom:1.5rem;text-align:center">
+      <h1 class="ambiance-title" data-en="Shape the Space &amp; Architectural Vibe" data-ml="സ്ഥലവും വാസ്തുവിദ്യയും രൂപപ്പെടുത്തുക">Shape the Space &amp; Architectural Vibe</h1>
+      <p class="ambiance-subtitle" data-en="Choose the ambiance direction that speaks to you — pick one below." data-ml="നിങ്ങളുടെ ഹൃദയത്തോട് സംസാരിക്കുന്ന അന്തരീക്ഷ ദിശ തിരഞ്ഞെടുക്കുക — താഴെ ഒന്ന് തിരഞ്ഞെടുക്കുക.">Choose the ambiance direction that speaks to you — pick one below.</p>
     </section>
 
     <!-- 2x2 Moodboard Grid -->
-    <section class="max-w-[1080px] mx-auto px-4 mb-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <section class="container" style="margin-bottom:2.5rem">
+      <div class="moodboard-grid" id="moodboard-grid">
 
         <!-- Option A: Kerala Heritage -->
-        <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-gray-200 hover:border-brass/60 transition-all duration-300" data-option="A">
+        <label class="moodboard-card" data-option="A">
           <input type="radio" name="ambiance-choice" value="A" class="hidden">
-          <div class="absolute inset-0" style="background:linear-gradient(135deg,#8B4513,#CD853F)"></div>
-          <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[340px]">
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-bold uppercase tracking-wider bg-white/20 text-white px-3 py-1 rounded-full backdrop-blur-sm">Option A</span>
-              <div class="radio-icon w-7 h-7 rounded-full border-2 border-white/50 flex items-center justify-center bg-white/10 backdrop-blur-sm">
-                <div class="radio-dot w-3.5 h-3.5 rounded-full bg-white scale-0 transition-transform"></div>
+          <div class="moodboard-gradient" style="background:linear-gradient(135deg,#8B4513,#CD853F)"></div>
+          <div class="moodboard-body">
+            <div class="moodboard-header">
+              <span class="option-tag" data-en="Option A" data-ml="ഓപ്ഷൻ A">Option A</span>
+              <div class="radio-icon">
+                <div class="radio-dot"></div>
               </div>
             </div>
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-1">Kerala Heritage</h3>
-            <p class="text-sm text-white/80 mb-4">Laterite, teak, brass, Edison lamps</p>
-            <p class="text-sm text-white/70 mb-5 flex-1">Rooted in the warmth of Kerala's architectural soul — exposed laterite walls, hand-carved teak furniture, soft Edison glow, and brass accents that tell stories of time.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Laterite Stone</span>
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Teak Wood</span>
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Brass Fixtures</span>
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Edison Lamps</span>
+            <h3 class="moodboard-title" data-en="Kerala Heritage" data-ml="കേരള പൈതൃകം">Kerala Heritage</h3>
+            <p class="moodboard-subtitle" data-en="Laterite, teak, brass, Edison lamps" data-ml="ലേറ്ററൈറ്റ്, ടീക്, തമ്പ്, എഡിസൺ വിളക്കുകൾ">Laterite, teak, brass, Edison lamps</p>
+            <p class="moodboard-desc" data-en="Rooted in the warmth of Kerala's architectural soul — exposed laterite walls, hand-carved teak furniture, soft Edison glow, and brass accents that tell stories of time." data-ml="കേരളത്തിന്റെ വാസ്തുവിദ്യാ ആത്മാവിന്റെ ചൂടിൽ വേരൂന്നിയത് — തുറന്ന ലേറ്ററൈറ്റ് ഭിത്തികൾ, കൈകൊണ്ട് കൊത്തിയ ടീക് ഫർണിച്ചർ, മൃദുവായ എഡിസൺ തിളക്കം, സമയത്തിന്റെ കഥകൾ പറയുന്ന തമ്പ് ആക്സന്റുകൾ.">Rooted in the warmth of Kerala's architectural soul — exposed laterite walls, hand-carved teak furniture, soft Edison glow, and brass accents that tell stories of time.</p>
+            <div class="tag-row">
+              <span class="tag-pill" data-en="Laterite Stone" data-ml="ലേറ്ററൈറ്റ് കല്ല്">Laterite Stone</span>
+              <span class="tag-pill" data-en="Teak Wood" data-ml="ടീക് മരം">Teak Wood</span>
+              <span class="tag-pill" data-en="Brass Fixtures" data-ml="തമ്പ് ഫിറ്റിംഗുകൾ">Brass Fixtures</span>
+              <span class="tag-pill" data-en="Edison Lamps" data-ml="എഡിസൺ വിളക്കുകൾ">Edison Lamps</span>
             </div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs text-white/60 vote-count">1,478 votes</span>
-              <span class="text-xs font-bold text-white vote-pct">38%</span>
+            <div class="vote-row">
+              <span class="vote-count" data-en="1,478 votes" data-ml="1,478 വോട്ടുകൾ">1,478 votes</span>
+              <span class="vote-pct">38%</span>
             </div>
-            <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
-              <div class="consensus-bar h-full bg-white rounded-full transition-all duration-500" style="width:38%"></div>
+            <div class="vote-bar">
+              <div class="vote-bar-fill" style="width:38%;background:#fff"></div>
             </div>
+            <span class="selection-badge" data-en="Your Selection" data-ml="നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ്">Your Selection</span>
           </div>
         </label>
 
-        <!-- Option B: Earth & Clay (DEFAULT SELECTED) -->
-        <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-brass selected-halo transition-all duration-300" data-option="B">
+        <!-- Option B: Earth & Clay (DEFAULT) -->
+        <label class="moodboard-card selected" data-option="B">
           <input type="radio" name="ambiance-choice" value="B" class="hidden" checked>
-          <div class="absolute inset-0" style="background:linear-gradient(135deg,#D2691E,#DEB887)"></div>
-          <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[340px]">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider bg-white/20 text-white px-3 py-1 rounded-full backdrop-blur-sm">Option B</span>
-                <span class="your-selection-badge text-[10px] font-bold uppercase tracking-wider bg-brass text-charcoal px-2.5 py-0.5 rounded-full">Your Selection</span>
-              </div>
-              <div class="radio-icon w-7 h-7 rounded-full border-2 border-brass flex items-center justify-center bg-brass/20 backdrop-blur-sm">
-                <div class="radio-dot w-3.5 h-3.5 rounded-full bg-brass scale-100 transition-transform"></div>
+          <div class="moodboard-gradient" style="background:linear-gradient(135deg,#D2691E,#DEB887)"></div>
+          <div class="moodboard-body">
+            <div class="moodboard-header">
+              <span class="option-tag" data-en="Option B" data-ml="ഓപ്ഷൻ B">Option B</span>
+              <div class="radio-icon">
+                <div class="radio-dot"></div>
               </div>
             </div>
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-1">Earth &amp; Clay</h3>
-            <p class="text-sm text-white/80 mb-4">Terracotta, ceramics, bamboo, earth tones</p>
-            <p class="text-sm text-white/70 mb-5 flex-1">Grounded in the raw beauty of earth — terracotta tiles, hand-thrown ceramics, bamboo screens, and a palette drawn straight from the soil beneath our feet.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Terracotta</span>
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Ceramics</span>
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Bamboo</span>
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Earth Tones</span>
+            <h3 class="moodboard-title" data-en="Earth &amp; Clay" data-ml="ഭൂമിയും മണ്ണും">Earth &amp; Clay</h3>
+            <p class="moodboard-subtitle" data-en="Terracotta, ceramics, bamboo, earth tones" data-ml="ടെറക്കോട്ട, സെറാമിക്സ്, ബാംബൂ, ഭൂമി നിറങ്ങൾ">Terracotta, ceramics, bamboo, earth tones</p>
+            <p class="moodboard-desc" data-en="Grounded in the raw beauty of earth — terracotta tiles, hand-thrown ceramics, bamboo screens, and a palette drawn straight from the soil beneath our feet." data-ml="ഭൂമിയുടെ അസംസ്കൃത സൗന്ദര്യത്തിൽ അടിസ്ഥാനമാക്കിയത് — ടെറക്കോട്ട ടൈലുകൾ, കൈകൊണ്ട് നിർമ്മിച്ച സെറാമിക്സ്, ബാംബൂ സ്ക്രീനുകൾ, നമ്മുടെ കാലിനടിയിലുള്ള മണ്ണിൽ നിന്ന് നേരിട്ട് എടുത്ത പാലറ്റ്.">Grounded in the raw beauty of earth — terracotta tiles, hand-thrown ceramics, bamboo screens, and a palette drawn straight from the soil beneath our feet.</p>
+            <div class="tag-row">
+              <span class="tag-pill" data-en="Terracotta" data-ml="ടെറക്കോട്ട">Terracotta</span>
+              <span class="tag-pill" data-en="Ceramics" data-ml="സെറാമിക്സ്">Ceramics</span>
+              <span class="tag-pill" data-en="Bamboo" data-ml="ബാംബൂ">Bamboo</span>
+              <span class="tag-pill" data-en="Earth Tones" data-ml="ഭൂമി നിറങ്ങൾ">Earth Tones</span>
             </div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs text-white/60 vote-count">1,712 votes</span>
-              <span class="text-xs font-bold text-white vote-pct">44%</span>
+            <div class="vote-row">
+              <span class="vote-count" data-en="1,712 votes" data-ml="1,712 വോട്ടുകൾ">1,712 votes</span>
+              <span class="vote-pct">44%</span>
             </div>
-            <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
-              <div class="consensus-bar h-full bg-brass rounded-full transition-all duration-500" style="width:44%"></div>
+            <div class="vote-bar">
+              <div class="vote-bar-fill" style="width:44%;background:var(--brass)"></div>
             </div>
+            <span class="selection-badge" data-en="Your Selection" data-ml="നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ്">Your Selection</span>
           </div>
         </label>
 
         <!-- Option C: Modern Tropical Minimal -->
-        <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-gray-200 hover:border-gray-400 transition-all duration-300" data-option="C">
+        <label class="moodboard-card" data-option="C">
           <input type="radio" name="ambiance-choice" value="C" class="hidden">
-          <div class="absolute inset-0" style="background:linear-gradient(135deg,#808080,#C0C0C0)"></div>
-          <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[340px]">
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-bold uppercase tracking-wider bg-white/20 text-white px-3 py-1 rounded-full backdrop-blur-sm">Option C</span>
-              <div class="radio-icon w-7 h-7 rounded-full border-2 border-white/50 flex items-center justify-center bg-white/10 backdrop-blur-sm">
-                <div class="radio-dot w-3.5 h-3.5 rounded-full bg-white scale-0 transition-transform"></div>
+          <div class="moodboard-gradient" style="background:linear-gradient(135deg,#808080,#C0C0C0)"></div>
+          <div class="moodboard-body">
+            <div class="moodboard-header">
+              <span class="option-tag" data-en="Option C" data-ml="ഓപ്ഷൻ C">Option C</span>
+              <div class="radio-icon">
+                <div class="radio-dot"></div>
               </div>
             </div>
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-1">Modern Tropical Minimal</h3>
-            <p class="text-sm text-white/80 mb-4">Concrete, glass, clean lines</p>
-            <p class="text-sm text-white/70 mb-5 flex-1">A contemporary retreat where tropical greenery meets minimalist architecture — polished concrete, floor-to-ceiling glass, and clean geometric lines.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Concrete</span>
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Glass</span>
-              <span class="text-xs bg-white/15 text-white px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">Clean Lines</span>
+            <h3 class="moodboard-title" data-en="Modern Tropical Minimal" data-ml="ആധുനിക ട്രോപ്പിക്കൽ മിനിമൽ">Modern Tropical Minimal</h3>
+            <p class="moodboard-subtitle" data-en="Concrete, glass, clean lines" data-ml="കോൺക്രീറ്റ്, ഗ്ലാസ്, വൃത്തിയുള്ള രേഖകൾ">Concrete, glass, clean lines</p>
+            <p class="moodboard-desc" data-en="A contemporary retreat where tropical greenery meets minimalist architecture — polished concrete, floor-to-ceiling glass, and clean geometric lines." data-ml="ട്രോപ്പിക്കൽ പച്ചപ്പും മിനിമലിസ്റ്റ് വാസ്തുവിദ്യയും കൂടിച്ചേരുന്ന സമകാലിക റിട്രീറ്റ് — പോളിഷ് ചെയ്ത കോൺക്രീറ്റ്, നിലമുതൽ സീലിംഗ് വരെ ഗ്ലാസ്, വൃത്തിയുള്ള ജ്യാമിതീയ രേഖകൾ.">A contemporary retreat where tropical greenery meets minimalist architecture — polished concrete, floor-to-ceiling glass, and clean geometric lines.</p>
+            <div class="tag-row">
+              <span class="tag-pill" data-en="Concrete" data-ml="കോൺക്രീറ്റ്">Concrete</span>
+              <span class="tag-pill" data-en="Glass" data-ml="ഗ്ലാസ്">Glass</span>
+              <span class="tag-pill" data-en="Clean Lines" data-ml="വൃത്തിയുള്ള രേഖകൾ">Clean Lines</span>
             </div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs text-white/60 vote-count">467 votes</span>
-              <span class="text-xs font-bold text-white vote-pct">12%</span>
+            <div class="vote-row">
+              <span class="vote-count" data-en="467 votes" data-ml="467 വോട്ടുകൾ">467 votes</span>
+              <span class="vote-pct">12%</span>
             </div>
-            <div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
-              <div class="consensus-bar h-full bg-white/70 rounded-full transition-all duration-500" style="width:12%"></div>
+            <div class="vote-bar">
+              <div class="vote-bar-fill" style="width:12%;background:rgba(255,255,255,.7)"></div>
             </div>
+            <span class="selection-badge" data-en="Your Selection" data-ml="നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ്">Your Selection</span>
           </div>
         </label>
 
         <!-- Option D: Late Night Acoustic Courtyard -->
-        <label class="moodboard-card group relative rounded-2xl overflow-hidden cursor-pointer border-2 border-gray-700 hover:border-purple-400/60 transition-all duration-300" data-option="D">
+        <label class="moodboard-card" data-option="D">
           <input type="radio" name="ambiance-choice" value="D" class="hidden">
-          <div class="absolute inset-0" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"></div>
-          <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_25%_25%,#facc15_0%,transparent_40%),radial-gradient(circle_at_75%_60%,#c084fc_0%,transparent_30%),radial-gradient(circle_at_50%_85%,#facc15_0%,transparent_35%)]"></div>
-          <div class="relative p-5 md:p-6 flex flex-col h-full min-h-[340px]">
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-bold uppercase tracking-wider bg-purple-500/30 text-purple-200 px-3 py-1 rounded-full backdrop-blur-sm">Option D</span>
-              <div class="radio-icon w-7 h-7 rounded-full border-2 border-purple-300/50 flex items-center justify-center bg-white/10 backdrop-blur-sm">
-                <div class="radio-dot w-3.5 h-3.5 rounded-full bg-purple-300 scale-0 transition-transform"></div>
+          <div class="moodboard-gradient" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"></div>
+          <div class="moodboard-body">
+            <div class="moodboard-header">
+              <span class="option-tag" style="background:rgba(139,92,246,.3);color:#c4b5fd" data-en="Option D" data-ml="ഓപ്ഷൻ D">Option D</span>
+              <div class="radio-icon" style="border-color:rgba(196,181,253,.45)">
+                <div class="radio-dot" style="background:#c4b5fd"></div>
               </div>
             </div>
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-1">Late Night Acoustic Courtyard</h3>
-            <p class="text-sm text-purple-300/80 mb-4">Fairy lights, lo-fi, floor cushions</p>
-            <p class="text-sm text-white/70 mb-5 flex-1">An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="text-xs bg-purple-500/20 text-purple-200 px-2.5 py-1 rounded-full border border-purple-400/20 backdrop-blur-sm">Fairy Lights</span>
-              <span class="text-xs bg-purple-500/20 text-purple-200 px-2.5 py-1 rounded-full border border-purple-400/20 backdrop-blur-sm">Lo-Fi</span>
-              <span class="text-xs bg-purple-500/20 text-purple-200 px-2.5 py-1 rounded-full border border-purple-400/20 backdrop-blur-sm">Floor Cushions</span>
+            <h3 class="moodboard-title" data-en="Late Night Acoustic Courtyard" data-ml="വൈകിയ രാത്രിയിലെ അകൗസ്റ്റിക് ഉൾമുറ്റം">Late Night Acoustic Courtyard</h3>
+            <p class="moodboard-subtitle" style="color:rgba(196,181,253,.8)" data-en="Fairy lights, lo-fi, floor cushions" data-ml="ഫെയറി ലൈറ്റുകൾ, ലോ-ഫൈ, നിലത്തുള്ള കഷ്ടിയനുകൾ">Fairy lights, lo-fi, floor cushions</p>
+            <p class="moodboard-desc" data-en="An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations." data-ml="തുറന്ന ഉൾമുറ്റത്ത് കെട്ടിയ ഫെയറി ലൈറ്റുകൾ, ചൂടുള്ള കാറ്റിലൂടെ ഒഴുകുന്ന ലോ-ഫൈ ബീറ്റുകൾ, വൈകിയ രാത്രി സംഭാഷണങ്ങൾക്കുള്ള താഴ്ന്ന നിലത്തുള്ള കഷ്ടിയനുകൾ.">An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations.</p>
+            <div class="tag-row">
+              <span class="tag-pill" style="background:rgba(139,92,246,.2);color:#c4b5fd;border-color:rgba(196,181,253,.2)" data-en="Fairy Lights" data-ml="ഫെയറി ലൈറ്റുകൾ">Fairy Lights</span>
+              <span class="tag-pill" style="background:rgba(139,92,246,.2);color:#c4b5fd;border-color:rgba(196,181,253,.2)" data-en="Lo-Fi" data-ml="ലോ-ഫൈ">Lo-Fi</span>
+              <span class="tag-pill" style="background:rgba(139,92,246,.2);color:#c4b5fd;border-color:rgba(196,181,253,.2)" data-en="Floor Cushions" data-ml="നിലത്തുള്ള കഷ്ടിയനുകൾ">Floor Cushions</span>
             </div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs text-white/60 vote-count">235 votes</span>
-              <span class="text-xs font-bold text-purple-300 vote-pct">6%</span>
+            <div class="vote-row">
+              <span class="vote-count" data-en="235 votes" data-ml="235 വോട്ടുകൾ">235 votes</span>
+              <span class="vote-pct" style="color:#c4b5fd">6%</span>
             </div>
-            <div class="w-full h-1.5 bg-white/15 rounded-full overflow-hidden">
-              <div class="consensus-bar h-full bg-purple-400 rounded-full transition-all duration-500" style="width:6%"></div>
+            <div class="vote-bar">
+              <div class="vote-bar-fill" style="width:6%;background:#a78bfa"></div>
             </div>
+            <span class="selection-badge" data-en="Your Selection" data-ml="നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ്">Your Selection</span>
           </div>
         </label>
 
@@ -229,30 +217,28 @@
     </section>
 
     <!-- Consensus Insight Box -->
-    <section class="max-w-[1080px] mx-auto px-4 mb-10">
-      <div class="bg-white rounded-2xl border border-gray-200 p-5 md:p-6 shadow-sm">
-        <div class="flex items-start gap-3">
-          <div class="w-10 h-10 rounded-full bg-brass-soft flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-xl text-brass" style="font-variation-settings:'FILL' 1">lightbulb</span>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold text-primary mb-1">Consensus Insight</h3>
-            <p class="text-sm text-on-surface-variant leading-relaxed">Terracotta &amp; Heritage are neck-and-neck! We are blending elements of both.</p>
-          </div>
+    <section class="container" style="margin-bottom:2.5rem">
+      <div class="consensus-box">
+        <div class="consensus-icon">
+          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">lightbulb</span>
+        </div>
+        <div>
+          <h3 class="consensus-heading" data-en="Consensus Insight" data-ml="സമ്മതി ഉൾക്കാഴ്ച">Consensus Insight</h3>
+          <p class="consensus-text" data-en="Terracotta &amp; Heritage are neck-and-neck! We are blending elements of both." data-ml="ടെറക്കോട്ടയും പൈതൃകവും ഒപ്പത്തിന് ഒപ്പമാണ്! ഞങ്ങൾ രണ്ടിന്റെയും ഘടകങ്ങൾ ചേർക്കുന്നു.">Terracotta &amp; Heritage are neck-and-neck! We are blending elements of both.</p>
         </div>
       </div>
     </section>
 
     <!-- Navigation -->
-    <section class="max-w-[1080px] mx-auto px-4 mb-12">
-      <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
-        <a href="menu-ballot.html" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl border-2 border-gray-300 text-on-surface-variant hover:bg-gray-100 transition-all font-semibold text-sm flex items-center justify-center gap-2">
-          <span class="material-symbols-outlined" style="font-size:18px">arrow_back</span>
-          Back to Menu Ballot
+    <section class="container" style="margin-bottom:3rem">
+      <div class="nav-row">
+        <a href="menu-ballot.html" class="nav-back">
+          <span class="material-symbols-outlined">arrow_back</span>
+          <span data-en="Back to Menu Ballot" data-ml="മെനു ബാലറ്റിലേക്ക് മടങ്ങുക">Back to Menu Ballot</span>
         </a>
-        <a href="pricing.html" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold text-sm transition-all shadow-sm flex items-center justify-center gap-2 active:scale-95">
-          Continue to Fair Pricing
-          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+        <a href="pricing.html" class="nav-next">
+          <span data-en="Continue to Fair Pricing" data-ml="ന്യായമായ വിലയിലേക്ക് തുടരുക">Continue to Fair Pricing</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
         </a>
       </div>
     </section>
@@ -260,98 +246,50 @@
   </main>
 
   <!-- Footer -->
-  <footer class="w-full bg-surface-container py-8">
-    <div class="max-w-[1080px] mx-auto px-4 flex flex-col gap-8">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        <div class="md:col-span-5 flex flex-col gap-3">
-          <div class="flex items-center gap-2">
-            <span class="text-xl font-extrabold text-primary">CUPPILO</span>
-            <span class="text-sm text-brass">കപ്പിലോ</span>
-          </div>
-          <p class="font-editorial text-sm text-on-surface-variant italic">"Bringing artisanal specialty roasts, shade-grown Western Ghats heritage beans, and warm veranda conversations back to our towns."</p>
-          <div class="flex items-center gap-2 text-on-surface-variant text-xs pt-1">
-            <span class="material-symbols-outlined" style="font-size:14px;color:#2D6A4F">eco</span>
-            Single-estate Wayanad &amp; Nelliyampathy Arabica sourcing
-          </div>
-        </div>
-        <div class="md:col-span-3 flex flex-col gap-2">
-          <span class="text-sm font-semibold text-on-surface">Co-Creation Chapters</span>
-          <nav class="flex flex-col gap-2">
-            <a href="index.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Veranda Orientation</a>
-            <a href="menu-ballot.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Artisanal Menu Ballot</a>
-            <a href="ambiance.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Nadumuttam Architecture</a>
-            <a href="pricing.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Fair Cup Pricing</a>
-            <a href="founding-wall.html" class="text-sm text-on-surface-variant hover:text-on-surface transition-colors">Founding Patron Wall</a>
-          </nav>
-        </div>
-        <div class="md:col-span-4 flex flex-col gap-3 bg-surface-low p-4 rounded-xl">
-          <div class="flex items-center gap-2 text-brass">
-            <span class="material-symbols-outlined" style="font-size:18px">verified_user</span>
-            <span class="text-sm font-bold">DPDP India Act 2023 Compliant</span>
-          </div>
-          <p class="text-xs text-on-surface-variant">Your feedback and contact preferences are strictly confidential. Encrypted, spam-free, and purely community-owned co-creation.</p>
-        </div>
-      </div>
-      <div class="pt-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-on-surface-variant">
-        <p class="text-xs">&copy; 2026 CUPPILO Specialty Artisanal Café. Crafting modern Kerala third spaces.</p>
-        <div class="flex items-center gap-3 text-xs">
-          <span>Kochi • Kozhikode • Thrissur</span>
-          <span class="text-brass font-bold">#CuppiloKerala</span>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <footer class="footer" id="footer"></footer>
 
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.moodboard-card');
+    document.addEventListener('DOMContentLoaded', function() {
+      var cards = document.querySelectorAll('.moodboard-card');
 
       function selectCard(card) {
-        cards.forEach(c => {
-          c.classList.remove('selected-halo');
-          c.style.borderColor = '';
-          const radio = c.querySelector('.radio-icon');
-          const dot = c.querySelector('.radio-dot');
-          const inp = c.querySelector('input[type="radio"]');
-          if (radio) {
-            radio.classList.remove('bg-brass/20', 'border-brass');
-            radio.style.borderColor = '';
-            radio.classList.add('bg-white/10', 'border-white/50');
-          }
-          if (dot) { dot.classList.remove('scale-100'); dot.classList.add('scale-0'); }
+        cards.forEach(function(c) {
+          c.classList.remove('selected');
+          var inp = c.querySelector('input[type="radio"]');
           if (inp) inp.checked = false;
-          const badge = c.querySelector('.your-selection-badge');
-          if (badge) badge.remove();
+          var badge = c.querySelector('.selection-badge');
+          if (badge) badge.style.opacity = '0';
         });
 
-        card.classList.add('selected-halo');
-        const radio = card.querySelector('.radio-icon');
-        const dot = card.querySelector('.radio-dot');
-        const inp = card.querySelector('input[type="radio"]');
-        if (radio) {
-          radio.classList.remove('bg-white/10', 'border-white/50');
-          radio.classList.add('bg-brass/20');
-          radio.style.borderColor = 'var(--brass)';
-        }
-        if (dot) { dot.classList.remove('scale-0'); dot.classList.add('scale-100'); }
+        card.classList.add('selected');
+        var inp = card.querySelector('input[type="radio"]');
         if (inp) inp.checked = true;
+        var badge = card.querySelector('.selection-badge');
+        if (badge) badge.style.opacity = '1';
 
-        const headerArea = card.querySelector('.flex.items-center.justify-between.mb-4 .flex.items-center.gap-2, .flex.items-center.justify-between.mb-4 > span:first-child');
-        if (headerArea && !card.querySelector('.your-selection-badge')) {
-          const tag = document.createElement('span');
-          tag.className = 'your-selection-badge text-[10px] font-bold uppercase tracking-wider bg-brass text-charcoal px-2.5 py-0.5 rounded-full';
-          tag.textContent = 'Your Selection';
-          headerArea.appendChild(tag);
+        var choice = card.getAttribute('data-option');
+        localStorage.setItem('cuppilo_ambiance_choice', choice);
+        if (typeof saveBallotLocal === 'function') {
+          saveBallotLocal({ vibeVote: choice });
         }
       }
 
-      const defaultCard = document.querySelector('.moodboard-card[data-option="B"]');
+      var saved = localStorage.getItem('cuppilo_ambiance_choice');
+      if (saved) {
+        var savedCard = document.querySelector('.moodboard-card[data-option="' + saved + '"]');
+        if (savedCard) {
+          selectCard(savedCard);
+          return;
+        }
+      }
+
+      var defaultCard = document.querySelector('.moodboard-card[data-option="B"]');
       if (defaultCard) selectCard(defaultCard);
 
-      cards.forEach(card => {
-        card.addEventListener('click', () => selectCard(card));
+      cards.forEach(function(card) {
+        card.addEventListener('click', function() { selectCard(card); });
       });
     });
 
