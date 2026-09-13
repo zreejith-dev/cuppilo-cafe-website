@@ -21,8 +21,9 @@
     .ballot-desc{color:var(--on-sv);max-width:560px;margin:0 auto;font-size:.95rem;line-height:1.6}
 
     .chip-group{display:flex;gap:.5rem;flex-wrap:wrap;padding:1rem 0}
-    .chip{padding:.4rem 1rem;border-radius:9999px;border:1px solid var(--chip-border);background:var(--chip-bg);color:var(--chip-text);cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
-    .chip:hover,.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+    .category-section{margin-bottom:1.5rem}
+    .category-heading{font-size:1.1rem;font-weight:700;margin-bottom:.75rem;padding-bottom:.35rem;border-bottom:2px solid var(--muted)}
 
     .menu-grid{display:flex;flex-direction:column;gap:1rem;padding-bottom:2rem}
     .menu-row{display:flex;gap:1rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;transition:all .3s}
@@ -30,25 +31,12 @@
     .menu-row-img{width:100px;min-width:100px;height:100px;border-radius:.75rem;display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0}
     .menu-row-body{flex:1;min-width:0}
     .menu-row-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
-    .menu-row-name-mal{font-size:.7rem;color:var(--brass);display:block;margin-bottom:.15rem}
     .menu-row-name{font-size:1.05rem;font-weight:700;margin:0 0 .35rem}
     .menu-row-desc{font-size:.82rem;color:var(--on-sv);line-height:1.5;margin-bottom:.5rem}
     .menu-row-meta{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.6rem}
     .pill{padding:.15rem .5rem;border-radius:9999px;font-size:.65rem;font-weight:600}
-    .pill-kaapi{background:#3e2723;color:#d7ccc8}
-    .pill-chaya{background:#fff3e0;color:#e65100}
-    .pill-cold{background:#e0f2f1;color:#00695c}
-    .pill-food{background:#fbe9e7;color:#bf360c}
-    .pill-bakery{background:#efebe9;color:#4e342e}
-    .pill-origin{background:var(--bg);color:var(--on-sv);border:1px solid var(--muted)}
 
-    .menu-row-slider{margin-bottom:.5rem}
-    .slider-label{font-size:.7rem;color:var(--on-sv);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:.3rem}
-    .price-slider{width:100%;accent-color:var(--primary);height:4px;cursor:pointer}
-    .slider-row{display:flex;align-items:center;gap:.75rem;margin-top:.3rem;flex-wrap:wrap}
-    .slider-value{font-weight:700;font-size:.95rem;color:var(--primary);min-width:48px}
-    .slider-labels{font-size:.7rem;color:var(--on-sv)}
-    .slider-median{font-size:.7rem;color:var(--on-sv);font-style:italic}
+    .price-display{font-weight:700;font-size:.95rem;color:var(--primary);margin-bottom:.3rem}
 
     .menu-row-votes{display:flex;align-items:center;gap:.5rem}
     .vote-bar{flex:1;height:6px;background:var(--muted);border-radius:9999px;overflow:hidden}
@@ -59,6 +47,14 @@
     .vote-btn:hover{transform:scale(1.2)}
     .vote-btn.shake{animation:shake .4s ease}
     @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+
+    .badge-popular{background:#E0533C;color:#fff}
+    .badge-premium{background:#C89D5C;color:#fff}
+    .badge-signature{background:#231F20;color:#C89D5C}
+
+    .veg-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:.25rem}
+    .veg-dot.veg{background:#2D6A4F}
+    .veg-dot.nonveg{background:#D32F2F}
 
     .barometer-banner{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1rem;margin:1.5rem 0;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;font-size:.9rem}
     .barometer-icon{font-size:1.2rem}
@@ -102,17 +98,17 @@
   <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splash-screen">
     <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
-    <span class="splash-text" data-en="In the cup, of course." data-ml="കപ്പിലോ, തീർച്ചയായും.">In the cup, of course.</span>
-    <span class="splash-sub" data-en="Co-creating Kerala's first artisanal café" data-ml="കേരളത്തിലെ ആദ്യ കലാത്മക കഫേ സഹ-നിർമ്മിക്കുന്നു">Co-creating Kerala's first artisanal café</span>
+    <div class="splash-text">Before we open, you decide what we become.</div>
+    <div class="splash-sub">Kerala's first community-built café</div>
   </div>
 
   <!-- NAME ENTRY CARD -->
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
-      <h2 data-en="Welcome, Co-Creator" data-ml="സ്വാഗതം, സഹ-സ്രഷ്ടാവേ">Welcome, Co-Creator</h2>
-      <p data-en="Tell us your name so we can credit your votes on the Founding Wall." data-ml="നിങ്ങളുടെ പേര് പറയൂ, സ്ഥാപക മതിലിൽ നിങ്ങളുടെ വോട്ടുകൾ ക്രെഡിറ്റ് ചെയ്യാം.">Tell us your name so we can credit your votes on the Founding Wall.</p>
-      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="40" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()" data-en="Join the Co-Creation" data-ml="സഹ-നിർമ്മാണത്തിൽ ചേരുക">Join the Co-Creation</button>
+      <h2>Welcome to CUPPILO</h2>
+      <p>What should we call you?</p>
+      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
+      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
     </div>
   </div>
 
@@ -135,401 +131,28 @@
     <header class="container ballot-header">
       <p class="ballot-subtitle" data-en="Community Flavor Co-Design" data-ml="കമ്മ്യൂണിറ്റി ഫ്ലേവർ കോ-ഡിസൈൻ">Community Flavor Co-Design</p>
       <h1 class="ballot-title" data-en="Curate the Opening Menu" data-ml="ഓപ്പണിംഗ് മെനു ക്രമീകരിക്കുക">Curate the Opening Menu</h1>
-      <p class="ballot-desc" data-en="Vote for your favourite items and set the price you'd pay. The community median wins — every vote shapes what lands on our menu." data-ml="നിങ്ങൾക്ക് ഇഷ്ടമുള്ള ഇനങ്ങൾക്ക് വോട്ട് ചെയ്യുക, നിങ്ങൾ നൽകുന്ന വില നിശ്ചയിക്കുക. കമ്മ്യൂണിറ്റി മീഡിയൻ ജയിക്കുന്നു — ഓരോ വോട്ടും ഞങ്ങളുടെ മെനുവിനെ രൂപപ്പെടുത്തുന്നു.">Vote for your favourite items and set the price you'd pay. The community median wins — every vote shapes what lands on our menu.</p>
+      <p class="ballot-desc" data-en="Vote for your favourite items. Tap the heart on up to 5 items to tell us what belongs on the menu." data-ml="നിങ്ങൾക്ക് ഇഷ്ടമുള്ള ഇനങ്ങൾക്ക് വോട്ട് ചെയ്യുക. മെനുവിൽ ഇടമുണ്ടായിരിക്കേണ്ട 5 ഇനങ്ങൾ ഹൃദയം അമർത്തി തിരഞ്ഞെടുക്കുക.">Vote for your favourite items. Tap the heart on up to 5 items to tell us what belongs on the menu.</p>
     </header>
 
     <!-- Category Filters -->
     <section class="container">
       <div class="chip-group" id="chip-group">
         <button class="chip active" data-filter="all" data-en="All" data-ml="എല്ലാം">All</button>
-        <button class="chip" data-filter="kaapi" data-en="Coffee" data-ml="കാപ്പി">Coffee</button>
-        <button class="chip" data-filter="chaya" data-en="Chaya" data-ml="ചായ">Chaya</button>
-        <button class="chip" data-filter="cold" data-en="Cold" data-ml="കോൾഡ്">Cold</button>
-        <button class="chip" data-filter="food" data-en="Food" data-ml="ഭക്ഷണം">Food</button>
-        <button class="chip" data-filter="bakery" data-en="Bakery" data-ml="ബേക്കറി">Bakery</button>
+        <button class="chip" data-filter="hot-coffee" data-en="☕ Hot Coffee" data-ml="☕ ചൂട് കാപ്പി">☕ Hot Coffee</button>
+        <button class="chip" data-filter="tea" data-en="🫖 Tea" data-ml="🫖 ചായ">🫖 Tea</button>
+        <button class="chip" data-filter="cold-drinks" data-en="🥤 Cold Drinks" data-ml="🥤 കോൾഡ് ഡ്രിങ്ക്സ്">🥤 Cold Drinks</button>
+        <button class="chip" data-filter="kerala-coolers" data-en="🌴 Kerala Coolers" data-ml="🌴 കേരള കൂളേഴ്സ്">🌴 Kerala Coolers</button>
+        <button class="chip" data-filter="kerala-snacks" data-en="🍌 Kerala Snacks" data-ml="🍌 കേരള സ്നാക്സ്">🍌 Kerala Snacks</button>
+        <button class="chip" data-filter="cafe-bites" data-en="🍟 Cafe Bites" data-ml="🍟 കഫേ ബൈറ്റ്സ്">🍟 Cafe Bites</button>
+        <button class="chip" data-filter="sandwiches" data-en="🥪 Sandwiches" data-ml="🥪 സാൻഡ്‌വിച്ചുകൾ">🥪 Sandwiches</button>
+        <button class="chip" data-filter="burgers" data-en="🍔 Burgers" data-ml="🍔 ബർഗറുകൾ">🍔 Burgers</button>
+        <button class="chip" data-filter="desserts" data-en="🍰 Desserts" data-ml="🍰 ഡെസേർട്ട്">🍰 Desserts</button>
+        <button class="chip" data-filter="signatures" data-en="⭐ Signatures" data-ml="⭐ സിഗ്നേച്ചേഴ്സ്">⭐ Signatures</button>
       </div>
     </section>
 
     <!-- Menu Items -->
-    <section class="container menu-grid" id="menu-grid">
-
-      <!-- 1. Classic Kerala Filter Kaapi -->
-      <div class="menu-row" data-category="kaapi" data-id="1">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#3e2723,#795548);">☕</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="കേരള ഫിൽറ്റർ കാപ്പി" data-ml="കേരള ഫിൽറ്റർ കാപ്പി">കേരള ഫിൽറ്റർ കാപ്പി</span>
-              <h3 class="menu-row-name" data-en="Classic Kerala Filter Kaapi" data-ml="ക്ലാസിക് കേരള ഫിൽറ്റർ കാപ്പി">Classic Kerala Filter Kaapi</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Slow-dripped through a brass filter, dark-roasted beans meet condensed milk in the way Ammachi makes it at our kitchen." data-ml="ഒരു ചെമ്പ് ഫിൽറ്ററിലൂടെ സാവധാനം ഒഴുകുന്ന, ഡാർക്ക് റോസ്റ്റ് ചെയ്ത ബീൻസ് അമ്മച്ചി ഞങ്ങളുടെ അടുക്കളയിൽ ഉണ്ടാക്കുന്ന രീതിയിൽ കൊണ്ടൻസ്ഡ് മിൽക്കുമായി ചേർന്നു.">Slow-dripped through a brass filter, dark-roasted beans meet condensed milk in the way Ammachi makes it at our kitchen.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-kaapi">☕ Kaapi</span>
-            <span class="pill pill-origin" data-en="Origin: Western Ghats" data-ml="ഉത്ഭവം: പശ്ചിമ ഘാട്ട്">Origin: Western Ghats</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="15" max="120" step="5" value="60" class="price-slider" data-id="1" oninput="updatePrice(1,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-1">₹60</span>
-              <span class="slider-labels">₹15 — ₹120</span>
-              <span class="slider-median" data-en="Community median ₹55–65" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹55–65">Community median ₹55–65</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. Tender Coconut Cold Brew -->
-      <div class="menu-row" data-category="cold" data-id="2">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#e0f2f1,#80cbc4);">🥥</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="തേങ്ങ കോൾഡ് ബ്രൂ" data-ml="തേങ്ങ കോൾഡ് ബ്രൂ">തേങ്ങ കോൾഡ് ബ്രൂ</span>
-              <h3 class="menu-row-name" data-en="Tender Coconut Cold Brew" data-ml="ടെൻഡർ കോക്കനറ്റ് കോൾഡ് ബ്രൂ">Tender Coconut Cold Brew</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="16-hour cold brew blended with fresh tender coconut water — summer in a glass, sourced from Kerala toddy tappers." data-ml="16 മണിക്കൂർ കോൾഡ് ബ്രൂ കേരളത്തിലെ തൊഴിലാളികളിൽ നിന്നുള്ള പുതിയ തേങ്ങ വെള്ളവുമായി ചേർത്തു — ഗ്ലാസ്സിൽ വേന്ദകാലം.">16-hour cold brew blended with fresh tender coconut water — summer in a glass, sourced from Kerala toddy tappers.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-cold">Cold Drinks</span>
-            <span class="pill pill-origin" data-en="Origin: Toddy Shops" data-ml="ഉത്ഭവം: കള്ളുഷാപ്പുകൾ">Origin: Toddy Shops</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="40" max="200" step="10" value="120" class="price-slider" data-id="2" oninput="updatePrice(2,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-2">₹120</span>
-              <span class="slider-labels">₹40 — ₹200</span>
-              <span class="slider-median" data-en="Community median ₹100–130" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹100–130">Community median ₹100–130</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. Karupatti Ginger Chaya -->
-      <div class="menu-row" data-category="chaya" data-id="3">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#fff3e0,#ffb74d);">🍵</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="കരുപ്പട്ടി ഇഞ്ചി ചായ" data-ml="കരുപ്പട്ടി ഇഞ്ചി ചായ">കരുപ്പട്ടി ഇഞ്ചി ചായ</span>
-              <h3 class="menu-row-name" data-en="Karupatti Ginger Chaya" data-ml="കരുപ്പട്ടി ഇഞ്ചി ചായ">Karupatti Ginger Chaya</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Palm jaggery and crushed ginger steeped with Nilgiri tea leaves — sweet heat for monsoon mornings." data-ml="മൺസൂൺ രാവിലെ പനമ്പെല്ലും അരച്ച ഇഞ്ചിയും നീലഗിരി ചായ ഇലകളുമായി ചേർത്തു — മധുരവും ചൂടും.">Palm jaggery and crushed ginger steeped with Nilgiri tea leaves — sweet heat for monsoon mornings.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-chaya">🍵 Chaya</span>
-            <span class="pill pill-origin" data-en="Origin: Temple Town" data-ml="ഉത്ഭവം: ക്ഷേത്ര നഗരം">Origin: Temple Town</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="10" max="60" step="5" value="25" class="price-slider" data-id="3" oninput="updatePrice(3,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-3">₹25</span>
-              <span class="slider-labels">₹10 — ₹60</span>
-              <span class="slider-median" data-en="Community median ₹20–30" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹20–30">Community median ₹20–30</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Spiced Cardamom Sulaimani -->
-      <div class="menu-row" data-category="chaya" data-id="4">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#fce4ec,#f48fb1);">🫖</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="ഏലക്കാ സുലൈമാനി" data-ml="ഏലക്കാ സുലൈമാനി">ഏലക്കാ സുലൈമാനി</span>
-              <h3 class="menu-row-name" data-en="Spiced Cardamom Sulaimani" data-ml="സ്പൈസ്ഡ് കാഡമം സുലൈമാനി">Spiced Cardamom Sulaimani</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Black tea infused with cardamom, cinnamon & a squeeze of lime — Mappila heritage in every sip, rooted in Kerala." data-ml="ഏലക്ക, കറുവപ്പട്ട, നാരങ്ങ നീര് എന്നിവ ചേർത്ത് ചൂടുവെള്ളത്തിൽ കുതിർത്ത കടുംചായ — കേരളത്തിൽ വേരൂന്നിയ മാപ്പിള പൈതൃകം.">Black tea infused with cardamom, cinnamon & a squeeze of lime — Mappila heritage in every sip, rooted in Kerala.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-chaya">🍵 Chaya</span>
-            <span class="pill pill-origin" data-en="Origin: Malabar Coast" data-ml="ഉത്ഭവം: മലബാർ തീരം">Origin: Malabar Coast</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="10" max="80" step="5" value="35" class="price-slider" data-id="4" oninput="updatePrice(4,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-4">₹35</span>
-              <span class="slider-labels">₹10 — ₹80</span>
-              <span class="slider-median" data-en="Community median ₹30–40" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹30–40">Community median ₹30–40</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Pazham Pori & Beef Dip -->
-      <div class="menu-row" data-category="food" data-id="5">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#fff8e1,#ffd54f);">🍌</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="പഴം പൊരി &amp; ബീഫ് ഡിപ്" data-ml="പഴം പൊരി &amp; ബീഫ് ഡിപ്">പഴം പൊരി &amp; ബീഫ് ഡിപ്</span>
-              <h3 class="menu-row-name" data-en="Pazham Pori & Beef Dip" data-ml="പഴം പൊരി &amp; ബീഫ് ഡിപ്">Pazham Pori & Beef Dip</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Crispy plantain fritters meet slow-braised beef roast — the ultimate Kerala teatime mashup." data-ml="ക്രിസ്പി പഴം പൊരി സ്ലോ-ബ്രേയ്സ് ചെയ്ത ബീഫ് റോസ്റ്റുമായി ചേർന്നു — കേരളത്തിലെ അവസാന ടീടൈം മാഷ്‌അപ്പ്.">Crispy plantain fritters meet slow-braised beef roast — the ultimate Kerala teatime mashup.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-food">🍌 Food</span>
-            <span class="pill pill-origin" data-en="Origin: Street Food" data-ml="ഉത്ഭവം: തെരുവ് ഭക്ഷണം">Origin: Street Food</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="60" max="300" step="10" value="180" class="price-slider" data-id="5" oninput="updatePrice(5,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-5">₹180</span>
-              <span class="slider-labels">₹60 — ₹300</span>
-              <span class="slider-median" data-en="Community median ₹150–200" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹150–200">Community median ₹150–200</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. Malabar Kozhi Roast Slider -->
-      <div class="menu-row" data-category="food" data-id="6">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#fbe9e7,#ff8a65);">🍗</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="മലബാർ കോഴി റോസ്റ്റ്" data-ml="മലബാർ കോഴി റോസ്റ്റ്">മലബാർ കോഴി റോസ്റ്റ്</span>
-              <h3 class="menu-row-name" data-en="Malabar Kozhi Roast Slider" data-ml="മലബാർ കോഴി റോസ്റ്റ് സ്ലൈഡർ">Malabar Kozhi Roast Slider</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Spicy Malabar chicken roast tucked into a soft milk bun with pickled onion and curry leaf mayo — a Kerala favourite." data-ml="സ്പൈസി മലബാർ കോഴി റോസ്റ്റ് സോഫ്റ്റ് മിൽക്ക് ബണ്ണിൽ, പിക്കിൾഡ് ഉള്ളിയും കറിവേപ്പില മയോയുമായി — കേരളത്തിലെ ഇഷ്ടപ്പെട്ടത്.">Spicy Malabar chicken roast tucked into a soft milk bun with pickled onion and curry leaf mayo — a Kerala favourite.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-food">🍗 Food</span>
-            <span class="pill pill-origin" data-en="Origin: Kerala Kitchen" data-ml="ഉത്ഭവം: കേരള അടുക്കള">Origin: Kerala Kitchen</span>
-            <div class="slider-row">
-              <span class="slider-value" id="price-6">₹220</span>
-              <span class="slider-labels">₹80 — ₹400</span>
-              <span class="slider-median" data-en="Community median ₹200–250" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹200–250">Community median ₹200–250</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 7. Gunpowder Hand-Cut Fries -->
-      <div class="menu-row" data-category="food" data-id="7">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#f1f8e9,#aed581);">🍟</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="ഗൺപൗഡർ ഫ്രൈസ്" data-ml="ഗൺപൗഡർ ഫ്രൈസ്">ഗൺപൗഡർ ഫ്രൈസ്</span>
-              <h3 class="menu-row-name" data-en="Gunpowder Hand-Cut Fries" data-ml="ഗൺപൗഡർ ഹാൻഡ്-കട്ട് ഫ്രൈസ്">Gunpowder Hand-Cut Fries</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Thick-cut fries tossed in Kerala gunpowder spice blend with coconut oil and curry leaves — straight from our kitchen." data-ml="കേരള ഗൺപൗഡർ സ്പൈസ് ബ്ലെൻഡ്, തേങ്ങ എണ്ണ, കറിവേപ്പില എന്നിവയിൽ തിരുകിയ കട്ട്-കട്ട് ഫ്രൈസ് — ഞങ്ങളുടെ അടുക്കളയിൽ നിന്ന്.">Thick-cut fries tossed in Kerala gunpowder spice blend with coconut oil and curry leaves — straight from our kitchen.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-food">🍟 Food</span>
-            <span class="pill pill-origin" data-en="Origin: Kerala Kitchen" data-ml="ഉത്ഭവം: കേരള അടുക്കള">Origin: Kerala Kitchen</span>
-            <div class="slider-row">
-              <span class="slider-value" id="price-7">₹110</span>
-              <span class="slider-labels">₹40 — ₹200</span>
-              <span class="slider-median" data-en="Community median ₹90–120" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹90–120">Community median ₹90–120</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 8. Ghee Roast Banana Bread -->
-      <div class="menu-row" data-category="bakery" data-id="8">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#efebe9,#a1887f);">🍞</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="നെയ്യ് റോസ്റ്റ് പഴം ബ്രഡ്" data-ml="നെയ്യ് റോസ്റ്റ് പഴം ബ്രഡ്">നെയ്യ് റോസ്റ്റ് പഴം ബ്രഡ്</span>
-              <h3 class="menu-row-name" data-en="Ghee Roast Banana Bread" data-ml="ഘീ റോസ്റ്റ് ബനാന ബ്രെഡ്">Ghee Roast Banana Bread</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Nendran banana bread roasted in ghee with jaggery glaze and a hint of cardamom — comfort, sliced, from our Kerala bakery." data-ml="ഘീയിൽ റോസ്റ്റ് ചെയ്ത നേൻദ്രൻ പഴം ബ്രഡ്, ശർക്കര ഗ്ലേസും ഏലക്കയുടെ രുചിയും — ഞങ്ങളുടെ കേരള ബേക്കറിയിൽ നിന്ന്.">Nendran banana bread roasted in ghee with jaggery glaze and a hint of cardamom — comfort, sliced, from our Kerala bakery.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-bakery">🍞 Bakery</span>
-            <span class="pill pill-origin" data-en="Origin: Kerala Bakeries" data-ml="ഉത്ഭവം: കേരള ബേക്കറികൾ">Origin: Kerala Bakeries</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="50" max="250" step="10" value="140" class="price-slider" data-id="8" oninput="updatePrice(8,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-8">₹140</span>
-              <span class="slider-labels">₹50 — ₹250</span>
-              <span class="slider-median" data-en="Community median ₹120–150" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹120–150">Community median ₹120–150</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 9. Loaded Pazham Pori Nachos -->
-      <div class="menu-row" data-category="food" data-id="9">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#fff3e0,#ffcc80);">🫓</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="ലോഡഡ് പഴം പൊരി നച്ചോസ്" data-ml="ലോഡഡ് പഴം പൊരി നച്ചോസ്">ലോഡഡ് പഴം പൊരി നച്ചോസ്</span>
-              <h3 class="menu-row-name" data-en="Loaded Pazham Pori Nachos" data-ml="ലോഡഡ് പഴം പൊരി നച്ചോസ്">Loaded Pazham Pori Nachos</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Plantain chip nachos piled with Kerala cheese, beef fry crumble, and tomato-onion salsa — a Kerala fusion twist." data-ml="കേരള ചീസ്, ബീഫ് ഫ്രൈ ക്രംബിൾ, തക്കാളി-ഉള്ളി സാൽസ എന്നിവ നിറച്ച പഴം ചിപ്സ് നച്ചോസ് — കേരളത്തിലെ ഫ്യൂഷൻ ട്വിസ്റ്റ്.">Plantain chip nachos piled with Kerala cheese, beef fry crumble, and tomato-onion salsa — a Kerala fusion twist.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-food">🫓 Food</span>
-            <span class="pill pill-origin" data-en="Origin: Kerala Fusion" data-ml="ഉത്ഭവം: കേരള ഫ്യൂഷൻ">Origin: Kerala Fusion</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="60" max="280" step="10" value="160" class="price-slider" data-id="9" oninput="updatePrice(9,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-9">₹160</span>
-              <span class="slider-labels">₹60 — ₹280</span>
-              <span class="slider-median" data-en="Community median ₹140–170" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹140–170">Community median ₹140–170</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 10. Elaneer Payasam -->
-      <div class="menu-row" data-category="bakery" data-id="10">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#e8f5e9,#81c784);">🍮</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="എളനീർ പായസം" data-ml="എളനീർ പായസം">എളനീർ പായസം</span>
-              <h3 class="menu-row-name" data-en="Elaneer Payasam" data-ml="എളനീർ പായസം">Elaneer Payasam</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Tender coconut milk payasam with vermicelli, jaggery, and roasted cashews — served chilled in a clay cup." data-ml="വെർമിസലി, ശർക്കര, റോസ്റ്റ് ചെയ്ത കശുവണ്ടി എന്നിവയുള്ള തേങ്ങ പാൽ പായസം — മണ്പാത്രത്തിൽ തണുപ്പിച്ച് വിളമ്പുന്നു.">Tender coconut milk payasam with vermicelli, jaggery, and roasted cashews — served chilled in a clay cup.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-bakery">🍮 Dessert</span>
-            <span class="pill pill-origin" data-en="Origin: Temple Fair" data-ml="ഉത്ഭവം: ക്ഷേത്ര ഉത്സവം">Origin: Temple Fair</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="30" max="180" step="10" value="90" class="price-slider" data-id="10" oninput="updatePrice(10,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-10">₹90</span>
-              <span class="slider-labels">₹30 — ₹180</span>
-              <span class="slider-median" data-en="Community median ₹80–100" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹80–100">Community median ₹80–100</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 11. Wayanad Single Estate Pour Over -->
-      <div class="menu-row" data-category="kaapi" data-id="11">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#e3f2fd,#64b5f6);">🫗</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="വയനാട് പോർ ഓവർ" data-ml="വയനാട് പോർ ഓവർ">വയനാട് പോർ ഓവർ</span>
-              <h3 class="menu-row-name" data-en="Wayanad Single Estate Pour Over" data-ml="വയനാട് സിംഗിൾ എസ്റ്റേറ്റ് പോർ ഓവർ">Wayanad Single Estate Pour Over</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Single-origin Arabica from Wayanad, hand-poured with precision — chocolate, citrus, clean finish. Served in Kerala." data-ml="വയനാട് നിന്നുള്ള സിംഗിൾ-ഓറിജിൻ അറേബിക്ക, കൃത്യതയോടെ കൈകൊണ്ട് പോർ ചെയ്തു — ചോക്ലേറ്റ്, സിട്രസ്, ക്ലീൻ ഫിനിഷ്. കേരളത്തിൽ വിളമ്പുന്നു.">Single-origin Arabica from Wayanad, hand-poured with precision — chocolate, citrus, clean finish. Served in Kerala.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-kaapi">☕ Kaapi</span>
-            <span class="pill pill-origin" data-en="Origin: Wayanad Estate" data-ml="ഉത്ഭവം: വയനാട് എസ്റ്റേറ്റ്">Origin: Wayanad Estate</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="50" max="250" step="10" value="150" class="price-slider" data-id="11" oninput="updatePrice(11,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-11">₹150</span>
-              <span class="slider-labels">₹50 — ₹250</span>
-              <span class="slider-median" data-en="Community median ₹130–160" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹130–160">Community median ₹130–160</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 12. Beef Ularthiyathu Fry -->
-      <div class="menu-row" data-category="food" data-id="12">
-        <div class="menu-row-img" style="background:linear-gradient(135deg,#d32f2f,#ef9a9a);">🥩</div>
-        <div class="menu-row-body">
-          <div class="menu-row-head">
-            <div>
-              <span class="menu-row-name-mal" data-en="ബീഫ് ഉലർത്തിയത്" data-ml="ബീഫ് ഉലർത്തിയത്">ബീഫ് ഉലർത്തിയത്</span>
-              <h3 class="menu-row-name" data-en="Beef Ularthiyathu Fry" data-ml="ബീഫ് ഉലർത്തിയത് ഫ്രൈ">Beef Ularthiyathu Fry</h3>
-            </div>
-            <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
-          </div>
-          <p class="menu-row-desc" data-en="Dry-fried beef tossed with coconut slices, curry leaves, and Kashmiri chilli — the Kerala tiffin room classic." data-ml="തേങ്ങ കഷണങ്ങൾ, കറിവേപ്പില, കശ്മീരി മുളക് എന്നിവയുമായി ഉലർത്തിയ ഉണക്കിയ ബീഫ് — കേരളത്തിലെ ടിഫിൻ റൂം ക്ലാസിക്.">Dry-fried beef tossed with coconut slices, curry leaves, and Kashmiri chilli — the Kerala tiffin room classic.</p>
-          <div class="menu-row-meta">
-            <span class="pill pill-food">🥩 Food</span>
-            <span class="pill pill-origin" data-en="Origin: Tiffin Room" data-ml="ഉത്ഭവം: ടിഫിൻ റൂം">Origin: Tiffin Room</span>
-          </div>
-          <div class="menu-row-slider">
-            <label class="slider-label" data-en="Your Price" data-ml="നിങ്ങളുടെ വില">Your Price</label>
-            <input type="range" min="80" max="350" step="10" value="200" class="price-slider" data-id="12" oninput="updatePrice(12,this.value)">
-            <div class="slider-row">
-              <span class="slider-value" id="price-12">₹200</span>
-              <span class="slider-labels">₹80 — ₹350</span>
-              <span class="slider-median" data-en="Community median ₹180–220" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ ₹180–220">Community median ₹180–220</span>
-            </div>
-          </div>
-          <div class="menu-row-votes">
-            <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
-            <span class="vote-pct">0%</span>
-          </div>
-        </div>
-      </div>
-
-    </section>
+    <section class="container menu-grid" id="menu-grid"></section>
 
     <!-- Live Barometer -->
     <section class="container">
@@ -569,7 +192,7 @@
       </div>
       <form id="suggest-form" onsubmit="submitSuggest(event)">
         <div class="form-group">
-          <label for="suggest-name" data-en="Item Name (English)" data-ml="ഇനത്തിന്റെ പേര് (English)">Item Name (English)</label>
+          <label for="suggest-name" data-en="Item Name" data-ml="ഇനത്തിന്റെ പേര്">Item Name</label>
           <input type="text" id="suggest-name" class="input" placeholder="e.g. Jackfruit Biryani" required maxlength="60">
         </div>
         <div class="form-group">
@@ -581,11 +204,16 @@
           <label for="suggest-category" data-en="Category" data-ml="വിഭാഗം">Category</label>
           <select id="suggest-category" class="input" required>
             <option value="" data-en="Select category" data-ml="വിഭാഗം തിരഞ്ഞെടുക്കുക">Select category</option>
-            <option value="kaapi">☕ Kaapi</option>
-            <option value="chaya">🍵 Chaya</option>
-            <option value="cold">Cold Drinks</option>
-            <option value="food">Food</option>
-            <option value="bakery">🍞 Bakery</option>
+            <option value="hot-coffee">☕ Hot Coffee</option>
+            <option value="tea">🫖 Tea</option>
+            <option value="cold-drinks">🥤 Cold Drinks</option>
+            <option value="kerala-coolers">🌴 Kerala Coolers</option>
+            <option value="kerala-snacks">🍌 Kerala Snacks</option>
+            <option value="cafe-bites">🍟 Cafe Bites</option>
+            <option value="sandwiches">🥪 Sandwiches</option>
+            <option value="burgers">🍔 Burgers</option>
+            <option value="desserts">🍰 Desserts</option>
+            <option value="signatures">⭐ Signatures</option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem" data-en="Add to Ballot" data-ml="ബാലറ്റിലേക്ക് ചേർക്കുക">Add to Ballot</button>
@@ -598,22 +226,177 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
+    const cuppiloMenu = [
+      // ── Hot Coffee ──
+      { id:'coffee-001', category:'hot-coffee', name:'Kerala Coffee', description:'Classic Kerala-style milk coffee', price:35, premium:false, popular:true, veg:true },
+      { id:'coffee-002', category:'hot-coffee', name:'Kattan Coffee', description:'Strong black coffee, Kerala style', price:30, premium:false, popular:true, veg:true },
+      { id:'coffee-003', category:'hot-coffee', name:'Filter Coffee', description:'South Indian filter coffee with rich aroma', price:45, premium:true, popular:true, veg:true },
+      { id:'coffee-004', category:'hot-coffee', name:'Cappuccino', description:'Espresso with steamed milk and silky foam', price:129, premium:true, popular:true, veg:true },
+      { id:'coffee-005', category:'hot-coffee', name:'Cafe Latte', description:'Smooth espresso with creamy steamed milk', price:139, premium:true, popular:true, veg:true },
+      { id:'coffee-006', category:'hot-coffee', name:'Cafe Mocha', description:'Espresso, chocolate and steamed milk', price:149, premium:true, popular:true, veg:true },
+      { id:'coffee-007', category:'hot-coffee', name:'Spanish Latte', description:'Espresso, creamy milk and condensed milk', price:149, premium:true, popular:true, veg:true },
+      { id:'coffee-008', category:'hot-coffee', name:'Caramel Latte', description:'Creamy latte with caramel', price:149, premium:true, popular:false, veg:true },
+      { id:'coffee-009', category:'hot-coffee', name:'Jaggery Filter Coffee', description:'Traditional filter coffee sweetened with Kerala jaggery', price:59, premium:true, popular:true, veg:true },
+
+      // ── Tea ──
+      { id:'tea-001', category:'tea', name:'Kerala Chaya', description:'Classic strong milk tea', price:20, premium:false, popular:true, veg:true },
+      { id:'tea-002', category:'tea', name:'Strong Chaya', description:'Extra strong Kerala tea', price:25, premium:false, popular:true, veg:true },
+      { id:'tea-003', category:'tea', name:'Ginger Chaya', description:'Milk tea infused with fresh ginger', price:30, premium:false, popular:true, veg:true },
+      { id:'tea-004', category:'tea', name:'Cardamom Chaya', description:'Aromatic tea with cardamom', price:30, premium:false, popular:true, veg:true },
+      { id:'tea-005', category:'tea', name:'Sulaimani', description:'Kerala-style spiced black tea', price:35, premium:true, popular:true, veg:true },
+      { id:'tea-006', category:'tea', name:'Mint Lemon Tea', description:'Refreshing mint and lemon tea', price:40, premium:true, popular:false, veg:true },
+      { id:'tea-007', category:'tea', name:'Signature Chaya', description:'CUPPILO house tea blend', price:49, premium:true, popular:true, veg:true },
+
+      // ── Cold Drinks ──
+      { id:'cold-001', category:'cold-drinks', name:'Cold Coffee', description:'Chilled creamy coffee', price:99, premium:true, popular:true, veg:true },
+      { id:'cold-002', category:'cold-drinks', name:'Iced Latte', description:'Chilled espresso with creamy milk', price:119, premium:true, popular:true, veg:true },
+      { id:'cold-003', category:'cold-drinks', name:'Mocha Frappe', description:'Blended coffee and chocolate', price:139, premium:true, popular:true, veg:true },
+      { id:'cold-004', category:'cold-drinks', name:'Chocolate Shake', description:'Rich chocolate milkshake', price:109, premium:true, popular:true, veg:true },
+      { id:'cold-005', category:'cold-drinks', name:'Oreo Shake', description:'Creamy chocolate-cookie shake', price:129, premium:true, popular:true, veg:true },
+      { id:'cold-006', category:'cold-drinks', name:'Banana Jaggery Shake', description:'Banana blended with milk and Kerala jaggery', price:109, premium:true, popular:true, veg:true },
+      { id:'cold-007', category:'cold-drinks', name:'Tender Coconut Shake', description:'Fresh tender coconut blended with creamy milk', price:129, premium:true, popular:true, veg:true },
+
+      // ── Kerala Coolers ──
+      { id:'cooler-001', category:'kerala-coolers', name:'Nannari Sarbath', description:'Traditional Kerala summer cooler', price:49, premium:false, popular:true, veg:true },
+      { id:'cooler-002', category:'kerala-coolers', name:'Lemon Mint Cooler', description:'Fresh lemon, mint and chilled soda', price:69, premium:true, popular:true, veg:true },
+      { id:'cooler-003', category:'kerala-coolers', name:'Passion Fruit Cooler', description:'Tropical passion fruit refresher', price:89, premium:true, popular:true, veg:true },
+      { id:'cooler-004', category:'kerala-coolers', name:'Karikku Cooler', description:'Tender coconut with refreshing citrus', price:99, premium:true, popular:true, veg:true },
+
+      // ── Kerala Snacks ──
+      { id:'snack-001', category:'kerala-snacks', name:'Pazham Pori', description:'Crispy Kerala banana fritter', price:20, premium:false, popular:true, veg:true },
+      { id:'snack-002', category:'kerala-snacks', name:'Uzhunnu Vada', description:'Crispy urad dal fritter', price:20, premium:false, popular:true, veg:true },
+      { id:'snack-003', category:'kerala-snacks', name:'Parippu Vada', description:'Crispy Kerala lentil fritter', price:20, premium:false, popular:true, veg:true },
+      { id:'snack-004', category:'kerala-snacks', name:'Unniyappam', description:'Soft jaggery and banana rice cake', price:30, premium:true, popular:true, veg:true },
+      { id:'snack-005', category:'kerala-snacks', name:'Kozhukatta', description:'Steamed rice dumpling with coconut filling', price:35, premium:true, popular:false, veg:true },
+      { id:'snack-006', category:'kerala-snacks', name:'Egg Puffs', description:'Flaky pastry filled with spiced egg', price:40, premium:false, popular:true, veg:false },
+      { id:'snack-007', category:'kerala-snacks', name:'Chicken Puffs', description:'Flaky pastry with spiced chicken filling', price:55, premium:true, popular:true, veg:false },
+
+      // ── Cafe Bites ──
+      { id:'bites-001', category:'cafe-bites', name:'Classic Fries', description:'Crispy golden fries', price:79, premium:false, popular:true, veg:true },
+      { id:'bites-002', category:'cafe-bites', name:'Peri Peri Fries', description:'Crispy fries with peri peri seasoning', price:99, premium:true, popular:true, veg:true },
+      { id:'bites-003', category:'cafe-bites', name:'Cheese Fries', description:'Fries topped with creamy cheese', price:119, premium:true, popular:true, veg:true },
+      { id:'bites-004', category:'cafe-bites', name:'Garlic Bread', description:'Toasted bread with garlic butter', price:89, premium:false, popular:true, veg:true },
+      { id:'bites-005', category:'cafe-bites', name:'Cheese Garlic Bread', description:'Garlic bread with melted cheese', price:119, premium:true, popular:true, veg:true },
+
+      // ── Sandwiches ──
+      { id:'sandwich-001', category:'sandwiches', name:'Veg Grilled Sandwich', description:'Grilled vegetables and cheese', price:89, premium:false, popular:true, veg:true },
+      { id:'sandwich-002', category:'sandwiches', name:'Cheese Corn Sandwich', description:'Creamy cheese and sweet corn', price:109, premium:true, popular:true, veg:true },
+      { id:'sandwich-003', category:'sandwiches', name:'Chicken Grilled Sandwich', description:'Grilled chicken, vegetables and cheese', price:129, premium:true, popular:true, veg:false },
+
+      // ── Burgers ──
+      { id:'burger-001', category:'burgers', name:'Veg Cheese Burger', description:'Crispy veg patty with cheese', price:119, premium:true, popular:true, veg:true },
+      { id:'burger-002', category:'burgers', name:'Crispy Chicken Burger', description:'Crispy chicken fillet with fresh vegetables', price:149, premium:true, popular:true, veg:false },
+
+      // ── Desserts ──
+      { id:'dessert-001', category:'desserts', name:'Brownie', description:'Warm chocolate brownie', price:69, premium:true, popular:true, veg:true },
+      { id:'dessert-002', category:'desserts', name:'Brownie & Ice Cream', description:'Warm brownie with vanilla ice cream', price:109, premium:true, popular:true, veg:true },
+      { id:'dessert-003', category:'desserts', name:'Chocolate Cake', description:'Rich chocolate cake slice', price:89, premium:true, popular:true, veg:true },
+
+      // ── CUPPILO Signatures ──
+      { id:'signature-001', category:'signatures', name:'CUPPILO Signature Coffee', description:'House coffee with Kerala-inspired flavours', price:129, premium:true, popular:true, veg:true, signature:true },
+      { id:'signature-002', category:'signatures', name:'Copper Chaya', description:'Signature spiced milk tea served CUPPILO style', price:69, premium:true, popular:true, veg:true, signature:true },
+      { id:'signature-003', category:'signatures', name:'Kerala Jaggery Latte', description:'Espresso, steamed milk and Kerala jaggery', price:139, premium:true, popular:true, veg:true, signature:true },
+      { id:'signature-004', category:'signatures', name:'Karikku Coffee', description:'Coconut-inspired cold coffee creation', price:149, premium:true, popular:true, veg:true, signature:true }
+    ];
+
+    const categoryConfig = {
+      'hot-coffee':   { emoji:'☕', gradient:'#3e2723,#795548', label:'Hot Coffee' },
+      'tea':          { emoji:'🫖', gradient:'#fff3e0,#ffb74d', label:'Tea' },
+      'cold-drinks':  { emoji:'🥤', gradient:'#e0f2f1,#80cbc4', label:'Cold Drinks' },
+      'kerala-coolers':{ emoji:'🌴', gradient:'#e8f5e9,#81c784', label:'Kerala Coolers' },
+      'kerala-snacks':{ emoji:'🍌', gradient:'#fff8e1,#ffd54f', label:'Kerala Snacks' },
+      'cafe-bites':   { emoji:'🍟', gradient:'#f1f8e9,#aed581', label:'Cafe Bites' },
+      'sandwiches':   { emoji:'🥪', gradient:'#fce4ec,#f48fb1', label:'Sandwiches' },
+      'burgers':      { emoji:'🍔', gradient:'#fbe9e7,#ff8a65', label:'Burgers' },
+      'desserts':     { emoji:'🍰', gradient:'#f3e5f5,#ce93d8', label:'Desserts' },
+      'signatures':   { emoji:'⭐', gradient:'#231F20,#C89D5C', label:'CUPPILO Signatures' }
+    };
+
     let votes = 0;
     const MAX_VOTES = 5;
     let votedItems = new Set();
     let ballot = {};
     let suggestedItems = [];
+    let currentFilter = 'all';
 
-    async function toggleVote(btn) {
-      const row = btn.closest('.menu-row');
-      const id = row.dataset.id;
+    function renderMenuItems(filter) {
+      currentFilter = filter;
+      const grid = document.getElementById('menu-grid');
+      grid.innerHTML = '';
+
+      const categories = Object.keys(categoryConfig);
+      const order = filter === 'all' ? categories : [filter];
+
+      order.forEach(cat => {
+        const items = cuppiloMenu.filter(item => item.category === cat);
+        if (items.length === 0) return;
+        const cfg = categoryConfig[cat];
+
+        const section = document.createElement('div');
+        section.className = 'category-section';
+
+        if (filter === 'all') {
+          const heading = document.createElement('div');
+          heading.className = 'category-heading';
+          heading.textContent = cfg.emoji + ' ' + cfg.label;
+          section.appendChild(heading);
+        }
+
+        const rowContainer = document.createElement('div');
+        rowContainer.className = 'menu-grid';
+
+        items.forEach(item => {
+          const badges = [];
+          if (item.popular) badges.push('<span class="pill badge-popular">Popular</span>');
+          if (item.premium) badges.push('<span class="pill badge-premium">Premium</span>');
+          if (item.signature) badges.push('<span class="pill badge-signature">Signature</span>');
+
+          const vegDot = item.veg
+            ? '<span class="veg-dot veg" title="Vegetarian"></span>'
+            : '<span class="veg-dot nonveg" title="Non-Vegetarian"></span>';
+
+          const isVoted = votedItems.has(item.id);
+
+          const row = document.createElement('div');
+          row.className = 'menu-row';
+          row.dataset.id = item.id;
+          row.innerHTML = `
+            <div class="menu-row-img" style="background:linear-gradient(135deg,${cfg.gradient});">${cfg.emoji}</div>
+            <div class="menu-row-body">
+              <div class="menu-row-head">
+                <div>
+                  <h3 class="menu-row-name">${vegDot} ${item.name}</h3>
+                </div>
+                <button class="vote-btn" onclick="toggleVote(this,'${item.id}')" aria-label="Vote">${isVoted ? '❤️' : '🤍'}</button>
+              </div>
+              <p class="menu-row-desc">${item.description}</p>
+              <div class="menu-row-meta">
+                <span class="pill" style="background:${cfg.gradient.split(',')[0]};color:#fff">${cfg.emoji} ${cfg.label}</span>
+                ${badges.join(' ')}
+              </div>
+              <div class="price-display">₹${item.price}</div>
+              <div class="menu-row-votes">
+                <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
+                <span class="vote-pct">0%</span>
+              </div>
+            </div>
+          `;
+          rowContainer.appendChild(row);
+        });
+
+        section.appendChild(rowContainer);
+        grid.appendChild(section);
+      });
+    }
+
+    async function toggleVote(btn, itemId) {
       const isVoted = btn.textContent.trim() === '❤️';
 
       if (isVoted) {
         btn.textContent = '🤍';
         votes--;
-        votedItems.delete(id);
-        delete ballot[id];
+        votedItems.delete(itemId);
+        delete ballot[itemId];
       } else {
         if (votes >= MAX_VOTES) {
           btn.classList.add('shake');
@@ -622,8 +405,8 @@
         }
         btn.textContent = '❤️';
         votes++;
-        votedItems.add(id);
-        ballot[id] = ballot[id] || {};
+        votedItems.add(itemId);
+        ballot[itemId] = {};
       }
 
       updateVoteUI();
@@ -636,22 +419,13 @@
       document.getElementById('sticky-count').textContent = votes;
     }
 
-    function updatePrice(id, val) {
-      document.getElementById('price-' + id).textContent = '₹' + val;
-      if (!ballot[id]) ballot[id] = {};
-      ballot[id].price = parseInt(val);
-      saveBallotLocal(ballot);
-      saveBallotToSupabase();
-    }
-
     async function saveBallotToSupabase() {
       try {
         const ip = await getClientIP();
         const ipHash = await hashIP(ip);
-        const menuVotes = Array.from(votedItems).map(id => {
-          const slider = document.querySelector('.price-slider[data-id="' + id + '"]');
-          return { item_id: id, price: slider ? parseInt(slider.value) : 0 };
-        });
+        const menuVotes = Array.from(votedItems).map(id => ({
+          item_id: id, price: (cuppiloMenu.find(m => m.id === id) || {}).price || 0
+        }));
 
         const ballotData = {
           ip_hash: ipHash,
@@ -685,10 +459,7 @@
       if (!chip) return;
       document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
-      const filter = chip.dataset.filter;
-      document.querySelectorAll('.menu-row').forEach(row => {
-        row.style.display = (filter === 'all' || row.dataset.category === filter) ? '' : 'none';
-      });
+      renderMenuItems(chip.dataset.filter);
     });
 
     function openSuggestModal() {
@@ -712,29 +483,23 @@
       const cat = document.getElementById('suggest-category').value;
       if (!name || !desc || !cat) return;
 
-      const catLabels = { kaapi: '☕ Kaapi', chaya: '🍵 Chaya', cold: 'Cold Drinks', food: 'Food', bakery: '🍞 Bakery' };
-      const catEmojis = { kaapi: '☕', chaya: '🍵', cold: '🥤', food: '🍛', bakery: '🍞' };
-      const gradients = { kaapi: '#3e2723,#795548', chaya: '#fff3e0,#ffb74d', cold: '#e0f2f1,#80cbc4', food: '#fbe9e7,#ff8a65', bakery: '#efebe9,#a1887f' };
-
+      const cfg = categoryConfig[cat] || { emoji:'🍽️', gradient:'#37474f,#78909c', label:'Other' };
       const id = 'custom-' + Date.now();
-      const gradient = gradients[cat] || '#37474f,#78909c';
-      const emoji = catEmojis[cat] || '🍽️';
 
       const html = `
         <div class="menu-row" data-category="${cat}" data-id="${id}">
-          <div class="menu-row-img" style="background:linear-gradient(135deg,${gradient});">${emoji}</div>
+          <div class="menu-row-img" style="background:linear-gradient(135deg,${cfg.gradient});">${cfg.emoji}</div>
           <div class="menu-row-body">
             <div class="menu-row-head">
               <div>
-                <span class="menu-row-name-mal"></span>
                 <h3 class="menu-row-name">${name}</h3>
               </div>
-              <button class="vote-btn" onclick="toggleVote(this)" aria-label="Vote">🤍</button>
+              <button class="vote-btn" onclick="toggleVote(this,'${id}')" aria-label="Vote">🤍</button>
             </div>
             <p class="menu-row-desc">${desc}</p>
             <div class="menu-row-meta">
-              <span class="pill pill-${cat}">${catLabels[cat]}</span>
-              <span class="pill pill-origin" data-en="Suggested by you" data-ml="നിങ്ങൾ നിർദ്ദേശിച്ചത്">Suggested by you</span>
+              <span class="pill" style="background:${cfg.gradient.split(',')[0]};color:#fff">${cfg.emoji} ${cfg.label}</span>
+              <span class="pill" style="background:var(--muted);color:var(--on-sv)">Suggested by you</span>
             </div>
             <div class="menu-row-votes">
               <div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>
@@ -775,6 +540,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       initPage('menu');
+      renderMenuItems('all');
       updateVoteUI();
       loadBallotCount();
     });

@@ -216,7 +216,6 @@ function renderFooter() {
           <nav style="display:flex;flex-direction:column;gap:.5rem">
             <a href="#" data-en="Privacy Policy" data-ml="സ്വകാര്യത നയം">Privacy Policy</a>
             <a href="#" data-en="Terms" data-ml="നിബന്ധനകൾ">Terms</a>
-            <a href="admin.html" data-en="Admin" data-ml="അഡ്മിൻ">Admin</a>
           </nav>
         </div>
       </div>
