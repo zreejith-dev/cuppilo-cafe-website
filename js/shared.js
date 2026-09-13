@@ -2,26 +2,39 @@
 
 // ── SPLASH SCREEN ──
 function initSplash() {
-  const seen = localStorage.getItem('cuppilo_splash_seen');
-  if (seen) return;
   const splash = document.getElementById('splash-screen');
+  const nameOverlay = document.getElementById('name-card-overlay');
+  const seen = localStorage.getItem('cuppilo_splash_seen');
+
+  if (seen) {
+    // Already seen — remove splash and name overlay from DOM immediately
+    if (splash) splash.remove();
+    if (nameOverlay) nameOverlay.remove();
+    return;
+  }
+
   if (!splash) return;
+  // First visit — show splash, then remove
   setTimeout(() => {
     splash.classList.add('hidden');
     localStorage.setItem('cuppilo_splash_seen', '1');
-    setTimeout(() => splash.remove(), 600);
-    initNameCard();
+    setTimeout(() => {
+      splash.remove();
+      initNameCard();
+    }, 600);
   }, 2200);
 }
 
 // ── NAME ENTRY CARD ──
 function initNameCard() {
   const saved = localStorage.getItem('cuppilo_profile');
+  const overlay = document.getElementById('name-card-overlay');
   if (saved) {
+    // Profile exists — remove overlay from DOM
+    if (overlay) overlay.remove();
     updateNavbarProfile(JSON.parse(saved));
     return;
   }
-  const overlay = document.getElementById('name-card-overlay');
   if (!overlay) return;
   overlay.classList.add('active');
 }
