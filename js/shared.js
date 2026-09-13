@@ -102,19 +102,18 @@ function renderNavbar(activePage) {
     { id: 'founding-wall', label: 'Wall', path: 'founding-wall.html' }
   ];
   return `
-    <nav style="position:sticky;top:0;z-index:40;background:rgba(247,244,235,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--muted-latte)">
-      <div class="container" style="display:flex;align-items:center;justify-content:space-between;height:3.5rem">
-        <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none">
-          <span style="font-weight:800;font-size:1.125rem;color:var(--primary)">CUPPILO</span>
-          <span style="font-size:0.75rem;color:var(--brass)">കപ്പിലോ</span>
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <a href="index.html" class="navbar-brand">
+          <img src="img/logo.png" alt="CUPPILO" class="navbar-logo">
+          <span class="navbar-brand-text">കപ്പിലോ</span>
         </a>
-        <div class="flex items-center" style="gap:0.25rem">
+        <div class="nav-links" id="nav-links">
           ${pages.map(p => `
-            <a href="${p.path}" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;
-              background:${activePage === p.id ? 'var(--primary)' : 'transparent'};
-              color:${activePage === p.id ? 'var(--cream)' : 'var(--on-surface-variant)'}">${p.label}</a>
+            <a href="${p.path}" class="nav-link${activePage === p.id ? ' active' : ''}">${p.label}</a>
           `).join('')}
         </div>
+        <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
       </div>
     </nav>
   `;
@@ -122,8 +121,8 @@ function renderNavbar(activePage) {
 
 // Init page
 function initPage(activePage) {
-  // Insert navbar
-  const nav = document.getElementById('navbar');
+  // Insert navbar (supports both #navbar and #navbar-placeholder)
+  const nav = document.getElementById('navbar') || document.getElementById('navbar-placeholder');
   if (nav) nav.innerHTML = renderNavbar(activePage);
 
   // Insert footer

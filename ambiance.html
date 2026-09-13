@@ -56,20 +56,20 @@
 <body class="bg-cream text-charcoal min-h-screen flex flex-col">
 
   <!-- Navbar -->
-  <nav id="navbar" style="position:sticky;top:0;z-index:40;background:rgba(247,244,235,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #E8E2D2">
-    <div style="max-width:1080px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:3.5rem">
-      <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none">
-        <img src="img/logo.png" alt="Cuppilo Logo" style="height:28px;width:auto">
-        <span style="font-weight:800;font-size:1.125rem;color:#A93B2B">CUPPILO</span>
-        <span style="font-size:0.75rem;color:#C89D5C">കപ്പിലോ</span>
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <img src="img/logo.png" alt="CUPPILO" class="navbar-logo">
+        <span class="navbar-brand-text">കപ്പിലോ</span>
       </a>
-      <div style="display:flex;align-items:center;gap:0.25rem">
-        <a href="index.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Home</a>
-        <a href="menu-ballot.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Menu</a>
-        <a href="ambiance.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;background:#A93B2B;color:#F7F4EB">Vibe</a>
-        <a href="pricing.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Pricing</a>
-        <a href="founding-wall.html" style="padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.8125rem;font-weight:600;text-decoration:none;color:#57423e">Wall</a>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu-ballot.html" class="nav-link">Menu</a>
+        <a href="ambiance.html" class="nav-link active">Vibe</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="founding-wall.html" class="nav-link">Wall</a>
       </div>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
     </div>
   </nav>
 

@@ -18,11 +18,10 @@
     html{scroll-behavior:smooth}
     body{overscroll-behavior:none}
 
-    .nav-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none}
-    .nav-brand img{height:28px;width:auto;border-radius:4px}
-    .nav-brand-text{display:flex;flex-direction:column;line-height:1.1}
-    .nav-brand-text .en{font-weight:800;font-size:1rem;color:var(--primary)}
-    .nav-brand-text .ml{font-size:.7rem;color:var(--brass)}
+    .nav-link{padding:.375rem .75rem;border-radius:9999px;font-size:.8125rem;font-weight:600;text-decoration:none;transition:all .2s}
+    .nav-link.active{background:var(--primary);color:var(--cream)}
+    .nav-link:not(.active){color:var(--on-sv)}
+    .nav-link:not(.active):hover{background:var(--surface-h)}
 
     .hero-section{padding:2rem 0 3rem}
     .hero-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
@@ -165,21 +164,19 @@
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;height:3.5rem">
-      <a href="index.html" class="nav-brand">
-        <img src="img/logo.png" alt="CUPPILO logo"/>
-        <div class="nav-brand-text">
-          <span class="en">CUPPILO</span>
-          <span class="ml">കപ്പിലോ</span>
-        </div>
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <img src="img/logo.png" alt="CUPPILO" class="navbar-logo">
+        <span class="navbar-brand-text">കപ്പിലോ</span>
       </a>
-      <div style="display:flex;align-items:center;gap:.25rem">
+      <div class="nav-links" id="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="menu-ballot.html" class="nav-link">Menu</a>
         <a href="ambiance.html" class="nav-link">Vibe</a>
         <a href="pricing.html" class="nav-link">Pricing</a>
         <a href="founding-wall.html" class="nav-link">Wall</a>
       </div>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
     </div>
   </nav>
 

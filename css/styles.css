@@ -98,10 +98,21 @@ textarea.input{resize:none;min-height:80px}
 
 /* Navbar */
 .navbar{position:sticky;top:0;z-index:40;background:rgba(247,244,235,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--muted)}
+.navbar-inner{display:flex;align-items:center;justify-content:space-between;height:56px}
+.navbar-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;flex-shrink:0}
+.navbar-logo{height:32px;width:auto;border-radius:4px;object-fit:contain}
+.navbar-brand-text{font-size:.7rem;color:var(--brass);font-weight:500}
+.nav-links{display:flex;align-items:center;gap:.25rem}
 .nav-link{padding:.375rem .75rem;border-radius:9999px;font-size:.8125rem;font-weight:600;text-decoration:none;transition:all .2s}
 .nav-link.active{background:var(--primary);color:var(--cream)}
 .nav-link:not(.active){color:var(--on-sv)}
 .nav-link:not(.active):hover{background:var(--surface-h)}
+.nav-toggle{display:none;background:none;border:none;font-size:1.25rem;cursor:pointer;color:var(--charcoal);padding:.5rem}
+@media(max-width:640px){
+  .nav-links{display:none;position:absolute;top:56px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--muted);flex-direction:column;padding:.5rem;gap:.25rem}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
+}
 
 /* Hero */
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--brass-soft);padding:.5rem 1rem;border-radius:9999px;font-size:.75rem;font-weight:600;color:var(--charcoal)}
