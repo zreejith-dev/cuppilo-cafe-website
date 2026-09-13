@@ -2,45 +2,46 @@
 const SUPABASE_URL = 'https://wnkejaidmbdcmbksefaf.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indua2VqYWlkbWJkY21ia3NlZmFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyOTAwNDYsImV4cCI6MjEwNDg2NjA0Nn0.9LYxHA7RYeLcYaXUq5AEYSflCfIqGHD5uY6LdvE5raY';
 
-// Supabase client (lightweight, no SDK dependency)
+const HEADERS = {
+  apikey: SUPABASE_ANON_KEY,
+  Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+  'Content-Type': 'application/json'
+};
+
+// Supabase client
 const supabase = {
   from(table) {
     return {
       async select(columns = '*') {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=${columns}`, {
-          headers: {
-            'apikey': SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json'
-          }
-        });
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=${columns}`, { headers: HEADERS });
         return res.json();
       },
       async insert(data) {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
           method: 'POST',
-          headers: {
-            'apikey': SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=representation'
-          },
+          headers: { ...HEADERS, Prefer: 'return=representation' },
           body: JSON.stringify(data)
         });
         return res.json();
       },
-      async update(data) {
+      update(data) {
         return {
           async eq(column, value) {
             const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${column}=eq.${value}`, {
               method: 'PATCH',
-              headers: {
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                'Content-Type': 'application/json',
-                'Prefer': 'return=representation'
-              },
+              headers: { ...HEADERS, Prefer: 'return=representation' },
               body: JSON.stringify(data)
+            });
+            return res.json();
+          }
+        };
+      },
+      delete() {
+        return {
+          async eq(column, value) {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${column}=eq.${value}`, {
+              method: 'DELETE',
+              headers: { ...HEADERS, Prefer: 'return=representation' }
             });
             return res.json();
           }
@@ -49,11 +50,7 @@ const supabase = {
       async rpc(fn, params = {}) {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
           method: 'POST',
-          headers: {
-            'apikey': SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json'
-          },
+          headers: HEADERS,
           body: JSON.stringify(params)
         });
         return res.json();
@@ -62,15 +59,13 @@ const supabase = {
   }
 };
 
-// Generic Supabase helpers
-async function sbInsert(table, data) {
-  return await supabase.from(table).insert(data);
-}
-async function sbSelect(table, columns = '*') {
-  return await supabase.from(table).select(columns);
-}
+// Helper functions
+async function sbInsert(table, data) { return await supabase.from(table).insert(data); }
+async function sbSelect(table, columns = '*') { return await supabase.from(table).select(columns); }
+async function sbUpdate(table, data, column, value) { return await supabase.from(table).update(data).eq(column, value); }
+async function sbDelete(table, column, value) { return await supabase.from(table).delete().eq(column, value); }
 
-// Utility: Generate unique ref code
+// Utility functions
 function generateRefCode() {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let code = 'CP';
@@ -78,28 +73,25 @@ function generateRefCode() {
   return code;
 }
 
-// Utility: Hash IP for rate limiting
 async function hashIP(ip) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(ip);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(ip));
   return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Utility: Get client IP (for rate limiting)
 async function getClientIP() {
   try {
     const res = await fetch('https://api.ipify.org?format=json');
-    const data = await res.json();
-    return data.ip;
-  } catch {
-    return 'unknown';
-  }
+    return (await res.json()).ip;
+  } catch { return 'unknown'; }
 }
 
-// Utility: Generate voucher code
 function generateVoucherCode() {
   return 'CUPPILO-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+}
+
+function debounce(func, wait) {
+  let timeout;
+  return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func(...args), wait); };
 }
 
 // Ballot submission
@@ -124,57 +116,12 @@ async function submitBallot(ballotData) {
   return { ...result, refCode };
 }
 
-// Participant registration
-async function registerParticipant(ballotId, participantData) {
-  const voucherCode = generateVoucherCode();
-
-  const participant = {
-    id: ballotId,
-    phone_number: participantData.phone || null,
-    display_name: participantData.name || null,
-    dpdp_consent: participantData.consent || false,
-    consent_ts: participantData.consent ? new Date().toISOString() : null,
-    voucher_code: voucherCode,
-    tier: participantData.tier || 'free',
-    payment_id: participantData.paymentId || null
-  };
-
-  const result = await supabase.from('participants').insert(participant);
-  return { ...result, voucherCode };
-}
-
-// Fetch live tally
-async function fetchBallotTally() {
-  return await supabase.from('ballot_tally').select('*');
-}
-
-// Fetch vibe tally
-async function fetchVibeTally() {
-  return await supabase.from('vibe_tally').select('*');
-}
-
-// Fetch pricing stats
-async function fetchPricingStats() {
-  return await supabase.from('pricing_stats').select('*');
-}
-
-// Fetch founding patrons
-async function fetchFoundingPatrons() {
-  return await supabase.from('founding_patrons').select('*');
-}
-
-// Save ballot locally (localStorage) for multi-step flow
-function saveBallotLocal(data) {
-  localStorage.setItem('cuppilo_ballot', JSON.stringify({ ...getBallotLocal(), ...data }));
-}
-
-function getBallotLocal() {
-  const data = localStorage.getItem('cuppilo_ballot');
-  return data ? JSON.parse(data) : {};
-}
-
-function clearBallotLocal() {
-  localStorage.removeItem('cuppilo_ballot');
-}
+// Fetch helpers
+async function fetchBallotTally() { return await supabase.from('ballot_tally').select('*'); }
+async function fetchVibeTally() { return await supabase.from('vibe_tally').select('*'); }
+async function fetchPricingStats() { return await supabase.from('pricing_stats').select('*'); }
+async function fetchProfileCount() { return await supabase.from('profile_count').select('*'); }
+async function fetchMenuVoteTally() { return await supabase.from('menu_vote_tally').select('*'); }
+async function fetchAmbianceTally() { return await supabase.from('ambiance_tally').select('*'); }
 
 console.log('CUPPILO Supabase config loaded');

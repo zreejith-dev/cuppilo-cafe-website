@@ -5,6 +5,27 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Community Results — CUPPILO Co-Creation</title>
   <meta name="description" content="See what Kerala is choosing for CUPPILO — live co-creation results on menu, ambiance, and pricing."/>
+  <!-- Theme & Mobile -->
+  <meta name="theme-color" content="#A93B2B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cuppilo-cafe-website.vercel.app/community-results.html">
+  <meta property="og:title" content="Community Results — CUPPILO">
+  <meta property="og:description" content="See what Kerala is choosing for CUPPILO — live co-creation results on menu, ambiance, and pricing.">
+  <meta property="og:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
+  <meta property="og:site_name" content="CUPPILO">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Community Results — CUPPILO">
+  <meta name="twitter:description" content="See what Kerala is choosing for CUPPILO — live co-creation results on menu, ambiance, and pricing.">
+  <meta name="twitter:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://cuppilo-cafe-website.vercel.app/community-results.html">
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -171,83 +192,97 @@
 
     async function loadParticipantsCount() {
       try {
-        var result = await sbSelect('participants', 'id');
+        var result = await sbSelect('user_profiles', '*');
         var count = (result && Array.isArray(result)) ? result.length : 0;
         document.getElementById('stat-participants').textContent = count;
-      } catch (e) { console.log('Participants count skipped:', e); }
+      } catch (e) { console.error('Participants count error:', e); }
     }
 
     async function loadMenuTally() {
       try {
-        if (typeof fetchBallotTally === 'function') {
-          var tally = await fetchBallotTally();
-          if (tally && !tally.error && tally.length > 0) {
-            var items = tally.map(function(t) {
-              return { name: menuNames[t.menu_item] || t.menu_item, votes: t.vote_count || 0 };
-            }).sort(function(a, b) { return b.votes - a.votes; });
-            var totalVotes = items.reduce(function(s, i) { return s + i.votes; }, 0);
-            var topItem = items[0];
-            if (topItem) {
-              document.getElementById('stat-top-menu').textContent = topItem.name;
-              document.getElementById('stat-top-menu-votes').textContent = topItem.votes + ' votes (' + (totalVotes > 0 ? Math.round(topItem.votes / totalVotes * 100) : 0) + '%)';
-            }
-            var barsHtml = items.map(function(item) {
-              var pct = totalVotes > 0 ? Math.round(item.votes / totalVotes * 100) : 0;
-              return '<div class="result-bar-row">' +
-                '<span class="result-bar-label">' + item.name + '</span>' +
-                '<span class="result-bar-count">' + item.votes + ' votes</span>' +
-                '<div class="result-bar-track"><div class="result-bar-fill" style="width:' + pct + '%;background:var(--primary)"></div></div>' +
-                '<span class="result-bar-pct">' + pct + '%</span></div>';
-            }).join('');
-            document.getElementById('menu-bars').innerHTML = barsHtml;
-          } else {
-            document.getElementById('menu-bars').innerHTML = '<div class="result-empty">No menu votes yet — be the first to vote!</div>';
-          }
+        var data = await sbSelect('menu_votes', '*');
+        var arr = (data && Array.isArray(data)) ? data : [];
+        if (arr.length === 0) {
+          document.getElementById('menu-bars').innerHTML = '<div class="result-empty">No menu votes yet — be the first to vote!</div>';
+          return;
         }
-      } catch (e) { console.log('Menu tally skipped:', e); }
+        var tally = {};
+        arr.forEach(function(v) {
+          var item = v.item_id || v.item || v.menu_item || v.name || 'Unknown';
+          if (!tally[item]) tally[item] = 0;
+          tally[item]++;
+        });
+        var items = Object.keys(tally).map(function(k) {
+          return { name: menuNames[k] || k, votes: tally[k] };
+        }).sort(function(a, b) { return b.votes - a.votes; });
+        var totalVotes = items.reduce(function(s, i) { return s + i.votes; }, 0);
+        var topItem = items[0];
+        if (topItem) {
+          document.getElementById('stat-top-menu').textContent = topItem.name;
+          document.getElementById('stat-top-menu-votes').textContent = topItem.votes + ' votes (' + (totalVotes > 0 ? Math.round(topItem.votes / totalVotes * 100) : 0) + '%)';
+        }
+        var barsHtml = items.map(function(item) {
+          var pct = totalVotes > 0 ? Math.round(item.votes / totalVotes * 100) : 0;
+          return '<div class="result-bar-row">' +
+            '<span class="result-bar-label">' + item.name + '</span>' +
+            '<span class="result-bar-count">' + item.votes + ' votes</span>' +
+            '<div class="result-bar-track"><div class="result-bar-fill" style="width:' + pct + '%;background:var(--primary)"></div></div>' +
+            '<span class="result-bar-pct">' + pct + '%</span></div>';
+        }).join('');
+        document.getElementById('menu-bars').innerHTML = barsHtml;
+      } catch (e) { console.error('Menu tally error:', e); }
     }
 
     async function loadVibeTally() {
       try {
-        if (typeof fetchVibeTally === 'function') {
-          var tally = await fetchVibeTally();
-          if (tally && !tally.error && tally.length > 0) {
-            var total = tally.reduce(function(s, t) { return s + (t.vote_count || 0); }, 0);
-            var top = tally.reduce(function(a, b) { return (a.vote_count || 0) > (b.vote_count || 0) ? a : b; });
-            var topPct = total > 0 ? Math.round((top.vote_count || 0) / total * 100) : 0;
-            document.getElementById('stat-ambiance').textContent = vibeNames[top.vibe_vote] || top.vibe_vote;
-            document.getElementById('stat-ambiance-votes').textContent = topPct + '% of votes (' + total + ' total)';
-            var barsHtml = tally.map(function(t) {
-              var pct = total > 0 ? Math.round((t.vote_count || 0) / total * 100) : 0;
-              var label = vibeNames[t.vibe_vote] || t.vibe_vote;
-              var colors = { A: '#8B4513', B: 'var(--brass)', C: '#808080', D: '#8b5cf6' };
-              var bg = colors[t.vibe_vote] || 'var(--primary)';
-              return '<div class="result-bar-row">' +
-                '<span class="result-bar-label">' + label + '</span>' +
-                '<span class="result-bar-count">' + (t.vote_count || 0) + ' votes</span>' +
-                '<div class="result-bar-track"><div class="result-bar-fill" style="width:' + pct + '%;background:' + bg + '"></div></div>' +
-                '<span class="result-bar-pct">' + pct + '%</span></div>';
-            }).join('');
-            document.getElementById('ambiance-bars').innerHTML = barsHtml;
-          } else {
-            document.getElementById('ambiance-bars').innerHTML = '<div class="result-empty">No ambiance votes yet — be the first to vote!</div>';
-          }
+        var data = await sbSelect('ambiance_votes', '*');
+        var arr = (data && Array.isArray(data)) ? data : [];
+        if (arr.length === 0) {
+          document.getElementById('ambiance-bars').innerHTML = '<div class="result-empty">No ambiance votes yet — be the first to vote!</div>';
+          return;
         }
-      } catch (e) { console.log('Vibe tally skipped:', e); }
+        var tally = {};
+        arr.forEach(function(v) {
+          var choice = v.choice || v.vibe || v.vibe_vote || v.option || 'Unknown';
+          if (!tally[choice]) tally[choice] = 0;
+          tally[choice]++;
+        });
+        var total = arr.length;
+        var items = Object.keys(tally).map(function(k) {
+          return { vibe_vote: k, vote_count: tally[k] };
+        }).sort(function(a, b) { return b.vote_count - a.vote_count; });
+        var top = items[0];
+        var topPct = total > 0 ? Math.round(top.vote_count / total * 100) : 0;
+        document.getElementById('stat-ambiance').textContent = vibeNames[top.vibe_vote] || top.vibe_vote;
+        document.getElementById('stat-ambiance-votes').textContent = topPct + '% of votes (' + total + ' total)';
+        var barsHtml = items.map(function(t) {
+          var pct = total > 0 ? Math.round(t.vote_count / total * 100) : 0;
+          var label = vibeNames[t.vibe_vote] || t.vibe_vote;
+          var colors = { A: '#8B4513', B: 'var(--brass)', C: '#808080', D: '#8b5cf6' };
+          var bg = colors[t.vibe_vote] || 'var(--primary)';
+          return '<div class="result-bar-row">' +
+            '<span class="result-bar-label">' + label + '</span>' +
+            '<span class="result-bar-count">' + t.vote_count + ' votes</span>' +
+            '<div class="result-bar-track"><div class="result-bar-fill" style="width:' + pct + '%;background:' + bg + '"></div></div>' +
+            '<span class="result-bar-pct">' + pct + '%</span></div>';
+        }).join('');
+        document.getElementById('ambiance-bars').innerHTML = barsHtml;
+      } catch (e) { console.error('Vibe tally error:', e); }
     }
 
     async function loadPricingStats() {
       try {
-        if (typeof fetchPricingStats === 'function') {
-          var stats = await fetchPricingStats();
-          if (stats && !stats.error && stats.length > 0) {
-            var avgCoffee = stats[0].avg_coffee || 60;
-            var avgTea = stats[0].avg_tea || 20;
-            document.getElementById('stat-avg-price').textContent = '₹' + Math.round(avgCoffee);
-            document.getElementById('stat-avg-tea').textContent = 'Tea: ₹' + Math.round(avgTea);
-          }
+        var data = await sbSelect('price_suggestions', '*');
+        var arr = (data && Array.isArray(data)) ? data : [];
+        if (arr.length > 0) {
+          var coffeePrices = arr.map(function(r) { return r.price_coffee || r.coffee_price || r.coffee; }).filter(function(v) { return v && !isNaN(v); });
+          var teaPrices = arr.map(function(r) { return r.price_tea || r.tea_price || r.tea || r.price_chaya; }).filter(function(v) { return v && !isNaN(v); });
+          var avgCoffee = coffeePrices.length > 0 ? coffeePrices.reduce(function(a, b) { return a + b; }, 0) / coffeePrices.length : 60;
+          var avgTea = teaPrices.length > 0 ? teaPrices.reduce(function(a, b) { return a + b; }, 0) / teaPrices.length : 20;
+          document.getElementById('stat-avg-price').textContent = '\u20B9' + Math.round(avgCoffee);
+          document.getElementById('stat-avg-tea').textContent = 'Tea: \u20B9' + Math.round(avgTea);
         }
-      } catch (e) { console.log('Pricing stats skipped:', e); }
+      } catch (e) { console.error('Pricing stats error:', e); }
     }
   </script>
 

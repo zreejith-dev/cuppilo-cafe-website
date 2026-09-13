@@ -4,7 +4,28 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>CUPPILO Admin Panel</title>
-  <meta name="robots" content="noindex,nofollow"/>
+  <meta name="description" content="CUPPILO admin panel for managing co-creation data.">
+  <!-- Theme & Mobile -->
+  <meta name="theme-color" content="#A93B2B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cuppilo-cafe-website.vercel.app/admin.html">
+  <meta property="og:title" content="CUPPILO Admin Panel">
+  <meta property="og:description" content="CUPPILO admin panel for managing co-creation data.">
+  <meta property="og:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
+  <meta property="og:site_name" content="CUPPILO">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CUPPILO Admin Panel">
+  <meta name="twitter:description" content="CUPPILO admin panel for managing co-creation data.">
+  <meta name="twitter:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://cuppilo-cafe-website.vercel.app/admin.html">
+  <!-- Robots -->
+  <meta name="robots" content="noindex, nofollow">
 
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -497,37 +518,36 @@
 
     async function loadDashboard() {
       try {
-        const [ballots, vibe, pricing, suggested, supporters, profiles] = await Promise.all([
-          sbSelect('ballots', 'id,vibe_vote,menu_votes,suggested_items,created_at'),
-          sbSelect('ambiance_votes', 'id,choice,created_at'),
-          sbSelect('pricing_stats', 'id,created_at'),
+        const [profiles, menuVotes, ambianceVotes, prices, suggested, supporters] = await Promise.all([
+          sbSelect('user_profiles', 'id,created_at'),
+          sbSelect('menu_votes', 'id,created_at'),
+          sbSelect('ambiance_votes', 'id,created_at'),
+          sbSelect('price_suggestions', 'id,created_at'),
           sbSelect('suggested_items', 'id'),
-          sbSelect('supporters', 'id'),
-          sbSelect('user_profiles', 'id,created_at')
+          sbSelect('supporters', 'id')
         ]);
 
-        const ballotArr = Array.isArray(ballots) ? ballots : [];
-        const vibeArr = Array.isArray(vibe) ? vibe : [];
-        const pricingArr = Array.isArray(pricing) ? pricing : [];
+        const profilesArr = Array.isArray(profiles) ? profiles : [];
+        const menuVotesArr = Array.isArray(menuVotes) ? menuVotes : [];
+        const ambianceVotesArr = Array.isArray(ambianceVotes) ? ambianceVotes : [];
+        const pricesArr = Array.isArray(prices) ? prices : [];
         const suggestedArr = Array.isArray(suggested) ? suggested : [];
         const supportersArr = Array.isArray(supporters) ? supporters : [];
-        const profilesArr = Array.isArray(profiles) ? profiles : [];
 
         document.getElementById('stat-visitors').textContent = profilesArr.length.toLocaleString();
-        document.getElementById('stat-menu-votes').textContent = ballotArr.length.toLocaleString();
-        document.getElementById('stat-ambiance-votes').textContent = vibeArr.length.toLocaleString();
-        document.getElementById('stat-price-suggestions').textContent = pricingArr.length.toLocaleString();
+        document.getElementById('stat-menu-votes').textContent = menuVotesArr.length.toLocaleString();
+        document.getElementById('stat-ambiance-votes').textContent = ambianceVotesArr.length.toLocaleString();
+        document.getElementById('stat-price-suggestions').textContent = pricesArr.length.toLocaleString();
         document.getElementById('stat-suggested-items').textContent = suggestedArr.length.toLocaleString();
         document.getElementById('stat-supporters').textContent = supportersArr.length.toLocaleString();
         document.getElementById('stat-contributions').textContent =
-          (ballotArr.length + vibeArr.length + pricingArr.length + suggestedArr.length).toLocaleString();
+          (menuVotesArr.length + ambianceVotesArr.length + pricesArr.length + suggestedArr.length).toLocaleString();
 
-        // Today's activity
         const today = new Date().toISOString().split('T')[0];
-        const todayBallots = ballotArr.filter(b => b.created_at && b.created_at.startsWith(today)).length;
-        const todayVibe = vibeArr.filter(v => v.created_at && v.created_at.startsWith(today)).length;
-        const todayPricing = pricingArr.filter(p => p.created_at && p.created_at.startsWith(today)).length;
-        document.getElementById('stat-today').textContent = (todayBallots + todayVibe + todayPricing).toLocaleString();
+        const todayMenu = menuVotesArr.filter(r => r.created_at && r.created_at.startsWith(today)).length;
+        const todayAmb = ambianceVotesArr.filter(r => r.created_at && r.created_at.startsWith(today)).length;
+        const todayPrice = pricesArr.filter(r => r.created_at && r.created_at.startsWith(today)).length;
+        document.getElementById('stat-today').textContent = (todayMenu + todayAmb + todayPrice).toLocaleString();
 
         document.getElementById('dashboard-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
       } catch (e) {
@@ -554,32 +574,13 @@
 
     async function loadMenuVotes() {
       try {
-        const data = await sbSelect('ballots', 'menu_votes,price_coffee,price_chaya');
+        const data = await sbSelect('menu_votes', '*');
         const arr = Array.isArray(data) ? data : [];
-        // Aggregate
         const votes = {};
-        arr.forEach(b => {
-          if (b.menu_votes && Array.isArray(b.menu_votes)) {
-            b.menu_votes.forEach(item => {
-              const id = typeof item === 'string' ? item : (item.id || item.name || JSON.stringify(item));
-              if (!votes[id]) votes[id] = { name: id, count: 0, prices: [] };
-              votes[id].count++;
-            });
-          }
-        });
-
-        // Price suggestions
-        arr.forEach(b => {
-          if (b.price_coffee) {
-            const k = 'coffee-price';
-            if (!votes[k]) votes[k] = { name: 'Coffee Price Suggestions', count: 0, prices: [] };
-            votes[k].prices.push(b.price_coffee);
-          }
-          if (b.price_chaya) {
-            const k = 'chaya-price';
-            if (!votes[k]) votes[k] = { name: 'Chaya Price Suggestions', count: 0, prices: [] };
-            votes[k].prices.push(b.price_chaya);
-          }
+        arr.forEach(v => {
+          const item = v.item_id || v.item || v.menu_item || v.name || 'Unknown';
+          if (!votes[item]) votes[item] = { name: item, count: 0 };
+          votes[item].count++;
         });
 
         const items = Object.values(votes).sort((a, b) => b.count - a.count);
@@ -588,11 +589,8 @@
           wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No menu votes yet.</p></div>';
           return;
         }
-        wrap.innerHTML = '<table><thead><tr><th>Item</th><th>Vote Count</th><th>Avg Price</th></tr></thead><tbody>' +
-          items.map(v => {
-            const avg = v.prices.length > 0 ? '\u20B9' + (v.prices.reduce((a, b) => a + b, 0) / v.prices.length).toFixed(0) : '--';
-            return '<tr><td>' + esc(v.name) + '</td><td>' + v.count + '</td><td>' + avg + '</td></tr>';
-          }).join('') +
+        wrap.innerHTML = '<table><thead><tr><th>Item</th><th>Vote Count</th></tr></thead><tbody>' +
+          items.map(v => '<tr><td>' + esc(v.name) + '</td><td>' + v.count + '</td></tr>').join('') +
           '</tbody></table>';
       } catch (e) {
         console.error('Menu votes load error:', e);
@@ -669,14 +667,14 @@
 
     async function loadSettings() {
       try {
-        const [menuItems, ballots] = await Promise.all([
-          sbSelect('menu_items', 'id'),
-          sbSelect('ballots', 'id')
+        const [menuVotes, supporters] = await Promise.all([
+          sbSelect('menu_votes', 'id'),
+          sbSelect('supporters', 'id')
         ]);
-        const menuArr = Array.isArray(menuItems) ? menuItems : [];
-        const ballotArr = Array.isArray(ballots) ? ballots : [];
-        document.getElementById('setting-menu-count').textContent = menuArr.length;
-        document.getElementById('setting-ballot-count').textContent = ballotArr.length;
+        const menuVotesArr = Array.isArray(menuVotes) ? menuVotes : [];
+        const supportersArr = Array.isArray(supporters) ? supporters : [];
+        document.getElementById('setting-menu-count').textContent = menuVotesArr.length;
+        document.getElementById('setting-ballot-count').textContent = supportersArr.length;
       } catch (e) {
         console.error('Settings load error:', e);
       }
