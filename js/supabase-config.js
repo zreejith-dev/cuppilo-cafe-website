@@ -123,5 +123,7 @@ async function fetchPricingStats() { return await supabase.from('pricing_stats')
 async function fetchProfileCount() { return await supabase.from('profile_count').select('*'); }
 async function fetchMenuVoteTally() { return await supabase.from('menu_vote_tally').select('*'); }
 async function fetchAmbianceTally() { return await supabase.from('ambiance_tally').select('*'); }
+async function fetchCoffeeStats() { return await supabase.from('coffee_stats').select('*'); }
+async function fetchRecentSupporters() { return await supabase.from('recent_supporters').select('*'); }
 
 console.log('CUPPILO Supabase config loaded');

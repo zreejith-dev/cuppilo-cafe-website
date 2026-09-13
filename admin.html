@@ -250,6 +250,22 @@
             </div>
             <div class="stat-card">
               <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
+                <span class="material-symbols-outlined">local_cafe</span>
+              </div>
+              <div class="stat-value" id="stat-coffees-dashboard">--</div>
+              <div class="stat-label">Coffees</div>
+              <div class="stat-sub">Buy Me a Coffee</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--success)">
+                <span class="material-symbols-outlined">group</span>
+              </div>
+              <div class="stat-value" id="stat-supporters-dashboard">--</div>
+              <div class="stat-label">Supporters</div>
+              <div class="stat-sub">Total backers</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
                 <span class="material-symbols-outlined">lightbulb</span>
               </div>
               <div class="stat-value" id="stat-suggested-items">--</div>
@@ -372,16 +388,64 @@
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
             <div>
               <h2 style="font-size:1.25rem;font-weight:800">Supporters</h2>
-              <p style="font-size:.8125rem;color:var(--on-sv)">Founding patrons & backers</p>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Founding patrons, backers & coffee supporters</p>
             </div>
             <button class="refresh-btn" onclick="loadSupporters()">
               <span class="material-symbols-outlined">refresh</span> Refresh
             </button>
           </div>
-          <div class="table-wrap" id="supporters-table-wrap">
-            <div class="empty-state" id="supporters-empty">
-              <span class="material-symbols-outlined">hourglass_empty</span>
-              <p>Loading...</p>
+
+          <!-- Coffee Support Stats -->
+          <div class="stat-grid" style="margin-bottom:1.25rem">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
+                <span class="material-symbols-outlined">local_cafe</span>
+              </div>
+              <div class="stat-value" id="stat-coffee-count">--</div>
+              <div class="stat-label">Coffees</div>
+              <div class="stat-sub">Buy Me a Coffee</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--success)">
+                <span class="material-symbols-outlined">payments</span>
+              </div>
+              <div class="stat-value" id="stat-raised">--</div>
+              <div class="stat-label">Raised</div>
+              <div class="stat-sub">Total amount</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--primary)">
+                <span class="material-symbols-outlined">local_fire_department</span>
+              </div>
+              <div class="stat-value" id="stat-month-coffee">--</div>
+              <div class="stat-label">This Month</div>
+              <div class="stat-sub">Coffees</div>
+            </div>
+          </div>
+
+          <!-- Coffee Supporters Table -->
+          <div style="margin-bottom:1.5rem">
+            <h3 style="font-size:1rem;font-weight:700;margin-bottom:.75rem">
+              <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">local_cafe</span> Coffee Supporters
+            </h3>
+            <div class="table-wrap" id="coffee-supporters-table-wrap">
+              <div class="empty-state">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+                <p>Loading...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Supporters Table -->
+          <div>
+            <h3 style="font-size:1rem;font-weight:700;margin-bottom:.75rem">
+              <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">group</span> Form Supporters
+            </h3>
+            <div class="table-wrap" id="supporters-table-wrap">
+              <div class="empty-state">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+                <p>Loading...</p>
+              </div>
             </div>
           </div>
         </div>
@@ -570,7 +634,8 @@
           sbSelect('ambiance_votes', 'id,choice,vibe,option,created_at'),
           sbSelect('price_suggestions', 'id,created_at'),
           sbSelect('suggested_items', 'id,created_at'),
-          sbSelect('supporters', 'id,tier,created_at')
+          sbSelect('supporters', 'id,tier,created_at'),
+          sbSelect('coffee_stats', '*')
         ]);
 
         var profiles = results[0];
@@ -579,6 +644,7 @@
         var priceSuggestions = results[3];
         var suggestedItems = results[4];
         var supporters = results[5];
+        var coffeeStats = results[6];
 
         // Stat cards
         document.getElementById('stat-visitors').textContent = safeLen(profiles).toLocaleString();
@@ -588,6 +654,13 @@
         document.getElementById('stat-suggested-items').textContent = safeLen(suggestedItems).toLocaleString();
         document.getElementById('stat-supporters').textContent = safeLen(supporters).toLocaleString();
 
+        // Coffee stats
+        if (Array.isArray(coffeeStats) && coffeeStats.length > 0) {
+          var cs = coffeeStats[0];
+          document.getElementById('stat-coffees-dashboard').textContent = cs.total_supporters || 0;
+          document.getElementById('stat-supporters-dashboard').textContent = (safeLen(supporters) + (cs.total_supporters || 0)).toLocaleString();
+        }
+
         // Total Contributions: sum from supporters where tier='pioneer' (10) or 'first-brew' (49)
         var contributions = 0;
         if (Array.isArray(supporters)) {
@@ -595,6 +668,9 @@
             if (s.tier === 'pioneer') contributions += 10;
             else if (s.tier === 'first-brew') contributions += 49;
           });
+        }
+        if (Array.isArray(coffeeStats) && coffeeStats.length > 0) {
+          contributions += coffeeStats[0].total_raised || 0;
         }
         document.getElementById('stat-contributions').textContent = '\u20B9' + contributions.toLocaleString();
 
@@ -747,12 +823,48 @@
     }
 
     async function loadSupporters() {
+      // Load coffee support stats
+      try {
+        var coffeeStats = await sbSelect('coffee_stats', '*');
+        if (Array.isArray(coffeeStats) && coffeeStats.length > 0) {
+          var cs = coffeeStats[0];
+          document.getElementById('stat-coffee-count').textContent = cs.total_supporters || 0;
+          document.getElementById('stat-raised').textContent = '₹' + (cs.total_raised || 0).toLocaleString();
+          document.getElementById('stat-month-coffee').textContent = cs.this_month_count || 0;
+        }
+      } catch (e) { console.log('Coffee stats error:', e); }
+
+      // Load coffee supporters
+      try {
+        var coffeeData = await sbSelect('coffee_supporters', 'name,amount,message,status,created_at');
+        var coffeeArr = Array.isArray(coffeeData) ? coffeeData : [];
+        var coffeeWrap = document.getElementById('coffee-supporters-table-wrap');
+        if (coffeeArr.length === 0) {
+          coffeeWrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No coffee supporters yet.</p></div>';
+        } else {
+          var html = '<table><thead><tr><th>Name</th><th>Amount</th><th>Message</th><th>Status</th><th>Date</th></tr></thead><tbody>';
+          coffeeArr.forEach(function(s) {
+            var statusClass = s.status === 'completed' ? 'tier-founding' : 'tier-free';
+            html += '<tr>' +
+              '<td>' + esc(s.name || 'Anonymous') + '</td>' +
+              '<td style="font-weight:700;color:var(--brass)">₹' + (s.amount || 0) + '</td>' +
+              '<td>' + esc(s.message || '--') + '</td>' +
+              '<td><span class="tier-badge ' + statusClass + '">' + esc(s.status || 'completed') + '</span></td>' +
+              '<td>' + formatDate(s.created_at) + '</td>' +
+              '</tr>';
+          });
+          html += '</tbody></table>';
+          coffeeWrap.innerHTML = html;
+        }
+      } catch (e) { console.log('Coffee supporters error:', e); }
+
+      // Load form supporters
       try {
         var data = await sbSelect('supporters', '*');
         var arr = Array.isArray(data) ? data : [];
         var wrap = document.getElementById('supporters-table-wrap');
         if (arr.length === 0) {
-          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No supporters yet.</p></div>';
+          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No form supporters yet.</p></div>';
           return;
         }
         var html = '<table><thead><tr><th>Name</th><th>Tier</th><th>Phone</th><th>Date</th></tr></thead><tbody>';

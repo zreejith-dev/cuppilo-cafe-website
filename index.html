@@ -296,6 +296,36 @@
           </div>
         </section>
 
+        <!-- SUPPORT CUPPILO -->
+        <section style="margin-top:1.5rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.5rem;box-shadow:var(--shadow)">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+            <span class="material-symbols-outlined" style="font-size:28px;color:var(--brass)">local_cafe</span>
+            <div>
+              <h3 style="font-size:1.125rem;font-weight:800;color:var(--charcoal)" data-en="Support CUPPILO" data-ml="കപ്പിലോയെ പിന്തുണയ്ക്കുക">Support CUPPILO</h3>
+              <p style="font-size:.8125rem;color:var(--on-sv)" data-en="Help us take CUPPILO from an idea to reality." data-ml="ഒരു ആശയത്തിൽ നിന്ന് യാഥാർത്ഥ്യമാക്കാൻ സഹായിക്കുക.">Help us take CUPPILO from an idea to reality.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-bottom:1.25rem">
+            <div style="text-align:center">
+              <div style="font-size:1.5rem;font-weight:800;color:var(--primary)" id="coffee-count">0</div>
+              <div style="font-size:.75rem;color:var(--on-sv)" data-en="Coffees Supported" data-ml="കാപ്പികൾ പിന്തുണച്ചു">Coffees Supported</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.5rem;font-weight:800;color:var(--brass)" id="raised-amount">₹0</div>
+              <div style="font-size:.75rem;color:var(--on-sv)" data-en="Raised" data-ml="ശേഖരിച്ചു">Raised</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.5rem;font-weight:800;color:var(--success)" id="supporter-count">0</div>
+              <div style="font-size:.75rem;color:var(--on-sv)" data-en="Supporters" data-ml="പിന്തുണയ്ക്കുന്നവർ">Supporters</div>
+            </div>
+          </div>
+          <div id="recent-supporters-list" style="margin-bottom:1rem"></div>
+          <a href="https://buymeacoffee.com/cuppilo" target="_blank" rel="noopener" class="btn btn-brass btn-block" style="text-decoration:none">
+            <span class="material-symbols-outlined" style="font-size:18px">local_cafe</span>
+            <span data-en="Buy CUPPILO a Coffee" data-ml="കപ്പിലോയ്ക്ക് ഒരു കാപ്പി വാങ്ങുക">Buy CUPPILO a Coffee</span>
+          </a>
+        </section>
+
         <!-- BOTTOM CTA -->
         <section class="bottom-cta" style="margin-top:1.5rem">
           <blockquote data-en="&quot;A great café in Kerala belongs to the people who walk in at dusk, smelling freshly roasted beans and listening to gentle monsoon drizzle.&quot;" data-ml="&quot;കേരളത്തിലെ ഒരു മികച്ച കഫേ സന്ധ്യയ്ക്ക് കയറിവരുന്ന, പുതുതായി വറുത്ത ബീൻസുകളുടെ മണം നുകർന്ന്, മൃദുവായ മൺസൂൺ ചാറ്റൽ കേൾക്കുന്ന ആളുകൾക്ക് ഉടമസ്ഥരാണ്.&quot;">"A great café in Kerala belongs to the people who walk in at dusk, smelling freshly roasted beans and listening to gentle monsoon drizzle."</blockquote>
@@ -383,6 +413,35 @@
     }
 
     loadCommunityResults();
+
+    // Load coffee support stats
+    async function loadCoffeeStats() {
+      try {
+        const stats = await sbSelect('coffee_stats', '*');
+        if (Array.isArray(stats) && stats.length > 0) {
+          const s = stats[0];
+          document.getElementById('coffee-count').textContent = s.total_supporters || 0;
+          document.getElementById('raised-amount').textContent = '₹' + (s.total_raised || 0).toLocaleString();
+          document.getElementById('supporter-count').textContent = s.total_supporters || 0;
+        }
+      } catch (e) { console.log('Coffee stats skipped:', e); }
+
+      try {
+        const supporters = await sbSelect('recent_supporters', 'name,amount,message,created_at');
+        const list = document.getElementById('recent-supporters-list');
+        if (list && Array.isArray(supporters) && supporters.length > 0) {
+          list.innerHTML = supporters.slice(0, 5).map(s =>
+            '<div style="display:flex;align-items:center;gap:.5rem;padding:.375rem 0;font-size:.8125rem">' +
+            '<span class="material-symbols-outlined" style="font-size:16px;color:var(--brass)">person</span>' +
+            '<span style="font-weight:600;color:var(--on-s)">' + (s.name || 'Anonymous') + '</span>' +
+            '<span style="color:var(--on-sv)">' + (s.message || '') + '</span>' +
+            '<span style="margin-left:auto;color:var(--primary);font-weight:700">₹' + (s.amount || 0) + '</span>' +
+            '</div>'
+          ).join('');
+        }
+      } catch (e) { console.log('Recent supporters skipped:', e); }
+    }
+    loadCoffeeStats();
   </script>
 
 </body>
