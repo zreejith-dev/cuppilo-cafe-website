@@ -194,6 +194,9 @@
         <a href="#" data-tab="supporters" onclick="switchTab('supporters',this)">
           <span class="material-symbols-outlined">favorite</span> Supporters
         </a>
+        <a href="#" data-tab="bmc" onclick="switchTab('bmc',this)">
+          <span class="material-symbols-outlined">local_cafe</span> BMC Support
+        </a>
         <div class="section-label">System</div>
         <a href="#" data-tab="settings" onclick="switchTab('settings',this)">
           <span class="material-symbols-outlined">settings</span> Settings
@@ -450,6 +453,53 @@
           </div>
         </div>
 
+        <!-- BMC SUPPORT TAB -->
+        <div class="tab-panel" id="tab-bmc">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+            <div>
+              <h2 style="font-size:1.25rem;font-weight:800">BMC Support</h2>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Buy Me a Coffee donations & stats</p>
+            </div>
+            <button class="refresh-btn" onclick="loadBmc()">
+              <span class="material-symbols-outlined">refresh</span> Refresh
+            </button>
+          </div>
+
+          <div class="stat-grid" style="margin-bottom:1.25rem">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
+                <span class="material-symbols-outlined">local_cafe</span>
+              </div>
+              <div class="stat-value" id="stat-bmc-coffees">--</div>
+              <div class="stat-label">Total Coffees</div>
+              <div class="stat-sub">Buy Me a Coffee</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--success)">
+                <span class="material-symbols-outlined">payments</span>
+              </div>
+              <div class="stat-value" id="stat-bmc-amount">--</div>
+              <div class="stat-label">Total Amount</div>
+              <div class="stat-sub">Raised so far</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--primary)">
+                <span class="material-symbols-outlined">group</span>
+              </div>
+              <div class="stat-value" id="stat-bmc-supporters">--</div>
+              <div class="stat-label">Unique Supporters</div>
+              <div class="stat-sub">Backers</div>
+            </div>
+          </div>
+
+          <div class="table-wrap" id="bmc-table-wrap">
+            <div class="empty-state" id="bmc-empty">
+              <span class="material-symbols-outlined">hourglass_empty</span>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+
         <!-- SETTINGS TAB -->
         <div class="tab-panel" id="tab-settings">
           <div style="margin-bottom:1.25rem">
@@ -585,6 +635,7 @@
         'ambiance-votes': loadAmbianceVotes,
         'users': loadUsers,
         'supporters': loadSupporters,
+        'bmc': loadBmc,
         'settings': loadSettings
       };
       if (loaders[tabId]) loaders[tabId]();
@@ -886,6 +937,44 @@
         wrap.innerHTML = html;
       } catch (e) {
         console.error('Supporters load error:', e);
+      }
+    }
+
+    async function loadBmc() {
+      try {
+        var results = await Promise.all([
+          sbSelect('bmc_stats', '*'),
+          sbSelect('bmc_donations', '*')
+        ]);
+        var stats = results[0];
+        var donations = results[1];
+
+        if (Array.isArray(stats) && stats.length > 0) {
+          var s = stats[0];
+          document.getElementById('stat-bmc-coffees').textContent = s.total_coffees || s.total_supporters || 0;
+          document.getElementById('stat-bmc-amount').textContent = '\u20B9' + (s.total_amount || s.total_raised || 0).toLocaleString();
+          document.getElementById('stat-bmc-supporters').textContent = s.unique_supporters || s.total_supporters || 0;
+        }
+
+        var arr = Array.isArray(donations) ? donations : [];
+        var wrap = document.getElementById('bmc-table-wrap');
+        if (arr.length === 0) {
+          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No BMC donations yet.</p></div>';
+          return;
+        }
+        var html = '<table><thead><tr><th>Name</th><th>Amount</th><th>Message</th><th>Date</th></tr></thead><tbody>';
+        arr.forEach(function(d) {
+          html += '<tr>' +
+            '<td>' + esc(d.name || 'Anonymous') + '</td>' +
+            '<td style="font-weight:700;color:var(--brass)">\u20B9' + (d.amount || 0) + '</td>' +
+            '<td>' + esc(d.message || '--') + '</td>' +
+            '<td>' + formatDate(d.created_at || d.date) + '</td>' +
+            '</tr>';
+        });
+        html += '</tbody></table>';
+        wrap.innerHTML = html;
+      } catch (e) {
+        console.error('BMC load error:', e);
       }
     }
 

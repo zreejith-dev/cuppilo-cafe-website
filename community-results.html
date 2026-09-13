@@ -159,6 +159,36 @@
         </div>
       </section>
 
+      <section class="result-section">
+        <div class="result-section-header">
+          <span class="material-symbols-outlined">local_cafe</span>
+          <h2 data-en="Community Support" data-ml="കമ്മ്യൂണിറ്റി പിന്തുണ">Community Support</h2>
+        </div>
+        <div id="bmc-stats-bar" style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+          <div style="flex:1;min-width:120px;background:var(--bg-card);border:1px solid var(--muted);border-radius:.75rem;padding:1rem;text-align:center">
+            <div class="material-symbols-outlined" style="color:var(--primary);font-size:28px">local_cafe</div>
+            <div id="bmc-coffees" style="font-size:1.5rem;font-weight:800;color:var(--charcoal)">0</div>
+            <div style="font-size:.75rem;color:var(--on-sv)" data-en="Coffees" data-ml="കാപ്പികൾ">Coffees</div>
+          </div>
+          <div style="flex:1;min-width:120px;background:var(--bg-card);border:1px solid var(--muted);border-radius:.75rem;padding:1rem;text-align:center">
+            <div class="material-symbols-outlined" style="color:var(--brass);font-size:28px">payments</div>
+            <div id="bmc-amount" style="font-size:1.5rem;font-weight:800;color:var(--charcoal)">₹0</div>
+            <div style="font-size:.75rem;color:var(--on-sv)" data-en="Raised" data-ml="ഉയർത്തി">Raised</div>
+          </div>
+          <div style="flex:1;min-width:120px;background:var(--bg-card);border:1px solid var(--muted);border-radius:.75rem;padding:1rem;text-align:center">
+            <div class="material-symbols-outlined" style="color:#8b5cf6;font-size:28px">people</div>
+            <div id="bmc-supporters" style="font-size:1.5rem;font-weight:800;color:var(--charcoal)">0</div>
+            <div style="font-size:.75rem;color:var(--on-sv)" data-en="Supporters" data-ml="പിന്തുണക്കാർ">Supporters</div>
+          </div>
+        </div>
+        <div style="text-align:center">
+          <a href="pricing.html" class="btn btn-primary" style="padding:.75rem 1.5rem">
+            <span class="material-symbols-outlined" style="font-size:18px">local_cafe</span>
+            <span data-en="Support CUPPILO" data-ml="CUPPILO-യെ പിന്തുണയ്ക്കുക">Support CUPPILO</span>
+          </a>
+        </div>
+      </section>
+
       <section class="cta-banner" style="margin-top:1rem">
         <div class="cta-banner-inner">
           <span class="cta-banner-tag" data-en="Your Voice Matters" data-ml="നിങ്ങളുടെ ശബ്ദം പ്രധാനമാണ്">Your Voice Matters</span>
@@ -197,7 +227,8 @@
         loadParticipantsCount(),
         loadMenuTally(),
         loadVibeTally(),
-        loadPricingStats()
+        loadPricingStats(),
+        loadBmcStats()
       ]);
     }
 
@@ -294,6 +325,17 @@
           document.getElementById('stat-avg-tea').textContent = 'Tea: \u20B9' + Math.round(avgTea);
         }
       } catch (e) { console.error('Pricing stats error:', e); }
+    }
+
+    async function loadBmcStats() {
+      try {
+        var stats = await sbSelect('bmc_stats', '*');
+        if (stats && stats.length > 0) {
+          document.getElementById('bmc-coffees').textContent = stats[0].total_coffees || 0;
+          document.getElementById('bmc-amount').textContent = '\u20B9' + (stats[0].total_amount || 0);
+          document.getElementById('bmc-supporters').textContent = stats[0].unique_supporters || 0;
+        }
+      } catch (e) { console.log('BMC stats skipped:', e); }
     }
   </script>
 

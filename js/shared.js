@@ -187,7 +187,7 @@ function renderNavbar(activePage) {
     { id: 'fullmenu', href: 'menu.html', en: 'Menu', ml: '\u0d2e\u0d46\u0d28\u0d41' },
     { id: 'menu', href: 'menu-ballot.html', en: 'Vote', ml: '\u0d35\u0d4b\u0d1f\u0d4d' },
     { id: 'ambiance', href: 'ambiance.html', en: 'Vibe', ml: '\u0d35\u0d48\u0d2c\u0d4d' },
-    { id: 'pricing', href: 'pricing.html', en: 'Pricing', ml: '\u0d35\u0d3f\u0d32' },
+    { id: 'pricing', href: 'pricing.html', en: 'Support', ml: '\u0d2a\u0d3f\u0d28\u0d4d\u0d24\u0d41\u0d23\u0d4d' },
     { id: 'wall', href: 'founding-wall.html', en: 'Wall', ml: '\u0d2e\u0d24\u0d3f\u0d32\u0d4d' },
   ];
   var dLinks = links.map(function (l) {
@@ -232,7 +232,7 @@ function renderFooter() {
           '<a href="index.html" data-en="Home" data-ml="\u0d39\u0d4b\u0d2e\u0d4d">Home</a>' +
           '<a href="menu-ballot.html" data-en="Menu Ballot" data-ml="\u0d2e\u0d46\u0d28\u0d41 \u0d2c\u0d3e\u0da9\u0d32\u0d32\u0d4d">Menu Ballot</a>' +
           '<a href="ambiance.html" data-en="Ambiance" data-ml="\u0d05\u0d28\u0d4d\u0d24\u0d30\u0d40\u0d15\u0d4d\u0d37\u0d02">Ambiance</a>' +
-          '<a href="pricing.html" data-en="Pricing" data-ml="\u0d35\u0d3f\u0d32">Pricing</a>' +
+          '<a href="pricing.html" data-en="Support" data-ml="\u0d2a\u0d3f\u0d28\u0d4d\u0d24\u0d41\u0d23\u0d4d">Support</a>' +
           '<a href="founding-wall.html" data-en="Founding Wall" data-ml="\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d15 \u0d2e\u0d24\u0d3f\u0d32\u0d4d">Founding Wall</a>' +
           '<a href="community-results.html" data-en="Community Results" data-ml="\u0d15\u0d2e\u0d4d\u0d2e\u0d4d\u0d2f\u0d42\u0d23\u0d3f\u0d1f\u0d3f \u0d2b\u0da4\u0d02">Community Results</a>' +
         '</nav>' +
