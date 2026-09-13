@@ -1,24 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fair Cup Pricing — CUPPILO Co-Creation</title>
-  <meta name="description" content="Name fair prices for Kerala's first community-built artisanal café. Claim your Digital Founding Patron Pass and unlock exclusive launch-week vouchers."/>
+  <meta name="description" content="Name fair prices for Kerala's first community-built artisanal café in Palakkad. Claim your Digital Founding Patron Pass and unlock exclusive launch-week vouchers."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    :root {
-      --muted-latte: #E8E2D2;
-      --surface-low: #fbf1f2;
-      --on-surface-variant: #57423e;
-      --outline-variant: #8b716d;
-    }
-
     .price-value {
       font-size: 2rem;
       font-weight: 800;
@@ -29,7 +21,7 @@
     .median-bar {
       height: 4px;
       border-radius: 9999px;
-      background: var(--muted-latte);
+      background: var(--muted);
       position: relative;
       margin-top: 0.5rem;
     }
@@ -43,7 +35,7 @@
     .median-label {
       font-size: 0.6875rem;
       font-weight: 600;
-      color: var(--on-surface-variant);
+      color: var(--on-sv);
       position: absolute;
       top: -1.25rem;
       transform: translateX(-50%);
@@ -59,7 +51,7 @@
     }
     .char-counter {
       font-size: 0.75rem;
-      color: var(--on-surface-variant);
+      color: var(--on-sv);
       text-align: right;
       margin-top: 0.25rem;
       font-variant-numeric: tabular-nums;
@@ -71,7 +63,7 @@
       font-style: italic;
       font-size: 1.0625rem;
       line-height: 1.7;
-      color: var(--on-surface-variant);
+      color: var(--on-sv);
       border-left: 3px solid var(--brass);
       padding-left: 1.25rem;
     }
@@ -79,7 +71,7 @@
       width: 5rem;
       height: 5rem;
       border-radius: 50%;
-      background: conic-gradient(var(--primary) 0% 92%, var(--muted-latte) 92% 100%);
+      background: conic-gradient(var(--muted) 0% 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -172,7 +164,7 @@
       opacity: 0.7;
     }
     .tier-card {
-      border: 1.5px solid var(--muted-latte);
+      border: 1.5px solid var(--muted);
       border-radius: 0.75rem;
       padding: 1rem 1.25rem;
       cursor: pointer;
@@ -182,17 +174,17 @@
       gap: 0.75rem;
     }
     .tier-card:hover {
-      border-color: var(--outline-variant);
+      border-color: var(--outline);
     }
     .tier-card.selected {
       border-color: var(--primary);
-      background: var(--surface-low);
+      background: var(--surface-l);
     }
     .tier-radio {
       width: 1.125rem;
       height: 1.125rem;
       border-radius: 50%;
-      border: 2px solid var(--muted-latte);
+      border: 2px solid var(--muted);
       flex-shrink: 0;
       position: relative;
       transition: all 0.2s ease;
@@ -215,7 +207,7 @@
       width: 1.125rem;
       height: 1.125rem;
       border-radius: 0.25rem;
-      border: 1.5px solid var(--muted-latte);
+      border: 1.5px solid var(--muted);
       flex-shrink: 0;
       cursor: pointer;
       accent-color: var(--primary);
@@ -239,7 +231,6 @@
       background: rgba(200,157,92,0.15);
     }
 
-    /* Step indicator */
     .step-pill {
       display: inline-flex;
       align-items: center;
@@ -300,21 +291,21 @@
       <div style="display:flex;align-items:center;justify-content:space-between;padding:0.75rem 0">
         <div class="step-pill">
           <span class="step-num">4</span>
-          <span class="step-text" data-en="Step 4 of 5 • Community Co-Creation" data-ml="ഘട്ടം 4 of 5 • കമ്മ്യൂണിറ്റി കോ-ക്രിയേഷൻ">Step 4 of 5 • Community Co-Creation</span>
+          <span class="step-text" data-en="Step 4 of 5 · Community Co-Creation" data-ml="ഘട്ടം 4 of 5 · കമ്മ്യൂണിറ്റി കോ-ക്രിയേഷൻ">Step 4 of 5 · Community Co-Creation</span>
         </div>
         <div class="step-dots">
           <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
           <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
           <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
           <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
-          <span class="step-dot" style="width:0.625rem;background:var(--muted-latte)"></span>
+          <span class="step-dot" style="width:0.625rem;background:var(--muted)"></span>
         </div>
       </div>
 
       <!-- Page Header -->
       <div style="margin-bottom:2rem">
-        <h1 class="font-display" style="font-size:1.75rem;color:var(--charcoal);margin-bottom:0.25rem" data-en="Fair Cup Pricing" data-ml="ന്യായമായ വില">Fair Cup Pricing</h1>
-        <p style="font-size:0.9375rem;color:var(--on-surface-variant)" data-en="You name the price. We'll build the café around what feels fair." data-ml="വില നിങ്ങൾ പറയൂ. ന്യായമെന്ന് തോന്നുന്നത് ചുറ്റും ഞങ്ങൾ കഫേ നിർമ്മിക്കും.">You name the price. We'll build the café around what feels fair.</p>
+        <h1 class="font-display" style="font-size:1.75rem;color:var(--charcoal);margin-bottom:0.25rem" data-en="Fair Cup Pricing" data-ml="ന്യായമായ കപ്പ് വില">Fair Cup Pricing</h1>
+        <p style="font-size:0.9375rem;color:var(--on-sv)" data-en="You name the price. We'll build the café around what feels fair." data-ml="വില നിങ്ങൾ പറയൂ. ന്യായമെന്ന് തോന്നുന്നത് ചുറ്റും ഞങ്ങൾ കഫേ നിർമ്മിക്കും.">You name the price. We'll build the café around what feels fair.</p>
       </div>
 
       <!-- 2-Column Layout: 7fr / 5fr -->
@@ -334,16 +325,16 @@
             <div style="margin-bottom:1.5rem">
               <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.5rem">
                 <span style="font-size:0.875rem;font-weight:600;color:var(--charcoal)" data-en="Signature Cold Brew" data-ml="സിഗ്നേച്ചർ കോൾഡ് ബ്രൂ">Signature Cold Brew</span>
-                <span class="price-value" id="coffee-price">₹65</span>
+                <span class="price-value" id="coffee-price">₹60</span>
               </div>
-              <input type="range" id="coffee-slider" min="30" max="120" value="65" step="1">
-              <div style="display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--on-surface-variant);margin-top:0.25rem">
+              <input type="range" id="coffee-slider" min="30" max="120" value="60" step="1">
+              <div style="display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--on-sv);margin-top:0.25rem">
                 <span>₹30</span>
                 <span>₹120</span>
               </div>
               <div class="median-bar">
-                <div class="median-indicator" id="coffee-median" style="left:33%;width:11%"></div>
-                <span class="median-label" style="left:38%" data-en="Community median: ₹60–70" data-ml="കമ്മ്യൂണിറ്റി മധ്യം: ₹60–70">Community median: ₹60–70</span>
+                <div class="median-indicator" id="coffee-median" style="left:33%;width:0%"></div>
+                <span class="median-label" style="left:33%" data-en="No votes yet — be the first" data-ml="വോട്ടുകൾ ഇല്ല — ആദ്യത്തെ ആൾ ആകൂ">No votes yet — be the first</span>
               </div>
             </div>
 
@@ -354,13 +345,13 @@
                 <span class="price-value" id="tea-price">₹20</span>
               </div>
               <input type="range" id="tea-slider" min="15" max="40" value="20" step="1">
-              <div style="display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--on-surface-variant);margin-top:0.25rem">
+              <div style="display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--on-sv);margin-top:0.25rem">
                 <span>₹15</span>
                 <span>₹40</span>
               </div>
               <div class="median-bar">
-                <div class="median-indicator" id="tea-median" style="left:20%;width:8%"></div>
-                <span class="median-label" style="left:24%" data-en="Community median: ₹20" data-ml="കമ്മ്യൂണിറ്റി മധ്യം: ₹20">Community median: ₹20</span>
+                <div class="median-indicator" id="tea-median" style="left:20%;width:0%"></div>
+                <span class="median-label" style="left:20%" data-en="No votes yet — be the first" data-ml="വോട്ടുകൾ ഇല്ല — ആദ്യത്തെ ആൾ ആകൂ">No votes yet — be the first</span>
               </div>
             </div>
           </div>
@@ -372,39 +363,39 @@
               <h2 class="font-display" style="font-size:1rem;color:var(--charcoal)" data-en="Dream Café Wishlist" data-ml="സ്വപ്ന കഫേ വിഷ്ലിസ്റ്റ്">Dream Café Wishlist</h2>
             </div>
 
-            <p style="font-size:0.8125rem;color:var(--on-surface-variant);margin-bottom:0.75rem" data-en="Toggle what matters most to you:" data-ml="നിങ്ങൾക്ക് ഏറ്റവും പ്രധാനമായത് ടോഗിൾ ചെയ്യുക:">Toggle what matters most to you:</p>
+            <p style="font-size:0.8125rem;color:var(--on-sv);margin-bottom:0.75rem" data-en="Toggle what matters most to you:" data-ml="നിങ്ങൾക്ക് ഏറ്റവും പ്രധാനമായത് ടോഗിൾ ചെയ്യുക:">Toggle what matters most to you:</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem" id="wishlist-chips">
-              <button class="chip chip-toggle" data-tag="late-night" onclick="toggleChip(this)">
-                <span class="material-symbols-outlined" style="font-size:16px">dark_mode</span>
-                <span data-en="Late-night Hours" data-ml="രാത്രി സമയം">Late-night Hours</span>
+              <button class="chip chip-toggle" data-tag="free-wifi" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">wifi</span>
+                <span data-en="Free WiFi" data-ml="സൗജന്യ WiFi">Free WiFi</span>
               </button>
-              <button class="chip chip-toggle" data-tag="restrooms" onclick="toggleChip(this)">
-                <span class="material-symbols-outlined" style="font-size:16px">clean_hands</span>
-                <span data-en="Clean Restrooms" data-ml="വൃത്തിയുള്ള റെസ്റ്റ്‌റൂം">Clean Restrooms</span>
+              <button class="chip chip-toggle" data-tag="board-games" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">extension</span>
+                <span data-en="Board Games" data-ml="ബോർഡ് ഗെയിമുകൾ">Board Games</span>
               </button>
-              <button class="chip chip-toggle" data-tag="charging" onclick="toggleChip(this)">
-                <span class="material-symbols-outlined" style="font-size:16px">bolt</span>
-                <span data-en="Charging Sockets" data-ml="ചാർജിംഗ് സോക്കറ്റുകൾ">Charging Sockets</span>
+              <button class="chip chip-toggle" data-tag="book-nook" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">menu_book</span>
+                <span data-en="Book Nook" data-ml="ബുക്ക് നൂക്ക്">Book Nook</span>
               </button>
-              <button class="chip chip-toggle" data-tag="quiet" onclick="toggleChip(this)">
-                <span class="material-symbols-outlined" style="font-size:16px">self_improvement</span>
-                <span data-en="Quiet Work Zone" data-ml="ശാന്തമായ ജോലി സോൺ">Quiet Work Zone</span>
+              <button class="chip chip-toggle" data-tag="pet-friendly" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">pets</span>
+                <span data-en="Pet Friendly" data-ml="പെറ്റ് ഫ്രണ്ട്‌ലി">Pet Friendly</span>
               </button>
-              <button class="chip chip-toggle" data-tag="parking" onclick="toggleChip(this)">
-                <span class="material-symbols-outlined" style="font-size:16px">local_parking</span>
-                <span data-en="Parking" data-ml="പാർക്കിംഗ്">Parking</span>
+              <button class="chip chip-toggle" data-tag="live-music" onclick="toggleChip(this)">
+                <span class="material-symbols-outlined" style="font-size:16px">music_note</span>
+                <span data-en="Live Music" data-ml="ലൈവ് മ്യൂസിക്">Live Music</span>
               </button>
             </div>
 
-            <label style="font-size:0.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:0.5rem" data-en="If you could fix ONE thing about cafés in Kerala?" data-ml="കേരളത്തിലെ കഫേകളെക്കുറിച്ച് ഒരു കാര്യം മാറ്റാൻ സാധിച്ചാൽ?">If you could fix ONE thing about cafés in Kerala?</label>
+            <label style="font-size:0.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:0.5rem" data-en="If you could fix ONE thing about cafés in Palakkad?" data-ml="പാലക്കാട്ടെ കഫേകളെക്കുറിച്ച് ഒരു കാര്യം മാറ്റാൻ സാധിച്ചാൽ?">If you could fix ONE thing about cafés in Palakkad?</label>
             <textarea class="input" id="wishlist-textarea" maxlength="280" placeholder="The chai is too sweet, the chairs are uncomfortable, there's no plug point..." rows="3" oninput="updateCharCount()"></textarea>
             <div class="char-counter" id="char-counter">0/280</div>
           </div>
 
           <!-- 3. Testimonial Quote -->
           <div class="card" style="margin-bottom:1.25rem">
-            <div class="testimony-quote" data-en="Kerala deserves spaces that don't mimic European sterility — but ones that honour the veranda, the monsoon, the shared brass tumbler. CUPPILO is the antidote to cookie-cutter café culture." data-ml="യൂറോപ്യൻ മരവിപ്പ് അനുകരിക്കാത്ത, പക്ഷേ വരാന്ത, മൺസൂൺ, പങ്കിട്ട ചെമ്പ് ടംബ്ലർ എന്നിവയെ ആദരിക്കുന്ന ഇടങ്ങൾക്ക് കേരളം അർഹമാണ്. CUPPILO കുക്കീ-കട്ടർ കഫേ സംസ്കാരത്തിനുള്ള മരുന്നാണ്.">Kerala deserves spaces that don't mimic European sterility — but ones that honour the veranda, the monsoon, the shared brass tumbler. CUPPILO is the antidote to cookie-cutter café culture.</div>
-            <p style="font-size:0.75rem;font-weight:600;color:var(--on-surface-variant);margin-top:0.75rem" data-en="— Founding Patron, Wayanad Chapter" data-ml="— സ്ഥാപക പാട്രൺ, വയനാട് അധ്യായം">— Founding Patron, Wayanad Chapter</p>
+            <div class="testimony-quote" data-en="Palakkad deserves spaces that don't mimic European sterility — but ones that honour the veranda, the monsoon, the shared brass tumbler. CUPPILO is the antidote to cookie-cutter café culture." data-ml="യൂറോപ്യൻ മരവിപ്പ് അനുകരിക്കാത്ത, പക്ഷേ വരാന്ത, മൺസൂൺ, പങ്കിട്ട ചെമ്പ് ടംബ്ലർ എന്നിവയെ ആദരിക്കുന്ന ഇടങ്ങൾക്ക് പാലക്കാട് അർഹമാണ്. CUPPILO കുക്കീ-കട്ടർ കഫേ സംസ്കാരത്തിനുള്ള മരുന്നാണ്.">Palakkad deserves spaces that don't mimic European sterility — but ones that honour the veranda, the monsoon, the shared brass tumbler. CUPPILO is the antidote to cookie-cutter café culture.</div>
+            <p style="font-size:0.75rem;font-weight:600;color:var(--on-sv);margin-top:0.75rem" data-en="— Founding Patron, Palakkad Chapter" data-ml="— സ്ഥാപക പാട്രൺ, പാലക്കാട് അധ്യായം">— Founding Patron, Palakkad Chapter</p>
           </div>
         </div>
 
@@ -418,13 +409,13 @@
               <span data-en="Founding Visionary" data-ml="സ്ഥാപക വിഷൻ ചായറുകാരൻ">Founding Visionary</span>
             </span>
             <div style="display:flex;align-items:center;justify-content:center;gap:1.25rem">
-              <div class="influence-score-ring">
-                <span class="influence-score-inner">92</span>
+              <div class="influence-score-ring" id="influence-ring">
+                <span class="influence-score-inner" id="influence-score">0</span>
               </div>
               <div style="text-align:left">
-                <p style="font-size:0.75rem;font-weight:600;color:var(--on-surface-variant)" data-en="Influence Score" data-ml="സ്വാധീന സ്കോർ">Influence Score</p>
-                <p style="font-size:1.5rem;font-weight:800;color:var(--primary);line-height:1">92<span style="font-size:0.875rem;font-weight:600;color:var(--on-surface-variant)">/100</span></p>
-                <p style="font-size:0.6875rem;color:var(--on-surface-variant)" data-en="Top 3% of contributors" data-ml="സംഭാവകരുടെ ടോപ്പ് 3%">Top 3% of contributors</p>
+                <p style="font-size:0.75rem;font-weight:600;color:var(--on-sv)" data-en="Influence Score" data-ml="സ്വാധീന സ്കോർ">Influence Score</p>
+                <p style="font-size:1.5rem;font-weight:800;color:var(--primary);line-height:1"><span id="influence-num">0</span><span style="font-size:0.875rem;font-weight:600;color:var(--on-sv)">/100</span></p>
+                <p style="font-size:0.6875rem;color:var(--on-sv)" data-en="No votes yet — your input shapes this" data-ml="വോട്ടുകൾ ഇല്ല — നിങ്ങളുടെ ഇൻപുട്ട് ഇത് രൂപപ്പെടുത്തുന്നു">No votes yet — your input shapes this</p>
               </div>
             </div>
           </div>
@@ -433,7 +424,7 @@
           <div class="founding-pass" style="margin-bottom:1.25rem">
             <div class="founding-pass-header">
               <span data-en="Founding Patron Pass" data-ml="സ്ഥാപക പാട്രൺ പാസ്">Founding Patron Pass</span>
-              <span style="font-family:'Courier New',monospace;font-size:0.75rem;letter-spacing:0.1em">PASS: #0842</span>
+              <span style="font-family:'Courier New',monospace;font-size:0.75rem;letter-spacing:0.1em">PASS: #0001</span>
             </div>
             <hr class="perforation">
             <div class="founding-pass-body">
@@ -451,8 +442,8 @@
                   <div class="pass-value" data-en="Within 90 days" data-ml="90 ദിവസത്തിനുള്ളിൽ">Within 90 days</div>
                 </div>
                 <div>
-                  <div class="pass-label" data-en="Locations" data-ml="സ്ഥലങ്ങൾ">Locations</div>
-                  <div class="pass-value" data-en="Wayanad · Nelliyampathy" data-ml="വയനാട് · നെല്ലിയമ്പതി">Wayanad · Nelliyampathy</div>
+                  <div class="pass-label" data-en="Location" data-ml="സ്ഥലം">Location</div>
+                  <div class="pass-value" data-en="Palakkad" data-ml="പാലക്കാട്">Palakkad</div>
                 </div>
                 <div>
                   <div class="pass-label" data-en="Status" data-ml="സ്ഥിതി">Status</div>
@@ -464,7 +455,7 @@
               </div>
               <div class="voucher-section">
                 <p style="font-size:0.625rem;font-weight:600;color:var(--brass);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.375rem" data-en="Your Voucher Code" data-ml="നിങ്ങളുടെ വൗച്ചർ കോഡ്">Your Voucher Code</p>
-                <div class="voucher-code" id="voucher-code">CUPPILO-842</div>
+                <div class="voucher-code" id="voucher-code">CUPPILO-0001</div>
                 <div class="qr-placeholder">
                   <span class="material-symbols-outlined" style="font-size:18px">qr_code_2</span>
                 </div>
@@ -488,7 +479,7 @@
                     <span style="font-size:0.875rem;font-weight:700;color:var(--charcoal)" data-en="Pioneer" data-ml="പയനീയർ">Pioneer</span>
                     <span style="font-size:1rem;font-weight:800;color:var(--primary)">₹10</span>
                   </div>
-                  <p style="font-size:0.75rem;color:var(--on-surface-variant);margin-top:0.125rem" data-en="Name on the digital Founding Wall · Early access invites" data-ml="ഡിജിറ്റൽ സ്ഥാപക മതിലിൽ പേര് · നേരത്തെ ആക്സസ് ക്ഷണങ്ങൾ">Name on the digital Founding Wall · Early access invites</p>
+                  <p style="font-size:0.75rem;color:var(--on-sv);margin-top:0.125rem" data-en="Name on the digital Founding Wall · Early access invites" data-ml="ഡിജിറ്റൽ സ്ഥാപക മതിലിൽ പേര് · നേരത്തെ ആക്സസ് ക്ഷണങ്ങൾ">Name on the digital Founding Wall · Early access invites</p>
                 </div>
               </div>
 
@@ -502,7 +493,7 @@
                     </div>
                     <span style="font-size:1rem;font-weight:800;color:var(--primary)">₹49</span>
                   </div>
-                  <p style="font-size:0.75rem;color:var(--on-surface-variant);margin-top:0.125rem" data-en="Free opening-week cold brew · Founding Patron badge · Priority seating" data-ml="സൗജന്യ ഓപ്പണിംഗ് വാര കോൾഡ് ബ്രൂ · സ്ഥാപക പാട്രൺ ബാഡ്ജ് · മുൻഗണനാ സീറ്റിംഗ്">Free opening-week cold brew · Founding Patron badge · Priority seating</p>
+                  <p style="font-size:0.75rem;color:var(--on-sv);margin-top:0.125rem" data-en="Free opening-week cold brew · Founding Patron badge · Priority seating" data-ml="സൗജന്യ ഓപ്പണിംഗ് വാര കോൾഡ് ബ്രൂ · സ്ഥാപക പാട്രൺ ബാഡ്ജ് · മുൻഗണനാ സീറ്റിംഗ്">Free opening-week cold brew · Founding Patron badge · Priority seating</p>
                 </div>
               </div>
             </div>
@@ -512,15 +503,15 @@
           <div class="card" style="margin-bottom:1.25rem">
             <label style="font-size:0.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:0.5rem" data-en="Phone Number" data-ml="ഫോൺ നമ്പർ">Phone Number</label>
             <div style="display:flex;gap:0.5rem;margin-bottom:1rem">
-              <div style="display:flex;align-items:center;gap:0.25rem;padding:0 0.75rem;background:var(--surface-container);border-radius:0.5rem;border:1px solid var(--muted-latte);min-height:48px">
-                <span style="font-size:0.875rem;font-weight:600;color:var(--on-surface-variant)">+91</span>
+              <div style="display:flex;align-items:center;gap:0.25rem;padding:0 0.75rem;background:var(--surface-container);border-radius:0.5rem;border:1px solid var(--muted);min-height:48px">
+                <span style="font-size:0.875rem;font-weight:600;color:var(--on-sv)">+91</span>
               </div>
               <input type="tel" id="phone-input" class="input" placeholder="98765 43210" maxlength="12" style="flex:1">
             </div>
 
             <label style="display:flex;align-items:flex-start;gap:0.625rem;cursor:pointer;margin-bottom:1.25rem">
               <input type="checkbox" id="consent-checkbox" class="consent-checkbox" style="margin-top:0.1875rem">
-              <span style="font-size:0.75rem;color:var(--on-surface-variant);line-height:1.5" data-en="I consent to CUPPILO storing my phone number for co-creation updates, in accordance with the DPDP Act 2023. I understand I can opt out anytime." data-ml="DPDP Act 2023 പ്രകാരം കോ-ക്രിയേഷൻ അപ്ഡേറ്റുകൾക്കായി CUPPILO എന്റെ ഫോൺ നമ്പർ സൂക്ഷിക്കുന്നതിൽ ഞാൻ സമ്മതിക്കുന്നു. എപ്പോൾ വേണമെങ്കിലും ഒപ്റ്റ് ഔട്ട് ചെയ്യാമെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു.">I consent to CUPPILO storing my phone number for co-creation updates, in accordance with the DPDP Act 2023. I understand I can opt out anytime.</span>
+              <span style="font-size:0.75rem;color:var(--on-sv);line-height:1.5" data-en="I consent to CUPPILO storing my phone number for co-creation updates, in accordance with the DPDP Act 2023. I understand I can opt out anytime." data-ml="DPDP Act 2023 പ്രകാരം കോ-ക്രിയേഷൻ അപ്ഡേറ്റുകൾക്കായി CUPPILO എന്റെ ഫോൺ നമ്പർ സൂക്ഷിക്കുന്നതിൽ ഞാൻ സമ്മതിക്കുന്നു. എപ്പോൾ വേണമെങ്കിലും ഒപ്റ്റ് ഔട്ട് ചെയ്യാമെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു.">I consent to CUPPILO storing my phone number for co-creation updates, in accordance with the DPDP Act 2023. I understand I can opt out anytime.</span>
             </label>
 
             <button class="btn btn-primary" style="width:100%" onclick="claimVoucher()">
@@ -541,7 +532,7 @@
                 <span style="color:var(--brass);font-weight:800" data-en="free banana cake" data-ml="സൗജന്യ പഴ കേക്ക്">free banana cake</span>
                 <span data-en="on your first visit." data-ml="നിങ്ങളുടെ ആദ്യ സന്ദർശനത്തിൽ.">on your first visit.</span>
               </p>
-              <p style="font-size:0.75rem;color:var(--outline-variant);margin-bottom:0.75rem" data-en="Share your unique link. When 3 friends complete their ballot, you both get a treat." data-ml="നിങ്ങളുടെ അദ്വിതീയ ലിങ്ക് പങ്കിടുക. 3 സുഹൃത്തുക്കൾ അവരുടെ ബാലറ്റ് പൂർത്തിയാക്കുമ്പോൾ, നിങ്ങൾ രണ്ടുപേർക്കും ഒരു ട്രീറ്റ് ലഭിക്കും.">Share your unique link. When 3 friends complete their ballot, you both get a treat.</p>
+              <p style="font-size:0.75rem;color:var(--outline);margin-bottom:0.75rem" data-en="Share your unique link. When 3 friends complete their ballot, you both get a treat." data-ml="നിങ്ങളുടെ അദ്വിതീയ ലിങ്ക് പങ്കിടുക. 3 സുഹൃത്തുക്കൾ അവരുടെ ബാലറ്റ് പൂർത്തിയാക്കുമ്പോൾ, നിങ്ങൾ രണ്ടുപേർക്കും ഒരു ട്രീറ്റ് ലഭിക്കും.">Share your unique link. When 3 friends complete their ballot, you both get a treat.</p>
               <button class="btn" style="background:var(--brass);color:var(--charcoal);font-weight:700;padding:0.625rem 1.25rem;font-size:0.8125rem" onclick="shareReferral()">
                 <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
                 <span data-en="Copy My Referral Link" data-ml="എന്റെ റെഫറൽ ലിങ്ക് കോപ്പി ചെയ്യുക">Copy My Referral Link</span>
@@ -554,7 +545,7 @@
     </div>
   </main>
 
-  <div id="footer"></div>
+  <footer class="footer" id="footer"></footer>
 
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
@@ -566,24 +557,20 @@
       updateCharCount();
     });
 
-    // Coffee slider
     const coffeeSlider = document.getElementById('coffee-slider');
     coffeeSlider.addEventListener('input', function() {
       document.getElementById('coffee-price').textContent = '₹' + this.value;
     });
 
-    // Tea slider
     const teaSlider = document.getElementById('tea-slider');
     teaSlider.addEventListener('input', function() {
       document.getElementById('tea-price').textContent = '₹' + this.value;
     });
 
-    // Wishlist chip toggle
     function toggleChip(el) {
       el.classList.toggle('active');
     }
 
-    // Character counter
     function updateCharCount() {
       const textarea = document.getElementById('wishlist-textarea');
       const counter = document.getElementById('char-counter');
@@ -592,14 +579,12 @@
       counter.className = 'char-counter' + (len > 250 ? ' danger' : len > 200 ? ' warning' : '');
     }
 
-    // Tier selection
     function selectTier(el, tier) {
       document.querySelectorAll('.tier-card').forEach(function(c) { c.classList.remove('selected'); });
       el.classList.add('selected');
       selectedTier = tier;
     }
 
-    // Claim voucher
     async function claimVoucher() {
       const phone = document.getElementById('phone-input').value.trim();
       const consent = document.getElementById('consent-checkbox').checked;
@@ -614,31 +599,32 @@
       }
 
       try {
-        if (typeof submitBallot === 'function') {
-          const coffeeVal = parseInt(coffeeSlider.value);
-          const teaVal = parseInt(teaSlider.value);
-          const tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(function(c) { return c.dataset.tag; });
-          const text = document.getElementById('wishlist-textarea').value;
+        const coffeeVal = parseInt(coffeeSlider.value);
+        const teaVal = parseInt(teaSlider.value);
+        const tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(function(c) { return c.dataset.tag; });
+        const text = document.getElementById('wishlist-textarea').value;
 
-          const result = await submitBallot({
-            menuVotes: {},
-            vibeVote: '',
-            priceCoffee: coffeeVal,
-            priceChaya: teaVal,
-            wishlist: text,
-            suggestedItems: tags
-          });
+        const ballotData = {
+          menu_votes: {},
+          vibe_vote: '',
+          price_coffee: coffeeVal,
+          price_chaya: teaVal,
+          wishlist_text: text,
+          suggested_items: tags
+        };
 
-          if (result.error) throw result.error;
+        const ballotResult = await sbInsert('ballots', ballotData);
 
-          if (typeof registerParticipant === 'function') {
-            await registerParticipant(result.refCode, {
-              phone: '+91' + phone,
-              consent: true,
-              tier: selectedTier || 'free'
-            });
-          }
-        }
+        const participantData = {
+          phone_number: '+91' + phone,
+          dpdp_consent: true,
+          consent_ts: new Date().toISOString(),
+          voucher_code: 'CUPPILO-' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+          tier: selectedTier || 'free',
+          payment_id: null
+        };
+
+        await sbInsert('participants', participantData);
 
         showToast('Your voucher is ready! Welcome, Founding Patron.', 'success');
         document.getElementById('pass-name').textContent = '+91 ' + phone.replace(/(\d{5})(\d{5})/, '$1 $2');
@@ -648,9 +634,8 @@
       }
     }
 
-    // Share referral
     function shareReferral() {
-      const url = window.location.origin + '/index.html?ref=CUPPILO-842';
+      const url = window.location.origin + '/index.html?ref=CUPPILO-0001';
       if (navigator.clipboard) {
         navigator.clipboard.writeText(url).then(function() {
           showToast('Referral link copied to clipboard!', 'success');

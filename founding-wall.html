@@ -1,785 +1,443 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title data-en="The Founding Wall — CUPPILO" data-ml="സ്ഥാപക മതിൽ — CUPPILO">The Founding Wall — CUPPILO</title>
-  <meta name="description" content="Honoring the first 1,428 founding patrons who built Kerala's grassroots specialty coffee movement — before we even had our first cup."/>
+  <title>The Founding Wall — CUPPILO</title>
+  <meta name="description" content="Honoring Palakkad's founding patrons who built Kerala's grassroots specialty coffee movement — before we even had our first cup."/>
 
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-
   <link href="css/styles.css" rel="stylesheet"/>
 
   <style>
-    @layer base {
-      html, body { margin: 0; padding: 0; }
-      body { overscroll-behavior: none; }
-      main > :first-child { margin-top: 0 !important; }
-      main > :last-child { margin-bottom: 0 !important; }
-    }
-    ::-webkit-scrollbar { display: none; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,78,0.3); } 50% { box-shadow: 0 0 24px 4px rgba(201,169,78,0.15); } }
-    .anim-fade-in { animation: fadeInUp 0.6s ease-out both; }
-    .anim-d1 { animation-delay: .1s; }
-    .anim-d2 { animation-delay: .2s; }
-    .anim-d3 { animation-delay: .3s; }
-    .anim-d4 { animation-delay: .4s; }
-    .patron-card { transition: all .3s cubic-bezier(.4,0,.2,1); }
-    .patron-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(35,31,32,.1); }
-    .cheer-btn.cheered svg { fill: #E74C3C; color: #E74C3C; }
-    .cheer-btn.cheered { transform: scale(1.1); }
-    .laterite-brick {
-      background: linear-gradient(135deg, #C4836A 0%, #A66B55 50%, #8B5A42 100%);
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(0,0,0,.06) 14px, rgba(0,0,0,.06) 15px),
-        repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(0,0,0,.03) 29px, rgba(0,0,0,.03) 30px);
-    }
-    .brick-overlay {
-      background-image:
-        linear-gradient(45deg, rgba(44,24,16,.03) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(44,24,16,.03) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(44,24,16,.03) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(44,24,16,.03) 75%);
-      background-size: 20px 20px;
-      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-    }
+    .wall-progress{background:var(--surface);border-bottom:1px solid var(--muted);padding:.75rem 0}
+    .wall-progress-meta{display:flex;align-items:center;gap:.5rem;font-size:.875rem}
+    .wall-progress-meta .step{font-weight:700;color:var(--terracotta)}
+    .wall-progress-meta .sep{color:var(--on-surface-3)}
+    .wall-progress-meta .label{color:var(--on-surface-2)}
+
+    .wall-header{text-align:center;padding:2rem 0 1.5rem}
+    .wall-pill{display:inline-flex;align-items:center;gap:.375rem;background:rgba(200,157,92,0.15);padding:.375rem .875rem;border-radius:9999px;font-size:.75rem;font-weight:600;color:var(--brass);margin-bottom:1rem}
+    .wall-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse 2s infinite}
+    .wall-title{font-family:var(--font-editorial);font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-.02em;color:var(--on-surface);margin-bottom:.5rem;line-height:1.2}
+    .wall-title span{color:var(--terracotta)}
+    .wall-subtitle{font-size:1rem;color:var(--on-surface-2);max-width:36rem;margin:0 auto;line-height:1.6}
+
+    .inscription-section{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:center;margin-bottom:2rem}
+    @media(min-width:768px){.inscription-section{grid-template-columns:1fr 1fr}}
+    .inscription-visual{background:linear-gradient(135deg,#C4836A,#8B5A42);border-radius:1rem;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .inscription-visual-icon{font-size:3rem;color:rgba(255,255,255,.3)}
+    .inscription-visual-text{font-family:var(--font-editorial);font-style:italic;font-size:1rem;color:rgba(255,255,255,.7);text-align:center}
+    .inscription-badge{display:inline-flex;align-items:center;padding:.25rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:600;background:rgba(255,255,255,0.15);color:#FFF;margin-bottom:.75rem}
+    .inscription-check{display:inline-flex;align-items:center;gap:.375rem;font-size:.8125rem;color:var(--on-surface-2);background:var(--surface-2);padding:.5rem .75rem;border-radius:var(--radius-sm);margin-top:.5rem}
+    .inscription-check .material-symbols-outlined{font-size:16px;color:var(--success)}
+
+    .empty-state{text-align:center;padding:3rem 1rem}
+    .empty-state-icon{width:64px;height:64px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+    .empty-state-icon .material-symbols-outlined{font-size:32px;color:var(--on-surface-3)}
+    .empty-state h3{font-size:1.125rem;font-weight:700;color:var(--on-surface);margin-bottom:.25rem}
+    .empty-state p{font-size:.875rem;color:var(--on-surface-2);margin-bottom:1rem}
+
+    .cta-section{background:var(--charcoal);border-radius:var(--radius);padding:2rem;text-align:center;color:var(--cream);position:relative;overflow:hidden}
+    .cta-section::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,.02) 10px,rgba(255,255,255,.02) 20px)}
+    .cta-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1rem}
+    .cta-tag{display:inline-flex;align-items:center;padding:.25rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:600;background:rgba(200,157,92,.2);color:var(--brass)}
+    .cta-title{font-size:1.5rem;font-weight:800;color:var(--cream)}
+    .cta-desc{font-size:.9375rem;color:rgba(247,244,235,.5);max-width:32rem}
+
+    .modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity 200ms ease}
+    .modal-overlay.open{opacity:1;pointer-events:all}
+    .modal{background:var(--surface);border-radius:1.5rem;max-width:32rem;width:100%;padding:2rem;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform 200ms ease}
+    .modal-overlay.open .modal{transform:translateY(0)}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;color:var(--on-surface-2);padding:.25rem}
+    .modal-header{text-align:center;margin-bottom:1.5rem}
+    .modal-icon{width:56px;height:56px;border-radius:1rem;background:rgba(200,157,92,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;color:var(--brass)}
+    .modal-title{font-size:1.25rem;font-weight:800;color:var(--on-surface);margin-bottom:.25rem}
+    .modal-desc{font-size:.875rem;color:var(--on-surface-2)}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    @media(max-width:480px){.form-row{grid-template-columns:1fr}}
+    .form-consent{display:flex;align-items:flex-start;gap:.5rem;margin-top:.5rem}
+    .form-consent input{margin-top:.125rem;accent-color:var(--terracotta)}
+    .form-consent label{font-size:.75rem;color:var(--on-surface-2);line-height:1.5}
+
+    .form-success{text-align:center;padding:2rem 0}
+    .form-success-icon{width:64px;height:64px;border-radius:50%;background:var(--success-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+    .form-success-icon .material-symbols-outlined{font-size:32px;color:var(--success)}
+
+    @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
   </style>
 </head>
 
-<body class="bg-surface font-body-md text-on-surface antialiased">
+<body>
 
   <nav class="navbar" id="navbar"></nav>
 
-  <main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]">
-    <div class="flex flex-col w-full">
+  <main style="padding-bottom:3rem">
 
-      <!-- Ambient glow -->
-      <div class="relative w-full overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[920px] h-[480px] bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
-        <div class="absolute top-72 -right-20 w-[420px] h-[420px] bg-secondary/5 rounded-full blur-2xl pointer-events-none -z-10"></div>
-
-        <div class="max-w-[1080px] mx-auto px-margin md:px-margin-md pt-space-lg md:pt-space-xl pb-margin-lg flex flex-col gap-space-xl">
-
-          <!-- ═══════════════════════════════════════════════ -->
-          <!-- 1. HEADER — Malayalam pill + editorial headline -->
-          <!-- ═══════════════════════════════════════════════ -->
-          <div class="text-center flex flex-col items-center gap-space-sm anim-fade-in">
-            <span class="inline-flex items-center gap-space-xs bg-brass-soft/80 text-deep-clay px-space-md py-1.5 rounded-full shadow-sm">
-              <span class="w-2.5 h-2.5 rounded-full bg-live-pulse animate-ping"></span>
-              <span class="w-2 h-2 -ml-3.5 rounded-full bg-live-pulse"></span>
-              <span class="font-label-sm text-label-sm tracking-wide font-semibold" data-en="സ്ഥാപക മതിൽ • CHAPTER 06" data-ml="സ്ഥാപക മതിൽ • അധ്യായം 06">
-                സ്ഥാപക മതിൽ • CHAPTER 06
-              </span>
-            </span>
-            <h1 class="font-display-hero text-display-hero text-deep-clay tracking-tight leading-none">
-              <span data-en="The Founding Wall" data-ml="സ്ഥാപക മതിൽ">The Founding Wall</span><br>
-              <span class="text-primary font-extrabold italic" data-en="of CUPPILO." data-ml="CUPPILO-യുടെ.">of CUPPILO.</span>
-            </h1>
-            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl" data-en="Honoring the first 1,428 coffee lovers who believed in building Kerala's grassroots specialty coffee movement — before we even had our first cup." data-ml="കേരളത്തിന്റെ ഗ്രാസ്‌റൂട്ട് സ്പെഷ്യാലിറ്റി കാപ്പി പ്രസ്ഥാനം നിർമ്മിക്കുമെന്ന് വിശ്വസിച്ച ആദ്യ 1,428 കാപ്പി പ്രേമികളെ ആദരിക്കുന്നു — ഞങ്ങളുടെ ആദ്യ കപ്പ് പോലും കുടിക്കുന്നതിന് മുമ്പ്.">
-              Honoring the first <span class="text-primary font-semibold">1,428</span> coffee lovers who believed in building Kerala's grassroots specialty coffee movement — before we even had our first cup.
-            </p>
-          </div>
-
-          <!-- ═══════════════════════════════════════ -->
-          <!-- 2. KPI STAT CARDS (4 metrics)          -->
-          <!-- ═══════════════════════════════════════ -->
-          <div class="bg-deep-clay rounded-2xl p-space-md md:p-space-lg text-cream-canvas">
-            <div class="text-center mb-space-md">
-              <h2 class="font-label-sm text-label-sm tracking-[.25em] uppercase text-brass/70 mb-1" data-en="Live Foundry Metrics" data-ml="ലൈവ് ഫൗണ്ട്രി മെട്രിക്സ്">Live Foundry Metrics</h2>
-              <p class="text-cream-canvas/40 text-xs" data-en="Updated in real-time from our founding community" data-ml="ഞങ്ങളുടെ സ്ഥാപക സമൂഹത്തിൽ നിന്ന് റിയൽ-ടൈമിൽ അപ്‌ഡേറ്റ് ചെയ്തു">Updated in real-time from our founding community</p>
-            </div>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-space-sm">
-
-              <!-- KPI 1: Founding Patrons -->
-              <div class="bg-deep-clay/60 rounded-xl p-space-md border border-cream-canvas/10 anim-fade-in anim-d1">
-                <div class="flex items-center gap-space-xs mb-space-xs">
-                  <span class="w-2 h-2 rounded-full bg-success-leaf animate-pulse"></span>
-                  <span class="font-label-xs text-label-xs tracking-wider uppercase text-cream-canvas/50" data-en="Founding Patrons" data-ml="സ്ഥാപക പാട്രൺമാർ">Founding Patrons</span>
-                </div>
-                <div class="font-mono text-3xl md:text-4xl font-bold text-cream-canvas tabular-nums">1,428</div>
-                <div class="text-success-leaf text-xs font-medium mt-1" data-en="+34 today" data-ml="+34 ഇന്ന്">+34 today</div>
-              </div>
-
-              <!-- KPI 2: Micro-Roastery Fund -->
-              <div class="bg-deep-clay/60 rounded-xl p-space-md border border-cream-canvas/10 anim-fade-in anim-d2">
-                <div class="flex items-center gap-space-xs mb-space-xs">
-                  <span class="w-2 h-2 rounded-full bg-brass"></span>
-                  <span class="font-label-xs text-label-xs tracking-wider uppercase text-cream-canvas/50" data-en="Micro-Roastery Fund" data-ml="മൈക്രോ-റോസ്റ്ററി ഫണ്ട്">Micro-Roastery Fund</span>
-                </div>
-                <div class="font-mono text-3xl md:text-4xl font-bold text-brass tabular-nums">₹1,18,450</div>
-                <div class="text-cream-canvas/40 text-xs mt-1" data-en="Community pooled" data-ml="സമൂഹം സംഭാവന ചെയ്തു">Community pooled</div>
-              </div>
-
-              <!-- KPI 3: City Distribution -->
-              <div class="bg-deep-clay/60 rounded-xl p-space-md border border-cream-canvas/10 anim-fade-in anim-d3">
-                <div class="flex items-center gap-space-xs mb-space-xs">
-                  <span class="w-2 h-2 rounded-full bg-clay"></span>
-                  <span class="font-label-xs text-label-xs tracking-wider uppercase text-cream-canvas/50" data-en="City Distribution" data-ml="നഗര വിതരണം">City Distribution</span>
-                </div>
-                <div class="space-y-2 mt-2">
-                  <div class="flex items-center gap-2">
-                    <span class="text-cream-canvas/60 text-xs w-16">Kochi</span>
-                    <div class="flex-1 h-1.5 bg-cream-canvas/10 rounded-full overflow-hidden">
-                      <div class="h-full bg-brass rounded-full" style="width:54%"></div>
-                    </div>
-                    <span class="text-brass text-xs font-mono">54%</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-cream-canvas/60 text-xs w-16">Kozhikode</span>
-                    <div class="flex-1 h-1.5 bg-cream-canvas/10 rounded-full overflow-hidden">
-                      <div class="h-full bg-clay rounded-full" style="width:28%"></div>
-                    </div>
-                    <span class="text-clay text-xs font-mono">28%</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-cream-canvas/60 text-xs w-16">Thrissur</span>
-                    <div class="flex-1 h-1.5 bg-cream-canvas/10 rounded-full overflow-hidden">
-                      <div class="h-full bg-success-leaf rounded-full" style="width:18%"></div>
-                    </div>
-                    <span class="text-success-leaf text-xs font-mono">18%</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- KPI 4: Fort Kochi Flagship Countdown -->
-              <div class="bg-deep-clay/60 rounded-xl p-space-md border border-cream-canvas/10 anim-fade-in anim-d4" style="animation:pulseGlow 3s infinite;">
-                <div class="flex items-center gap-space-xs mb-space-xs">
-                  <span class="w-2 h-2 rounded-full bg-live-pulse animate-pulse"></span>
-                  <span class="font-label-xs text-label-xs tracking-wider uppercase text-cream-canvas/50" data-en="Fort Kochi Flagship" data-ml="ഫോർട്ട് കൊച്ചി ഫ്ലാഗ്ഷിപ്പ്">Fort Kochi Flagship</span>
-                </div>
-                <div class="font-mono text-4xl md:text-5xl font-bold text-cream-canvas tabular-nums">18</div>
-                <div class="text-cream-canvas/40 text-xs mt-1" data-en="Days Away" data-ml="ദിവസങ്ങൾ ശേഷം">Days Away</div>
-                <div class="mt-2 flex gap-1">
-                  <div class="text-center">
-                    <div class="font-mono text-lg text-brass tabular-nums" id="countdown-days">18</div>
-                    <div class="text-[9px] text-cream-canvas/40 uppercase" data-en="Days" data-ml="ദിവസം">Days</div>
-                  </div>
-                  <div class="text-cream-canvas/20">:</div>
-                  <div class="text-center">
-                    <div class="font-mono text-lg text-brass tabular-nums" id="countdown-hours">06</div>
-                    <div class="text-[9px] text-cream-canvas/40 uppercase" data-en="Hrs" data-ml="മണിക്കൂർ">Hrs</div>
-                  </div>
-                  <div class="text-cream-canvas/20">:</div>
-                  <div class="text-center">
-                    <div class="font-mono text-lg text-brass tabular-nums" id="countdown-mins">42</div>
-                    <div class="text-[9px] text-cream-canvas/40 uppercase" data-en="Min" data-ml="മിനിറ്റ്">Min</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- ═══════════════════════════════════════ -->
-          <!-- 3. INSCRIPTION NOTICE                   -->
-          <!-- ═══════════════════════════════════════ -->
-          <div class="grid md:grid-cols-2 gap-space-lg items-center">
-            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] laterite-brick flex items-center justify-center">
-              <div class="absolute inset-0 opacity-20 brick-overlay"></div>
-              <div class="relative z-10 text-center p-space-lg">
-                <div class="w-20 h-20 mx-auto mb-4 border-2 border-cream-canvas/30 rounded-xl flex items-center justify-center">
-                  <span class="material-symbols-outlined text-cream-canvas/50 text-[40px]">apartment</span>
-                </div>
-                <p class="font-editorial text-cream-canvas/80 text-lg italic" data-en="Laterite Wall at Fort Kochi" data-ml="ഫോർട്ട് കൊച്ചിയിലെ ലാറ്ററൈറ്റ് മതിൽ">Laterite Wall at Fort Kochi</p>
-                <p class="text-cream-canvas/30 text-xs mt-2 font-mono" data-en="[ Physical inscription site photograph ]" data-ml="[ ഭൗതിക ശിലാലേഖന സൈറ്റ് ഫോട്ടോഗ്രാഫ് ]">[ Physical inscription site photograph ]</p>
-              </div>
-            </div>
-            <div class="flex flex-col gap-space-sm">
-              <span class="inline-flex items-center self-start px-space-sm py-1 bg-clay/10 text-clay rounded-full font-label-xs text-label-xs font-semibold tracking-wider uppercase" data-en="Physical Inscription" data-ml="ഭൗതിക ശിലാലേഖനം">
-                Physical Inscription
-              </span>
-              <h2 class="font-headline-lg text-headline-lg text-deep-clay leading-tight">
-                <span data-en="Etched in Laterite Brick" data-ml="ലാറ്ററൈറ്റ് ഇഷ്ടികയിൽ കൊത്തിവച്ചിരിക്കുന്നു">Etched in Laterite Brick</span><br>& <span class="text-primary italic font-extrabold" data-en="Teak Wood" data-ml="തേക്ക് മരം">Teak Wood</span><br><span data-en="for Generations" data-ml="തലമുറകൾക്കായി">for Generations</span>
-              </h2>
-              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" data-en="Every founding patron's name and badge number will be physically carved into a laterite brick wall at our Fort Kochi flagship, set in teak wood frames crafted by local artisans from Thrissur. This isn't a digital ledger — it's a permanent, tactile monument to the community that built CUPPILO before it existed." data-ml="ഓരോ സ്ഥാപക പാട്രണ്ണിന്റെയും പേരും ബാഡ്ജ് നമ്പറും ഞങ്ങളുടെ ഫോർട്ട് കൊച്ചി ഫ്ലാഗ്ഷിപ്പിലെ ലാറ്ററൈറ്റ് ഇഷ്ടിക മതിലിൽ ഭൗതികമായി കൊത്തിവയ്ക്കും, തൃശ്ശൂരിലെ പ്രാദേശിക കരകൗശല ശില്പികൾ നിർമ്മിച്ച തേക്ക് മര ചട്ടങ്ങളിൽ സ്ഥാപിക്കും. ഇതൊരു ഡിജിറ്റൽ ലെഡ്ജർ അല്ല — ഇത് കുപ്പിലോ നിലനിന്നിരുന്നതിന് മുമ്പ് നിർമ്മിച്ച സമൂഹത്തിനുള്ള സ്ഥിരവും സ്പർശനാത്മകവുമായ സ്മാരകമാണ്.">
-                Every founding patron's name and badge number will be physically carved into a laterite brick wall at our Fort Kochi flagship, set in teak wood frames crafted by local artisans from Thrissur. This isn't a digital ledger — it's a permanent, tactile monument to the community that built CUPPILO before it existed.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-space-xs">
-                <span class="inline-flex items-center gap-space-xs px-space-sm py-1.5 bg-surface-container-high rounded-lg font-label-sm text-label-sm text-on-surface-variant">
-                  <span class="material-symbols-outlined text-[16px] text-success-leaf">check_circle</span>
-                  <span data-en="Hand-carved by artisans" data-ml="കരകൗശല ശില്പികൾ കൈകൊണ്ട് കൊത്തിയത്">Hand-carved by artisans</span>
-                </span>
-                <span class="inline-flex items-center gap-space-xs px-space-sm py-1.5 bg-surface-container-high rounded-lg font-label-sm text-label-sm text-on-surface-variant">
-                  <span class="material-symbols-outlined text-[16px] text-success-leaf">check_circle</span>
-                  <span data-en="Open-air courtyard placement" data-ml="തുറന്ന മുറ്റത്തെ സ്ഥാനം">Open-air courtyard placement</span>
-                </span>
-                <span class="inline-flex items-center gap-space-xs px-space-sm py-1.5 bg-surface-container-high rounded-lg font-label-sm text-label-sm text-on-surface-variant">
-                  <span class="material-symbols-outlined text-[16px] text-success-leaf">check_circle</span>
-                  <span data-en="Photo-proof sent to each patron" data-ml="ഓരോ പാട്രണ്ണിനും ഫോട്ടോ-പ്രൂഫ് അയച്ചു">Photo-proof sent to each patron</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- ═══════════════════════════════════════ -->
-          <!-- 4. SEARCH / FILTER / SORT TOOLBAR       -->
-          <!-- ═══════════════════════════════════════ -->
-          <div class="bg-surface-container-low rounded-2xl p-space-md md:p-space-lg border border-outline/10" id="patron-section">
-            <div class="flex flex-col sm:flex-row gap-space-sm mb-space-md">
-              <div class="relative flex-1">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-[20px] text-on-surface-variant/40">search</span>
-                <input type="text" id="patron-search" data-en="Search patron name, badge #, or district..." data-ml="പാട്രണ്ണിന്റെ പേര്, ബാഡ്ജ് #, അല്ലെങ്കിൽ ജില്ല തിരയുക..." placeholder="Search patron name, badge #, or district..." class="w-full pl-11 pr-4 py-3 bg-white rounded-xl border border-outline/20 font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all min-h-[48px]">
-              </div>
-              <select id="patron-sort" class="px-4 py-3 bg-white rounded-xl border border-outline/20 font-body-sm text-body-sm focus:outline-none focus:border-primary appearance-none cursor-pointer min-w-[160px] min-h-[48px]">
-                <option value="latest" data-en="Latest" data-ml="ഏറ്റവും പുതിയ">Latest</option>
-                <option value="influence" data-en="Influence Score" data-ml="സ്വാധീന സ്കോർ">Influence Score</option>
-                <option value="pass" data-en="Pass #" data-ml="പാസ് #">Pass #</option>
-              </select>
-            </div>
-            <div class="flex flex-wrap gap-2" id="tier-filters">
-              <button class="tier-pill active px-4 py-2 rounded-full font-label-sm text-label-sm font-semibold bg-deep-clay text-cream-canvas transition-all" data-tier="all">
-                <span data-en="All" data-ml="എല്ലാം">All</span> <span class="ml-1 opacity-70">(1,428)</span>
-              </button>
-              <button class="tier-pill px-4 py-2 rounded-full font-label-sm text-label-sm font-semibold bg-brass-soft text-deep-clay border border-brass/20 hover:bg-brass/20 transition-all" data-tier="first-brew">
-                <span data-en="First-Brew ₹49" data-ml="ഫസ്റ്റ്-ബ്രൂ ₹49">First-Brew ₹49</span> <span class="ml-1 opacity-70">(312)</span>
-              </button>
-              <button class="tier-pill px-4 py-2 rounded-full font-label-sm text-label-sm font-semibold bg-clay/10 text-clay border border-clay/20 hover:bg-clay/20 transition-all" data-tier="pioneer">
-                <span data-en="Founding Pioneer ₹10" data-ml="സ്ഥാപക പയനീർ ₹10">Founding Pioneer ₹10</span> <span class="ml-1 opacity-70">(846)</span>
-              </button>
-              <button class="tier-pill px-4 py-2 rounded-full font-label-sm text-label-sm font-semibold bg-success-leaf/10 text-success-leaf border border-success-leaf/20 hover:bg-success-leaf/15 transition-all" data-tier="community">
-                <span data-en="Community Free" data-ml="സമൂഹം സൗജന്യം">Community Free</span> <span class="ml-1 opacity-70">(270)</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- ═══════════════════════════════════════ -->
-          <!-- 5. PATRON CARDS GRID (6 cards)          -->
-          <!-- ═══════════════════════════════════════ -->
-          <div id="patron-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
-
-            <!-- Patron 1: #0001 — Dr. Gautham Nambiar -->
-            <div class="patron-card bg-white rounded-2xl p-space-md border border-outline/8 hover:border-brass/30 transition-all flex flex-col gap-space-sm" data-tier="first-brew" data-influence="98" data-pass="0001">
-              <div class="flex items-start justify-between">
-                <div class="flex items-center gap-space-sm">
-                  <div class="w-12 h-12 rounded-full bg-brass-soft flex items-center justify-center text-primary font-mono text-sm font-bold border-2 border-brass/30">GN</div>
-                  <div>
-                    <div class="font-mono text-[10px] text-on-surface-variant/50 tracking-wider">BADGE #0001</div>
-                    <h3 class="font-headline-sm text-headline-sm text-deep-clay" data-en="Dr. Gautham Nambiar" data-ml="ഡോ. ഗൗതം നമ്പ്യാർ">Dr. Gautham Nambiar</h3>
-                  </div>
-                </div>
-                <span class="px-2.5 py-1 bg-brass-soft text-deep-clay font-mono text-[10px] rounded-full uppercase tracking-wider font-semibold" data-en="First-Brew" data-ml="ഫസ്റ്റ്-ബ്രൂ">First-Brew</span>
-              </div>
-              <div class="flex items-center gap-space-sm text-xs text-on-surface-variant/60">
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px]">location_on</span>
-                  Kochi
-                </span>
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px] text-brass" style="font-variation-settings:'FILL' 1">star</span>
-                  98/100
-                </span>
-              </div>
-              <p class="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed" data-en="&quot;Finally a spot in Fort Kochi that doesn't treat coffee as an afterthought. Count me in for every brew.&quot;" data-ml="&quot;ഫോർട്ട് കൊച്ചിയിൽ കാപ്പിയെ ഒരു പിന്നീടുള്ള ചിന്തയായി കരുതാത്ത ഒരു സ്ഥലം ഒടുവിൽ. ഓരോ ബ്രൂവിലും എന്നെ കൂട്ടൂ.&quot;">"Finally a spot in Fort Kochi that doesn't treat coffee as an afterthought. Count me in for every brew."</p>
-              <div class="flex items-center justify-between pt-space-xs border-t border-outline/8 mt-auto">
-                <span class="text-[10px] text-on-surface-variant/40 font-mono">JOINED 2026-08-14</span>
-                <button class="cheer-btn inline-flex items-center gap-1.5 text-xs text-on-surface-variant/40 hover:text-red-500 transition-colors" data-cheered="false">
-                  <span class="material-symbols-outlined text-[18px] transition-all" style="font-variation-settings:'FILL' 0">favorite</span>
-                  <span class="cheer-count font-semibold">24</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Patron 2: #0042 — Ananya & Arjun -->
-            <div class="patron-card bg-white rounded-2xl p-space-md border border-outline/8 hover:border-clay/30 transition-all flex flex-col gap-space-sm" data-tier="pioneer" data-influence="95" data-pass="0042">
-              <div class="flex items-start justify-between">
-                <div class="flex items-center gap-space-sm">
-                  <div class="w-12 h-12 rounded-full bg-clay/10 flex items-center justify-center text-clay font-mono text-sm font-bold border-2 border-clay/30">AA</div>
-                  <div>
-                    <div class="font-mono text-[10px] text-on-surface-variant/50 tracking-wider">BADGE #0042</div>
-                    <h3 class="font-headline-sm text-headline-sm text-deep-clay" data-en="Ananya &amp; Arjun" data-ml="അനന്യ &amp; അർജുൻ">Ananya &amp; Arjun</h3>
-                  </div>
-                </div>
-                <span class="px-2.5 py-1 bg-clay/10 text-clay font-mono text-[10px] rounded-full uppercase tracking-wider font-semibold" data-en="Pioneer" data-ml="പയനീർ">Pioneer</span>
-              </div>
-              <div class="flex items-center gap-space-sm text-xs text-on-surface-variant/60">
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px]">location_on</span>
-                  Kozhikode
-                </span>
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px] text-brass" style="font-variation-settings:'FILL' 1">star</span>
-                  95/100
-                </span>
-              </div>
-              <p class="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed" data-en="&quot;Need great coffee after 10 PM in Kozhikode? This is it. The night-owl blend is going to change everything.&quot;" data-ml="&quot;രാത്രി 10 മണിക്ക് ശേഷം കോഴിക്കോട്ട് മികച്ച കാപ്പി വേണോ? ഇതാണ് അത്. നൈറ്റ്-ഓൾ ബ്ലെൻഡ് എല്ലാം മാറ്റാൻ പോകുന്നു.&quot;">"Need great coffee after 10 PM in Kozhikode? This is it. The night-owl blend is going to change everything."</p>
-              <div class="flex items-center justify-between pt-space-xs border-t border-outline/8 mt-auto">
-                <span class="text-[10px] text-on-surface-variant/40 font-mono">JOINED 2026-08-16</span>
-                <button class="cheer-btn inline-flex items-center gap-1.5 text-xs text-on-surface-variant/40 hover:text-red-500 transition-colors" data-cheered="false">
-                  <span class="material-symbols-outlined text-[18px] transition-all" style="font-variation-settings:'FILL' 0">favorite</span>
-                  <span class="cheer-count font-semibold">18</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Patron 3: #0089 — Reshma Mathew -->
-            <div class="patron-card bg-white rounded-2xl p-space-md border border-outline/8 hover:border-brass/30 transition-all flex flex-col gap-space-sm" data-tier="first-brew" data-influence="91" data-pass="0089">
-              <div class="flex items-start justify-between">
-                <div class="flex items-center gap-space-sm">
-                  <div class="w-12 h-12 rounded-full bg-brass-soft flex items-center justify-center text-primary font-mono text-sm font-bold border-2 border-brass/30">RM</div>
-                  <div>
-                    <div class="font-mono text-[10px] text-on-surface-variant/50 tracking-wider">BADGE #0089</div>
-                    <h3 class="font-headline-sm text-headline-sm text-deep-clay" data-en="Reshma Mathew" data-ml="രേഷ്മ മാത്യു">Reshma Mathew</h3>
-                  </div>
-                </div>
-                <span class="px-2.5 py-1 bg-brass-soft text-deep-clay font-mono text-[10px] rounded-full uppercase tracking-wider font-semibold" data-en="First-Brew" data-ml="ഫസ്റ്റ്-ബ്രൂ">First-Brew</span>
-              </div>
-              <div class="flex items-center gap-space-sm text-xs text-on-surface-variant/60">
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px]">location_on</span>
-                  Thrissur
-                </span>
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px] text-brass" style="font-variation-settings:'FILL' 1">star</span>
-                  91/100
-                </span>
-              </div>
-              <p class="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed" data-en="&quot;Nadumuttam open courtyard concept for Thrissur — yes! Morning pour-overs under the mango tree.&quot;" data-ml="&quot;തൃശ്ശൂരിനുള്ള നടുമുറ്റം തുറന്ന മുറ്റ ആശയം — അതെ! മാമ്പഴ മരത്തിനടിയിൽ രാവിലെ പോർ-ഓവർ.&quot;">"Nadumuttam open courtyard concept for Thrissur — yes! Morning pour-overs under the mango tree."</p>
-              <div class="flex items-center justify-between pt-space-xs border-t border-outline/8 mt-auto">
-                <span class="text-[10px] text-on-surface-variant/40 font-mono">JOINED 2026-08-18</span>
-                <button class="cheer-btn inline-flex items-center gap-1.5 text-xs text-on-surface-variant/40 hover:text-red-500 transition-colors" data-cheered="false">
-                  <span class="material-symbols-outlined text-[18px] transition-all" style="font-variation-settings:'FILL' 0">favorite</span>
-                  <span class="cheer-count font-semibold">15</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Patron 4: #0114 — Faizal Basheer -->
-            <div class="patron-card bg-white rounded-2xl p-space-md border border-outline/8 hover:border-clay/30 transition-all flex flex-col gap-space-sm" data-tier="pioneer" data-influence="89" data-pass="0114">
-              <div class="flex items-start justify-between">
-                <div class="flex items-center gap-space-sm">
-                  <div class="w-12 h-12 rounded-full bg-clay/10 flex items-center justify-center text-clay font-mono text-sm font-bold border-2 border-clay/30">FB</div>
-                  <div>
-                    <div class="font-mono text-[10px] text-on-surface-variant/50 tracking-wider">BADGE #0114</div>
-                    <h3 class="font-headline-sm text-headline-sm text-deep-clay" data-en="Faizal Basheer" data-ml="ഫൈസൽ ബഷീർ">Faizal Basheer</h3>
-                  </div>
-                </div>
-                <span class="px-2.5 py-1 bg-clay/10 text-clay font-mono text-[10px] rounded-full uppercase tracking-wider font-semibold" data-en="Pioneer" data-ml="പയനീർ">Pioneer</span>
-              </div>
-              <div class="flex items-center gap-space-sm text-xs text-on-surface-variant/60">
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px]">location_on</span>
-                  Kochi
-                </span>
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px] text-brass" style="font-variation-settings:'FILL' 1">star</span>
-                  89/100
-                </span>
-              </div>
-              <p class="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed" data-en="&quot;Affordable specialty pour-overs without the pretentiousness. Finally, serious coffee for everyone.&quot;" data-ml="&quot;അഹങ്കാരമില്ലാത്ത താങ്ങാവുന്ന സ്പെഷ്യാലിറ്റി പോർ-ഓവർ. ഒടുവിൽ, എല്ലാവർക്കും ഗൗരവമുള്ള കാപ്പി.&quot;">"Affordable specialty pour-overs without the pretentiousness. Finally, serious coffee for everyone."</p>
-              <div class="flex items-center justify-between pt-space-xs border-t border-outline/8 mt-auto">
-                <span class="text-[10px] text-on-surface-variant/40 font-mono">JOINED 2026-08-20</span>
-                <button class="cheer-btn inline-flex items-center gap-1.5 text-xs text-on-surface-variant/40 hover:text-red-500 transition-colors" data-cheered="false">
-                  <span class="material-symbols-outlined text-[18px] transition-all" style="font-variation-settings:'FILL' 0">favorite</span>
-                  <span class="cheer-count font-semibold">12</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Patron 5: #0256 — Sneha Nair -->
-            <div class="patron-card bg-white rounded-2xl p-space-md border border-outline/8 hover:border-success-leaf/30 transition-all flex flex-col gap-space-sm" data-tier="community" data-influence="86" data-pass="0256">
-              <div class="flex items-start justify-between">
-                <div class="flex items-center gap-space-sm">
-                  <div class="w-12 h-12 rounded-full bg-success-leaf/10 flex items-center justify-center text-success-leaf font-mono text-sm font-bold border-2 border-success-leaf/30">SN</div>
-                  <div>
-                    <div class="font-mono text-[10px] text-on-surface-variant/50 tracking-wider">BADGE #0256</div>
-                    <h3 class="font-headline-sm text-headline-sm text-deep-clay" data-en="Sneha Nair" data-ml="സ്നേഹ നായർ">Sneha Nair</h3>
-                  </div>
-                </div>
-                <span class="px-2.5 py-1 bg-success-leaf/10 text-success-leaf font-mono text-[10px] rounded-full uppercase tracking-wider font-semibold" data-en="Community" data-ml="സമൂഹം">Community</span>
-              </div>
-              <div class="flex items-center gap-space-sm text-xs text-on-surface-variant/60">
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px]">location_on</span>
-                  Trivandrum
-                </span>
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px] text-brass" style="font-variation-settings:'FILL' 1">star</span>
-                  86/100
-                </span>
-              </div>
-              <p class="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed" data-en="&quot;Community cupping sessions — this is how you build real coffee culture in Kerala. Count me in!&quot;" data-ml="&quot;സമൂഹ കപ്പിംഗ് സെഷനുകൾ — കേരളത്തിൽ യഥാർത്ഥ കാപ്പി സംസ്കാരം നിർമ്മിക്കുന്നത് ഇങ്ങനെയാണ്. എന്നെ കൂട്ടൂ!&quot;">"Community cupping sessions — this is how you build real coffee culture in Kerala. Count me in!"</p>
-              <div class="flex items-center justify-between pt-space-xs border-t border-outline/8 mt-auto">
-                <span class="text-[10px] text-on-surface-variant/40 font-mono">JOINED 2026-08-22</span>
-                <button class="cheer-btn inline-flex items-center gap-1.5 text-xs text-on-surface-variant/40 hover:text-red-500 transition-colors" data-cheered="false">
-                  <span class="material-symbols-outlined text-[18px] transition-all" style="font-variation-settings:'FILL' 0">favorite</span>
-                  <span class="cheer-count font-semibold">9</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Patron 6: #0382 — Midhun K. P. -->
-            <div class="patron-card bg-white rounded-2xl p-space-md border border-outline/8 hover:border-brass/30 transition-all flex flex-col gap-space-sm" data-tier="first-brew" data-influence="94" data-pass="0382">
-              <div class="flex items-start justify-between">
-                <div class="flex items-center gap-space-sm">
-                  <div class="w-12 h-12 rounded-full bg-brass-soft flex items-center justify-center text-primary font-mono text-sm font-bold border-2 border-brass/30">MK</div>
-                  <div>
-                    <div class="font-mono text-[10px] text-on-surface-variant/50 tracking-wider">BADGE #0382</div>
-                    <h3 class="font-headline-sm text-headline-sm text-deep-clay" data-en="Midhun K. P." data-ml="മിധുൻ കെ. പി.">Midhun K. P.</h3>
-                  </div>
-                </div>
-                <span class="px-2.5 py-1 bg-brass-soft text-deep-clay font-mono text-[10px] rounded-full uppercase tracking-wider font-semibold" data-en="First-Brew" data-ml="ഫസ്റ്റ്-ബ്രൂ">First-Brew</span>
-              </div>
-              <div class="flex items-center gap-space-sm text-xs text-on-surface-variant/60">
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px]">location_on</span>
-                  Wayanad
-                </span>
-                <span class="inline-flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[14px] text-brass" style="font-variation-settings:'FILL' 1">star</span>
-                  94/100
-                </span>
-              </div>
-              <p class="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed" data-en="&quot;Single-estate Wayanad Arabica deserves the spotlight. This is the farm-to-cup revolution Kerala needed.&quot;" data-ml="&quot;ഒറ്റ-എസ്റ്റേറ്റ് വയനാട് അറേബിക്ക ശ്രദ്ധ അർഹിക്കുന്നു. ഇതാണ് കേരളത്തിന് വേണ്ടിയിരുന്ന ഫാം-ടൂ-കപ്പ് വിപ്ലവം.&quot;">"Single-estate Wayanad Arabica deserves the spotlight. This is the farm-to-cup revolution Kerala needed."</p>
-              <div class="flex items-center justify-between pt-space-xs border-t border-outline/8 mt-auto">
-                <span class="text-[10px] text-on-surface-variant/40 font-mono">JOINED 2026-08-15</span>
-                <button class="cheer-btn inline-flex items-center gap-1.5 text-xs text-on-surface-variant/40 hover:text-red-500 transition-colors" data-cheered="false">
-                  <span class="material-symbols-outlined text-[18px] transition-all" style="font-variation-settings:'FILL' 0">favorite</span>
-                  <span class="cheer-count font-semibold">21</span>
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Empty State -->
-          <div id="empty-state" class="hidden text-center py-16">
-            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-surface-container-high flex items-center justify-center">
-              <span class="material-symbols-outlined text-[32px] text-on-surface-variant/30">search_off</span>
-            </div>
-            <h3 class="font-headline-sm text-headline-sm text-on-surface-variant/60 mb-1" data-en="No patrons found" data-ml="പാട്രൺമാരെ കണ്ടെത്തിയില്ല">No patrons found</h3>
-            <p class="font-body-sm text-body-sm text-on-surface-variant/40" data-en="Try adjusting your search or filters" data-ml="നിങ്ങളുടെ തിരച്ചിലോ ഫിൽറ്ററുകളോ ക്രമീകരിക്കാൻ ശ്രമിക്കുക">Try adjusting your search or filters</p>
-          </div>
-
-          <!-- Load More -->
-          <div class="text-center" id="load-more-container">
-            <button id="load-more-btn" class="btn btn-outline">
-              <span data-en="Load More Patrons" data-ml="കൂടുതൽ പാട്രൺമാരെ ലോഡ് ചെയ്യുക">Load More Patrons</span>
-              <span class="ml-1 text-xs opacity-60">(1,422 remaining)</span>
-            </button>
-          </div>
-
-          <!-- ═══════════════════════════════════════ -->
-          <!-- 6. CLAIM YOUR BRICK CTA + MODAL         -->
-          <!-- ═══════════════════════════════════════ -->
-          <div class="bg-deep-clay rounded-2xl p-space-lg md:p-space-xl text-center relative overflow-hidden">
-            <div class="absolute inset-0 opacity-5 brick-overlay"></div>
-            <div class="relative z-10 flex flex-col items-center gap-space-sm">
-              <span class="inline-flex items-center px-space-sm py-1 bg-brass-soft/20 text-brass rounded-full font-label-xs text-label-xs font-semibold tracking-wider uppercase" data-en="Secure Your Legacy" data-ml="നിങ്ങളുടെ പൈതൃകം സുരക്ഷിതമാക്കുക">
-                Secure Your Legacy
-              </span>
-              <h2 class="font-headline-lg text-headline-lg text-cream-canvas leading-tight" data-en="Claim Your Founding Brick" data-ml="നിങ്ങളുടെ സ്ഥാപക ഇഷ്ടിക അവകാശപ്പെടുക">
-                Claim Your Founding Brick
-              </h2>
-              <p class="font-body-md text-body-md text-cream-canvas/50 max-w-xl" data-en="Check if your name is already on the wall, or join the founding community before the inscription deadline." data-ml="നിങ്ങളുടെ പേര് ഇതിനകം മതിലിലുണ്ടോ എന്ന് പരിശോധിക്കുക, അല്ലെങ്കിൽ ശിലാലേഖന സമയപരിധിക്ക് മുമ്പ് സ്ഥാപക സമൂഹത്തിൽ ചേരുക.">
-                Check if your name is already on the wall, or join the founding community before the inscription deadline.
-              </p>
-
-              <!-- Lookup -->
-              <div class="w-full max-w-lg mt-space-sm">
-                <div class="flex gap-space-sm">
-                  <input type="text" id="claim-lookup" placeholder="Enter your name or phone number..." data-en="Enter your name or phone number..." data-ml="നിങ്ങളുടെ പേരോ ഫോൺ നമ്പറോ നൽകുക..." class="flex-1 px-5 py-3.5 bg-cream-canvas/10 rounded-xl border border-cream-canvas/20 text-cream-canvas placeholder-cream-canvas/30 font-body-sm text-body-sm focus:outline-none focus:border-brass transition-all min-h-[48px]">
-                  <button id="claim-lookup-btn" class="btn bg-brass text-deep-clay hover:bg-brass-dark px-space-lg min-h-[48px]" data-en="Lookup" data-ml="തിരയുക">
-                    Lookup
-                  </button>
-                </div>
-              </div>
-
-              <!-- Pass Preview (hidden) -->
-              <div id="pass-preview" class="hidden w-full max-w-md bg-cream-canvas/5 rounded-2xl border border-cream-canvas/10 p-space-md text-left mt-space-sm">
-                <div class="flex items-center gap-space-md">
-                  <div class="w-14 h-14 rounded-full bg-brass-soft/20 flex items-center justify-center text-brass font-mono font-bold text-lg border-2 border-brass/40" id="preview-initials">--</div>
-                  <div class="flex-1 min-w-0">
-                    <div class="font-mono text-[10px] text-cream-canvas/40 tracking-wider">CUPPILO FOUNDING PASS</div>
-                    <div class="font-headline-sm text-headline-sm text-cream-canvas truncate" id="preview-name">--</div>
-                    <div class="text-cream-canvas/50 text-sm" id="preview-city">--</div>
-                  </div>
-                  <div class="text-right shrink-0">
-                    <div class="font-mono text-xs text-brass" id="preview-badge">BADGE #----</div>
-                    <div class="font-mono text-[10px] text-cream-canvas/40" id="preview-tier">--</div>
-                  </div>
-                </div>
-              </div>
-
-              <button id="claim-brick-btn" class="btn bg-brass text-deep-clay hover:bg-brass-dark px-space-xl py-3.5 text-lg font-bold mt-space-sm hover:scale-105 active:scale-100 transition-all">
-                <span class="material-symbols-outlined text-[22px]">apartment</span>
-                <span data-en="Claim Your Founding Brick" data-ml="നിങ്ങളുടെ സ്ഥാപക ഇഷ്ടിക അവകാശപ്പെടുക">Claim Your Founding Brick</span>
-              </button>
-              <p class="text-cream-canvas/30 text-xs font-mono" data-en="Inscription deadline: 30 September 2026" data-ml="ശിലാലേഖന സമയപരിധി: 2026 സെപ്റ്റംബർ 30">Inscription deadline: 30 September 2026</p>
-            </div>
-          </div>
-
+    <!-- Progress -->
+    <section class="wall-progress">
+      <div class="container">
+        <div class="wall-progress-meta">
+          <span class="step" data-en="Step 5 of 5" data-ml="ഘട്ടം 5 of 5">Step 5 of 5</span>
+          <span class="sep">&bull;</span>
+          <span class="label" data-en="Founding Patron Wall" data-ml="സ്ഥാപക പാട്രൺ മതിൽ">Founding Patron Wall</span>
+        </div>
+        <div class="progress-bar-outer" style="margin-top:.5rem">
+          <div class="progress-bar-inner" style="width:100%"></div>
         </div>
       </div>
+    </section>
+
+    <div class="container">
+
+      <!-- Header -->
+      <section class="wall-header">
+        <div class="wall-pill">
+          <span class="dot"></span>
+          <span data-en="Founding Wall" data-ml="സ്ഥാപക മതിൽ">Founding Wall</span>
+        </div>
+        <h1 class="wall-title" data-en="Palakkad's Founding Wall" data-ml="പാലക്കാട്ടെ സ്ഥാപക മതിൽ">Palakkad's Founding Wall</h1>
+        <p class="wall-subtitle" data-en="Honoring Palakkad's first café pioneers" data-ml="പാലക്കാട്ടെ ആദ്യ കഫേ പയനീയർമാരെ ആദരിക്കുന്നു">Honoring Palakkad's first café pioneers</p>
+      </section>
+
+      <!-- KPI Stat Cards -->
+      <section class="stat-grid" style="margin-bottom:2rem">
+        <div class="stat-card">
+          <div class="stat-value" id="kpi-patrons">0</div>
+          <div class="stat-label" data-en="Founding Patrons" data-ml="സ്ഥാപക പാട്രൺമാർ">Founding Patrons</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="kpi-fund">₹0</div>
+          <div class="stat-label" data-en="Micro Roastery Fund" data-ml="സൂക്ഷ്മ റോസ്റ്ററി ഫണ്ട്">Micro Roastery Fund</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="kpi-days">0</div>
+          <div class="stat-label" data-en="Days Left" data-ml="ദിവസങ്ങൾ ശേഷം">Days Left</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="kpi-verified">100%</div>
+          <div class="stat-label" data-en="Verified" data-ml="സ്ഥിരീകരിച്ചു">Verified</div>
+        </div>
+      </section>
+
+      <!-- Inscription Notice -->
+      <section class="inscription-section" style="margin-bottom:2rem">
+        <div class="inscription-visual">
+          <div style="text-align:center;padding:2rem">
+            <div style="width:80px;height:80px;margin:0 auto 1rem;border:2px solid rgba(255,255,255,.3);border-radius:1rem;display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="font-size:40px;color:rgba(255,255,255,.5)">apartment</span>
+            </div>
+            <p class="inscription-visual-text" data-en="Laterite Wall at Palakkad" data-ml="പാലക്കാട്ടെ ലാറ്ററൈറ്റ് മതിൽ">Laterite Wall at Palakkad</p>
+            <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:.5rem;font-family:var(--font-sans)" data-en="[ Physical inscription site photograph ]" data-ml="[ ഭൗതിക ശിലാലേഖന സൈറ്റ് ഫോട്ടോഗ്രാഫ് ]">[ Physical inscription site photograph ]</p>
+          </div>
+        </div>
+        <div>
+          <span class="inscription-badge" data-en="Physical Inscription" data-ml="ഭൗതിക ശിലാലേഖനം">Physical Inscription</span>
+          <h2 style="font-size:1.5rem;font-weight:800;color:var(--on-surface);line-height:1.2;margin-bottom:.5rem">
+            <span data-en="Written on Laterite Brick" data-ml="ലാറ്ററൈറ്റ് ഇഷ്ടികയിൽ എഴുതിയിരിക്കുന്നു">Written on Laterite Brick</span><br>&amp; <span style="color:var(--terracotta);font-style:italic" data-en="Teak Wood" data-ml="തേക്ക് മരം">Teak Wood</span>
+          </h2>
+          <p style="font-size:.9375rem;color:var(--on-surface-2);line-height:1.6" data-en="Every founding patron's name and badge number will be physically carved into a laterite brick wall at our Palakkad flagship, set in teak wood frames crafted by local artisans." data-ml="ഓരോ സ്ഥാപക പാട്രണ്ണിന്റെയും പേരും ബാഡ്ജ് നമ്പറും ഞങ്ങളുടെ പാലക്കാട് ഫ്ലാഗ്ഷിപ്പിലെ ലാറ്ററൈറ്റ് ഇഷ്ടിക മതിലിൽ ഭൗതികമായി കൊത്തിവയ്ക്കും.">Every founding patron's name and badge number will be physically carved into a laterite brick wall at our Palakkad flagship, set in teak wood frames crafted by local artisans.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem">
+            <span class="inscription-check"><span class="material-symbols-outlined">check_circle</span><span data-en="Hand-carved by artisans" data-ml="കരകൗശല ശില്പികൾ കൈകൊണ്ട് കൊത്തിയത്">Hand-carved by artisans</span></span>
+            <span class="inscription-check"><span class="material-symbols-outlined">check_circle</span><span data-en="Open-air courtyard placement" data-ml="തുറന്ന മുറ്റത്തെ സ്ഥാനം">Open-air courtyard placement</span></span>
+            <span class="inscription-check"><span class="material-symbols-outlined">check_circle</span><span data-en="Photo-proof sent to each patron" data-ml="ഓരോ പാട്രണ്ണിനും ഫോട്ടോ-പ്രൂഫ് അയച്ചു">Photo-proof sent to each patron</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search / Filter / Sort Toolbar -->
+      <div class="toolbar" style="margin-bottom:1rem">
+        <div class="toolbar-search">
+          <span class="material-symbols-outlined" style="font-size:18px;color:var(--on-surface-3)">search</span>
+          <input type="text" id="patron-search" placeholder="Search patron name, badge #, or city..." data-en="Search patron name, badge #, or city..." data-ml="പാട്രൺ പേര്, ബാഡ്ജ് #, അല്ലെങ്കിൽ ജില്ല തിരയുക...">
+        </div>
+        <div class="toolbar-filters" id="tier-filters">
+          <button class="chip active" data-tier="all">
+            <span data-en="All Patrons" data-ml="എല്ലാ പാട്രൺമാരും">All Patrons</span>
+          </button>
+          <button class="chip" data-tier="first-brew">
+            <span data-en="First-Brew Pass" data-ml="ഫസ്റ്റ്-ബ്രൂ പാസ്">First-Brew Pass</span>
+          </button>
+          <button class="chip" data-tier="pioneer">
+            <span data-en="Founding Pioneer" data-ml="സ്ഥാപക പയനിയർ">Founding Pioneer</span>
+          </button>
+          <button class="chip" data-tier="community">
+            <span data-en="Community" data-ml="കമ്മ്യൂണിറ്റി">Community</span>
+          </button>
+        </div>
+        <div class="toolbar-sort">
+          <select id="patron-sort">
+            <option value="newest" data-en="Newest" data-ml="ഏറ്റവും പുതിയ">Newest</option>
+            <option value="az" data-en="A-Z" data-ml="A-Z">A-Z</option>
+            <option value="contribution" data-en="Contribution" data-ml="സംഭാവന">Contribution</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Patron Grid (empty by default) -->
+      <div id="patron-grid"></div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="empty-state">
+        <div class="empty-state-icon">
+          <span class="material-symbols-outlined">group</span>
+        </div>
+        <h3 data-en="No patrons registered yet" data-ml="ഇപ്പോൾ ഒരു പാട്രൺ രജിസ്റ്റർ ചെയ്തിട്ടില്ല">No patrons registered yet</h3>
+        <p data-en="Be the first to claim your founding brick!" data-ml="നിങ്ങളുടെ സ്ഥാപക ഇഷ്ടിക അവകാശപ്പെടുന്ന ആദ്യത്തെ ആൾ!">Be the first to claim your founding brick!</p>
+        <a href="menu-ballot.html" class="btn btn-primary">
+          <span data-en="Vote on the Menu Ballot" data-ml="മെനു ബാലറ്റിൽ വോട്ട് ചെയ്യുക">Vote on the Menu Ballot</span>
+          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- CTA Section -->
+      <section class="cta-section" style="margin-top:2rem">
+        <div class="cta-inner">
+          <span class="cta-tag" data-en="Secure Your Legacy" data-ml="നിങ്ങളുടെ പൈതൃകം സുരക്ഷിതമാക്കുക">Secure Your Legacy</span>
+          <h2 class="cta-title" data-en="Claim Your Founding Brick" data-ml="നിങ്ങളുടെ സ്ഥാപക ഇഷ്ടിക അവകാശപ്പെടുക">Claim Your Founding Brick</h2>
+          <p class="cta-desc" data-en="Join the founding community and have your name permanently inscribed on Palakkad's first community-built café wall." data-ml="സ്ഥാപക സമൂഹത്തിൽ ചേരുക, പാലക്കാട്ടെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ മതിലിൽ നിങ്ങളുടെ പേര് ശാശ്വതമായി കൊത്തിവയ്ക്കുക.">Join the founding community and have your name permanently inscribed on Palakkad's first community-built café wall.</p>
+          <button id="claim-brick-btn" class="btn btn-primary" style="padding:.875rem 2rem;font-size:1rem;margin-top:.5rem">
+            <span class="material-symbols-outlined" style="font-size:20px">apartment</span>
+            <span data-en="Claim Your Brick" data-ml="നിങ്ങളുടെ ഇഷ്ടിക ക്ലെയിം ചെയ്യുക">Claim Your Brick</span>
+          </button>
+        </div>
+      </section>
 
     </div>
   </main>
 
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- INSCRIPTION MODAL                               -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <div id="inscription-modal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-deep-clay/60 backdrop-blur-sm" id="modal-overlay"></div>
-    <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
-      <div class="bg-surface rounded-3xl shadow-2xl w-full max-w-lg p-space-lg relative anim-fade-in">
-        <button id="modal-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant/50 hover:bg-surface-container hover:text-on-surface transition-all">
-          <span class="material-symbols-outlined text-[20px]">close</span>
+  <!-- Inscription Modal -->
+  <div id="inscription-modal" class="modal-overlay">
+    <div class="modal">
+      <button id="modal-close" class="modal-close">
+        <span class="material-symbols-outlined" style="font-size:20px">close</span>
+      </button>
+      <div class="modal-header">
+        <div class="modal-icon">
+          <span class="material-symbols-outlined" style="font-size:28px">edit_square</span>
+        </div>
+        <h3 class="modal-title" data-en="Join the Founding Wall" data-ml="സ്ഥാപക മതിലിൽ ചേരുക">Join the Founding Wall</h3>
+        <p class="modal-desc" data-en="Your name, permanently etched in Palakkad's coffee history." data-ml="നിങ്ങളുടെ പേര്, പാലക്കാട്ടെ കാപ്പി ചരിത്രത്തിൽ സ്ഥിരമായി കൊത്തിവച്ചിരിക്കുന്നു.">Your name, permanently etched in Palakkad's coffee history.</p>
+      </div>
+
+      <form id="inscription-form">
+        <div class="form-group">
+          <label class="form-label" data-en="Full Name *" data-ml="പൂർണ്ണ നാമം *">Full Name *</label>
+          <input type="text" id="form-name" class="form-input" placeholder="As it should appear on the wall" data-en="As it should appear on the wall" data-ml="മതിലിൽ എങ്ങനെ കാണപ്പെടണമോ അങ്ങനെ" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" data-en="City/District *" data-ml="നഗരം/ജില്ല *">City/District *</label>
+            <select id="form-city" class="form-input" required>
+              <option value="" data-en="Select city" data-ml="നഗരം തിരഞ്ഞെടുക്കുക">Select city</option>
+              <option value="Palakkad">Palakkad</option>
+              <option value="Thrissur">Thrissur</option>
+              <option value="Malappuram">Malappuram</option>
+              <option value="Coimbatore">Coimbatore</option>
+              <option value="Other" data-en="Other" data-ml="മറ്റുള്ളവ">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-en="Phone (OTP) *" data-ml="ഫോൺ (OTP) *">Phone (OTP) *</label>
+            <input type="tel" id="form-phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-en="Quote for Wall (optional)" data-ml="മതിലിനായുള്ള ഉദ്ധരണി (ഓപ്ഷണൽ)">Quote for Wall (optional)</label>
+          <textarea id="form-quote" class="form-textarea" rows="2" placeholder="A line about what coffee means to you..." data-en="A line about what coffee means to you..." data-ml="കാപ്പി നിങ്ങൾക്ക് എന്താണെന്ന് ഒരു വരി..."></textarea>
+        </div>
+        <div class="form-consent">
+          <input type="checkbox" id="form-dpdp" required>
+          <label for="form-dpdp" data-en="I consent to the public display of my name, city, and badge number on the CUPPILO Founding Wall per the Digital Personal Data Protection Act, 2023." data-ml="DPDP Act 2023 പ്രകാരം എന്റെ തിരഞ്ഞെടുത്ത വിശദാംശങ്ങൾ CUPPILO സ്ഥാപക മതിലിൽ പൊതുവായി പ്രദർശിപ്പിക്കാൻ ഞാൻ സമ്മതിക്കുന്നു.">I consent to the public display of my name, city, and badge number on the CUPPILO Founding Wall per the Digital Personal Data Protection Act, 2023.</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem">
+          <span class="material-symbols-outlined" style="font-size:18px">check_circle</span>
+          <span data-en="Submit &amp; Generate Badge #0001" data-ml="സമർപ്പിക്കുക &amp; ബാഡ്ജ് #0001 ജനറേറ്റ് ചെയ്യുക">Submit &amp; Generate Badge #0001</span>
         </button>
+      </form>
 
-        <div class="text-center mb-space-md">
-          <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-brass-soft flex items-center justify-center text-primary">
-            <span class="material-symbols-outlined text-[28px]">edit_square</span>
-          </div>
-          <h3 class="font-headline-md text-headline-md text-deep-clay mb-1" data-en="Join the Founding Wall" data-ml="സ്ഥാപക മതിലിൽ ചേരുക">Join the Founding Wall</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant" data-en="Your name, permanently etched in Kerala's coffee history." data-ml="നിങ്ങളുടെ പേര്, കേരളത്തിന്റെ കാപ്പി ചരിത്രത്തിൽ സ്ഥിരമായി കൊത്തിവച്ചിരിക്കുന്നു.">Your name, permanently etched in Kerala's coffee history.</p>
+      <!-- Success State -->
+      <div id="form-success" class="form-success" style="display:none">
+        <div class="form-success-icon">
+          <span class="material-symbols-outlined">check_circle</span>
         </div>
-
-        <form id="inscription-form" class="flex flex-col gap-space-sm">
-          <div>
-            <label class="block font-label-xs text-label-xs font-semibold text-on-surface-variant/70 mb-1 uppercase tracking-wider" data-en="Full Name *" data-ml="പൂർണ്ണ നാമം *">Full Name *</label>
-            <input type="text" id="form-name" required class="input" data-en="As it should appear on the wall" data-ml="മതിലിൽ എങ്ങനെ കാണപ്പെടണമോ അങ്ങനെ" placeholder="As it should appear on the wall">
-          </div>
-          <div class="grid grid-cols-2 gap-space-sm">
-            <div>
-              <label class="block font-label-xs text-label-xs font-semibold text-on-surface-variant/70 mb-1 uppercase tracking-wider" data-en="City *" data-ml="നഗരം *">City *</label>
-              <select id="form-city" required class="input">
-                <option value="" data-en="Select city" data-ml="നഗരം തിരഞ്ഞെടുക്കുക">Select city</option>
-                <option value="Kochi">Kochi</option>
-                <option value="Kozhikode">Kozhikode</option>
-                <option value="Thrissur">Thrissur</option>
-                <option value="Trivandrum">Trivandrum</option>
-                <option value="Wayanad">Wayanad</option>
-                <option value="Other" data-en="Other" data-ml="മറ്റുള്ളവ">Other</option>
-              </select>
-            </div>
-            <div>
-              <label class="block font-label-xs text-label-xs font-semibold text-on-surface-variant/70 mb-1 uppercase tracking-wider" data-en="Phone *" data-ml="ഫോൺ *">Phone *</label>
-              <input type="tel" id="form-phone" required class="input" placeholder="+91 XXXXX XXXXX">
-            </div>
-          </div>
-          <div>
-            <label class="block font-label-xs text-label-xs font-semibold text-on-surface-variant/70 mb-1 uppercase tracking-wider" data-en="Your Coffee Quote (optional)" data-ml="നിങ്ങളുടെ കാപ്പി ഉദ്ധരണി (ഓപ്ഷണൽ)">Your Coffee Quote (optional)</label>
-            <textarea id="form-quote" rows="2" class="input resize-none" data-en="A line about what coffee means to you..." data-ml="കാപ്പി നിങ്ങൾക്ക് എന്താണെന്ന് ഒരു വരി...">A line about what coffee means to you...</textarea>
-          </div>
-          <div class="flex items-start gap-space-xs">
-            <input type="checkbox" id="form-dpdp" required class="mt-1 w-4 h-4 text-primary border-outline/30 rounded focus:ring-primary">
-            <label for="form-dpdp" class="font-body-xs text-body-xs text-on-surface-variant/60 leading-relaxed" data-en="I consent to the public display of my name, city, and badge number on the CUPPILO Founding Wall. I understand this inscription is permanent. My phone number will only be used for verification and won't be displayed. This consent is in compliance with the Digital Personal Data Protection Act, 2023." data-ml="എന്റെ പേരും നഗരവും ബാഡ്ജ് നമ്പറും CUPPILO സ്ഥാപക മതിലിൽ പൊതുവായി പ്രദർശിപ്പിക്കാൻ ഞാൻ സമ്മതിക്കുന്നു. ഈ ശിലാലേഖനം ശാശ്വതമാണെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു. പരിശോധനയ്ക്കായി മാത്രമേ എന്റെ ഫോൺ നമ്പർ ഉപയോഗിക്കൂ, അത് പ്രദർശിപ്പിക്കില്ല. ഈ സമ്മതം ഡിജിറ്റൽ പേഴ്സണൽ ഡാറ്റ പ്രൊട്ടക്ഷൻ ആക്ട്, 2023 അനുസരിച്ചുള്ളതാണ്.">
-              I consent to the public display of my name, city, and badge number on the CUPPILO Founding Wall. I understand this inscription is permanent. My phone number will only be used for verification and won't be displayed. <span class="font-semibold text-on-surface-variant/80">This consent is in compliance with the Digital Personal Data Protection Act, 2023.</span>
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary w-full py-3.5">
-            <span class="material-symbols-outlined text-[18px]">check_circle</span>
-            <span data-en="Secure My Spot on the Wall" data-ml="മതിലിൽ എന്റെ സ്ഥാനം സുരക്ഷിതമാക്കുക">Secure My Spot on the Wall</span>
-          </button>
-        </form>
-
-        <!-- Success State -->
-        <div id="form-success" class="hidden text-center py-8">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-success-leaf/10 flex items-center justify-center">
-            <span class="material-symbols-outlined text-[32px] text-success-leaf">check_circle</span>
-          </div>
-          <h3 class="font-headline-md text-headline-md text-deep-clay mb-2" data-en="You're In!" data-ml="നിങ്ങൾ ഉൾപ്പെട്ടിരിക്കുന്നു!">You're In!</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant mb-4" data-en="Your badge number will be assigned within 24 hours. Check your phone for confirmation." data-ml="24 മണിക്കൂറിനുള്ളിൽ നിങ്ങളുടെ ബാഡ്ജ് നമ്പർ നൽകും. സ്ഥിരീകരണത്തിനായി നിങ്ങളുടെ ഫോൺ പരിശോധിക്കുക.">Your badge number will be assigned within 24 hours. Check your phone for confirmation.</p>
-          <button id="form-success-close" class="btn btn-outline btn-sm" data-en="Close" data-ml="അടയ്ക്കുക">Close</button>
-        </div>
+        <h3 style="font-size:1.25rem;font-weight:800;color:var(--on-surface);margin-bottom:.5rem" data-en="You're In!" data-ml="നിങ്ങൾ ഉൾപ്പെട്ടിരിക്കുന്നു!">You're In!</h3>
+        <p style="font-size:.875rem;color:var(--on-surface-2);margin-bottom:1rem" data-en="Your badge number will be assigned within 24 hours. Check your phone for confirmation." data-ml="24 മണിക്കൂറിനുള്ളിൽ നിങ്ങളുടെ ബാഡ്ജ് നമ്പർ നൽകും. സ്ഥിരീകരണത്തിനായി നിങ്ങളുടെ ഫോൺ പരിശോധിക്കുക.">Your badge number will be assigned within 24 hours. Check your phone for confirmation.</p>
+        <button id="form-success-close" class="btn btn-outline btn-sm" data-en="Close" data-ml="അടയ്ക്കുക">Close</button>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════ -->
-  <!-- FOOTER                                  -->
-  <!-- ═══════════════════════════════════════ -->
-  <footer id="footer" class="footer"></footer>
+  <footer class="footer" id="footer"></footer>
 
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
-    // ── Countdown ──
-    function updateCountdown() {
-      var target = new Date();
-      target.setDate(target.getDate() + 18);
-      target.setHours(10, 0, 0, 0);
-      var now = new Date();
-      var diff = target - now;
-      var days = Math.floor(diff / 864e5);
-      var hours = Math.floor((diff % 864e5) / 36e5);
-      var mins = Math.floor((diff % 36e5) / 6e4);
-      document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
-      document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('countdown-mins').textContent = String(mins).padStart(2, '0');
+    var allPatrons = [];
+
+    // ── Fetch patrons from Supabase ──
+    async function loadPatrons() {
+      try {
+        var result = await sbSelect('participants', '*');
+        if (result && Array.isArray(result)) {
+          allPatrons = result;
+          renderPatrons(allPatrons);
+        }
+      } catch (e) {
+        console.error('Failed to load patrons:', e);
+        renderPatrons([]);
+      }
     }
-    setInterval(updateCountdown, 60000);
-    updateCountdown();
 
-    // ── Search & Filter ──
-    var searchInput = document.getElementById('patron-search');
-    var patronGrid = document.getElementById('patron-grid');
-    var emptyState = document.getElementById('empty-state');
-    var loadMoreBtn = document.getElementById('load-more-btn');
-    var loadMoreContainer = document.getElementById('load-more-container');
+    // ── Render patron cards ──
+    function renderPatrons(patrons) {
+      var grid = document.getElementById('patron-grid');
+      var emptyState = document.getElementById('empty-state');
 
-    function filterCards() {
-      var query = searchInput.value.toLowerCase().trim();
-      var activeTier = (document.querySelector('.tier-pill.active') || {}).dataset;
+      if (!patrons || patrons.length === 0) {
+        grid.innerHTML = '';
+        emptyState.style.display = '';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      grid.innerHTML = patrons.map(function(p) {
+        var initials = (p.display_name || '??').split(' ').map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
+        var tierClass = p.tier === 'first-brew' ? 'badge-firstbrew' : p.tier === 'pioneer' ? 'badge-pioneer' : 'badge-community';
+        var tierLabel = p.tier === 'first-brew' ? 'First-Brew' : p.tier === 'pioneer' ? 'Pioneer' : 'Community';
+        var badgeNum = String(p.id || 1).padStart(4, '0');
+        var joinDate = p.consent_ts ? new Date(p.consent_ts).toISOString().split('T')[0] : '';
+
+        return '<div class="patron-card" data-tier="' + (p.tier || 'community') + '">' +
+          '<div class="patron-avatar" style="background:var(--surface-2);color:var(--terracotta);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;flex-shrink:0">' + initials + '</div>' +
+          '<div class="patron-info" style="flex:1;min-width:0">' +
+            '<div class="patron-name">' + (p.display_name || 'Anonymous') + '</div>' +
+            '<div class="patron-meta">' + joinDate + '</div>' +
+          '</div>' +
+          '<span class="patron-badge ' + tierClass + '">BADGE #' + badgeNum + '</span>' +
+        '</div>';
+      }).join('');
+    }
+
+    // ── Search ──
+    document.getElementById('patron-search').addEventListener('input', function() {
+      var query = this.value.toLowerCase().trim();
+      var activeTier = (document.querySelector('.chip.active') || {}).dataset;
       activeTier = activeTier ? activeTier.tier : 'all';
       var visibleCount = 0;
 
-      patronGrid.querySelectorAll('.patron-card').forEach(function(card) {
-        var name = (card.querySelector('h3') || {}).textContent || '';
-        name = name.toLowerCase();
-        var badge = card.dataset.pass || '';
-        var tier = card.dataset.tier || '';
+      document.querySelectorAll('.patron-card').forEach(function(card) {
         var text = card.textContent.toLowerCase();
-
-        var matchesSearch = !query || name.indexOf(query) !== -1 || badge.indexOf(query) !== -1 || text.indexOf(query) !== -1;
+        var tier = card.dataset.tier || '';
+        var matchesSearch = !query || text.indexOf(query) !== -1;
         var matchesTier = activeTier === 'all' || tier === activeTier;
-
-        if (matchesSearch && matchesTier) {
-          card.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          card.classList.add('hidden');
-        }
+        card.style.display = matchesSearch && matchesTier ? '' : 'none';
+        if (matchesSearch && matchesTier) visibleCount++;
       });
 
-      emptyState.classList.toggle('hidden', visibleCount > 0);
-      loadMoreContainer.classList.toggle('hidden', visibleCount === 0);
-    }
+      document.getElementById('empty-state').style.display = visibleCount === 0 && allPatrons.length === 0 ? '' : 'none';
+    });
 
-    searchInput.addEventListener('input', filterCards);
-
-    // ── Tier filter pills ──
-    document.querySelectorAll('.tier-pill').forEach(function(pill) {
-      pill.addEventListener('click', function() {
-        document.querySelectorAll('.tier-pill').forEach(function(p) {
-          p.classList.remove('active', 'bg-deep-clay', 'text-cream-canvas');
-        });
-        pill.classList.add('active', 'bg-deep-clay', 'text-cream-canvas');
-        filterCards();
+    // ── Tier filter chips ──
+    document.querySelectorAll('.chip[data-tier]').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        document.querySelectorAll('.chip[data-tier]').forEach(function(c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        document.getElementById('patron-search').dispatchEvent(new Event('input'));
       });
     });
 
     // ── Sort ──
     document.getElementById('patron-sort').addEventListener('change', function() {
-      var cards = Array.from(patronGrid.querySelectorAll('.patron-card'));
       var v = this.value;
-      cards.sort(function(a, b) {
-        if (v === 'latest') return (b.dataset.pass || '9999').localeCompare(a.dataset.pass || '9999');
-        if (v === 'influence') return parseInt(b.dataset.influence || 0) - parseInt(a.dataset.influence || 0);
-        if (v === 'pass') return (a.dataset.pass || '9999').localeCompare(b.dataset.pass || '9999');
-        return 0;
-      });
-      cards.forEach(function(c) { patronGrid.appendChild(c); });
+      var sorted = allPatrons.slice();
+      if (v === 'az') {
+        sorted.sort(function(a, b) { return (a.display_name || '').localeCompare(b.display_name || ''); });
+      } else if (v === 'contribution') {
+        sorted.sort(function(a, b) {
+          var aVal = a.payment_amount || (a.tier === 'first-brew' ? 49 : a.tier === 'pioneer' ? 10 : 0);
+          var bVal = b.payment_amount || (b.tier === 'first-brew' ? 49 : b.tier === 'pioneer' ? 10 : 0);
+          return bVal - aVal;
+        });
+      }
+      renderPatrons(sorted);
     });
 
-    // ── Cheer buttons ──
-    document.querySelectorAll('.cheer-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var isCheered = btn.dataset.cheered === 'true';
-        var countEl = btn.querySelector('.cheer-count');
-        var svgEl = btn.querySelector('.material-symbols-outlined');
-        var count = parseInt(countEl.textContent) || 0;
-
-        if (isCheered) {
-          count--;
-          btn.dataset.cheered = 'false';
-          btn.classList.remove('cheered');
-          svgEl.style.fontVariationSettings = "'FILL' 0";
-        } else {
-          count++;
-          btn.dataset.cheered = 'true';
-          btn.classList.add('cheered');
-          svgEl.style.fontVariationSettings = "'FILL' 1";
-        }
-        countEl.textContent = count;
-      });
-    });
-
-    // ── Load More ──
-    loadMoreBtn.addEventListener('click', function() {
-      loadMoreBtn.textContent = 'Loading...';
-      loadMoreBtn.disabled = true;
-      setTimeout(function() {
-        loadMoreBtn.textContent = 'No more patrons to load (Demo)';
-      }, 1200);
-    });
-
-    // ── Modal ──
+    // ── Modal open/close ──
     var modal = document.getElementById('inscription-modal');
-    var modalOverlay = document.getElementById('modal-overlay');
-    var modalClose = document.getElementById('modal-close');
-    var claimBtn = document.getElementById('claim-brick-btn');
+    var form = document.getElementById('inscription-form');
     var formSuccess = document.getElementById('form-success');
-    var formSuccessClose = document.getElementById('form-success-close');
-    var inscriptionForm = document.getElementById('inscription-form');
 
     function openModal() {
-      modal.classList.remove('hidden');
+      modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
     function closeModal() {
-      modal.classList.add('hidden');
+      modal.classList.remove('open');
       document.body.style.overflow = '';
       setTimeout(function() {
-        formSuccess.classList.add('hidden');
-        inscriptionForm.classList.remove('hidden');
-        inscriptionForm.reset();
+        formSuccess.style.display = 'none';
+        form.style.display = '';
+        form.reset();
       }, 300);
     }
 
-    claimBtn.addEventListener('click', openModal);
-    modalOverlay.addEventListener('click', closeModal);
-    modalClose.addEventListener('click', closeModal);
-    formSuccessClose.addEventListener('click', closeModal);
+    document.getElementById('claim-brick-btn').addEventListener('click', openModal);
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+    document.getElementById('form-success-close').addEventListener('click', closeModal);
 
-    // ── Form submit ──
-    inscriptionForm.addEventListener('submit', function(e) {
+    // ── Form validation & submit ──
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      var name = document.getElementById('form-name').value;
+      var name = document.getElementById('form-name').value.trim();
       var city = document.getElementById('form-city').value;
-      var phone = document.getElementById('form-phone').value;
+      var phone = document.getElementById('form-phone').value.trim();
+      var quote = document.getElementById('form-quote').value.trim();
       var dpdp = document.getElementById('form-dpdp').checked;
-      if (!name || !city || !phone || !dpdp) return;
 
-      var submitBtn = inscriptionForm.querySelector('button[type="submit"]');
-      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Submitting...';
+      if (!name || !city || !phone || !dpdp) {
+        showToast('Please fill all required fields.', 'error');
+        return;
+      }
+
+      var submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:18px;animation:spin 1s linear infinite">progress_activity</span> Submitting...';
 
-      setTimeout(function() {
-        inscriptionForm.classList.add('hidden');
-        formSuccess.classList.remove('hidden');
-        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span> Secure My Spot on the Wall';
-        submitBtn.disabled = false;
-      }, 1500);
+      try {
+        var participant = {
+          display_name: name,
+          phone_number: phone,
+          city: city,
+          quote: quote || null,
+          dpdp_consent: dpdp,
+          consent_ts: new Date().toISOString(),
+          tier: 'community',
+          badge_number: 1
+        };
+        await sbInsert('participants', participant);
+        form.style.display = 'none';
+        formSuccess.style.display = '';
+        showToast('Welcome to the Founding Wall!', 'success');
+      } catch (err) {
+        console.error('Submit error:', err);
+        showToast('Something went wrong. Please try again.', 'error');
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:18px">check_circle</span> Submit & Generate Badge #0001';
     });
 
-    // ── Claim lookup ──
-    var claimLookup = document.getElementById('claim-lookup');
-    var claimLookupBtn = document.getElementById('claim-lookup-btn');
-    var passPreview = document.getElementById('pass-preview');
-
-    claimLookupBtn.addEventListener('click', function() {
-      var query = claimLookup.value.trim();
-      if (!query) return;
-      passPreview.classList.remove('hidden');
-      document.getElementById('preview-initials').textContent = query.substring(0, 2).toUpperCase();
-      document.getElementById('preview-name').textContent = query;
-      document.getElementById('preview-city').textContent = 'Kochi';
-      document.getElementById('preview-badge').textContent = 'BADGE #0001';
-      document.getElementById('preview-tier').textContent = 'First-Brew ₹49';
-    });
-    claimLookup.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') claimLookupBtn.click();
-    });
-
-    // ── Init page ──
+    // ── Init ──
     document.addEventListener('DOMContentLoaded', function() {
       initPage('wall');
+      loadPatrons();
     });
   </script>
 
