@@ -86,8 +86,6 @@
     select.input{appearance:auto}
     .char-count{font-size:.65rem;color:var(--on-sv);display:block;text-align:right;margin-top:.2rem}
 
-    .nav-toggle{display:none;background:none;border:none;color:var(--on-s);font-size:1.3rem;cursor:pointer}
-
     @media(max-width:640px){
       .menu-row{flex-direction:column}
       .menu-row-img{width:100%;min-width:0;height:140px;border-radius:.75rem}
@@ -100,6 +98,23 @@
   </style>
 </head>
 <body>
+
+  <!-- SPLASH SCREEN -->
+  <div class="splash-screen" id="splash-screen">
+    <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
+    <span class="splash-text" data-en="In the cup, of course." data-ml="കപ്പിലോ, തീർച്ചയായും.">In the cup, of course.</span>
+    <span class="splash-sub" data-en="Co-creating Palakkad's first artisanal café" data-ml="പാലക്കാട്ടെ ആദ്യ കലാത്മക കഫേ സഹ-നിർമ്മിക്കുന്നു">Co-creating Palakkad's first artisanal café</span>
+  </div>
+
+  <!-- NAME ENTRY CARD -->
+  <div class="name-card-overlay" id="name-card-overlay">
+    <div class="name-card">
+      <h2 data-en="Welcome, Co-Creator" data-ml="സ്വാഗതം, സഹ-സ്രഷ്ടാവേ">Welcome, Co-Creator</h2>
+      <p data-en="Tell us your name so we can credit your votes on the Founding Wall." data-ml="നിങ്ങളുടെ പേര് പറയൂ, സ്ഥാപക മതിലിൽ നിങ്ങളുടെ വോട്ടുകൾ ക്രെഡിറ്റ് ചെയ്യാം.">Tell us your name so we can credit your votes on the Founding Wall.</p>
+      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="40" onkeydown="if(event.key==='Enter')submitName()">
+      <button class="btn btn-primary" onclick="submitName()" data-en="Join the Co-Creation" data-ml="സഹ-നിർമ്മാണത്തിൽ ചേരുക">Join the Co-Creation</button>
+    </div>
+  </div>
 
   <nav class="navbar" id="navbar"></nav>
 

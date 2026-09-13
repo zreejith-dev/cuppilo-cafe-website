@@ -16,7 +16,7 @@
     .ambiance-progress-meta .step{font-weight:700;color:var(--primary)}
     .ambiance-progress-meta .sep{color:var(--muted)}
     .ambiance-progress-meta .label{color:var(--on-sv)}
-    .ambiance-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-.02em;color:var(--primary);text-align:center;margin-bottom:.25rem}
+    .ambiance-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-.02em;color:var(--charcoal);text-align:center;margin-bottom:.25rem}
     .ambiance-subtitle{font-size:1rem;color:var(--on-sv);text-align:center;margin-bottom:2rem}
     .moodboard-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
     @media(min-width:768px){.moodboard-grid{grid-template-columns:1fr 1fr}}
@@ -61,11 +61,24 @@
 </head>
 <body>
 
+  <div class="splash-screen" id="splash-screen">
+    <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
+    <div class="splash-text">Before we open, you decide what we become.</div>
+    <div class="splash-sub">Palakkad's first community-built café</div>
+  </div>
+  <div class="name-card-overlay" id="name-card-overlay">
+    <div class="name-card">
+      <h2>Welcome to CUPPILO</h2>
+      <p>What should we call you?</p>
+      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
+      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
+    </div>
+  </div>
+
   <nav class="navbar" id="navbar"></nav>
 
   <main style="flex:1;padding-bottom:3rem">
 
-    <!-- Progress -->
     <section class="ambiance-progress">
       <div class="container">
         <div class="ambiance-progress-meta">
@@ -79,26 +92,21 @@
       </div>
     </section>
 
-    <!-- Title -->
     <section class="container" style="padding-top:2rem;padding-bottom:1.5rem;text-align:center">
       <h1 class="ambiance-title" data-en="Shape the Space &amp; Architecture" data-ml="സ്ഥലവും വാസ്തുവിദ്യയും രൂപപ്പെടുത്തുക">Shape the Space &amp; Architecture</h1>
       <p class="ambiance-subtitle" data-en="Which atmosphere draws you in? Vote below." data-ml="ഏത് അന്തരീക്ഷമാണ് നിങ്ങളെ ആകർഷിക്കുന്നത്? ചുവടെ വോട്ട് ചെയ്യുക.">Which atmosphere draws you in? Vote below.</p>
     </section>
 
-    <!-- 2x2 Moodboard Grid -->
     <section class="container" style="margin-bottom:2.5rem">
       <div class="moodboard-grid" id="moodboard-grid">
 
-        <!-- Option A: Kerala Heritage -->
         <label class="moodboard-card" data-option="A">
           <input type="radio" name="ambiance-choice" value="A" class="hidden">
           <div class="moodboard-gradient" style="background:linear-gradient(135deg,#8B4513,#CD853F)"></div>
           <div class="moodboard-body">
             <div class="moodboard-header">
               <span class="option-tag" data-en="Option A" data-ml="ഓപ്ഷൻ A">Option A</span>
-              <div class="radio-icon">
-                <div class="radio-dot"></div>
-              </div>
+              <div class="radio-icon"><div class="radio-dot"></div></div>
             </div>
             <h3 class="moodboard-title" data-en="Kerala Heritage" data-ml="കേരള പൈതൃകം">Kerala Heritage</h3>
             <p class="moodboard-subtitle" data-en="Laterite, teak, brass, Edison lamps" data-ml="ലേറ്ററൈറ്റ്, ടീക്, തമ്പ്, എഡിസൺ വിളക്കുകൾ">Laterite, teak, brass, Edison lamps</p>
@@ -119,16 +127,13 @@
           </div>
         </label>
 
-        <!-- Option B: Earth & Clay (DEFAULT) -->
         <label class="moodboard-card selected" data-option="B">
           <input type="radio" name="ambiance-choice" value="B" class="hidden" checked>
           <div class="moodboard-gradient" style="background:linear-gradient(135deg,#D2691E,#DEB887)"></div>
           <div class="moodboard-body">
             <div class="moodboard-header">
               <span class="option-tag" data-en="Option B" data-ml="ഓപ്ഷൻ B">Option B</span>
-              <div class="radio-icon">
-                <div class="radio-dot"></div>
-              </div>
+              <div class="radio-icon"><div class="radio-dot"></div></div>
             </div>
             <h3 class="moodboard-title" data-en="Earth &amp; Clay" data-ml="ഭൂമിയും മണ്ണും">Earth &amp; Clay</h3>
             <p class="moodboard-subtitle" data-en="Terracotta, ceramics, bamboo, earth tones" data-ml="ടെറക്കോട്ട, സെറാമിക്സ്, ബാംബൂ, ഭൂമി നിറങ്ങൾ">Terracotta, ceramics, bamboo, earth tones</p>
@@ -149,16 +154,13 @@
           </div>
         </label>
 
-        <!-- Option C: Modern Tropical Minimal -->
         <label class="moodboard-card" data-option="C">
           <input type="radio" name="ambiance-choice" value="C" class="hidden">
           <div class="moodboard-gradient" style="background:linear-gradient(135deg,#808080,#C0C0C0)"></div>
           <div class="moodboard-body">
             <div class="moodboard-header">
               <span class="option-tag" data-en="Option C" data-ml="ഓപ്ഷൻ C">Option C</span>
-              <div class="radio-icon">
-                <div class="radio-dot"></div>
-              </div>
+              <div class="radio-icon"><div class="radio-dot"></div></div>
             </div>
             <h3 class="moodboard-title" data-en="Modern Tropical Minimal" data-ml="ആധുനിക ട്രോപ്പിക്കൽ മിനിമൽ">Modern Tropical Minimal</h3>
             <p class="moodboard-subtitle" data-en="Concrete, glass, clean lines" data-ml="കോൺക്രീറ്റ്, ഗ്ലാസ്, വൃത്തിയുള്ള രേഖകൾ">Concrete, glass, clean lines</p>
@@ -179,7 +181,6 @@
           </div>
         </label>
 
-        <!-- Option D: Late Night Acoustic Courtyard -->
         <label class="moodboard-card" data-option="D">
           <input type="radio" name="ambiance-choice" value="D" class="hidden">
           <div class="moodboard-gradient" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"></div>
@@ -212,7 +213,6 @@
       </div>
     </section>
 
-    <!-- Consensus Insight Box -->
     <section class="container" style="margin-bottom:2.5rem">
       <div class="consensus-box">
         <div class="consensus-icon">
@@ -220,12 +220,11 @@
         </div>
         <div>
           <h3 class="consensus-heading" data-en="Consensus Insight" data-ml="സമ്മതി ഉൾക്കാഴ്ച">Consensus Insight</h3>
-          <p class="consensus-text" data-en="Votes are just starting — be one of the first to shape CUPPILO's vibe in Palakkad!" data-ml="വോട്ടുകൾ ആരംഭിക്കുന്നതേയുള്ളൂ — പാലക്കാട്ടെ CUPPILO-യുടെ വൈബ് രൂപപ്പെടുത്താൻ ആദ്യത്തെയാകൂ!">Votes are just starting — be one of the first to shape CUPPILO's vibe in Palakkad!</p>
+          <p class="consensus-text" id="consensus-text" data-en="Votes are just starting — be one of the first!" data-ml="വോട്ടുകൾ ആരംഭിക്കുന്നതേയുള്ളൂ — ആദ്യത്തെയാകൂ!">Votes are just starting — be one of the first!</p>
         </div>
       </div>
     </section>
 
-    <!-- Navigation -->
     <section class="container" style="margin-bottom:3rem">
       <div class="nav-row">
         <a href="menu-ballot.html" class="nav-back">
@@ -247,6 +246,8 @@
   <script src="js/shared.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      initPage('ambiance');
+
       var cards = document.querySelectorAll('.moodboard-card');
 
       function selectCard(card) {
@@ -277,47 +278,52 @@
         var savedCard = document.querySelector('.moodboard-card[data-option="' + saved + '"]');
         if (savedCard) {
           selectCard(savedCard);
-          return;
         }
       }
 
       var defaultCard = document.querySelector('.moodboard-card[data-option="B"]');
-      if (defaultCard) selectCard(defaultCard);
+      if (defaultCard && !saved) selectCard(defaultCard);
 
       cards.forEach(function(card) {
         card.addEventListener('click', function() { selectCard(card); });
       });
+
+      loadVibeTally();
     });
 
-    initPage('ambiance');
-
-    // Fetch live vibe tally
     async function loadVibeTally() {
       try {
         if (typeof fetchVibeTally === 'function') {
-          const tally = await fetchVibeTally();
+          var tally = await fetchVibeTally();
           if (tally && !tally.error && tally.length > 0) {
-            const total = tally.reduce((sum, t) => sum + (t.vote_count || 0), 0);
-            const options = { A: 'vibe-a', B: 'vibe-b', C: 'vibe-c', D: 'vibe-d' };
-            tally.forEach(t => {
-              const key = options[t.vibe_vote];
+            var total = tally.reduce(function(sum, t) { return sum + (t.vote_count || 0); }, 0);
+            var options = { A: 'vibe-a', B: 'vibe-b', C: 'vibe-c', D: 'vibe-d' };
+            tally.forEach(function(t) {
+              var key = options[t.vibe_vote];
               if (!key) return;
-              const count = t.vote_count || 0;
-              const pct = total > 0 ? Math.round(count / total * 100) : 0;
-              const countEl = document.getElementById(key + '-count');
-              const pctEl = document.getElementById(key + '-pct');
-              const barEl = document.getElementById(key + '-bar');
+              var count = t.vote_count || 0;
+              var pct = total > 0 ? Math.round(count / total * 100) : 0;
+              var countEl = document.getElementById(key + '-count');
+              var pctEl = document.getElementById(key + '-pct');
+              var barEl = document.getElementById(key + '-bar');
               if (countEl) countEl.textContent = count + ' votes';
               if (pctEl) pctEl.textContent = pct + '%';
               if (barEl) barEl.style.width = pct + '%';
             });
+
+            var winner = tally.reduce(function(a, b) { return (a.vote_count || 0) > (b.vote_count || 0) ? a : b; });
+            var pctWinner = total > 0 ? Math.round((winner.vote_count || 0) / total * 100) : 0;
+            var names = { A: 'Kerala Heritage', B: 'Earth & Clay', C: 'Modern Tropical Minimal', D: 'Late Night Acoustic Courtyard' };
+            var consensusEl = document.getElementById('consensus-text');
+            if (consensusEl && total > 0) {
+              consensusEl.textContent = '"' + (names[winner.vibe_vote] || 'TBD') + '" leads with ' + pctWinner + '% of the votes (' + total + ' total).';
+            }
           }
         }
       } catch (e) {
         console.log('Vibe tally fetch skipped:', e);
       }
     }
-    loadVibeTally();
   </script>
 
 </body>

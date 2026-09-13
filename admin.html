@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>CUPPILO Admin Panel</title>
+  <meta name="robots" content="noindex,nofollow"/>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <link href="css/styles.css" rel="stylesheet"/>
+
+  <style>
+    /* ── PASSWORD GATE ── */
+    .pw-gate{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;align-items:center;justify-content:center}
+    .pw-gate.hidden{display:none}
+    .pw-card{background:var(--bg-card);border-radius:1.5rem;max-width:22rem;width:100%;padding:2.5rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);text-align:center}
+    .pw-card h2{font-size:1.25rem;font-weight:800;margin-bottom:.25rem}
+    .pw-card p{font-size:.8125rem;color:var(--on-sv);margin-bottom:1.5rem}
+    .pw-card .input{margin-bottom:1rem;text-align:center;font-size:1.125rem;letter-spacing:.1em}
+    .pw-error{font-size:.8125rem;color:var(--live);margin-bottom:1rem;display:none}
+
+    /* ── ADMIN HEADER ── */
+    .admin-header{background:var(--bg-card);border-bottom:1px solid var(--muted);padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+    .admin-header-left{display:flex;align-items:center;gap:.75rem}
+    .admin-header h1{font-size:1rem;font-weight:700;color:var(--on-s)}
+    .admin-header .badge{background:var(--primary);color:#fff;font-size:.625rem;font-weight:700;padding:.125rem .5rem;border-radius:9999px;text-transform:uppercase;letter-spacing:.05em}
+
+    /* ── ADMIN LAYOUT ── */
+    .admin-body{display:grid;grid-template-columns:1fr;min-height:calc(100vh - 53px)}
+    @media(min-width:768px){.admin-body{grid-template-columns:220px 1fr}}
+
+    /* ── SIDEBAR ── */
+    .admin-sidebar{background:var(--bg-card);border-right:1px solid var(--muted);padding:1rem;display:none;position:sticky;top:53px;height:calc(100vh - 53px);overflow-y:auto}
+    @media(min-width:768px){.admin-sidebar{display:block}}
+    .admin-sidebar .section-label{font-size:.625rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--on-sv);padding:.5rem .75rem .25rem;opacity:.6}
+    .admin-sidebar a{display:flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-radius:.5rem;font-size:.8125rem;font-weight:600;color:var(--on-sv);text-decoration:none;transition:all .2s}
+    .admin-sidebar a:hover,.admin-sidebar a.active{background:var(--surface-h);color:var(--on-s)}
+    .admin-sidebar a.active{background:var(--primary);color:#fff}
+    .admin-sidebar a .material-symbols-outlined{font-size:18px}
+
+    /* ── MOBILE SIDEBAR TOGGLE ── */
+    .sidebar-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--muted);background:var(--chip-bg);cursor:pointer;color:var(--on-sv)}
+    @media(min-width:768px){.sidebar-toggle{display:none}}
+    .admin-sidebar.open{display:block;position:fixed;top:53px;left:0;bottom:0;width:240px;z-index:45;box-shadow:4px 0 24px rgba(0,0,0,.3)}
+
+    /* ── CONTENT ── */
+    .admin-content{padding:1.5rem;overflow-x:hidden}
+    .admin-content .tab-panel{display:none}
+    .admin-content .tab-panel.active{display:block}
+
+    /* ── STAT CARDS ── */
+    .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    @media(min-width:640px){.stat-grid{grid-template-columns:repeat(4,1fr)}}
+    .stat-card{background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;transition:all .2s}
+    .stat-card:hover{box-shadow:var(--shadow-lg)}
+    .stat-card .stat-icon{width:2.5rem;height:2.5rem;border-radius:.5rem;display:flex;align-items:center;justify-content:center;font-size:20px}
+    .stat-card .stat-value{font-size:1.75rem;font-weight:800;color:var(--primary);line-height:1}
+    .stat-card .stat-label{font-size:.8125rem;color:var(--on-sv);font-weight:500}
+    .stat-card .stat-sub{font-size:.6875rem;color:var(--on-sv);opacity:.6}
+
+    /* ── TABLES ── */
+    .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--muted);border-radius:1rem;background:var(--bg-card)}
+    .table-wrap table{width:100%;border-collapse:collapse;min-width:500px}
+    .table-wrap th{text-align:left;padding:.75rem 1rem;border-bottom:2px solid var(--muted);font-weight:700;color:var(--on-sv);font-size:.6875rem;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+    .table-wrap td{padding:.75rem 1rem;border-bottom:1px solid var(--muted);color:var(--on-s);font-size:.8125rem}
+    .table-wrap tr:last-child td{border-bottom:none}
+    .table-wrap tr:hover td{background:var(--surface-l)}
+
+    .empty-state{text-align:center;padding:3rem 1rem;color:var(--on-sv)}
+    .empty-state .material-symbols-outlined{font-size:48px;opacity:.3;margin-bottom:.5rem;display:block}
+    .empty-state p{font-size:.875rem}
+
+    /* ── REFRESH BTN ── */
+    .refresh-btn{display:inline-flex;align-items:center;gap:.375rem;padding:.5rem 1rem;border-radius:9999px;font-size:.75rem;font-weight:600;border:1px solid var(--muted);background:var(--chip-bg);color:var(--on-sv);cursor:pointer;transition:all .2s}
+    .refresh-btn:hover{background:var(--surface-h);color:var(--on-s)}
+    .refresh-btn .material-symbols-outlined{font-size:16px}
+
+    /* ── SETTINGS ── */
+    .setting-row{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-bottom:1px solid var(--muted)}
+    .setting-row:last-child{border-bottom:none}
+    .setting-label{font-size:.8125rem;font-weight:600;color:var(--on-s)}
+    .setting-value{font-size:.8125rem;color:var(--on-sv);font-family:monospace;background:var(--surface-h);padding:.25rem .625rem;border-radius:.375rem;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+    /* ── PILL BADGES IN TABLE ── */
+    .tier-badge{display:inline-flex;padding:.125rem .5rem;border-radius:9999px;font-size:.6875rem;font-weight:700}
+    .tier-free{background:var(--surface-h);color:var(--on-sv)}
+    .tier-founding{background:var(--brass-soft);color:var(--brass)}
+    .tier-premium{background:rgba(45,106,79,.15);color:var(--success)}
+
+    /* ── LAST UPDATED ── */
+    .last-updated{font-size:.75rem;color:var(--on-sv);opacity:.6;margin-top:1rem;text-align:right}
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD GATE -->
+  <div class="pw-gate" id="pw-gate">
+    <div class="pw-card">
+      <span class="material-symbols-outlined" style="font-size:40px;color:var(--primary);margin-bottom:.75rem">admin_panel_settings</span>
+      <h2>CUPPILO Admin</h2>
+      <p>Enter the admin password to continue.</p>
+      <div class="pw-error" id="pw-error">Incorrect password. Try again.</div>
+      <input type="password" class="input" id="pw-input" placeholder="Password" autocomplete="off"/>
+      <button class="btn btn-primary btn-block" onclick="checkPassword()">Unlock</button>
+    </div>
+  </div>
+
+  <!-- ADMIN APP (hidden until authenticated) -->
+  <div id="admin-app" style="display:none">
+
+    <!-- HEADER -->
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">
+          <span class="material-symbols-outlined" style="font-size:20px">menu</span>
+        </button>
+        <a href="index.html" style="display:flex;align-items:center;gap:.5rem;text-decoration:none">
+          <img src="img/logo-en-dark.png" alt="CUPPILO" class="nav-logo" style="height:28px" id="admin-logo"/>
+        </a>
+        <span class="badge">Admin</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" data-lang="ml" onclick="setLang('ml')">ML</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+          <span class="material-symbols-outlined" style="font-size:18px">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- BODY -->
+    <div class="admin-body">
+
+      <!-- SIDEBAR -->
+      <nav class="admin-sidebar" id="admin-sidebar">
+        <div class="section-label">Overview</div>
+        <a href="#" class="active" data-tab="dashboard" onclick="switchTab('dashboard',this)">
+          <span class="material-symbols-outlined">dashboard</span> Dashboard
+        </a>
+        <div class="section-label">Data</div>
+        <a href="#" data-tab="feedback" onclick="switchTab('feedback',this)">
+          <span class="material-symbols-outlined">lightbulb</span> Feedback
+        </a>
+        <a href="#" data-tab="menu-votes" onclick="switchTab('menu-votes',this)">
+          <span class="material-symbols-outlined">restaurant</span> Menu Votes
+        </a>
+        <a href="#" data-tab="ambiance-votes" onclick="switchTab('ambiance-votes',this)">
+          <span class="material-symbols-outlined">palette</span> Ambiance
+        </a>
+        <div class="section-label">People</div>
+        <a href="#" data-tab="users" onclick="switchTab('users',this)">
+          <span class="material-symbols-outlined">group</span> Users
+        </a>
+        <a href="#" data-tab="supporters" onclick="switchTab('supporters',this)">
+          <span class="material-symbols-outlined">favorite</span> Supporters
+        </a>
+        <div class="section-label">System</div>
+        <a href="#" data-tab="settings" onclick="switchTab('settings',this)">
+          <span class="material-symbols-outlined">settings</span> Settings
+        </a>
+      </nav>
+
+      <!-- MAIN CONTENT -->
+      <main class="admin-content">
+
+        <!-- ═══ DASHBOARD TAB ═══ -->
+        <div class="tab-panel active" id="tab-dashboard">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+            <div>
+              <h2 style="font-size:1.25rem;font-weight:800">Dashboard</h2>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Real-time campaign stats</p>
+            </div>
+            <button class="refresh-btn" onclick="loadDashboard()">
+              <span class="material-symbols-outlined">refresh</span> Refresh
+            </button>
+          </div>
+
+          <div class="stat-grid" id="stat-grid">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--primary)">
+                <span class="material-symbols-outlined">visibility</span>
+              </div>
+              <div class="stat-value" id="stat-visitors">--</div>
+              <div class="stat-label">Total Visitors</div>
+              <div class="stat-sub">Unique sessions</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
+                <span class="material-symbols-outlined">restaurant</span>
+              </div>
+              <div class="stat-value" id="stat-menu-votes">--</div>
+              <div class="stat-label">Menu Votes</div>
+              <div class="stat-sub">Ballots submitted</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--success)">
+                <span class="material-symbols-outlined">palette</span>
+              </div>
+              <div class="stat-value" id="stat-ambiance-votes">--</div>
+              <div class="stat-label">Ambiance Votes</div>
+              <div class="stat-sub">Vibe preferences</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--primary)">
+                <span class="material-symbols-outlined">payments</span>
+              </div>
+              <div class="stat-value" id="stat-price-suggestions">--</div>
+              <div class="stat-label">Price Suggestions</div>
+              <div class="stat-sub">Pricing inputs</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
+                <span class="material-symbols-outlined">lightbulb</span>
+              </div>
+              <div class="stat-value" id="stat-suggested-items">--</div>
+              <div class="stat-label">Suggested Items</div>
+              <div class="stat-sub">Community ideas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--success)">
+                <span class="material-symbols-outlined">favorite</span>
+              </div>
+              <div class="stat-value" id="stat-supporters">--</div>
+              <div class="stat-label">Supporters</div>
+              <div class="stat-sub">Patrons & backing</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--primary)">
+                <span class="material-symbols-outlined">handshake</span>
+              </div>
+              <div class="stat-value" id="stat-contributions">--</div>
+              <div class="stat-label">Total Contributions</div>
+              <div class="stat-sub">All form submissions</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
+                <span class="material-symbols-outlined">today</span>
+              </div>
+              <div class="stat-value" id="stat-today">--</div>
+              <div class="stat-label">Today's Activity</div>
+              <div class="stat-sub">Submissions today</div>
+            </div>
+          </div>
+
+          <div class="last-updated" id="dashboard-updated">Last updated: --</div>
+        </div>
+
+        <!-- ═══ FEEDBACK TAB ═══ -->
+        <div class="tab-panel" id="tab-feedback">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+            <div>
+              <h2 style="font-size:1.25rem;font-weight:800">Suggested Items</h2>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Community-submitted menu & experience ideas</p>
+            </div>
+            <button class="refresh-btn" onclick="loadFeedback()">
+              <span class="material-symbols-outlined">refresh</span> Refresh
+            </button>
+          </div>
+          <div class="table-wrap" id="feedback-table-wrap">
+            <div class="empty-state" id="feedback-empty">
+              <span class="material-symbols-outlined">hourglass_empty</span>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ MENU VOTES TAB ═══ -->
+        <div class="tab-panel" id="tab-menu-votes">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+            <div>
+              <h2 style="font-size:1.25rem;font-weight:800">Menu Votes</h2>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Aggregated votes by menu item</p>
+            </div>
+            <button class="refresh-btn" onclick="loadMenuVotes()">
+              <span class="material-symbols-outlined">refresh</span> Refresh
+            </button>
+          </div>
+          <div class="table-wrap" id="menu-votes-table-wrap">
+            <div class="empty-state" id="menu-votes-empty">
+              <span class="material-symbols-outlined">hourglass_empty</span>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ AMBIANCE VOTES TAB ═══ -->
+        <div class="tab-panel" id="tab-ambiance-votes">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+            <div>
+              <h2 style="font-size:1.25rem;font-weight:800">Ambiance Votes</h2>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Vibe & atmosphere preferences</p>
+            </div>
+            <button class="refresh-btn" onclick="loadAmbianceVotes()">
+              <span class="material-symbols-outlined">refresh</span> Refresh
+            </button>
+          </div>
+          <div class="table-wrap" id="ambiance-votes-table-wrap">
+            <div class="empty-state" id="ambiance-votes-empty">
+              <span class="material-symbols-outlined">hourglass_empty</span>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ USERS TAB ═══ -->
+        <div class="tab-panel" id="tab-users">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+            <div>
+              <h2 style="font-size:1.25rem;font-weight:800">Users</h2>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Registered user profiles</p>
+            </div>
+            <button class="refresh-btn" onclick="loadUsers()">
+              <span class="material-symbols-outlined">refresh</span> Refresh
+            </button>
+          </div>
+          <div class="table-wrap" id="users-table-wrap">
+            <div class="empty-state" id="users-empty">
+              <span class="material-symbols-outlined">hourglass_empty</span>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ SUPPORTERS TAB ═══ -->
+        <div class="tab-panel" id="tab-supporters">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+            <div>
+              <h2 style="font-size:1.25rem;font-weight:800">Supporters</h2>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Founding patrons & backers</p>
+            </div>
+            <button class="refresh-btn" onclick="loadSupporters()">
+              <span class="material-symbols-outlined">refresh</span> Refresh
+            </button>
+          </div>
+          <div class="table-wrap" id="supporters-table-wrap">
+            <div class="empty-state" id="supporters-empty">
+              <span class="material-symbols-outlined">hourglass_empty</span>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ SETTINGS TAB ═══ -->
+        <div class="tab-panel" id="tab-settings">
+          <div style="margin-bottom:1.25rem">
+            <h2 style="font-size:1.25rem;font-weight:800">Settings</h2>
+            <p style="font-size:.8125rem;color:var(--on-sv)">Project configuration (read-only)</p>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;overflow:hidden">
+            <div class="setting-row">
+              <span class="setting-label">Project ID</span>
+              <span class="setting-value">wnkejaidmbdcmbksefaf</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Supabase URL</span>
+              <span class="setting-value">https://wnkejaidmbdcmbksefaf.supabase.co</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Menu Items</span>
+              <span class="setting-value" id="setting-menu-count">--</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Total Ballots</span>
+              <span class="setting-value" id="setting-ballot-count">--</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Active Phases</span>
+              <span class="setting-value">Menu, Ambiance, Pricing, Founding Wall</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Campaign Status</span>
+              <span class="setting-value" style="color:var(--success)">Live</span>
+            </div>
+            <div class="setting-row">
+              <span class="setting-label">Admin Version</span>
+              <span class="setting-value">1.0.0</span>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="background:var(--surface-c);border-top:1px solid var(--muted);padding:1.25rem 1.5rem;text-align:center">
+      <p style="font-size:.75rem;color:var(--on-sv)">
+        CUPPILO Admin Panel v1.0.0 &mdash; Co-creation campaign management
+      </p>
+    </footer>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/supabase-config.js"></script>
+  <script>
+    // ── PASSWORD GATE ──
+    const ADMIN_PASSWORD = 'cuppilo2026';
+
+    function checkPassword() {
+      const input = document.getElementById('pw-input');
+      const error = document.getElementById('pw-error');
+      if (input.value === ADMIN_PASSWORD) {
+        sessionStorage.setItem('cuppilo_admin_auth', '1');
+        document.getElementById('pw-gate').classList.add('hidden');
+        document.getElementById('admin-app').style.display = '';
+        loadDashboard();
+      } else {
+        error.style.display = 'block';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    document.getElementById('pw-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    // Check if already authenticated in this session
+    if (sessionStorage.getItem('cuppilo_admin_auth') === '1') {
+      document.getElementById('pw-gate').classList.add('hidden');
+      document.getElementById('admin-app').style.display = '';
+      loadDashboard();
+    }
+
+    // ── THEME ──
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('cuppilo_theme', next);
+      document.querySelectorAll('.theme-toggle .material-symbols-outlined').forEach(i => {
+        i.textContent = next === 'dark' ? 'light_mode' : 'dark_mode';
+      });
+      // Update logo
+      updateLogo(next);
+    }
+
+    function updateLogo(theme) {
+      const logo = document.getElementById('admin-logo');
+      if (logo) logo.src = theme === 'dark' ? 'img/logo-en-dark.png' : 'img/logo-en-light.png';
+    }
+
+    // ── LANGUAGE ──
+    function setLang(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      localStorage.setItem('cuppilo_lang', lang);
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+    }
+
+    // ── SIDEBAR TOGGLE ──
+    function toggleSidebar() {
+      document.getElementById('admin-sidebar').classList.toggle('open');
+    }
+
+    // Close sidebar on outside click (mobile)
+    document.addEventListener('click', function(e) {
+      const sidebar = document.getElementById('admin-sidebar');
+      const toggle = document.querySelector('.sidebar-toggle');
+      if (sidebar && sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+
+    // ── TAB SWITCHING ──
+    function switchTab(tabId, el) {
+      // Update sidebar
+      document.querySelectorAll('.admin-sidebar a').forEach(a => a.classList.remove('active'));
+      if (el) el.classList.add('active');
+      // Update panels
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      var panel = document.getElementById('tab-' + tabId);
+      if (panel) panel.classList.add('active');
+      // Load data for tab
+      var loaders = {
+        'dashboard': loadDashboard,
+        'feedback': loadFeedback,
+        'menu-votes': loadMenuVotes,
+        'ambiance-votes': loadAmbianceVotes,
+        'users': loadUsers,
+        'supporters': loadSupporters,
+        'settings': loadSettings
+      };
+      if (loaders[tabId]) loaders[tabId]();
+      // Close mobile sidebar
+      document.getElementById('admin-sidebar').classList.remove('open');
+      return false;
+    }
+
+    // ── DATA LOADERS ──
+
+    async function loadDashboard() {
+      try {
+        const [ballots, vibe, pricing, suggested, supporters, profiles] = await Promise.all([
+          sbSelect('ballots', 'id,vibe_vote,menu_votes,suggested_items,created_at'),
+          sbSelect('ambiance_votes', 'id,choice,created_at'),
+          sbSelect('pricing_stats', 'id,created_at'),
+          sbSelect('suggested_items', 'id'),
+          sbSelect('supporters', 'id'),
+          sbSelect('user_profiles', 'id,created_at')
+        ]);
+
+        const ballotArr = Array.isArray(ballots) ? ballots : [];
+        const vibeArr = Array.isArray(vibe) ? vibe : [];
+        const pricingArr = Array.isArray(pricing) ? pricing : [];
+        const suggestedArr = Array.isArray(suggested) ? suggested : [];
+        const supportersArr = Array.isArray(supporters) ? supporters : [];
+        const profilesArr = Array.isArray(profiles) ? profiles : [];
+
+        document.getElementById('stat-visitors').textContent = profilesArr.length.toLocaleString();
+        document.getElementById('stat-menu-votes').textContent = ballotArr.length.toLocaleString();
+        document.getElementById('stat-ambiance-votes').textContent = vibeArr.length.toLocaleString();
+        document.getElementById('stat-price-suggestions').textContent = pricingArr.length.toLocaleString();
+        document.getElementById('stat-suggested-items').textContent = suggestedArr.length.toLocaleString();
+        document.getElementById('stat-supporters').textContent = supportersArr.length.toLocaleString();
+        document.getElementById('stat-contributions').textContent =
+          (ballotArr.length + vibeArr.length + pricingArr.length + suggestedArr.length).toLocaleString();
+
+        // Today's activity
+        const today = new Date().toISOString().split('T')[0];
+        const todayBallots = ballotArr.filter(b => b.created_at && b.created_at.startsWith(today)).length;
+        const todayVibe = vibeArr.filter(v => v.created_at && v.created_at.startsWith(today)).length;
+        const todayPricing = pricingArr.filter(p => p.created_at && p.created_at.startsWith(today)).length;
+        document.getElementById('stat-today').textContent = (todayBallots + todayVibe + todayPricing).toLocaleString();
+
+        document.getElementById('dashboard-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+      } catch (e) {
+        console.error('Dashboard load error:', e);
+      }
+    }
+
+    async function loadFeedback() {
+      try {
+        const data = await sbSelect('suggested_items', '*');
+        const arr = Array.isArray(data) ? data : [];
+        const wrap = document.getElementById('feedback-table-wrap');
+        if (arr.length === 0) {
+          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No suggestions yet.</p></div>';
+          return;
+        }
+        wrap.innerHTML = '<table><thead><tr><th>Name</th><th>Description</th><th>Category</th><th>Date</th></tr></thead><tbody>' +
+          arr.map(r => '<tr><td>' + esc(r.name || '--') + '</td><td>' + esc(r.description || '--') + '</td><td>' + esc(r.category || '--') + '</td><td>' + formatDate(r.created_at) + '</td></tr>').join('') +
+          '</tbody></table>';
+      } catch (e) {
+        console.error('Feedback load error:', e);
+      }
+    }
+
+    async function loadMenuVotes() {
+      try {
+        const data = await sbSelect('ballots', 'menu_votes,price_coffee,price_chaya');
+        const arr = Array.isArray(data) ? data : [];
+        // Aggregate
+        const votes = {};
+        arr.forEach(b => {
+          if (b.menu_votes && Array.isArray(b.menu_votes)) {
+            b.menu_votes.forEach(item => {
+              const id = typeof item === 'string' ? item : (item.id || item.name || JSON.stringify(item));
+              if (!votes[id]) votes[id] = { name: id, count: 0, prices: [] };
+              votes[id].count++;
+            });
+          }
+        });
+
+        // Price suggestions
+        arr.forEach(b => {
+          if (b.price_coffee) {
+            const k = 'coffee-price';
+            if (!votes[k]) votes[k] = { name: 'Coffee Price Suggestions', count: 0, prices: [] };
+            votes[k].prices.push(b.price_coffee);
+          }
+          if (b.price_chaya) {
+            const k = 'chaya-price';
+            if (!votes[k]) votes[k] = { name: 'Chaya Price Suggestions', count: 0, prices: [] };
+            votes[k].prices.push(b.price_chaya);
+          }
+        });
+
+        const items = Object.values(votes).sort((a, b) => b.count - a.count);
+        const wrap = document.getElementById('menu-votes-table-wrap');
+        if (items.length === 0) {
+          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No menu votes yet.</p></div>';
+          return;
+        }
+        wrap.innerHTML = '<table><thead><tr><th>Item</th><th>Vote Count</th><th>Avg Price</th></tr></thead><tbody>' +
+          items.map(v => {
+            const avg = v.prices.length > 0 ? '\u20B9' + (v.prices.reduce((a, b) => a + b, 0) / v.prices.length).toFixed(0) : '--';
+            return '<tr><td>' + esc(v.name) + '</td><td>' + v.count + '</td><td>' + avg + '</td></tr>';
+          }).join('') +
+          '</tbody></table>';
+      } catch (e) {
+        console.error('Menu votes load error:', e);
+      }
+    }
+
+    async function loadAmbianceVotes() {
+      try {
+        const data = await sbSelect('ambiance_votes', '*');
+        const arr = Array.isArray(data) ? data : [];
+        // Aggregate
+        const tally = {};
+        arr.forEach(v => {
+          const choice = v.choice || v.vibe || v.option || 'Unknown';
+          if (!tally[choice]) tally[choice] = 0;
+          tally[choice]++;
+        });
+
+        const total = arr.length || 1;
+        const items = Object.entries(tally).map(([choice, count]) => ({
+          choice, count, pct: ((count / total) * 100).toFixed(1)
+        })).sort((a, b) => b.count - a.count);
+
+        const wrap = document.getElementById('ambiance-votes-table-wrap');
+        if (items.length === 0) {
+          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No ambiance votes yet.</p></div>';
+          return;
+        }
+        wrap.innerHTML = '<table><thead><tr><th>Option</th><th>Vote Count</th><th>Percentage</th></tr></thead><tbody>' +
+          items.map(v => '<tr><td>' + esc(v.choice) + '</td><td>' + v.count + '</td><td>' + v.pct + '%</td></tr>').join('') +
+          '</tbody></table>';
+      } catch (e) {
+        console.error('Ambiance votes load error:', e);
+      }
+    }
+
+    async function loadUsers() {
+      try {
+        const data = await sbSelect('user_profiles', '*');
+        const arr = Array.isArray(data) ? data : [];
+        const wrap = document.getElementById('users-table-wrap');
+        if (arr.length === 0) {
+          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No users yet.</p></div>';
+          return;
+        }
+        wrap.innerHTML = '<table><thead><tr><th>Name</th><th>Session ID</th><th>Created At</th></tr></thead><tbody>' +
+          arr.map(u => '<tr><td>' + esc(u.display_name || '--') + '</td><td style="font-family:monospace;font-size:.75rem">' + esc(u.session_id || '--') + '</td><td>' + formatDate(u.created_at) + '</td></tr>').join('') +
+          '</tbody></table>';
+      } catch (e) {
+        console.error('Users load error:', e);
+      }
+    }
+
+    async function loadSupporters() {
+      try {
+        const data = await sbSelect('supporters', '*');
+        const arr = Array.isArray(data) ? data : [];
+        const wrap = document.getElementById('supporters-table-wrap');
+        if (arr.length === 0) {
+          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No supporters yet.</p></div>';
+          return;
+        }
+        wrap.innerHTML = '<table><thead><tr><th>Name</th><th>Tier</th><th>Phone</th><th>Date</th></tr></thead><tbody>' +
+          arr.map(s => {
+            const tier = s.tier || 'free';
+            const tierClass = tier === 'founding' ? 'tier-founding' : tier === 'premium' ? 'tier-premium' : 'tier-free';
+            return '<tr><td>' + esc(s.display_name || s.name || '--') + '</td><td><span class="tier-badge ' + tierClass + '">' + esc(tier) + '</span></td><td>' + esc(s.phone_number || s.phone || '--') + '</td><td>' + formatDate(s.created_at) + '</td></tr>';
+          }).join('') +
+          '</tbody></table>';
+      } catch (e) {
+        console.error('Supporters load error:', e);
+      }
+    }
+
+    async function loadSettings() {
+      try {
+        const [menuItems, ballots] = await Promise.all([
+          sbSelect('menu_items', 'id'),
+          sbSelect('ballots', 'id')
+        ]);
+        const menuArr = Array.isArray(menuItems) ? menuItems : [];
+        const ballotArr = Array.isArray(ballots) ? ballots : [];
+        document.getElementById('setting-menu-count').textContent = menuArr.length;
+        document.getElementById('setting-ballot-count').textContent = ballotArr.length;
+      } catch (e) {
+        console.error('Settings load error:', e);
+      }
+    }
+
+    // ── HELPERS ──
+    function esc(str) {
+      if (!str) return '';
+      const d = document.createElement('div');
+      d.textContent = String(str);
+      return d.innerHTML;
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '--';
+      try {
+        const d = new Date(iso);
+        return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch {
+        return iso;
+      }
+    }
+
+    // ── INIT ──
+    (function init() {
+      const theme = localStorage.getItem('cuppilo_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      updateLogo(theme);
+      document.querySelectorAll('.theme-toggle .material-symbols-outlined').forEach(i => {
+        i.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
+      });
+      const lang = localStorage.getItem('cuppilo_lang') || 'en';
+      setLang(lang);
+    })();
+
+    console.log('CUPPILO Admin Panel loaded');
+  </script>
+</body>
+</html>

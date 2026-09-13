@@ -5,81 +5,98 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>The Founding Wall — CUPPILO</title>
   <meta name="description" content="Honoring Palakkad's founding patrons who built Kerala's grassroots specialty coffee movement — before we even had our first cup."/>
-
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-
   <link href="css/styles.css" rel="stylesheet"/>
-
   <style>
-    .wall-progress{background:var(--surface);border-bottom:1px solid var(--muted);padding:.75rem 0}
+    .wall-progress{background:var(--bg-card);border-bottom:1px solid var(--muted);padding:.75rem 0}
     .wall-progress-meta{display:flex;align-items:center;gap:.5rem;font-size:.875rem}
-    .wall-progress-meta .step{font-weight:700;color:var(--terracotta)}
-    .wall-progress-meta .sep{color:var(--on-surface-3)}
-    .wall-progress-meta .label{color:var(--on-surface-2)}
-
+    .wall-progress-meta .step{font-weight:700;color:var(--primary)}
+    .wall-progress-meta .sep{color:var(--muted)}
+    .wall-progress-meta .label{color:var(--on-sv)}
     .wall-header{text-align:center;padding:2rem 0 1.5rem}
-    .wall-pill{display:inline-flex;align-items:center;gap:.375rem;background:rgba(200,157,92,0.15);padding:.375rem .875rem;border-radius:9999px;font-size:.75rem;font-weight:600;color:var(--brass);margin-bottom:1rem}
+    .wall-pill{display:inline-flex;align-items:center;gap:.375rem;background:rgba(200,157,92,.15);padding:.375rem .875rem;border-radius:9999px;font-size:.75rem;font-weight:600;color:var(--brass);margin-bottom:1rem}
     .wall-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse 2s infinite}
-    .wall-title{font-family:var(--font-editorial);font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-.02em;color:var(--on-surface);margin-bottom:.5rem;line-height:1.2}
-    .wall-title span{color:var(--terracotta)}
-    .wall-subtitle{font-size:1rem;color:var(--on-surface-2);max-width:36rem;margin:0 auto;line-height:1.6}
-
+    .wall-title{font-family:'Newsreader',serif;font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-.02em;color:var(--charcoal);margin-bottom:.5rem;line-height:1.2}
+    .wall-title span{color:var(--primary)}
+    .wall-subtitle{font-size:1rem;color:var(--on-sv);max-width:36rem;margin:0 auto;line-height:1.6}
+    .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2rem}
+    @media(min-width:768px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}
+    .kpi-card{background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;text-align:center;box-shadow:var(--shadow)}
+    .kpi-value{font-size:1.75rem;font-weight:800;color:var(--primary);line-height:1}
+    .kpi-label{font-size:.8125rem;color:var(--on-sv);margin-top:.25rem}
     .inscription-section{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:center;margin-bottom:2rem}
     @media(min-width:768px){.inscription-section{grid-template-columns:1fr 1fr}}
     .inscription-visual{background:linear-gradient(135deg,#C4836A,#8B5A42);border-radius:1rem;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-    .inscription-visual-icon{font-size:3rem;color:rgba(255,255,255,.3)}
-    .inscription-visual-text{font-family:var(--font-editorial);font-style:italic;font-size:1rem;color:rgba(255,255,255,.7);text-align:center}
-    .inscription-badge{display:inline-flex;align-items:center;padding:.25rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:600;background:rgba(255,255,255,0.15);color:#FFF;margin-bottom:.75rem}
-    .inscription-check{display:inline-flex;align-items:center;gap:.375rem;font-size:.8125rem;color:var(--on-surface-2);background:var(--surface-2);padding:.5rem .75rem;border-radius:var(--radius-sm);margin-top:.5rem}
+    .inscription-visual-text{font-family:'Newsreader',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,.7);text-align:center}
+    .inscription-badge{display:inline-flex;align-items:center;padding:.25rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:600;background:rgba(255,255,255,.15);color:#fff;margin-bottom:.75rem}
+    .inscription-check{display:inline-flex;align-items:center;gap:.375rem;font-size:.8125rem;color:var(--on-sv);background:var(--surface-l);padding:.5rem .75rem;border-radius:.5rem;margin-top:.5rem}
     .inscription-check .material-symbols-outlined{font-size:16px;color:var(--success)}
-
+    .toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-bottom:1rem}
+    .toolbar-search{display:flex;align-items:center;gap:.5rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:.5rem;padding:.5rem .75rem;flex:1;min-width:200px}
+    .toolbar-search input{border:none;background:none;outline:none;font-size:.8125rem;color:var(--on-s);width:100%;font-family:inherit}
+    .toolbar-filters{display:flex;gap:.375rem;flex-wrap:wrap}
+    .toolbar-sort{display:flex;align-items:center;gap:.375rem}
+    .toolbar-sort select{padding:.375rem .75rem;border-radius:9999px;border:1px solid var(--muted);background:var(--bg-card);color:var(--on-s);font-size:.75rem;font-weight:600;font-family:inherit;cursor:pointer}
     .empty-state{text-align:center;padding:3rem 1rem}
-    .empty-state-icon{width:64px;height:64px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
-    .empty-state-icon .material-symbols-outlined{font-size:32px;color:var(--on-surface-3)}
-    .empty-state h3{font-size:1.125rem;font-weight:700;color:var(--on-surface);margin-bottom:.25rem}
-    .empty-state p{font-size:.875rem;color:var(--on-surface-2);margin-bottom:1rem}
-
-    .cta-section{background:var(--charcoal);border-radius:var(--radius);padding:2rem;text-align:center;color:var(--cream);position:relative;overflow:hidden}
+    .empty-state-icon{width:64px;height:64px;border-radius:50%;background:var(--surface-l);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+    .empty-state-icon .material-symbols-outlined{font-size:32px;color:var(--on-sv)}
+    .empty-state h3{font-size:1.125rem;font-weight:700;color:var(--charcoal);margin-bottom:.25rem}
+    .empty-state p{font-size:.875rem;color:var(--on-sv);margin-bottom:1rem}
+    .cta-section{background:var(--charcoal);border-radius:1rem;padding:2rem;text-align:center;color:var(--cream);position:relative;overflow:hidden}
     .cta-section::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,.02) 10px,rgba(255,255,255,.02) 20px)}
     .cta-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1rem}
     .cta-tag{display:inline-flex;align-items:center;padding:.25rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:600;background:rgba(200,157,92,.2);color:var(--brass)}
     .cta-title{font-size:1.5rem;font-weight:800;color:var(--cream)}
     .cta-desc{font-size:.9375rem;color:rgba(247,244,235,.5);max-width:32rem}
-
     .modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity 200ms ease}
     .modal-overlay.open{opacity:1;pointer-events:all}
-    .modal{background:var(--surface);border-radius:1.5rem;max-width:32rem;width:100%;padding:2rem;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform 200ms ease}
+    .modal{background:var(--bg-card);border-radius:1.5rem;max-width:32rem;width:100%;padding:2rem;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform 200ms ease}
     .modal-overlay.open .modal{transform:translateY(0)}
-    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;color:var(--on-surface-2);padding:.25rem}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;color:var(--on-sv);padding:.25rem}
     .modal-header{text-align:center;margin-bottom:1.5rem}
-    .modal-icon{width:56px;height:56px;border-radius:1rem;background:rgba(200,157,92,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;color:var(--brass)}
-    .modal-title{font-size:1.25rem;font-weight:800;color:var(--on-surface);margin-bottom:.25rem}
-    .modal-desc{font-size:.875rem;color:var(--on-surface-2)}
-
+    .modal-icon{width:56px;height:56px;border-radius:1rem;background:rgba(200,157,92,.15);display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;color:var(--brass)}
+    .modal-title{font-size:1.25rem;font-weight:800;color:var(--charcoal);margin-bottom:.25rem}
+    .modal-desc{font-size:.875rem;color:var(--on-sv)}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
     @media(max-width:480px){.form-row{grid-template-columns:1fr}}
+    .form-group{margin-bottom:1rem}
+    .form-label{display:block;font-size:.75rem;font-weight:600;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em;color:var(--on-sv)}
+    .form-input{width:100%;padding:.6rem .8rem;border-radius:.5rem;border:1px solid var(--input-border);background:var(--input-bg);color:var(--on-s);font-size:.9rem;font-family:inherit;box-sizing:border-box}
+    .form-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(169,59,43,.15)}
+    textarea.form-input{resize:none;min-height:60px}
     .form-consent{display:flex;align-items:flex-start;gap:.5rem;margin-top:.5rem}
-    .form-consent input{margin-top:.125rem;accent-color:var(--terracotta)}
-    .form-consent label{font-size:.75rem;color:var(--on-surface-2);line-height:1.5}
-
+    .form-consent input{margin-top:.125rem;accent-color:var(--primary)}
+    .form-consent label{font-size:.75rem;color:var(--on-sv);line-height:1.5}
     .form-success{text-align:center;padding:2rem 0}
-    .form-success-icon{width:64px;height:64px;border-radius:50%;background:var(--success-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+    .form-success-icon{width:64px;height:64px;border-radius:50%;background:rgba(45,106,79,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
     .form-success-icon .material-symbols-outlined{font-size:32px;color:var(--success)}
-
     @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
   </style>
 </head>
-
 <body>
+
+  <div class="splash-screen" id="splash-screen">
+    <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
+    <div class="splash-text">Before we open, you decide what we become.</div>
+    <div class="splash-sub">Palakkad's first community-built café</div>
+  </div>
+  <div class="name-card-overlay" id="name-card-overlay">
+    <div class="name-card">
+      <h2>Welcome to CUPPILO</h2>
+      <p>What should we call you?</p>
+      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
+      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
+    </div>
+  </div>
 
   <nav class="navbar" id="navbar"></nav>
 
   <main style="padding-bottom:3rem">
 
-    <!-- Progress -->
     <section class="wall-progress">
       <div class="container">
         <div class="wall-progress-meta">
@@ -87,15 +104,14 @@
           <span class="sep">&bull;</span>
           <span class="label" data-en="Founding Patron Wall" data-ml="സ്ഥാപക പാട്രൺ മതിൽ">Founding Patron Wall</span>
         </div>
-        <div class="progress-bar-outer" style="margin-top:.5rem">
-          <div class="progress-bar-inner" style="width:100%"></div>
+        <div class="progress-bar" style="margin-top:.5rem">
+          <div class="progress-fill" style="width:100%"></div>
         </div>
       </div>
     </section>
 
     <div class="container">
 
-      <!-- Header -->
       <section class="wall-header">
         <div class="wall-pill">
           <span class="dot"></span>
@@ -105,27 +121,25 @@
         <p class="wall-subtitle" data-en="Honoring Palakkad's first café pioneers" data-ml="പാലക്കാട്ടെ ആദ്യ കഫേ പയനീയർമാരെ ആദരിക്കുന്നു">Honoring Palakkad's first café pioneers</p>
       </section>
 
-      <!-- KPI Stat Cards -->
-      <section class="stat-grid" style="margin-bottom:2rem">
-        <div class="stat-card">
-          <div class="stat-value" id="kpi-patrons">0</div>
-          <div class="stat-label" data-en="Founding Patrons" data-ml="സ്ഥാപക പാട്രൺമാർ">Founding Patrons</div>
+      <section class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-patrons">0</div>
+          <div class="kpi-label" data-en="Patrons" data-ml="പാട്രൺമാർ">Patrons</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-value" id="kpi-fund">₹0</div>
-          <div class="stat-label" data-en="Micro Roastery Fund" data-ml="സൂക്ഷ്മ റോസ്റ്ററി ഫണ്ട്">Micro Roastery Fund</div>
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-fund">₹0</div>
+          <div class="kpi-label" data-en="Fund" data-ml="ഫണ്ട്">Fund</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-value" id="kpi-days">0</div>
-          <div class="stat-label" data-en="Days Left" data-ml="ദിവസങ്ങൾ ശേഷം">Days Left</div>
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-days">0</div>
+          <div class="kpi-label" data-en="Days" data-ml="ദിവസങ്ങൾ">Days</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-value" id="kpi-verified">100%</div>
-          <div class="stat-label" data-en="Verified" data-ml="സ്ഥിരീകരിച്ചു">Verified</div>
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-verified">100%</div>
+          <div class="kpi-label" data-en="Verified" data-ml="സ്ഥിരീകരിച്ചു">Verified</div>
         </div>
       </section>
 
-      <!-- Inscription Notice -->
       <section class="inscription-section" style="margin-bottom:2rem">
         <div class="inscription-visual">
           <div style="text-align:center;padding:2rem">
@@ -133,15 +147,15 @@
               <span class="material-symbols-outlined" style="font-size:40px;color:rgba(255,255,255,.5)">apartment</span>
             </div>
             <p class="inscription-visual-text" data-en="Laterite Wall at Palakkad" data-ml="പാലക്കാട്ടെ ലാറ്ററൈറ്റ് മതിൽ">Laterite Wall at Palakkad</p>
-            <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:.5rem;font-family:var(--font-sans)" data-en="[ Physical inscription site photograph ]" data-ml="[ ഭൗതിക ശിലാലേഖന സൈറ്റ് ഫോട്ടോഗ്രാഫ് ]">[ Physical inscription site photograph ]</p>
+            <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:.5rem" data-en="[ Physical inscription site photograph ]" data-ml="[ ഭൗതിക ശിലാലേഖന സൈറ്റ് ഫോട്ടോഗ്രാഫ് ]">[ Physical inscription site photograph ]</p>
           </div>
         </div>
         <div>
           <span class="inscription-badge" data-en="Physical Inscription" data-ml="ഭൗതിക ശിലാലേഖനം">Physical Inscription</span>
-          <h2 style="font-size:1.5rem;font-weight:800;color:var(--on-surface);line-height:1.2;margin-bottom:.5rem">
-            <span data-en="Written on Laterite Brick" data-ml="ലാറ്ററൈറ്റ് ഇഷ്ടികയിൽ എഴുതിയിരിക്കുന്നു">Written on Laterite Brick</span><br>&amp; <span style="color:var(--terracotta);font-style:italic" data-en="Teak Wood" data-ml="തേക്ക് മരം">Teak Wood</span>
+          <h2 style="font-size:1.5rem;font-weight:800;color:var(--charcoal);line-height:1.2;margin-bottom:.5rem">
+            <span data-en="Written on Laterite Brick" data-ml="ലാറ്ററൈറ്റ് ഇഷ്ടികയിൽ എഴുതിയിരിക്കുന്നു">Written on Laterite Brick</span><br>&amp; <span style="color:var(--primary);font-style:italic" data-en="Teak Wood" data-ml="തേക്ക് മരം">Teak Wood</span>
           </h2>
-          <p style="font-size:.9375rem;color:var(--on-surface-2);line-height:1.6" data-en="Every founding patron's name and badge number will be physically carved into a laterite brick wall at our Palakkad flagship, set in teak wood frames crafted by local artisans." data-ml="ഓരോ സ്ഥാപക പാട്രണ്ണിന്റെയും പേരും ബാഡ്ജ് നമ്പറും ഞങ്ങളുടെ പാലക്കാട് ഫ്ലാഗ്ഷിപ്പിലെ ലാറ്ററൈറ്റ് ഇഷ്ടിക മതിലിൽ ഭൗതികമായി കൊത്തിവയ്ക്കും.">Every founding patron's name and badge number will be physically carved into a laterite brick wall at our Palakkad flagship, set in teak wood frames crafted by local artisans.</p>
+          <p style="font-size:.9375rem;color:var(--on-sv);line-height:1.6" data-en="Every founding patron's name and badge number will be physically carved into a laterite brick wall at our Palakkad flagship, set in teak wood frames crafted by local artisans." data-ml="ഓരോ സ്ഥാപക പാട്രണ്ണിന്റെയും പേരും ബാഡ്ജ് നമ്പറും ഞങ്ങളുടെ പാലക്കാട് ഫ്ലാഗ്ഷിപ്പിലെ ലാറ്ററൈറ്റ് ഇഷ്ടിക മതിലിൽ ഭൗതികമായി കൊത്തിവയ്ക്കും.">Every founding patron's name and badge number will be physically carved into a laterite brick wall at our Palakkad flagship, set in teak wood frames crafted by local artisans.</p>
           <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem">
             <span class="inscription-check"><span class="material-symbols-outlined">check_circle</span><span data-en="Hand-carved by artisans" data-ml="കരകൗശല ശില്പികൾ കൈകൊണ്ട് കൊത്തിയത്">Hand-carved by artisans</span></span>
             <span class="inscription-check"><span class="material-symbols-outlined">check_circle</span><span data-en="Open-air courtyard placement" data-ml="തുറന്ന മുറ്റത്തെ സ്ഥാനം">Open-air courtyard placement</span></span>
@@ -150,10 +164,9 @@
         </div>
       </section>
 
-      <!-- Search / Filter / Sort Toolbar -->
-      <div class="toolbar" style="margin-bottom:1rem">
+      <div class="toolbar">
         <div class="toolbar-search">
-          <span class="material-symbols-outlined" style="font-size:18px;color:var(--on-surface-3)">search</span>
+          <span class="material-symbols-outlined" style="font-size:18px;color:var(--on-sv)">search</span>
           <input type="text" id="patron-search" placeholder="Search patron name, badge #, or city..." data-en="Search patron name, badge #, or city..." data-ml="പാട്രൺ പേര്, ബാഡ്ജ് #, അല്ലെങ്കിൽ ജില്ല തിരയുക...">
         </div>
         <div class="toolbar-filters" id="tier-filters">
@@ -179,23 +192,20 @@
         </div>
       </div>
 
-      <!-- Patron Grid (empty by default) -->
       <div id="patron-grid"></div>
 
-      <!-- Empty State -->
       <div id="empty-state" class="empty-state">
         <div class="empty-state-icon">
           <span class="material-symbols-outlined">group</span>
         </div>
         <h3 data-en="No patrons registered yet" data-ml="ഇപ്പോൾ ഒരു പാട്രൺ രജിസ്റ്റർ ചെയ്തിട്ടില്ല">No patrons registered yet</h3>
         <p data-en="Be the first to claim your founding brick!" data-ml="നിങ്ങളുടെ സ്ഥാപക ഇഷ്ടിക അവകാശപ്പെടുന്ന ആദ്യത്തെ ആൾ!">Be the first to claim your founding brick!</p>
-        <a href="menu-ballot.html" class="btn btn-primary">
-          <span data-en="Vote on the Menu Ballot" data-ml="മെനു ബാലറ്റിൽ വോട്ട് ചെയ്യുക">Vote on the Menu Ballot</span>
+        <button class="btn btn-primary" onclick="document.getElementById('inscription-modal').classList.add('open');document.body.style.overflow='hidden'">
+          <span data-en="Claim Your Brick" data-ml="നിങ്ങളുടെ ഇഷ്ടിക ക്ലെയിം ചെയ്യുക">Claim Your Brick</span>
           <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
-        </a>
+        </button>
       </div>
 
-      <!-- CTA Section -->
       <section class="cta-section" style="margin-top:2rem">
         <div class="cta-inner">
           <span class="cta-tag" data-en="Secure Your Legacy" data-ml="നിങ്ങളുടെ പൈതൃകം സുരക്ഷിതമാക്കുക">Secure Your Legacy</span>
@@ -211,7 +221,6 @@
     </div>
   </main>
 
-  <!-- Inscription Modal -->
   <div id="inscription-modal" class="modal-overlay">
     <div class="modal">
       <button id="modal-close" class="modal-close">
@@ -243,17 +252,17 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label" data-en="Phone (OTP) *" data-ml="ഫോൺ (OTP) *">Phone (OTP) *</label>
+            <label class="form-label" data-en="Phone *" data-ml="ഫോൺ *">Phone *</label>
             <input type="tel" id="form-phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label" data-en="Quote for Wall (optional)" data-ml="മതിലിനായുള്ള ഉദ്ധരണി (ഓപ്ഷണൽ)">Quote for Wall (optional)</label>
-          <textarea id="form-quote" class="form-textarea" rows="2" placeholder="A line about what coffee means to you..." data-en="A line about what coffee means to you..." data-ml="കാപ്പി നിങ്ങൾക്ക് എന്താണെന്ന് ഒരു വരി..."></textarea>
+          <textarea id="form-quote" class="form-input" rows="2" placeholder="A line about what coffee means to you..." data-en="A line about what coffee means to you..." data-ml="കാപ്പി നിങ്ങൾക്ക് എന്താണെന്ന് ഒരു വരി..."></textarea>
         </div>
         <div class="form-consent">
-          <input type="checkbox" id="form-dpdp" required>
-          <label for="form-dpdp" data-en="I consent to the public display of my name, city, and badge number on the CUPPILO Founding Wall per the Digital Personal Data Protection Act, 2023." data-ml="DPDP Act 2023 പ്രകാരം എന്റെ തിരഞ്ഞെടുത്ത വിശദാംശങ്ങൾ CUPPILO സ്ഥാപക മതിലിൽ പൊതുവായി പ്രദർശിപ്പിക്കാൻ ഞാൻ സമ്മതിക്കുന്നു.">I consent to the public display of my name, city, and badge number on the CUPPILO Founding Wall per the Digital Personal Data Protection Act, 2023.</label>
+          <input type="checkbox" id="form-consent" required>
+          <label for="form-consent" data-en="I consent to the public display of my name, city, and badge number on the CUPPILO Founding Wall." data-ml="എന്റെ തിരഞ്ഞെടുത്ത വിശദാംശങ്ങൾ CUPPILO സ്ഥാപക മതിലിൽ പൊതുവായി പ്രദർശിപ്പിക്കാൻ ഞാൻ സമ്മതിക്കുന്നു.">I consent to the public display of my name, city, and badge number on the CUPPILO Founding Wall.</label>
         </div>
         <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem">
           <span class="material-symbols-outlined" style="font-size:18px">check_circle</span>
@@ -261,13 +270,12 @@
         </button>
       </form>
 
-      <!-- Success State -->
       <div id="form-success" class="form-success" style="display:none">
         <div class="form-success-icon">
           <span class="material-symbols-outlined">check_circle</span>
         </div>
-        <h3 style="font-size:1.25rem;font-weight:800;color:var(--on-surface);margin-bottom:.5rem" data-en="You're In!" data-ml="നിങ്ങൾ ഉൾപ്പെട്ടിരിക്കുന്നു!">You're In!</h3>
-        <p style="font-size:.875rem;color:var(--on-surface-2);margin-bottom:1rem" data-en="Your badge number will be assigned within 24 hours. Check your phone for confirmation." data-ml="24 മണിക്കൂറിനുള്ളിൽ നിങ്ങളുടെ ബാഡ്ജ് നമ്പർ നൽകും. സ്ഥിരീകരണത്തിനായി നിങ്ങളുടെ ഫോൺ പരിശോധിക്കുക.">Your badge number will be assigned within 24 hours. Check your phone for confirmation.</p>
+        <h3 style="font-size:1.25rem;font-weight:800;color:var(--charcoal);margin-bottom:.5rem" data-en="You're In!" data-ml="നിങ്ങൾ ഉൾപ്പെട്ടിരിക്കുന്നു!">You're In!</h3>
+        <p style="font-size:.875rem;color:var(--on-sv);margin-bottom:1rem" data-en="Your badge number will be assigned within 24 hours. Check your phone for confirmation." data-ml="24 മണിക്കൂറിനുള്ളിൽ നിങ്ങളുടെ ബാഡ്ജ് നമ്പർ നൽകും. സ്ഥിരീകരണത്തിനായി നിങ്ങളുടെ ഫോൺ പരിശോധിക്കുക.">Your badge number will be assigned within 24 hours. Check your phone for confirmation.</p>
         <button id="form-success-close" class="btn btn-outline btn-sm" data-en="Close" data-ml="അടയ്ക്കുക">Close</button>
       </div>
     </div>
@@ -280,12 +288,12 @@
   <script>
     var allPatrons = [];
 
-    // ── Fetch patrons from Supabase ──
     async function loadPatrons() {
       try {
         var result = await sbSelect('participants', '*');
         if (result && Array.isArray(result)) {
           allPatrons = result;
+          updateKPIs(allPatrons);
           renderPatrons(allPatrons);
         }
       } catch (e) {
@@ -294,7 +302,23 @@
       }
     }
 
-    // ── Render patron cards ──
+    function updateKPIs(patrons) {
+      var count = patrons.length;
+      var fund = patrons.reduce(function(sum, p) {
+        return sum + (p.payment_amount || (p.tier === 'first-brew' ? 49 : p.tier === 'pioneer' ? 10 : 0));
+      }, 0);
+      var daysSinceFirst = 0;
+      if (patrons.length > 0) {
+        var dates = patrons.map(function(p) { return p.consent_ts ? new Date(p.consent_ts) : new Date(); }).sort(function(a, b) { return a - b; });
+        var diff = Date.now() - dates[0].getTime();
+        daysSinceFirst = Math.floor(diff / (1000 * 60 * 60 * 24));
+      }
+      document.getElementById('kpi-patrons').textContent = count;
+      document.getElementById('kpi-fund').textContent = '₹' + fund;
+      document.getElementById('kpi-days').textContent = daysSinceFirst;
+      document.getElementById('kpi-verified').textContent = '100%';
+    }
+
     function renderPatrons(patrons) {
       var grid = document.getElementById('patron-grid');
       var emptyState = document.getElementById('empty-state');
@@ -308,30 +332,28 @@
       emptyState.style.display = 'none';
       grid.innerHTML = patrons.map(function(p) {
         var initials = (p.display_name || '??').split(' ').map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
-        var tierClass = p.tier === 'first-brew' ? 'badge-firstbrew' : p.tier === 'pioneer' ? 'badge-pioneer' : 'badge-community';
         var tierLabel = p.tier === 'first-brew' ? 'First-Brew' : p.tier === 'pioneer' ? 'Pioneer' : 'Community';
         var badgeNum = String(p.id || 1).padStart(4, '0');
         var joinDate = p.consent_ts ? new Date(p.consent_ts).toISOString().split('T')[0] : '';
 
-        return '<div class="patron-card" data-tier="' + (p.tier || 'community') + '">' +
-          '<div class="patron-avatar" style="background:var(--surface-2);color:var(--terracotta);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;flex-shrink:0">' + initials + '</div>' +
-          '<div class="patron-info" style="flex:1;min-width:0">' +
-            '<div class="patron-name">' + (p.display_name || 'Anonymous') + '</div>' +
-            '<div class="patron-meta">' + joinDate + '</div>' +
+        return '<div class="card" data-tier="' + (p.tier || 'community') + '" style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;padding:1rem">' +
+          '<div style="background:var(--surface-l);color:var(--primary);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;flex-shrink:0">' + initials + '</div>' +
+          '<div style="flex:1;min-width:0">' +
+            '<div style="font-weight:700;font-size:.9375rem;color:var(--charcoal)">' + (p.display_name || 'Anonymous') + '</div>' +
+            '<div style="font-size:.75rem;color:var(--on-sv)">' + joinDate + '</div>' +
           '</div>' +
-          '<span class="patron-badge ' + tierClass + '">BADGE #' + badgeNum + '</span>' +
+          '<span class="pill pill-live">BADGE #' + badgeNum + '</span>' +
         '</div>';
       }).join('');
     }
 
-    // ── Search ──
     document.getElementById('patron-search').addEventListener('input', function() {
       var query = this.value.toLowerCase().trim();
       var activeTier = (document.querySelector('.chip.active') || {}).dataset;
       activeTier = activeTier ? activeTier.tier : 'all';
       var visibleCount = 0;
 
-      document.querySelectorAll('.patron-card').forEach(function(card) {
+      document.querySelectorAll('#patron-grid .card').forEach(function(card) {
         var text = card.textContent.toLowerCase();
         var tier = card.dataset.tier || '';
         var matchesSearch = !query || text.indexOf(query) !== -1;
@@ -343,7 +365,6 @@
       document.getElementById('empty-state').style.display = visibleCount === 0 && allPatrons.length === 0 ? '' : 'none';
     });
 
-    // ── Tier filter chips ──
     document.querySelectorAll('.chip[data-tier]').forEach(function(chip) {
       chip.addEventListener('click', function() {
         document.querySelectorAll('.chip[data-tier]').forEach(function(c) { c.classList.remove('active'); });
@@ -352,7 +373,6 @@
       });
     });
 
-    // ── Sort ──
     document.getElementById('patron-sort').addEventListener('change', function() {
       var v = this.value;
       var sorted = allPatrons.slice();
@@ -368,7 +388,6 @@
       renderPatrons(sorted);
     });
 
-    // ── Modal open/close ──
     var modal = document.getElementById('inscription-modal');
     var form = document.getElementById('inscription-form');
     var formSuccess = document.getElementById('form-success');
@@ -392,16 +411,15 @@
     modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
     document.getElementById('form-success-close').addEventListener('click', closeModal);
 
-    // ── Form validation & submit ──
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       var name = document.getElementById('form-name').value.trim();
       var city = document.getElementById('form-city').value;
       var phone = document.getElementById('form-phone').value.trim();
       var quote = document.getElementById('form-quote').value.trim();
-      var dpdp = document.getElementById('form-dpdp').checked;
+      var consent = document.getElementById('form-consent').checked;
 
-      if (!name || !city || !phone || !dpdp) {
+      if (!name || !city || !phone || !consent) {
         showToast('Please fill all required fields.', 'error');
         return;
       }
@@ -416,25 +434,25 @@
           phone_number: phone,
           city: city,
           quote: quote || null,
-          dpdp_consent: dpdp,
+          dpdp_consent: consent,
           consent_ts: new Date().toISOString(),
           tier: 'community',
-          badge_number: 1
+          badge_number: allPatrons.length + 1
         };
         await sbInsert('participants', participant);
         form.style.display = 'none';
         formSuccess.style.display = '';
         showToast('Welcome to the Founding Wall!', 'success');
+        loadPatrons();
       } catch (err) {
         console.error('Submit error:', err);
         showToast('Something went wrong. Please try again.', 'error');
       }
 
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:18px">check_circle</span> Submit & Generate Badge #0001';
+      submitBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:18px">check_circle</span> Submit & Generate Badge #' + String(allPatrons.length + 1).padStart(4, '0');
     });
 
-    // ── Init ──
     document.addEventListener('DOMContentLoaded', function() {
       initPage('wall');
       loadPatrons();

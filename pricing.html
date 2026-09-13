@@ -11,284 +11,81 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    .price-value {
-      font-size: 2rem;
-      font-weight: 800;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      color: var(--primary);
-      line-height: 1;
+    .price-value{font-size:2rem;font-weight:800;color:var(--primary);line-height:1}
+    .median-bar{height:4px;border-radius:9999px;background:var(--muted);position:relative;margin-top:.5rem}
+    .median-indicator{position:absolute;height:100%;background:var(--brass);border-radius:9999px;transition:left .3s ease,width .3s ease}
+    .median-label{font-size:.6875rem;font-weight:600;color:var(--on-sv);position:absolute;top:-1.25rem;transform:translateX(-50%);white-space:nowrap}
+    .chip-toggle{transition:all .2s ease}
+    .chip-toggle.active{background:var(--charcoal);color:var(--cream);border-color:var(--charcoal)}
+    .char-counter{font-size:.75rem;color:var(--on-sv);text-align:right;margin-top:.25rem;font-variant-numeric:tabular-nums}
+    .char-counter.warning{color:var(--primary)}
+    .char-counter.danger{color:#ba1a1a}
+    .testimony-quote{font-family:'Newsreader',serif;font-style:italic;font-size:1.0625rem;line-height:1.7;color:var(--on-sv);border-left:3px solid var(--brass);padding-left:1.25rem}
+    .influence-score-ring{width:5rem;height:5rem;border-radius:50%;background:conic-gradient(var(--muted) 0% 100%);display:flex;align-items:center;justify-content:center;position:relative}
+    .influence-score-ring::after{content:'';width:3.75rem;height:3.75rem;border-radius:50%;background:var(--bg-card);position:absolute}
+    .influence-score-inner{position:relative;z-index:1;font-size:1.25rem;font-weight:800;color:var(--primary)}
+    .founding-pass{background:linear-gradient(135deg,#231F20 0%,#3a3536 100%);border-radius:1rem;overflow:hidden;color:var(--cream);position:relative}
+    .founding-pass-header{background:var(--primary);padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:.875rem;letter-spacing:.05em;text-transform:uppercase}
+    .founding-pass-body{padding:1.25rem}
+    .perforation{border-top:2px dashed rgba(247,244,235,.2);margin:0}
+    .pass-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;font-size:.75rem}
+    .pass-label{color:var(--brass);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:.625rem;margin-bottom:.125rem}
+    .pass-value{color:var(--cream);font-weight:500}
+    .voucher-section{border:1.5px dashed var(--brass);border-radius:.75rem;padding:1rem;text-align:center;margin-top:1rem;position:relative}
+    .voucher-code{font-family:'Courier New',monospace;font-size:1.25rem;font-weight:700;letter-spacing:.1em;color:var(--brass)}
+    .qr-placeholder{width:3.5rem;height:3.5rem;border:1.5px dashed var(--brass);border-radius:.5rem;display:flex;align-items:center;justify-content:center;margin:.5rem auto 0;font-size:.625rem;color:var(--brass);opacity:.7}
+    .tier-card{border:1.5px solid var(--muted);border-radius:.75rem;padding:1rem 1.25rem;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;gap:.75rem}
+    .tier-card:hover{border-color:var(--outline)}
+    .tier-card.selected{border-color:var(--primary);background:var(--surface-l)}
+    .tier-radio{width:1.125rem;height:1.125rem;border-radius:50%;border:2px solid var(--muted);flex-shrink:0;position:relative;transition:all .2s ease}
+    .tier-card.selected .tier-radio{border-color:var(--primary)}
+    .tier-card.selected .tier-radio::after{content:'';width:.5rem;height:.5rem;border-radius:50%;background:var(--primary);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+    .consent-checkbox{width:1.125rem;height:1.125rem;border-radius:.25rem;border:1.5px solid var(--muted);flex-shrink:0;cursor:pointer;accent-color:var(--primary)}
+    .referral-banner{background:linear-gradient(135deg,var(--charcoal) 0%,#2a2627 100%);border-radius:1rem;padding:1.25rem;color:var(--cream);position:relative;overflow:hidden}
+    .referral-banner::after{content:'';position:absolute;top:-2rem;right:-2rem;width:6rem;height:6rem;border-radius:50%;background:rgba(200,157,92,.15)}
+    .step-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.25rem 0}
+    .step-num{display:inline-flex;align-items:center;justify-content:center;width:1.75rem;height:1.75rem;border-radius:9999px;background:var(--primary);color:var(--cream);font-size:.75rem;font-weight:700}
+    .step-text{font-size:.75rem;font-weight:600;color:var(--primary-dark)}
+    .step-dots{display:flex;align-items:center;gap:.375rem}
+    .step-dot{height:.375rem;border-radius:9999px;transition:all .3s}
+    .unlock-box{border:1.5px dashed var(--brass);border-radius:.75rem;padding:1rem;text-align:center;margin-bottom:1rem;background:rgba(200,157,92,.05)}
+    .unlock-box .material-symbols-outlined{font-size:28px;color:var(--brass);margin-bottom:.375rem}
+    .unlock-box h4{font-size:.875rem;font-weight:700;color:var(--charcoal);margin-bottom:.125rem}
+    .unlock-box p{font-size:.75rem;color:var(--on-sv)}
+    @media(max-width:768px){
+      .price-value{font-size:1.5rem}
+      .influence-score-ring{width:4rem;height:4rem}
+      .influence-score-ring::after{width:3rem;height:3rem}
+      .influence-score-inner{font-size:1rem}
+      .pricing-grid{grid-template-columns:1fr !important}
     }
-    .median-bar {
-      height: 4px;
-      border-radius: 9999px;
-      background: var(--muted);
-      position: relative;
-      margin-top: 0.5rem;
-    }
-    .median-indicator {
-      position: absolute;
-      height: 100%;
-      background: var(--brass);
-      border-radius: 9999px;
-      transition: left 0.3s ease, width 0.3s ease;
-    }
-    .median-label {
-      font-size: 0.6875rem;
-      font-weight: 600;
-      color: var(--on-sv);
-      position: absolute;
-      top: -1.25rem;
-      transform: translateX(-50%);
-      white-space: nowrap;
-    }
-    .chip-toggle {
-      transition: all 0.2s ease;
-    }
-    .chip-toggle.active {
-      background: var(--charcoal);
-      color: var(--cream);
-      border-color: var(--charcoal);
-    }
-    .char-counter {
-      font-size: 0.75rem;
-      color: var(--on-sv);
-      text-align: right;
-      margin-top: 0.25rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .char-counter.warning { color: var(--primary); }
-    .char-counter.danger { color: #ba1a1a; }
-    .testimony-quote {
-      font-family: 'Newsreader', serif;
-      font-style: italic;
-      font-size: 1.0625rem;
-      line-height: 1.7;
-      color: var(--on-sv);
-      border-left: 3px solid var(--brass);
-      padding-left: 1.25rem;
-    }
-    .influence-score-ring {
-      width: 5rem;
-      height: 5rem;
-      border-radius: 50%;
-      background: conic-gradient(var(--muted) 0% 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .influence-score-ring::after {
-      content: '';
-      width: 3.75rem;
-      height: 3.75rem;
-      border-radius: 50%;
-      background: white;
-      position: absolute;
-    }
-    .influence-score-inner {
-      position: relative;
-      z-index: 1;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--primary);
-    }
-    .founding-pass {
-      background: linear-gradient(135deg, #231F20 0%, #3a3536 100%);
-      border-radius: 1rem;
-      overflow: hidden;
-      color: var(--cream);
-      position: relative;
-    }
-    .founding-pass-header {
-      background: var(--primary);
-      padding: 0.75rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-weight: 700;
-      font-size: 0.875rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .founding-pass-body {
-      padding: 1.25rem;
-    }
-    .perforation {
-      border-top: 2px dashed rgba(247,244,235,0.2);
-      margin: 0;
-    }
-    .pass-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      font-size: 0.75rem;
-    }
-    .pass-label {
-      color: var(--brass);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      font-size: 0.625rem;
-      margin-bottom: 0.125rem;
-    }
-    .pass-value {
-      color: var(--cream);
-      font-weight: 500;
-    }
-    .voucher-section {
-      border: 1.5px dashed var(--brass);
-      border-radius: 0.75rem;
-      padding: 1rem;
-      text-align: center;
-      margin-top: 1rem;
-      position: relative;
-    }
-    .voucher-code {
-      font-family: 'Courier New', monospace;
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--brass);
-    }
-    .qr-placeholder {
-      width: 3.5rem;
-      height: 3.5rem;
-      border: 1.5px dashed var(--brass);
-      border-radius: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0.5rem auto 0;
-      font-size: 0.625rem;
-      color: var(--brass);
-      opacity: 0.7;
-    }
-    .tier-card {
-      border: 1.5px solid var(--muted);
-      border-radius: 0.75rem;
-      padding: 1rem 1.25rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .tier-card:hover {
-      border-color: var(--outline);
-    }
-    .tier-card.selected {
-      border-color: var(--primary);
-      background: var(--surface-l);
-    }
-    .tier-radio {
-      width: 1.125rem;
-      height: 1.125rem;
-      border-radius: 50%;
-      border: 2px solid var(--muted);
-      flex-shrink: 0;
-      position: relative;
-      transition: all 0.2s ease;
-    }
-    .tier-card.selected .tier-radio {
-      border-color: var(--primary);
-    }
-    .tier-card.selected .tier-radio::after {
-      content: '';
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 50%;
-      background: var(--primary);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .consent-checkbox {
-      width: 1.125rem;
-      height: 1.125rem;
-      border-radius: 0.25rem;
-      border: 1.5px solid var(--muted);
-      flex-shrink: 0;
-      cursor: pointer;
-      accent-color: var(--primary);
-    }
-    .referral-banner {
-      background: linear-gradient(135deg, var(--charcoal) 0%, #2a2627 100%);
-      border-radius: 1rem;
-      padding: 1.25rem;
-      color: var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-    .referral-banner::after {
-      content: '';
-      position: absolute;
-      top: -2rem;
-      right: -2rem;
-      width: 6rem;
-      height: 6rem;
-      border-radius: 50%;
-      background: rgba(200,157,92,0.15);
-    }
-
-    .step-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0;
-    }
-    .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.75rem;
-      height: 1.75rem;
-      border-radius: 9999px;
-      background: var(--primary);
-      color: var(--cream);
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-    .step-text {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--primary-dark);
-    }
-    .step-dots {
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-    }
-    .step-dot {
-      height: 0.375rem;
-      border-radius: 9999px;
-      transition: all 0.3s;
-    }
-
-    @media (max-width: 768px) {
-      .price-value { font-size: 1.5rem; }
-      .influence-score-ring { width: 4rem; height: 4rem; }
-      .influence-score-ring::after { width: 3rem; height: 3rem; }
-      .influence-score-inner { font-size: 1rem; }
-      .pricing-grid { grid-template-columns: 1fr !important; }
-    }
-    @media (min-width: 769px) {
-      .pricing-grid {
-        grid-template-columns: 7fr 5fr;
-        gap: 1.5rem;
-      }
+    @media(min-width:769px){
+      .pricing-grid{grid-template-columns:7fr 5fr;gap:1.5rem}
     }
   </style>
 </head>
 <body>
+
+  <div class="splash-screen" id="splash-screen">
+    <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
+    <div class="splash-text">Before we open, you decide what we become.</div>
+    <div class="splash-sub">Palakkad's first community-built café</div>
+  </div>
+  <div class="name-card-overlay" id="name-card-overlay">
+    <div class="name-card">
+      <h2>Welcome to CUPPILO</h2>
+      <p>What should we call you?</p>
+      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
+      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
+    </div>
+  </div>
 
   <nav class="navbar" id="navbar"></nav>
 
   <main class="section">
     <div class="container">
 
-      <!-- Step Indicator -->
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:0.75rem 0">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0">
         <div class="step-pill">
           <span class="step-num">4</span>
           <span class="step-text" data-en="Step 4 of 5 · Community Co-Creation" data-ml="ഘട്ടം 4 of 5 · കമ്മ്യൂണിറ്റി കോ-ക്രിയേഷൻ">Step 4 of 5 · Community Co-Creation</span>
@@ -298,37 +95,32 @@
           <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
           <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
           <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
-          <span class="step-dot" style="width:0.625rem;background:var(--muted)"></span>
+          <span class="step-dot" style="width:.625rem;background:var(--muted)"></span>
         </div>
       </div>
 
-      <!-- Page Header -->
       <div style="margin-bottom:2rem">
-        <h1 class="font-display" style="font-size:1.75rem;color:var(--charcoal);margin-bottom:0.25rem" data-en="Fair Cup Pricing" data-ml="ന്യായമായ കപ്പ് വില">Fair Cup Pricing</h1>
-        <p style="font-size:0.9375rem;color:var(--on-sv)" data-en="You name the price. We'll build the café around what feels fair." data-ml="വില നിങ്ങൾ പറയൂ. ന്യായമെന്ന് തോന്നുന്നത് ചുറ്റും ഞങ്ങൾ കഫേ നിർമ്മിക്കും.">You name the price. We'll build the café around what feels fair.</p>
+        <h1 style="font-size:1.75rem;color:var(--charcoal);margin-bottom:.25rem" data-en="Fair Cup Pricing" data-ml="ന്യായമായ കപ്പ് വില">Fair Cup Pricing</h1>
+        <p style="font-size:.9375rem;color:var(--on-sv)" data-en="You name the price. We'll build the café around what feels fair." data-ml="വില നിങ്ങൾ പറയൂ. ന്യായമെന്ന് തോന്നുന്നത് ചുറ്റും ഞങ്ങൾ കഫേ നിർമ്മിക്കും.">You name the price. We'll build the café around what feels fair.</p>
       </div>
 
-      <!-- 2-Column Layout: 7fr / 5fr -->
       <div class="pricing-grid">
 
-        <!-- ═══════ LEFT COLUMN (7 cols) ═══════ -->
         <div>
 
-          <!-- 1. Price Discovery Sliders -->
           <div class="card" style="margin-bottom:1.25rem">
-            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1.25rem">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem">
               <span class="material-symbols-outlined" style="color:var(--primary)">sell</span>
-              <h2 class="font-display" style="font-size:1rem;color:var(--charcoal)" data-en="Price Discovery" data-ml="വില കണ്ടെത്തൽ">Price Discovery</h2>
+              <h2 style="font-size:1rem;color:var(--charcoal)" data-en="Price Discovery" data-ml="വില കണ്ടെത്തൽ">Price Discovery</h2>
             </div>
 
-            <!-- Coffee Slider -->
             <div style="margin-bottom:1.5rem">
-              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.5rem">
-                <span style="font-size:0.875rem;font-weight:600;color:var(--charcoal)" data-en="Signature Cold Brew" data-ml="സിഗ്നേച്ചർ കോൾഡ് ബ്രൂ">Signature Cold Brew</span>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.5rem">
+                <span style="font-size:.875rem;font-weight:600;color:var(--charcoal)" data-en="Signature Cold Brew" data-ml="സിഗ്നേച്ചർ കോൾഡ് ബ്രൂ">Signature Cold Brew</span>
                 <span class="price-value" id="coffee-price">₹60</span>
               </div>
               <input type="range" id="coffee-slider" min="30" max="120" value="60" step="1">
-              <div style="display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--on-sv);margin-top:0.25rem">
+              <div style="display:flex;justify-content:space-between;font-size:.6875rem;color:var(--on-sv);margin-top:.25rem">
                 <span>₹30</span>
                 <span>₹120</span>
               </div>
@@ -338,14 +130,13 @@
               </div>
             </div>
 
-            <!-- Tea Slider -->
             <div>
-              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.5rem">
-                <span style="font-size:0.875rem;font-weight:600;color:var(--charcoal)" data-en="Premium Kerala Chaya" data-ml="പ്രീമിയം കേരള ചായ">Premium Kerala Chaya</span>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.5rem">
+                <span style="font-size:.875rem;font-weight:600;color:var(--charcoal)" data-en="Premium Kerala Chaya" data-ml="പ്രീമിയം കേരള ചായ">Premium Kerala Chaya</span>
                 <span class="price-value" id="tea-price">₹20</span>
               </div>
               <input type="range" id="tea-slider" min="15" max="40" value="20" step="1">
-              <div style="display:flex;justify-content:space-between;font-size:0.6875rem;color:var(--on-sv);margin-top:0.25rem">
+              <div style="display:flex;justify-content:space-between;font-size:.6875rem;color:var(--on-sv);margin-top:.25rem">
                 <span>₹15</span>
                 <span>₹40</span>
               </div>
@@ -356,15 +147,14 @@
             </div>
           </div>
 
-          <!-- 2. Dream Café Wishlist -->
           <div class="card" style="margin-bottom:1.25rem">
-            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem">
               <span class="material-symbols-outlined" style="color:var(--brass)">emoji_objects</span>
-              <h2 class="font-display" style="font-size:1rem;color:var(--charcoal)" data-en="Dream Café Wishlist" data-ml="സ്വപ്ന കഫേ വിഷ്ലിസ്റ്റ്">Dream Café Wishlist</h2>
+              <h2 style="font-size:1rem;color:var(--charcoal)" data-en="Dream Café Wishlist" data-ml="സ്വപ്ന കഫേ വിഷ്ലിസ്റ്റ്">Dream Café Wishlist</h2>
             </div>
 
-            <p style="font-size:0.8125rem;color:var(--on-sv);margin-bottom:0.75rem" data-en="Toggle what matters most to you:" data-ml="നിങ്ങൾക്ക് ഏറ്റവും പ്രധാനമായത് ടോഗിൾ ചെയ്യുക:">Toggle what matters most to you:</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.25rem" id="wishlist-chips">
+            <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:.75rem" data-en="Toggle what matters most to you:" data-ml="നിങ്ങൾക്ക് ഏറ്റവും പ്രധാനമായത് ടോഗിൾ ചെയ്യുക:">Toggle what matters most to you:</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem" id="wishlist-chips">
               <button class="chip chip-toggle" data-tag="free-wifi" onclick="toggleChip(this)">
                 <span class="material-symbols-outlined" style="font-size:16px">wifi</span>
                 <span data-en="Free WiFi" data-ml="സൗജന്യ WiFi">Free WiFi</span>
@@ -387,22 +177,19 @@
               </button>
             </div>
 
-            <label style="font-size:0.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:0.5rem" data-en="If you could fix ONE thing about cafés in Palakkad?" data-ml="പാലക്കാട്ടെ കഫേകളെക്കുറിച്ച് ഒരു കാര്യം മാറ്റാൻ സാധിച്ചാൽ?">If you could fix ONE thing about cafés in Palakkad?</label>
+            <label style="font-size:.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:.5rem" data-en="If you could fix ONE thing about cafés in Palakkad?" data-ml="പാലക്കാട്ടെ കഫേകളെക്കുറിച്ച് ഒരു കാര്യം മാറ്റാൻ സാധിച്ചാൽ?">If you could fix ONE thing about cafés in Palakkad?</label>
             <textarea class="input" id="wishlist-textarea" maxlength="280" placeholder="The chai is too sweet, the chairs are uncomfortable, there's no plug point..." rows="3" oninput="updateCharCount()"></textarea>
             <div class="char-counter" id="char-counter">0/280</div>
           </div>
 
-          <!-- 3. Testimonial Quote -->
           <div class="card" style="margin-bottom:1.25rem">
             <div class="testimony-quote" data-en="Palakkad deserves spaces that don't mimic European sterility — but ones that honour the veranda, the monsoon, the shared brass tumbler. CUPPILO is the antidote to cookie-cutter café culture." data-ml="യൂറോപ്യൻ മരവിപ്പ് അനുകരിക്കാത്ത, പക്ഷേ വരാന്ത, മൺസൂൺ, പങ്കിട്ട ചെമ്പ് ടംബ്ലർ എന്നിവയെ ആദരിക്കുന്ന ഇടങ്ങൾക്ക് പാലക്കാട് അർഹമാണ്. CUPPILO കുക്കീ-കട്ടർ കഫേ സംസ്കാരത്തിനുള്ള മരുന്നാണ്.">Palakkad deserves spaces that don't mimic European sterility — but ones that honour the veranda, the monsoon, the shared brass tumbler. CUPPILO is the antidote to cookie-cutter café culture.</div>
-            <p style="font-size:0.75rem;font-weight:600;color:var(--on-sv);margin-top:0.75rem" data-en="— Founding Patron, Palakkad Chapter" data-ml="— സ്ഥാപക പാട്രൺ, പാലക്കാട് അധ്യായം">— Founding Patron, Palakkad Chapter</p>
+            <p style="font-size:.75rem;font-weight:600;color:var(--on-sv);margin-top:.75rem" data-en="— Founding Patron, Palakkad Chapter" data-ml="— സ്ഥാപക പാട്രൺ, പാലക്കാട് അധ്യായം">— Founding Patron, Palakkad Chapter</p>
           </div>
         </div>
 
-        <!-- ═══════ RIGHT COLUMN (5 cols) ═══════ -->
         <div>
 
-          <!-- 4. Influence Score Card -->
           <div class="card" style="margin-bottom:1.25rem;text-align:center">
             <span class="pill pill-live" style="margin-bottom:1rem;display:inline-flex">
               <span class="material-symbols-outlined" style="font-size:14px">workspace_premium</span>
@@ -413,24 +200,23 @@
                 <span class="influence-score-inner" id="influence-score">0</span>
               </div>
               <div style="text-align:left">
-                <p style="font-size:0.75rem;font-weight:600;color:var(--on-sv)" data-en="Influence Score" data-ml="സ്വാധീന സ്കോർ">Influence Score</p>
-                <p style="font-size:1.5rem;font-weight:800;color:var(--primary);line-height:1"><span id="influence-num">0</span><span style="font-size:0.875rem;font-weight:600;color:var(--on-sv)">/100</span></p>
-                <p style="font-size:0.6875rem;color:var(--on-sv)" data-en="No votes yet — your input shapes this" data-ml="വോട്ടുകൾ ഇല്ല — നിങ്ങളുടെ ഇൻപുട്ട് ഇത് രൂപപ്പെടുത്തുന്നു">No votes yet — your input shapes this</p>
+                <p style="font-size:.75rem;font-weight:600;color:var(--on-sv)" data-en="Influence Score" data-ml="സ്വാധീന സ്കോർ">Influence Score</p>
+                <p style="font-size:1.5rem;font-weight:800;color:var(--primary);line-height:1"><span id="influence-num">0</span><span style="font-size:.875rem;font-weight:600;color:var(--on-sv)">/100</span></p>
+                <p style="font-size:.6875rem;color:var(--on-sv)" data-en="No votes yet — your input shapes this" data-ml="വോട്ടുകൾ ഇല്ല — നിങ്ങളുടെ ഇൻപുട്ട് ഇത് രൂപപ്പെടുത്തുന്നു">No votes yet — your input shapes this</p>
               </div>
             </div>
           </div>
 
-          <!-- 5. Digital Founding Pass -->
           <div class="founding-pass" style="margin-bottom:1.25rem">
             <div class="founding-pass-header">
               <span data-en="Founding Patron Pass" data-ml="സ്ഥാപക പാട്രൺ പാസ്">Founding Patron Pass</span>
-              <span style="font-family:'Courier New',monospace;font-size:0.75rem;letter-spacing:0.1em">PASS: #0001</span>
+              <span style="font-family:'Courier New',monospace;font-size:.75rem;letter-spacing:.1em">PASS: #0001</span>
             </div>
             <hr class="perforation">
             <div class="founding-pass-body">
               <div style="text-align:center;margin-bottom:1rem">
-                <div style="font-weight:800;font-size:1.25rem;letter-spacing:0.04em">CUPPILO</div>
-                <div style="font-size:0.875rem;color:var(--brass);margin-top:0.125rem">കപ്പിലോ</div>
+                <div style="font-weight:800;font-size:1.25rem;letter-spacing:.04em">CUPPILO</div>
+                <div style="font-size:.875rem;color:var(--brass);margin-top:.125rem">കപ്പിലോ</div>
               </div>
               <div class="pass-grid">
                 <div>
@@ -448,38 +234,43 @@
                 <div>
                   <div class="pass-label" data-en="Status" data-ml="സ്ഥിതി">Status</div>
                   <div class="pass-value" style="color:var(--brass)">
-                    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brass);margin-right:0.375rem;animation:pulse 2s ease-in-out infinite"></span>
+                    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brass);margin-right:.375rem;animation:pulse 2s ease-in-out infinite"></span>
                     <span data-en="Founding" data-ml="സ്ഥാപനം">Founding</span>
                   </div>
                 </div>
               </div>
               <div class="voucher-section">
-                <p style="font-size:0.625rem;font-weight:600;color:var(--brass);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.375rem" data-en="Your Voucher Code" data-ml="നിങ്ങളുടെ വൗച്ചർ കോഡ്">Your Voucher Code</p>
+                <p style="font-size:.625rem;font-weight:600;color:var(--brass);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.375rem" data-en="Your Voucher Code" data-ml="നിങ്ങളുടെ വൗച്ചർ കോഡ്">Your Voucher Code</p>
                 <div class="voucher-code" id="voucher-code">CUPPILO-0001</div>
                 <div class="qr-placeholder">
                   <span class="material-symbols-outlined" style="font-size:18px">qr_code_2</span>
                 </div>
-                <p style="font-size:0.625rem;color:var(--brass);margin-top:0.375rem;opacity:0.8" data-en="Show at counter or scan to redeem" data-ml="കൗണ്ടറിൽ കാണിക്കുക അല്ലെങ്കിൽ റീഡീം ചെയ്യാൻ സ്കാൻ ചെയ്യുക">Show at counter or scan to redeem</p>
+                <p style="font-size:.625rem;color:var(--brass);margin-top:.375rem;opacity:.8" data-en="Show at counter or scan to redeem" data-ml="കൗണ്ടറിൽ കാണിക്കുക അല്ലെങ്കിൽ റീഡീം ചെയ്യാൻ സ്കാൻ ചെയ്യുക">Show at counter or scan to redeem</p>
               </div>
             </div>
           </div>
 
-          <!-- 6. Supporter Tiers -->
+          <div class="unlock-box">
+            <span class="material-symbols-outlined">lock_open</span>
+            <h4 data-en="Complete the co-creation journey" data-ml="കോ-ക്രിയേഷൻ യാത്ര പൂർത്തിയാക്കുക">Complete the co-creation journey</h4>
+            <p data-en="Unlock a Founding Reward" data-ml="ഒരു സ്ഥാപക റിവാർഡ് അൺലോക്ക് ചെയ്യുക">Unlock a Founding Reward</p>
+          </div>
+
           <div class="card" style="margin-bottom:1.25rem">
-            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem">
               <span class="material-symbols-outlined" style="color:var(--primary)">volunteer_activism</span>
-              <h2 class="font-display" style="font-size:1rem;color:var(--charcoal)" data-en="Supporter Tier" data-ml="സപ്പോർട്ടർ ടയർ">Supporter Tier</h2>
+              <h2 style="font-size:1rem;color:var(--charcoal)" data-en="Supporter Tier" data-ml="സപ്പോർട്ടർ ടയർ">Supporter Tier</h2>
             </div>
 
-            <div style="display:flex;flex-direction:column;gap:0.75rem">
+            <div style="display:flex;flex-direction:column;gap:.75rem">
               <div class="tier-card" data-tier="pioneer" onclick="selectTier(this, 'pioneer')">
                 <div class="tier-radio"></div>
                 <div style="flex:1">
                   <div style="display:flex;align-items:baseline;justify-content:space-between">
-                    <span style="font-size:0.875rem;font-weight:700;color:var(--charcoal)" data-en="Pioneer" data-ml="പയനീയർ">Pioneer</span>
+                    <span style="font-size:.875rem;font-weight:700;color:var(--charcoal)" data-en="Pioneer" data-ml="പയനീയർ">Pioneer</span>
                     <span style="font-size:1rem;font-weight:800;color:var(--primary)">₹10</span>
                   </div>
-                  <p style="font-size:0.75rem;color:var(--on-sv);margin-top:0.125rem" data-en="Name on the digital Founding Wall · Early access invites" data-ml="ഡിജിറ്റൽ സ്ഥാപക മതിലിൽ പേര് · നേരത്തെ ആക്സസ് ക്ഷണങ്ങൾ">Name on the digital Founding Wall · Early access invites</p>
+                  <p style="font-size:.75rem;color:var(--on-sv);margin-top:.125rem" data-en="Name on the digital Founding Wall · Early access invites" data-ml="ഡിജിറ്റൽ സ്ഥാപക മതിലിൽ പേര് · നേരത്തെ ആക്സസ് ക്ഷണങ്ങൾ">Name on the digital Founding Wall · Early access invites</p>
                 </div>
               </div>
 
@@ -487,31 +278,30 @@
                 <div class="tier-radio"></div>
                 <div style="flex:1">
                   <div style="display:flex;align-items:baseline;justify-content:space-between">
-                    <div style="display:flex;align-items:center;gap:0.5rem">
-                      <span style="font-size:0.875rem;font-weight:700;color:var(--charcoal)" data-en="First-Brew Pass" data-ml="ഫസ്റ്റ്-ബ്രൂ പാസ്">First-Brew Pass</span>
-                      <span class="pill pill-primary" style="font-size:0.625rem;padding:0.125rem 0.5rem" data-en="POPULAR" data-ml="ജനപ്രിയം">POPULAR</span>
+                    <div style="display:flex;align-items:center;gap:.5rem">
+                      <span style="font-size:.875rem;font-weight:700;color:var(--charcoal)" data-en="First-Brew Pass" data-ml="ഫസ്റ്റ്-ബ്രൂ പാസ്">First-Brew Pass</span>
+                      <span class="pill pill-primary" style="font-size:.625rem;padding:.125rem .5rem" data-en="POPULAR" data-ml="ജനപ്രിയം">POPULAR</span>
                     </div>
                     <span style="font-size:1rem;font-weight:800;color:var(--primary)">₹49</span>
                   </div>
-                  <p style="font-size:0.75rem;color:var(--on-sv);margin-top:0.125rem" data-en="Free opening-week cold brew · Founding Patron badge · Priority seating" data-ml="സൗജന്യ ഓപ്പണിംഗ് വാര കോൾഡ് ബ്രൂ · സ്ഥാപക പാട്രൺ ബാഡ്ജ് · മുൻഗണനാ സീറ്റിംഗ്">Free opening-week cold brew · Founding Patron badge · Priority seating</p>
+                  <p style="font-size:.75rem;color:var(--on-sv);margin-top:.125rem" data-en="Free opening-week cold brew · Founding Patron badge · Priority seating" data-ml="സൗജന്യ ഓപ്പണിംഗ് വാര കോൾഡ് ബ്രൂ · സ്ഥാപക പാട്രൺ ബാഡ്ജ് · മുൻഗണനാ സീറ്റിംഗ്">Free opening-week cold brew · Founding Patron badge · Priority seating</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 7. Phone Capture & Consent -->
           <div class="card" style="margin-bottom:1.25rem">
-            <label style="font-size:0.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:0.5rem" data-en="Phone Number" data-ml="ഫോൺ നമ്പർ">Phone Number</label>
-            <div style="display:flex;gap:0.5rem;margin-bottom:1rem">
-              <div style="display:flex;align-items:center;gap:0.25rem;padding:0 0.75rem;background:var(--surface-container);border-radius:0.5rem;border:1px solid var(--muted);min-height:48px">
-                <span style="font-size:0.875rem;font-weight:600;color:var(--on-sv)">+91</span>
+            <label style="font-size:.8125rem;font-weight:600;color:var(--charcoal);display:block;margin-bottom:.5rem" data-en="Phone Number" data-ml="ഫോൺ നമ്പർ">Phone Number</label>
+            <div style="display:flex;gap:.5rem;margin-bottom:1rem">
+              <div style="display:flex;align-items:center;gap:.25rem;padding:0 .75rem;border-radius:.5rem;border:1px solid var(--muted);min-height:48px">
+                <span style="font-size:.875rem;font-weight:600;color:var(--on-sv)">+91</span>
               </div>
               <input type="tel" id="phone-input" class="input" placeholder="98765 43210" maxlength="12" style="flex:1">
             </div>
 
-            <label style="display:flex;align-items:flex-start;gap:0.625rem;cursor:pointer;margin-bottom:1.25rem">
-              <input type="checkbox" id="consent-checkbox" class="consent-checkbox" style="margin-top:0.1875rem">
-              <span style="font-size:0.75rem;color:var(--on-sv);line-height:1.5" data-en="I consent to CUPPILO storing my phone number for co-creation updates, in accordance with the DPDP Act 2023. I understand I can opt out anytime." data-ml="DPDP Act 2023 പ്രകാരം കോ-ക്രിയേഷൻ അപ്ഡേറ്റുകൾക്കായി CUPPILO എന്റെ ഫോൺ നമ്പർ സൂക്ഷിക്കുന്നതിൽ ഞാൻ സമ്മതിക്കുന്നു. എപ്പോൾ വേണമെങ്കിലും ഒപ്റ്റ് ഔട്ട് ചെയ്യാമെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു.">I consent to CUPPILO storing my phone number for co-creation updates, in accordance with the DPDP Act 2023. I understand I can opt out anytime.</span>
+            <label style="display:flex;align-items:flex-start;gap:.625rem;cursor:pointer;margin-bottom:1.25rem">
+              <input type="checkbox" id="consent-checkbox" class="consent-checkbox" style="margin-top:.1875rem">
+              <span style="font-size:.75rem;color:var(--on-sv);line-height:1.5" data-en="I consent to CUPPILO storing my phone number for co-creation updates. I understand I can opt out anytime." data-ml="കോ-ക്രിയേഷൻ അപ്ഡേറ്റുകൾക്കായി CUPPILO എന്റെ ഫോൺ നമ്പർ സൂക്ഷിക്കുന്നതിൽ ഞാൻ സമ്മതിക്കുന്നു. എപ്പോൾ വേണമെങ്കിലും ഒപ്റ്റ് ഔട്ട് ചെയ്യാമെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു.">I consent to CUPPILO storing my phone number for co-creation updates. I understand I can opt out anytime.</span>
             </label>
 
             <button class="btn btn-primary" style="width:100%" onclick="claimVoucher()">
@@ -520,20 +310,19 @@
             </button>
           </div>
 
-          <!-- 8. Referral Banner -->
           <div class="referral-banner">
             <div style="position:relative;z-index:1">
-              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+              <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
                 <span class="material-symbols-outlined" style="color:var(--brass);font-size:20px">group_add</span>
-                <span style="font-size:0.8125rem;font-weight:700;color:var(--cream)" data-en="Referral Bonus" data-ml="റെഫറൽ ബോണസ്">Referral Bonus</span>
+                <span style="font-size:.8125rem;font-weight:700;color:var(--cream)" data-en="Referral Bonus" data-ml="റെഫറൽ ബോണസ്">Referral Bonus</span>
               </div>
-              <p style="font-size:0.9375rem;font-weight:600;color:var(--cream);margin-bottom:0.5rem">
+              <p style="font-size:.9375rem;font-weight:600;color:var(--cream);margin-bottom:.5rem">
                 <span data-en="Invite 3 friends to unlock" data-ml="അൺലോക്ക് ചെയ്യാൻ 3 സുഹൃത്തുക്കളെ ക്ഷണിക്കുക">Invite 3 friends to unlock</span>
                 <span style="color:var(--brass);font-weight:800" data-en="free banana cake" data-ml="സൗജന്യ പഴ കേക്ക്">free banana cake</span>
                 <span data-en="on your first visit." data-ml="നിങ്ങളുടെ ആദ്യ സന്ദർശനത്തിൽ.">on your first visit.</span>
               </p>
-              <p style="font-size:0.75rem;color:var(--outline);margin-bottom:0.75rem" data-en="Share your unique link. When 3 friends complete their ballot, you both get a treat." data-ml="നിങ്ങളുടെ അദ്വിതീയ ലിങ്ക് പങ്കിടുക. 3 സുഹൃത്തുക്കൾ അവരുടെ ബാലറ്റ് പൂർത്തിയാക്കുമ്പോൾ, നിങ്ങൾ രണ്ടുപേർക്കും ഒരു ട്രീറ്റ് ലഭിക്കും.">Share your unique link. When 3 friends complete their ballot, you both get a treat.</p>
-              <button class="btn" style="background:var(--brass);color:var(--charcoal);font-weight:700;padding:0.625rem 1.25rem;font-size:0.8125rem" onclick="shareReferral()">
+              <p style="font-size:.75rem;color:var(--outline);margin-bottom:.75rem" data-en="Share your unique link. When 3 friends complete their ballot, you both get a treat." data-ml="നിങ്ങളുടെ അദ്വിതീയ ലിങ്ക് പങ്കിടുക. 3 സുഹൃത്തുക്കൾ അവരുടെ ബാലറ്റ് പൂർത്തിയാക്കുമ്പോൾ, നിങ്ങൾ രണ്ടുപേർക്കും ഒരു ട്രീറ്റ് ലഭിക്കും.">Share your unique link. When 3 friends complete their ballot, you both get a treat.</p>
+              <button class="btn" style="background:var(--brass);color:var(--charcoal);font-weight:700;padding:.625rem 1.25rem;font-size:.8125rem" onclick="shareReferral()">
                 <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
                 <span data-en="Copy My Referral Link" data-ml="എന്റെ റെഫറൽ ലിങ്ക് കോപ്പി ചെയ്യുക">Copy My Referral Link</span>
               </button>
@@ -550,19 +339,19 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
-    let selectedTier = null;
+    var selectedTier = null;
 
     document.addEventListener('DOMContentLoaded', function() {
       initPage('pricing');
       updateCharCount();
     });
 
-    const coffeeSlider = document.getElementById('coffee-slider');
+    var coffeeSlider = document.getElementById('coffee-slider');
     coffeeSlider.addEventListener('input', function() {
       document.getElementById('coffee-price').textContent = '₹' + this.value;
     });
 
-    const teaSlider = document.getElementById('tea-slider');
+    var teaSlider = document.getElementById('tea-slider');
     teaSlider.addEventListener('input', function() {
       document.getElementById('tea-price').textContent = '₹' + this.value;
     });
@@ -572,9 +361,9 @@
     }
 
     function updateCharCount() {
-      const textarea = document.getElementById('wishlist-textarea');
-      const counter = document.getElementById('char-counter');
-      const len = textarea.value.length;
+      var textarea = document.getElementById('wishlist-textarea');
+      var counter = document.getElementById('char-counter');
+      var len = textarea.value.length;
       counter.textContent = len + '/280';
       counter.className = 'char-counter' + (len > 250 ? ' danger' : len > 200 ? ' warning' : '');
     }
@@ -586,25 +375,25 @@
     }
 
     async function claimVoucher() {
-      const phone = document.getElementById('phone-input').value.trim();
-      const consent = document.getElementById('consent-checkbox').checked;
+      var phone = document.getElementById('phone-input').value.trim();
+      var consent = document.getElementById('consent-checkbox').checked;
 
       if (!phone || phone.length < 10) {
         showToast('Please enter a valid 10-digit phone number', 'error');
         return;
       }
       if (!consent) {
-        showToast('Please accept the DPDP consent to continue', 'error');
+        showToast('Please accept the consent to continue', 'error');
         return;
       }
 
       try {
-        const coffeeVal = parseInt(coffeeSlider.value);
-        const teaVal = parseInt(teaSlider.value);
-        const tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(function(c) { return c.dataset.tag; });
-        const text = document.getElementById('wishlist-textarea').value;
+        var coffeeVal = parseInt(coffeeSlider.value);
+        var teaVal = parseInt(teaSlider.value);
+        var tags = Array.from(document.querySelectorAll('.chip-toggle.active')).map(function(c) { return c.dataset.tag; });
+        var text = document.getElementById('wishlist-textarea').value;
 
-        const ballotData = {
+        var ballotData = {
           menu_votes: {},
           vibe_vote: '',
           price_coffee: coffeeVal,
@@ -613,19 +402,21 @@
           suggested_items: tags
         };
 
-        const ballotResult = await sbInsert('ballots', ballotData);
+        await sbInsert('ballots', ballotData);
 
-        const participantData = {
+        var voucherCode = 'CUPPILO-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+        var participantData = {
           phone_number: '+91' + phone,
           dpdp_consent: true,
           consent_ts: new Date().toISOString(),
-          voucher_code: 'CUPPILO-' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+          voucher_code: voucherCode,
           tier: selectedTier || 'free',
           payment_id: null
         };
 
         await sbInsert('participants', participantData);
 
+        document.getElementById('voucher-code').textContent = voucherCode;
         showToast('Your voucher is ready! Welcome, Founding Patron.', 'success');
         document.getElementById('pass-name').textContent = '+91 ' + phone.replace(/(\d{5})(\d{5})/, '$1 $2');
       } catch (err) {
@@ -635,7 +426,7 @@
     }
 
     function shareReferral() {
-      const url = window.location.origin + '/index.html?ref=CUPPILO-0001';
+      var url = window.location.origin + '/index.html?ref=CUPPILO-0001';
       if (navigator.clipboard) {
         navigator.clipboard.writeText(url).then(function() {
           showToast('Referral link copied to clipboard!', 'success');

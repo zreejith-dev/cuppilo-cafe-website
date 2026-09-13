@@ -5,14 +5,11 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>CUPPILO — Help Us Build Your Dream Café in Palakkad</title>
   <meta name="description" content="CUPPILO co-creation platform. Help curate the menu, choose the vibe, and name fair prices for Palakkad's first community-built artisanal café."/>
-
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-
   <link href="css/styles.css" rel="stylesheet"/>
-
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
@@ -36,9 +33,6 @@
     .cta-badge .material-symbols-outlined{font-size:18px;color:var(--brass)}
 
     .hero-card{background:var(--cream);border-radius:1rem;padding:1rem;border:1px solid var(--muted);box-shadow:0 4px 16px -2px rgba(35,31,32,.06);position:relative;overflow:hidden}
-    .hero-card-img{width:100%;height:12rem;border-radius:.75rem;object-fit:cover}
-    .hero-card-badge{position:absolute;bottom:.5rem;left:.5rem;background:rgba(35,31,32,.85);backdrop-filter:blur(8px);color:var(--cream);padding:.25rem .625rem;border-radius:.375rem;font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:.25rem}
-    .hero-card-badge .material-symbols-outlined{font-size:14px;color:var(--brass)}
     .hero-card-body{padding-top:.75rem;display:flex;flex-direction:column;gap:.375rem}
     .hero-card-body h4{font-size:.875rem;font-weight:700;color:var(--charcoal)}
     .hero-card-body p{font-size:.8125rem;color:var(--on-sv);line-height:1.5}
@@ -83,33 +77,32 @@
     .pc3 .pillar-card-step{color:var(--success)}
     .pc3 .action{color:var(--success)}
 
-    .teaser-section{background:var(--surface-c);border-radius:1rem;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;box-shadow:0 2px 8px -2px rgba(35,31,32,.04)}
-    @media(min-width:768px){.teaser-section{padding:1.5rem}}
-    .teaser-header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:.5rem}
-    .teaser-header .tag{font-size:.75rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.05em}
-    .teaser-header h3{font-size:1.25rem;font-weight:700;color:var(--charcoal)}
-    .teaser-header .micro{font-size:.75rem;color:var(--on-sv);background:var(--surface-l);padding:.25rem .625rem;border-radius:9999px}
+    .results-section{padding:2rem 0}
+    .results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem}
+    .results-header-left{display:flex;align-items:center;gap:.5rem}
+    .results-header-left .bar{width:4px;height:1.25rem;background:var(--brass);border-radius:9999px}
+    .results-header h2{font-size:1.25rem;font-weight:700;color:var(--charcoal)}
+    .results-header .live-pill{display:inline-flex;align-items:center;gap:.375rem;font-size:.75rem;font-weight:700;color:var(--primary);background:var(--surface-h);padding:.25rem .625rem;border-radius:9999px}
+    .results-header .live-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--live);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-    .teaser-grid{display:grid;grid-template-columns:1fr;gap:1rem}
-    @media(min-width:640px){.teaser-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(min-width:1024px){.teaser-grid{grid-template-columns:repeat(4,1fr)}}
+    .results-count-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+    .results-count{font-size:clamp(1.5rem,4vw,2.25rem);font-weight:800;color:var(--primary)}
+    .results-count-label{font-size:.875rem;color:var(--on-sv);line-height:1.4}
 
-    .teaser-card{cursor:pointer;background:var(--surface-l);border-radius:1rem;padding:1rem;border:1px solid var(--muted);display:flex;flex-direction:column;gap:.375rem;transition:all .2s;position:relative}
-    .teaser-card:hover,.teaser-card.selected{background:var(--cream);box-shadow:0 8px 20px -4px rgba(169,59,43,.1)}
-    .teaser-card-img{width:100%;height:8rem;border-radius:.75rem;object-fit:cover;margin-bottom:.375rem}
-    .teaser-card-heart{position:absolute;top:.5rem;right:.5rem;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);width:1.75rem;height:1.75rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.875rem;box-shadow:0 2px 6px rgba(0,0,0,.1)}
-    .teaser-card h4{font-size:.875rem;font-weight:700;color:var(--charcoal)}
-    .teaser-card .desc{font-size:.8125rem;color:var(--on-sv);line-height:1.45}
-    .teaser-consensus{display:none;padding-top:.5rem;margin-top:auto}
-    .teaser-consensus .bar{width:100%;height:4px;background:var(--muted);border-radius:9999px;overflow:hidden}
-    .teaser-consensus .fill{height:100%;background:var(--primary);border-radius:9999px;transition:width .5s ease}
-    .teaser-consensus .label{font-size:.75rem;font-weight:700;color:var(--primary);margin-top:.25rem;display:block}
+    .results-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+    @media(min-width:640px){.results-grid{grid-template-columns:repeat(3,1fr)}}
 
-    .teaser-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;padding-top:.5rem}
-    .teaser-footer p{font-size:.8125rem;color:var(--on-sv)}
-    .teaser-footer a{font-size:.8125rem;font-weight:700;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:.25rem}
-    .teaser-footer a:hover{text-decoration:underline}
-    .teaser-footer a .material-symbols-outlined{font-size:16px}
+    .results-card{background:var(--surface-l);border-radius:1rem;padding:1.25rem;border:1px solid var(--muted);text-align:center}
+    .results-card-icon{font-size:2rem;margin-bottom:.5rem}
+    .results-card-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--on-sv);margin-bottom:.25rem}
+    .results-card-value{font-size:1.125rem;font-weight:800;color:var(--charcoal);margin-bottom:.25rem}
+    .results-card-sub{font-size:.75rem;color:var(--on-sv)}
+
+    .results-footer{display:flex;align-items:center;justify-content:center;margin-top:1.5rem}
+    .results-footer a{font-size:.875rem;font-weight:700;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:.375rem}
+    .results-footer a:hover{text-decoration:underline}
+    .results-footer a .material-symbols-outlined{font-size:18px}
 
     .guarantee-section{background:var(--surface-l);border-radius:1rem;padding:1.25rem;border:1px solid var(--muted);display:flex;flex-direction:column;gap:1rem;box-shadow:0 2px 8px -2px rgba(35,31,32,.04)}
     @media(min-width:768px){.guarantee-section{flex-direction:row;align-items:center;justify-content:space-between}}
@@ -130,6 +123,23 @@
 
 <body>
 
+  <!-- SPLASH SCREEN -->
+  <div class="splash-screen" id="splash-screen">
+    <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
+    <div class="splash-text">Before we open, you decide what we become.</div>
+    <div class="splash-sub">Palakkad's first community-built café</div>
+  </div>
+
+  <!-- NAME CARD OVERLAY -->
+  <div class="name-card-overlay" id="name-card-overlay">
+    <div class="name-card">
+      <h2>Welcome to CUPPILO</h2>
+      <p>What should we call you?</p>
+      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
+      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
+    </div>
+  </div>
+
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar"></nav>
 
@@ -145,7 +155,7 @@
           <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1.5rem">
             <div class="hero-badge">
               <span class="dot"></span>
-              <span data-en="0 co-creators joined" data-ml="0 കോ-ക്രിയേറ്റർമാർ ചേർന്നു">0 co-creators joined</span>
+              <span data-en="0 co-creators joined" data-ml="0 കോ-ക്രിയേറ്റർമാർ ചേർന്നു" id="hero-co-count">0 co-creators joined</span>
             </div>
             <div style="display:inline-flex;align-items:center;gap:.375rem;background:var(--surface-h);padding:.375rem .75rem;border-radius:9999px;font-size:.8125rem;color:var(--on-sv)">
               <span class="material-symbols-outlined" style="font-size:16px;color:var(--primary)">explore</span>
@@ -164,8 +174,8 @@
                 <span data-en="Help Us Build Your Dream " data-ml="നിങ്ങളുടെ സ്വപ്ന കഫേ നിർമ്മിക്കാൻ ഞങ്ങളെ സഹായിക്കൂ ">Help Us Build Your Dream </span><span data-en="Café" data-ml="കഫേ">Café</span><span data-en=" Before We Open." data-ml=" തുറക്കുന്നതിന് മുമ്പ്."> Before We Open.</span>
               </h1>
 
-              <p class="hero-subtitle" data-en="We are ditching boardroom guesswork. Tell us what signature brews, reimagined bites, and late-night ambiance Palakkad is actually missing — and unlock exclusive Founding Patron perks before doors unlock." data-ml="ബോർഡ്‌റൂം ഊഹാപോഹങ്ങൾ ഉപേക്ഷിക്കുന്നു. പാലക്കാട്ടിൽ യഥാർത്ഥത്തിൽ എന്താണ് വേണ്ടതെന്ന് ഞങ്ങളെ അറിയിക്കൂ.">
-                We are ditching boardroom guesswork. Tell us what signature brews, reimagined bites, and late-night ambiance Palakkad is actually missing — and unlock exclusive Founding Patron perks before doors unlock.
+              <p class="hero-subtitle" data-en="We are ditching boardroom guesswork. Tell us what signature brews, reimagined bites, and late-night ambiance Palakkad is actually missing — and we will build it with you before doors open." data-ml="ബോർഡ്‌റൂം ഊഹാപോഹങ്ങൾ ഉപേക്ഷിക്കുന്നു. പാലക്കാട്ടിൽ യഥാർത്ഥത്തിൽ എന്താണ് വേണ്ടതെന്ന് ഞങ്ങളെ അറിയിക്കൂ — നിങ്ങളോടൊപ്പം നിർമ്മിക്കും.">
+                We are ditching boardroom guesswork. Tell us what signature brews, reimagined bites, and late-night ambiance Palakkad is actually missing — and we will build it with you before doors open.
               </p>
 
               <div class="hero-cta-row">
@@ -175,19 +185,12 @@
                 </a>
                 <div class="cta-badge">
                   <span class="material-symbols-outlined">bolt</span>
-                  <span data-en="100% free • No login required to vote" data-ml="100% സൗജന്യം • വോട്ട് ചെയ്യാൻ ലോഗിൻ ആവശ്യമില്ല">100% free • No login required to vote</span>
+                  <span data-en="100% free · No login required to vote" data-ml="100% സൗജന്യം · വോട്ട് ചെയ്യാൻ ലോഗിൻ ആവശ്യമില്ല">100% free · No login required to vote</span>
                 </div>
               </div>
             </div>
 
             <div class="hero-card">
-              <div style="position:relative">
-                <img class="hero-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-1kirvGFGJHto_-tTlLcMKHgashcAdydvyqNWneEsi9TwoAeSlG2gSuLbmF8mVu-6QajVwBUvfc2UQejk4-4vozOdq746WjvOoFzSDeI42HqYPTcCELaHDYvxQTe7Xc-b2S3MLmhA3ROBYpEbmKlk8anG654Vj_mzYcKt8ltp_GQ7AI0VW-iOMon-NUX2VQEFWRB926Ea8bRHSmFKVjRJ3CCL_wohbGf6CFAy2tVqeMU4oFfLBHvl" alt="Warm artisanal Kerala café interior"/>
-                <div class="hero-card-badge">
-                  <span class="material-symbols-outlined">local_cafe</span>
-                  <span data-en="Palakkad Flagship · Coming Soon" data-ml="പാലക്കാട് ഫ്ലാഗ്‌ഷിപ്പ് · ഉടൻ വരുന്നു">Palakkad Flagship · Coming Soon</span>
-                </div>
-              </div>
               <div class="hero-card-body">
                 <h4 data-en="Why Co-Creation?" data-ml="എന്തുകൊണ്ട് സഹ-നിർമ്മാണം?">Why Co-Creation?</h4>
                 <p data-en="Every card you tap directly shapes our interior seating, milk chemistry, and late-night operating hours. You make the call." data-ml="നിങ്ങൾ ടാപ്പ് ചെയ്യുന്ന ഓരോ കാർഡും ഞങ്ങളുടെ ഇന്റീരിയർ സീറ്റിംഗ്, പാൽ രസതന്ത്രം, രാത്രി പ്രവർത്തന സമയം എന്നിവ നേരിട്ട് രൂപപ്പെടുത്തുന്നു. നിങ്ങൾ വിളിക്കുക.">
@@ -257,78 +260,57 @@
                 </div>
                 <div class="pillar-card-step" data-en="03. Pricing & Perks" data-ml="03. വിലയും പ്രത്യേകതകളും">03. Pricing & Perks</div>
                 <h3 data-en="Fair Price & Pass" data-ml="ന്യായമായ വില & പാസ്">Fair Price & Pass</h3>
-                <p data-en="Adjust fair cup pricing sliders for everyday accessible coffee. Unlock your numbered Digital Founding Patron Pass with launch-week vouchers." data-ml="പ്രതിദിന പ്രാപ്യമായ കാപ്പിക്ക് ന്യായമായ വില സ്ലൈഡറുകൾ ക്രമീകരിക്കുക. ലോഞ്ച്-വീക്ക് വൗച്ചറുകളോടെ നിങ്ങളുടെ നമ്പർ ചെയ്ത ഡിജിറ്റൽ സ്ഥാപക പാട്രൺ പാസ് അൺലോക്ക് ചെയ്യുക.">
-                  Adjust fair cup pricing sliders for everyday accessible coffee. Unlock your numbered Digital Founding Patron Pass with launch-week vouchers.
+                <p data-en="Adjust fair cup pricing sliders for everyday accessible coffee. Unlock your numbered Digital Founding Patron Pass with launch-week perks." data-ml="പ്രതിദിന പ്രാപ്യമായ കാപ്പിക്ക് ന്യായമായ വില സ്ലൈഡറുകൾ ക്രമീകരിക്കുക. ലോഞ്ച്-വീക്ക് പ്രത്യേകതകളോടെ നിങ്ങളുടെ നമ്പർ ചെയ്ത ഡിജിറ്റൽ സ്ഥാപക പാട്രൺ പാസ് അൺലോക്ക് ചെയ്യുക.">
+                  Adjust fair cup pricing sliders for everyday accessible coffee. Unlock your numbered Digital Founding Patron Pass with launch-week perks.
                 </p>
               </div>
               <div class="pillar-card-footer">
-                <span><span class="bold" style="color:var(--success)">10%</span> <span data-en="Off launch voucher" data-ml="ലോഞ്ച് വൗച്ചർ ഓഫ്">Off launch voucher</span></span>
+                <span><span class="bold" style="color:var(--success)">∞</span> <span data-en="Perks for patrons" data-ml="പാട്രണ്ണുകൾക്ക് പ്രത്യേകതകൾ">Perks for patrons</span></span>
                 <span class="action" data-en="Claim pass →" data-ml="പാസ് ക്ലെയിം ചെയ്യുക →">Claim pass →</span>
               </div>
             </a>
           </div>
         </section>
 
-        <!-- 3. QUICK TASTING TEASER -->
-        <section class="teaser-section" style="margin-top:1.5rem">
-          <div class="teaser-header">
-            <div>
-              <span class="tag" data-en="Quick Tasting Teaser" data-ml="വേഗത്തിലുള്ള ടേസ്റ്റിംഗ് ടീസർ">Quick Tasting Teaser</span>
-              <h3 data-en="Which would you order first on opening morning?" data-ml="ഓപ്പണിംഗ് രാവിലെ നിങ്ങൾ ആദ്യം ഓർഡർ ചെയ്യുന്നത് ഏത്?">Which would you order first on opening morning?</h3>
+        <!-- 3. COMMUNITY RESULTS -->
+        <section class="results-section">
+          <div class="results-header">
+            <div class="results-header-left">
+              <span class="bar"></span>
+              <h2 data-en="What Palakkad Is Choosing" data-ml="പാലക്കാട് തിരഞ്ഞെടുക്കുന്നത് എന്ത്">What Palakkad Is Choosing</h2>
             </div>
-            <span class="micro" data-en="Interactive micro-poll" data-ml="ഇന്ററാക്ടീവ് മൈക്രോ-പോൾ">Interactive micro-poll</span>
+            <span class="live-pill"><span class="dot"></span> <span data-en="Live" data-ml="ലൈവ്">Live</span></span>
           </div>
 
-          <div class="teaser-grid" id="miniPollGrid">
-            <div class="teaser-card" onclick="selectTeaser(this,0)">
-              <img class="teaser-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO_9XBvvl6qLjb5hTL0U2QiIzTuI9_8vtJWZ4ltmNpdfsUSxH7B6rFRnd8K8DvzAIV2V_KRieYAwFm4KG1_ungCRxxVmvcSI-IkY5DlOZDKx8AI-Qys7SqI4DA5a9BhRsiqLvqvCo78VjNeDjOhVzl1QwlhsQ9JDDQHC4dc0T8z0wwNTXlW9MhoQ2E17so6O8rGEPLPCoLUKPa6V1CClph5iaptJpAmC7tJw2ppNL0V9zPvhsEsGME" alt="Traditional hot South Indian brass tumbler of frothy filter coffee"/>
-              <span class="teaser-card-heart">❤️</span>
-              <h4 data-en="Wayanad Filter Kaapi" data-ml="വയനാട് ഫിൽട്ടർ കാപ്പി">Wayanad Filter Kaapi</h4>
-              <span class="desc" data-en="Single-origin Robusta + Arabica roasted dark" data-ml="ഒറിജിൻ റോബസ്റ്റ + അറേബിക്ക ഡാർക്ക് റോസ്റ്റ്">Single-origin Robusta + Arabica roasted dark</span>
-              <div class="teaser-consensus">
-                <div class="bar"><div class="fill" style="width:0%"></div></div>
-                <span class="label">0% agree</span>
-              </div>
-            </div>
+          <div class="results-count-row">
+            <span class="results-count" id="results-count">0</span>
+            <span class="results-count-label" data-en="people have participated in shaping this café" data-ml="ഈ കഫേ രൂപപ്പെടുത്താൻ പങ്കെടുത്തവർ">people have participated in shaping this café</span>
+          </div>
 
-            <div class="teaser-card" onclick="selectTeaser(this,0)">
-              <img class="teaser-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALXlyGiGIj5PEm6oks1DHKVDAZqjpQzTF75_NcPkSSJwd6n2oIZKkgERVHqeOz9Ur9ku7NJ-uvnYNKyaKC2fC1XIKs0Wx1y7a81jA8hzLQgIkbf8e84n_lJ3UvieqeI-ZeDcoSDhd61uoSGD3nmLgEp7n2ycOvqjiLoWUHJ2VokcmNvkEwRmdEI4NM0N0VAhu_QkUSdJo2IoMfHbXrdIZ5YQ5y2LmhwERBBF1YuIf0AiM5unBm4zaL" alt="Tender coconut cold brew coffee in a ribbed glass"/>
-              <span class="teaser-card-heart">❤️</span>
-              <h4 data-en="Elaneer Cold Brew" data-ml="എളനീർ കോൾഡ് ബ്രൂ">Elaneer Cold Brew</h4>
-              <span class="desc" data-en="14-hour steep cut with fresh sweet tender coconut water" data-ml="14 മണിക്കൂർ സ്റ്റീപ്പ് ഫ്രഷ് എളനീരുമായി">14-hour steep cut with fresh sweet tender coconut water</span>
-              <div class="teaser-consensus">
-                <div class="bar"><div class="fill" style="width:0%"></div></div>
-                <span class="label">0% agree</span>
-              </div>
+          <div class="results-grid">
+            <div class="results-card">
+              <div class="results-card-icon">☕</div>
+              <div class="results-card-label" data-en="Most Wanted Drink" data-ml="ഏറ്റവും ആഗ്രഹിക്കുന്ന പാനീയം">Most Wanted Drink</div>
+              <div class="results-card-value" id="top-drink" data-en="Awaiting first votes" data-ml="ആദ്യ വോട്ടുകൾക്കായി കാത്തിരിക്കുന്നു">Awaiting first votes</div>
+              <div class="results-card-sub" data-en="Based on community ballots" data-ml="കമ്മ്യൂണിറ്റി ബാലറ്റുകളുടെ അടിസ്ഥാനത്തിൽ">Based on community ballots</div>
             </div>
-
-            <div class="teaser-card" onclick="selectTeaser(this,0)">
-              <img class="teaser-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4NLXY_WOU3izHZy2HK-QdHkqAHzfToxSSGJ_jmzmOBJW7KlUlkqx3jsjm-s3AdlPlHpa_4PJ2Wa5eEIJqHqzKgLLqO2eRHCxWX4xRtJV1VppQn8mgmv9thRjLMM2xQZDgQA_vwYpivYZFvFkENuDsFHCHb_9EgWOV4hTnkP2r0-OhjPHzU-OLLQ_Gg8ajkLsEi7IyhJ4-pBo7fnVLCbuMYqiirh5PG5opg-dS1mBhTUNzjVpIdTZh" alt="Crispy golden Kerala Pazham Pori banana fritters"/>
-              <span class="teaser-card-heart">❤️</span>
-              <h4 data-en="Nendran Pazham Pori Crisp" data-ml="നേന്ത്രൻ പഴം പൊരി ക്രിസ്പ്">Nendran Pazham Pori Crisp</h4>
-              <span class="desc" data-en="Cardamom-infused batter with smoked date drizzle" data-ml="ഏലക്ക ഇൻഫ്യൂസ്ഡ് ബാറ്റർ സ്മോക്ഡ് ഡേറ്റ് ഡ്രിസ്സിളുമായി">Cardamom-infused batter with smoked date drizzle</span>
-              <div class="teaser-consensus">
-                <div class="bar"><div class="fill" style="width:0%"></div></div>
-                <span class="label">0% agree</span>
-              </div>
+            <div class="results-card">
+              <div class="results-card-icon">🏡</div>
+              <div class="results-card-label" data-en="Most Wanted Ambience" data-ml="ഏറ്റവും ആഗ്രഹിക്കുന്ന അന്തരീക്ഷം">Most Wanted Ambience</div>
+              <div class="results-card-value" id="top-vibe" data-en="Awaiting first votes" data-ml="ആദ്യ വോട്ടുകൾക്കായി കാത്തിരിക്കുന്നു">Awaiting first votes</div>
+              <div class="results-card-sub" data-en="Based on community ballots" data-ml="കമ്മ്യൂണിറ്റി ബാലറ്റുകളുടെ അടിസ്ഥാനത്തിൽ">Based on community ballots</div>
             </div>
-
-            <div class="teaser-card" onclick="selectTeaser(this,0)">
-              <img class="teaser-card-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBewBm5413cdvy6mrOU1g2lVP4EgT1hVDhVFvrIIIbX4_3r7wI0qziLO6gkErTnLn4pp97efMyllqIpxR-D8xvccb7TEDO3aX-QwNnhiy4YbkpebvF4AYup79xKsG350V5C8IO_LVXPRrRg0IWjujeyw4WDo0vlDfSyY2b8QVkU7fnYf8EaFf4U27bJTyWprEogSKjz_1ixv1IH9JLW930hRercx72TTvx_cqlZQnd8YUe5q6SgsfGd" alt="Steaming glass of spiced Karupatti palm jaggery black tea"/>
-              <span class="teaser-card-heart">❤️</span>
-              <h4 data-en="Karupatti Ginger Chaya" data-ml="കരുപ്പട്ടി ഇഞ്ചി ചായ">Karupatti Ginger Chaya</h4>
-              <span class="desc" data-en="Pure palm jaggery, crushed dried ginger & Munnar tea leaves" data-ml="ശുദ്ധ കരുപ്പട്ടി, ഉടച്ച ഉണക്ക ഇഞ്ചി & മൂന്നാർ ചായ ഇലകൾ">Pure palm jaggery, crushed dried ginger & Munnar tea leaves</span>
-              <div class="teaser-consensus">
-                <div class="bar"><div class="fill" style="width:0%"></div></div>
-                <span class="label">0% agree</span>
-              </div>
+            <div class="results-card">
+              <div class="results-card-icon">💰</div>
+              <div class="results-card-label" data-en="Preferred Coffee Price" data-ml="ഇഷ്ടപ്പെട്ട കാപ്പി വില">Preferred Coffee Price</div>
+              <div class="results-card-value" id="avg-price" data-en="Awaiting first votes" data-ml="ആദ്യ വോട്ടുകൾക്കായി കാത്തിരിക്കുന്നു">Awaiting first votes</div>
+              <div class="results-card-sub" data-en="Community median price" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ വില">Community median price</div>
             </div>
           </div>
 
-          <div class="teaser-footer">
-            <p data-en="Tap an item above to test the live voting mechanic, or jump into the full ballot." data-ml="ലൈവ് വോട്ടിംഗ് മെക്കാനിക് പരീക്ഷിക്കാൻ മുകളിലുള്ള ഒരു ഇനം ടാപ്പ് ചെയ്യുക, അല്ലെങ്കിൽ പൂർണ്ണ ബാലറ്റിലേക്ക് ചാടുക.">Tap an item above to test the live voting mechanic, or jump into the full ballot.</p>
-            <a href="menu-ballot.html">
-              <span data-en="View all 12 items" data-ml="എല്ലാ 12 ഇനങ്ങളും കാണുക">View all 12 items</span>
+          <div class="results-footer">
+            <a href="community-results.html">
+              <span data-en="See what Palakkad is choosing →" data-ml="പാലക്കാട് തിരഞ്ഞെടുക്കുന്നത് കാണുക →">See what Palakkad is choosing →</span>
               <span class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
@@ -342,7 +324,7 @@
             </div>
             <div class="guarantee-text">
               <h4 data-en="Co-Creation Guarantee" data-ml="സഹ-നിർമ്മാണ ഗ്യാരന്റി">Co-Creation Guarantee</h4>
-              <p data-en="100% Free to participate · Zero spam guarantee · Governed by DPDP Act 2023" data-ml="പങ്കെടുക്കാൻ 100% സൗജന്യം · സ്പാം ഇല്ലാത്ത ഗ്യാരന്റി · DPDP ആക്ട് 2023 അനുസരിച്ച്">100% Free to participate · Zero spam guarantee · Governed by DPDP Act 2023</p>
+              <p data-en="100% Free to participate · Zero spam guarantee · Your privacy matters. We only collect information you choose to share." data-ml="പങ്കെടുക്കാൻ 100% സൗജന്യം · സ്പാം ഇല്ലാത്ത ഗ്യാരന്റി · നിങ്ങളുടെ സ്വകാര്യത പ്രധാനമാണ്. നിങ്ങൾ പങ്കിടാൻ തിരഞ്ഞെടുക്കുന്ന വിവരങ്ങൾ മാത്രമേ ഞങ്ങൾ ശേഖരിക്കൂ.">100% Free to participate · Zero spam guarantee · Your privacy matters. We only collect information you choose to share.</p>
             </div>
           </div>
           <div class="guarantee-chips">
@@ -352,7 +334,7 @@
             </span>
             <span class="guarantee-chip">
               <span class="material-symbols-outlined">check_circle</span>
-              <span data-en="Instant 10% Launch Voucher" data-ml="തത്സമയം 10% ലോഞ്ച് വൗച്ചർ">Instant 10% Launch Voucher</span>
+              <span data-en="Your data stays private" data-ml="നിങ്ങളുടെ ഡാറ്റ സ്വകാര്യമായി തുടരും">Your data stays private</span>
             </span>
             <span class="guarantee-chip">
               <span class="material-symbols-outlined">check_circle</span>
@@ -378,38 +360,76 @@
   <!-- FOOTER -->
   <footer class="footer" id="footer"></footer>
 
-  <script>
-    function selectTeaser(card, pct) {
-      var allCards = document.querySelectorAll('.teaser-card');
-      allCards.forEach(function(c) {
-        c.classList.remove('selected');
-        var bar = c.querySelector('.teaser-consensus');
-        if (bar) bar.style.display = 'none';
-      });
-      card.classList.add('selected');
-      var consensus = card.querySelector('.teaser-consensus');
-      if (consensus) consensus.style.display = 'block';
-    }
-  </script>
-
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
     initPage('index');
 
-    // Fetch live participant count
-    async function loadLiveCount() {
+    async function loadCommunityResults() {
       try {
-        if (typeof sbSelect === 'function') {
-          const data = await sbSelect('participants', 'id=count');
-          const count = Array.isArray(data) ? data.length : 0;
-          document.querySelector('.hero-badge span[data-en]').textContent = count + ' co-creators joined';
+        const countData = await sbSelect('profile_count', '*');
+        const count = Array.isArray(countData) && countData.length > 0 ? (countData[0].count || countData[0].total || 0) : 0;
+        const countEl = document.getElementById('results-count');
+        if (countEl) countEl.textContent = count.toLocaleString();
+        const heroEl = document.getElementById('hero-co-count');
+        if (heroEl) {
+          const parent = heroEl.parentElement.parentElement;
+          if (parent) {
+            heroEl.textContent = count + ' co-creators joined';
+          }
         }
       } catch (e) {
-        console.log('Live count fetch skipped:', e);
+        console.log('Profile count fetch skipped:', e);
+      }
+
+      try {
+        const tally = await sbSelect('ballot_tally', '*');
+        if (Array.isArray(tally) && tally.length > 0) {
+          const sorted = tally.sort((a, b) => (b.vote_count || b.count || 0) - (a.vote_count || a.count || 0));
+          const top = sorted[0];
+          if (top) {
+            const name = top.item_name || top.name || top.item || '—';
+            document.getElementById('top-drink').textContent = name;
+            document.getElementById('top-drink').removeAttribute('data-en');
+            document.getElementById('top-drink').removeAttribute('data-ml');
+          }
+        }
+      } catch (e) {
+        console.log('Ballot tally fetch skipped:', e);
+      }
+
+      try {
+        const vibes = await sbSelect('vibe_tally', '*');
+        if (Array.isArray(vibes) && vibes.length > 0) {
+          const sorted = vibes.sort((a, b) => (b.vote_count || b.count || 0) - (a.vote_count || a.count || 0));
+          const top = sorted[0];
+          if (top) {
+            const name = top.vibe_name || top.name || top.vibe || '—';
+            document.getElementById('top-vibe').textContent = name;
+            document.getElementById('top-vibe').removeAttribute('data-en');
+            document.getElementById('top-vibe').removeAttribute('data-ml');
+          }
+        }
+      } catch (e) {
+        console.log('Vibe tally fetch skipped:', e);
+      }
+
+      try {
+        const pricing = await sbSelect('pricing_stats', '*');
+        if (Array.isArray(pricing) && pricing.length > 0) {
+          const avg = pricing[0].avg_price || pricing[0].median_price || pricing[0].price;
+          if (avg) {
+            document.getElementById('avg-price').textContent = '₹' + Math.round(avg);
+            document.getElementById('avg-price').removeAttribute('data-en');
+            document.getElementById('avg-price').removeAttribute('data-ml');
+          }
+        }
+      } catch (e) {
+        console.log('Pricing stats fetch skipped:', e);
       }
     }
-    loadLiveCount();
+
+    loadCommunityResults();
   </script>
 
 </body>
