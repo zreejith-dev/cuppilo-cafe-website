@@ -88,13 +88,6 @@
     .consensus-heading{font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:.25rem}
     .consensus-text{font-size:.8125rem;color:var(--on-sv);line-height:1.6}
     .nav-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
-    .nav-back,.nav-next{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;border-radius:.75rem;font-weight:600;font-size:.8125rem;text-decoration:none;transition:all .2s;min-height:48px}
-    .nav-back{border:1.5px solid var(--muted);color:var(--on-sv);background:transparent}
-    .nav-back:hover{background:var(--surface-h)}
-    .nav-next{background:var(--primary);color:#fff;border:none}
-    .nav-next:hover{background:var(--primary-dark)}
-    .nav-next:active{transform:scale(.97)}
-    .nav-next .material-symbols-outlined,.nav-back .material-symbols-outlined{font-size:18px}
     .moodboard-card[data-option="D"] .moodboard-gradient{background:radial-gradient(circle at 25% 25%,rgba(250,204,21,.15),transparent 40%),radial-gradient(circle at 75% 60%,rgba(192,132,252,.12),transparent 30%),radial-gradient(circle at 50% 85%,rgba(250,204,21,.1),transparent 35%)}
   </style>
 </head>
@@ -120,10 +113,17 @@
 
     <section class="ambiance-progress">
       <div class="container">
-        <div class="ambiance-progress-meta">
-          <span class="step" data-en="Step 2 of 4" data-ml="ഘട്ടം 2 of 4">Step 2 of 4</span>
-          <span class="sep">&bull;</span>
-          <span class="label" data-en="Architectural Vision" data-ml="വാസ്തുവിദ്യ ദർശനം">Architectural Vision</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0">
+          <div class="step-pill">
+            <span class="step-num">2</span>
+            <span class="step-text" data-en="Step 2 of 4" data-ml="ഘട്ടം 2 of 4">Step 2 of 4</span>
+          </div>
+          <div class="step-dots">
+            <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
+            <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
+            <span class="step-dot" style="width:.625rem;background:var(--muted)"></span>
+            <span class="step-dot" style="width:.625rem;background:var(--muted)"></span>
+          </div>
         </div>
         <div class="progress-bar" style="margin-top:.5rem">
           <div class="progress-fill" style="width:50%"></div>
@@ -274,7 +274,7 @@
           <span class="material-symbols-outlined">arrow_back</span>
           <span data-en="Back to Menu Ballot" data-ml="മെനു ബാലറ്റിലേക്ക് മടങ്ങുക">Back to Menu Ballot</span>
         </a>
-        <a href="pricing.html" class="nav-next">
+        <a href="support.html" class="nav-next">
           <span data-en="Continue to Support CUPPILO" data-ml="CUPPILO-യെ പിന്തുണയ്ക്കുന്നതിലേക്ക് തുടരുക">Continue to Support CUPPILO</span>
           <span class="material-symbols-outlined">arrow_forward</span>
         </a>

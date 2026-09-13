@@ -149,11 +149,23 @@
 
     <!-- Progress Bar -->
     <section class="container ballot-progress progress-wrap">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0">
+        <div class="step-pill">
+          <span class="step-num">1</span>
+          <span class="step-text" data-en="Step 1 of 4" data-ml="ഘട്ടം 1 of 4">Step 1 of 4</span>
+        </div>
+        <div class="step-dots">
+          <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
+          <span class="step-dot" style="width:.625rem;background:var(--muted)"></span>
+          <span class="step-dot" style="width:.625rem;background:var(--muted)"></span>
+          <span class="step-dot" style="width:.625rem;background:var(--muted)"></span>
+        </div>
+      </div>
       <div class="progress-bar">
         <div class="progress-fill" style="width:25%"></div>
       </div>
       <div class="progress-meta">
-        <span data-en="Step 1 of 4 · Opening Menu Curation" data-ml="ഘട്ടം 1 of 4 · ഓപ്പണിംഗ് മെനു ക്രമീകരണം">Step 1 of 4 · Opening Menu Curation</span>
+        <span data-en="Opening Menu Curation" data-ml="ഓപ്പണിംഗ് മെനു ക്രമീകരണം">Opening Menu Curation</span>
         <span class="badge" id="vote-counter-badge">0 / 5 votes</span>
       </div>
     </section>

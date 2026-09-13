@@ -45,7 +45,7 @@ CUPPILO is a gamified, interactive web application deployed before the physical 
 | Home | `index.html` | Welcome & onboarding |
 | Menu Ballot | `menu-ballot.html` | Interactive food/drink voting |
 | Ambiance | `ambiance.html` | Interior design poll |
-| Pricing | `pricing.html` | Price discovery & patron pass |
+| Support | `support.html` | Price discovery & patron pass |
 | Founding Wall | `founding-wall.html` | Patron directory & inscription |
 
 ## Getting Started

@@ -196,6 +196,15 @@ textarea.input{resize:none;min-height:80px}
 .mobile-nav a{padding:.5rem .75rem;border-radius:.5rem;font-size:.875rem;font-weight:600;text-decoration:none;color:var(--on-sv);transition:background .2s}
 .mobile-nav a:hover,.mobile-nav a.active{background:var(--surface-h);color:var(--on-s)}
 
+/* ── NAV BUTTONS (prev/next between pages) ── */
+.nav-back,.nav-next{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;border-radius:.75rem;font-weight:600;font-size:.8125rem;text-decoration:none;transition:all .2s;min-height:48px}
+.nav-back{border:1.5px solid var(--muted);color:var(--on-sv);background:transparent}
+.nav-back:hover{background:var(--surface-h)}
+.nav-next{background:var(--primary);color:#fff;border:none}
+.nav-next:hover{background:var(--primary-dark)}
+.nav-next:active,.nav-back:active{transform:scale(.97)}
+.nav-next .material-symbols-outlined,.nav-back .material-symbols-outlined{font-size:18px}
+
 /* ── ADMIN PANEL ── */
 .admin-layout{display:grid;grid-template-columns:1fr;min-height:calc(100vh - 56px)}
 @media(min-width:768px){.admin-layout{grid-template-columns:220px 1fr}}
