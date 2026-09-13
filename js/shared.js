@@ -148,18 +148,16 @@ function initMobileMenu() {
 function renderNavbar(activePage) {
   return `
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;height:56px">
-      <div style="display:flex;align-items:center;gap:.5rem">
-        <a href="index.html" style="display:flex;align-items:center;gap:.5rem;text-decoration:none">
-          <img src="img/logo-en-light.png" alt="CUPPILO" class="nav-logo nav-logo-en-light">
-          <img src="img/logo-en-dark.png" alt="CUPPILO" class="nav-logo nav-logo-en-dark">
-          <img src="img/logo-ml-light.png" alt="കപ്പിലോ" class="nav-logo nav-logo-ml-light">
-          <img src="img/logo-ml-dark.png" alt="കപ്പിലോ" class="nav-logo nav-logo-ml-dark">
-        </a>
+      <a href="index.html" style="display:flex;align-items:center;gap:.5rem;text-decoration:none">
+        <img src="img/logo-en-light.png" alt="CUPPILO" class="nav-logo nav-logo-en-light">
+        <img src="img/logo-en-dark.png" alt="CUPPILO" class="nav-logo nav-logo-en-dark">
+        <img src="img/logo-ml-light.png" alt="കപ്പിലോ" class="nav-logo nav-logo-ml-light">
+        <img src="img/logo-ml-dark.png" alt="കപ്പിലോ" class="nav-logo nav-logo-ml-dark">
+      </a>
+      <div class="nav-right-group" style="display:flex;align-items:center;gap:.5rem">
         <button class="mobile-menu-btn" aria-label="Menu">
           <span class="material-symbols-outlined" style="font-size:20px">menu</span>
         </button>
-      </div>
-      <div style="display:flex;align-items:center;gap:.5rem">
         <div class="lang-toggle">
           <button class="lang-btn" data-lang="en">EN</button>
           <button class="lang-btn" data-lang="ml">ML</button>
@@ -168,7 +166,7 @@ function renderNavbar(activePage) {
           <span class="material-symbols-outlined" style="font-size:20px">dark_mode</span>
         </button>
         <div id="nav-profile" class="nav-profile" style="display:none"></div>
-        <div style="display:flex;align-items:center;gap:.25rem;margin-left:.25rem">
+        <div class="nav-desktop-links" style="display:flex;align-items:center;gap:.25rem;margin-left:.25rem">
           <a href="index.html" class="nav-link ${activePage==='index'?'active':''}" data-en="Home" data-ml="ഹോം">Home</a>
           <a href="menu-ballot.html" class="nav-link ${activePage==='menu'?'active':''}" data-en="Menu" data-ml="മെനു">Menu</a>
           <a href="ambiance.html" class="nav-link ${activePage==='ambiance'?'active':''}" data-en="Vibe" data-ml="വൈബ്">Vibe</a>

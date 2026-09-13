@@ -171,8 +171,19 @@ textarea.input{resize:none;min-height:80px}
   .container{padding:0 .75rem}
   .btn{min-height:44px;font-size:.8125rem}
   .card{padding:1rem}
-  .navbar .nav-link{display:none}
-  .navbar .nav-link.show-mobile{display:inline-flex}
+  .navbar .container{
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+  }
+  .nav-right-group{
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+  .navbar .nav-link{display:none !important}
+  .navbar .nav-profile{display:none !important}
+  .navbar .nav-desktop-links{display:none !important}
   .mobile-menu-btn{display:flex !important}
 }
 @media(min-width:641px){
