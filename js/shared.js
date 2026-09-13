@@ -168,21 +168,21 @@ function renderNavbar(activePage) {
         <div id="nav-profile" class="nav-profile" style="display:none"></div>
         <div class="nav-desktop-links" style="display:flex;align-items:center;gap:.25rem;margin-left:.25rem">
           <a href="index.html" class="nav-link ${activePage==='index'?'active':''}" data-en="Home" data-ml="ഹോം">Home</a>
-          <a href="menu-ballot.html" class="nav-link ${activePage==='menu'?'active':''}" data-en="Menu" data-ml="മെനു">Menu</a>
+          <a href="menu.html" class="nav-link ${activePage==='fullmenu'?'active':''}" data-en="Menu" data-ml="മെനു">Menu</a>
+          <a href="menu-ballot.html" class="nav-link ${activePage==='menu'?'active':''}" data-en="Vote" data-ml="വോട്ട്">Vote</a>
           <a href="ambiance.html" class="nav-link ${activePage==='ambiance'?'active':''}" data-en="Vibe" data-ml="വൈബ്">Vibe</a>
           <a href="pricing.html" class="nav-link ${activePage==='pricing'?'active':''}" data-en="Pricing" data-ml="വില">Pricing</a>
           <a href="founding-wall.html" class="nav-link ${activePage==='wall'?'active':''}" data-en="Wall" data-ml="മതിൽ">Wall</a>
-          <a href="community-results.html" class="nav-link ${activePage==='results'?'active':''}" data-en="Results" data-ml="ഫലങ്ങൾ">Results</a>
         </div>
       </div>
     </div>
     <div class="mobile-nav">
       <a href="index.html" class="${activePage==='index'?'active':''}" data-en="Home" data-ml="ഹോം">Home</a>
-      <a href="menu-ballot.html" class="${activePage==='menu'?'active':''}" data-en="Menu" data-ml="മെനു">Menu</a>
+      <a href="menu.html" class="${activePage==='fullmenu'?'active':''}" data-en="Menu" data-ml="മെനു">Menu</a>
+      <a href="menu-ballot.html" class="${activePage==='menu'?'active':''}" data-en="Vote" data-ml="വോട്ട്">Vote</a>
       <a href="ambiance.html" class="${activePage==='ambiance'?'active':''}" data-en="Vibe" data-ml="വൈബ്">Vibe</a>
       <a href="pricing.html" class="${activePage==='pricing'?'active':''}" data-en="Pricing" data-ml="വില">Pricing</a>
       <a href="founding-wall.html" class="${activePage==='wall'?'active':''}" data-en="Wall" data-ml="മതിൽ">Wall</a>
-      <a href="community-results.html" class="${activePage==='results'?'active':''}" data-en="Results" data-ml="ഫലങ്ങൾ">Results</a>
     </div>
   `;
 }
