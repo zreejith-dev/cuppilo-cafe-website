@@ -3,34 +3,44 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Community Results — CUPPILO Co-Creation</title>
-  <meta name="description" content="See what Kerala is choosing for CUPPILO — live co-creation results on menu, ambiance, and pricing."/>
-  <!-- Theme & Mobile -->
+  <title>Community Results — CUPPILO | What Kerala Is Choosing</title>
+  <meta name="description" content="See live co-creation results on menu, ambiance, and pricing. Real data from real people."/>
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cuppilo.in/community-results.html"/>
   <meta name="theme-color" content="#A93B2B">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="icon" type="image/png" href="img/logo.png">
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cuppilo-cafe-website.vercel.app/community-results.html">
-  <meta property="og:title" content="Community Results — CUPPILO">
-  <meta property="og:description" content="See what Kerala is choosing for CUPPILO — live co-creation results on menu, ambiance, and pricing.">
-  <meta property="og:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
+  <meta property="og:url" content="https://cuppilo.in/community-results.html">
+  <meta property="og:title" content="Community Results — CUPPILO | What Kerala Is Choosing">
+  <meta property="og:description" content="See live co-creation results on menu, ambiance, and pricing. Real data from real people.">
+  <meta property="og:image" content="https://cuppilo.in/img/logo-en-light.png">
   <meta property="og:site_name" content="CUPPILO">
-  <!-- Twitter -->
+  <meta property="og:locale" content="en_IN">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Community Results — CUPPILO">
-  <meta name="twitter:description" content="See what Kerala is choosing for CUPPILO — live co-creation results on menu, ambiance, and pricing.">
-  <meta name="twitter:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
-  <!-- Canonical -->
-  <link rel="canonical" href="https://cuppilo-cafe-website.vercel.app/community-results.html">
-  <!-- Robots -->
-  <meta name="robots" content="index, follow">
+  <meta name="twitter:title" content="Community Results — CUPPILO | What Kerala Is Choosing">
+  <meta name="twitter:description" content="See live co-creation results on menu, ambiance, and pricing. Real data from real people.">
+  <meta name="twitter:image" content="https://cuppilo.in/img/logo-en-light.png">
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <link href="css/styles.css" rel="stylesheet"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Community Results — CUPPILO | What Kerala Is Choosing",
+    "description": "See live co-creation results on menu, ambiance, and pricing. Real data from real people.",
+    "url": "https://cuppilo.in/community-results.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "CUPPILO",
+      "url": "https://cuppilo.in"
+    }
+  }
+  </script>
   <style>
     .results-header{text-align:center;padding:2rem 0 1.5rem}
     .results-pill{display:inline-flex;align-items:center;gap:.375rem;background:rgba(200,157,92,.15);padding:.375rem .875rem;border-radius:9999px;font-size:.75rem;font-weight:600;color:var(--brass);margin-bottom:1rem}
@@ -69,7 +79,7 @@
   <div class="splash-screen" id="splash-screen">
     <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
     <div class="splash-text">Before we open, you decide what we become.</div>
-    <div class="splash-sub">Kerala's first community-built café</div>
+    <div class="splash-sub">Kerala's first community-built cafe</div>
   </div>
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
@@ -88,6 +98,7 @@
       <section class="results-header">
         <div class="results-pill">
           <span class="dot"></span>
+          <span class="material-symbols-outlined" style="font-size:14px">radio_button_checked</span>
           <span data-en="Live Results" data-ml="ലൈവ് ഫലങ്ങൾ">Live Results</span>
         </div>
         <h1 class="results-title" data-en="What Kerala Is Choosing" data-ml="കേരളം എന്താണ് തിരഞ്ഞെടുക്കുന്നത്">What Kerala Is Choosing</h1>
@@ -106,7 +117,7 @@
           <div class="stat-icon" style="background:rgba(200,157,92,.15);color:var(--brass)">
             <span class="material-symbols-outlined">local_cafe</span>
           </div>
-          <div class="stat-value" style="color:var(--brass)" id="stat-top-menu">—</div>
+          <div class="stat-value" style="color:var(--brass);font-size:1.25rem" id="stat-top-menu">&mdash;</div>
           <div class="stat-label" data-en="Top Menu Item" data-ml="ടോപ്പ് മെനു ഐറം">Top Menu Item</div>
           <div class="stat-sub" id="stat-top-menu-votes" data-en="Awaiting votes" data-ml="വോട്ടുകൾ കാത്തിരിക്കുന്നു">Awaiting votes</div>
         </div>
@@ -114,7 +125,7 @@
           <div class="stat-icon" style="background:rgba(45,106,79,.1);color:var(--success)">
             <span class="material-symbols-outlined">palette</span>
           </div>
-          <div class="stat-value" style="color:var(--success);font-size:1.25rem" id="stat-ambiance">—</div>
+          <div class="stat-value" style="color:var(--success);font-size:1.25rem" id="stat-ambiance">&mdash;</div>
           <div class="stat-label" data-en="Top Ambiance" data-ml="ടോപ്പ് അന്തരീക്ഷം">Top Ambiance</div>
           <div class="stat-sub" id="stat-ambiance-votes" data-en="Awaiting votes" data-ml="വോട്ടുകൾ കാത്തിരിക്കുന്നു">Awaiting votes</div>
         </div>
@@ -152,7 +163,7 @@
         <div class="cta-banner-inner">
           <span class="cta-banner-tag" data-en="Your Voice Matters" data-ml="നിങ്ങളുടെ ശബ്ദം പ്രധാനമാണ്">Your Voice Matters</span>
           <h2 style="font-size:1.5rem;font-weight:800;color:var(--cream)" data-en="Join the co-creation" data-ml="കോ-ക്രിയേഷനിൽ ചേരുക">Join the co-creation</h2>
-          <p style="font-size:.9375rem;color:rgba(247,244,235,.5);max-width:32rem" data-en="Help shape Kerala's first community-built café. Every vote counts." data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ രൂപപ്പെടുത്താൻ സഹായിക്കുക. ഓരോ വോട്ടും കണക്കാണ്.">Help shape Kerala's first community-built café. Every vote counts.</p>
+          <p style="font-size:.9375rem;color:rgba(247,244,235,.5);max-width:32rem" data-en="Help shape Kerala's first community-built cafe. Every vote counts." data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ രൂപപ്പെടുത്താൻ സഹായിക്കുക. ഓരോ വോട്ടും കണക്കാണ്.">Help shape Kerala's first community-built cafe. Every vote counts.</p>
           <a href="menu-ballot.html" class="btn btn-primary" style="padding:.875rem 2rem;font-size:1rem">
             <span class="material-symbols-outlined" style="font-size:20px">how_to_vote</span>
             <span data-en="Vote on the Menu Ballot" data-ml="മെനു ബാലറ്റിൽ വോട്ട് ചെയ്യുക">Vote on the Menu Ballot</span>

@@ -2,173 +2,68 @@
 <html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>CUPPILO — Help Us Build Your Dream Café</title>
-  <meta name="description" content="CUPPILO co-creation platform. Help curate the menu, choose the vibe, and name fair prices for Kerala's first community-built artisanal café."/>
-  <!-- Theme & Mobile -->
-  <meta name="theme-color" content="#A93B2B">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="icon" type="image/png" href="img/logo.png">
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cuppilo-cafe-website.vercel.app/index.html">
-  <meta property="og:title" content="CUPPILO — Help Us Build Your Dream Café">
-  <meta property="og:description" content="CUPPILO co-creation platform. Help curate the menu, choose the vibe, and name fair prices for Kerala's first community-built artisanal café.">
-  <meta property="og:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
-  <meta property="og:site_name" content="CUPPILO">
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CUPPILO — Help Us Build Your Dream Café">
-  <meta name="twitter:description" content="CUPPILO co-creation platform. Help curate the menu, choose the vibe, and name fair prices for Kerala's first community-built artisanal café.">
-  <meta name="twitter:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
-  <!-- Canonical -->
-  <link rel="canonical" href="https://cuppilo-cafe-website.vercel.app/index.html">
-  <!-- Robots -->
-  <meta name="robots" content="index, follow">
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="css/styles.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CUPPILO — Kerala's First Community-Built Café | Co-Create With Us</title>
+  <meta name="description" content="Help shape Kerala's first community-built artisanal café. Vote on the menu, choose the vibe, name fair prices. 100% free, no login required."/>
+  <meta name="keywords" content="CUPPILO, Kerala café, community café, co-creation, specialty coffee, artisanal café, filter coffee, Malabar coffee"/>
+  <meta name="author" content="CUPPILO"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://cuppilo.in/index.html"/>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
+  <link rel="apple-touch-icon" href="img/favicon.svg"/>
+  <meta name="theme-color" content="#A93B2B"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://cuppilo.in/index.html"/>
+  <meta property="og:title" content="CUPPILO — Kerala's First Community-Built Café"/>
+  <meta property="og:description" content="Help shape Kerala's first community-built artisanal café. Vote on the menu, choose the vibe, name fair prices."/>
+  <meta property="og:image" content="https://cuppilo.in/img/logo-en-light.png"/>
+  <meta property="og:site_name" content="CUPPILO"/>
+  <meta property="og:locale" content="en_IN"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="CUPPILO — Kerala's First Community-Built Café"/>
+  <meta name="twitter:description" content="Help shape Kerala's first community-built artisanal café. Vote on the menu, choose the vibe, name fair prices."/>
+  <meta name="twitter:image" content="https://cuppilo.in/img/logo-en-light.png"/>
+
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "CafeOrCoffeeShop",
     "name": "CUPPILO",
-    "url": "https://cuppilo-cafe-website.vercel.app",
-    "logo": "https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png",
-    "description": "Kerala's first community-built artisanal café. Help us curate the menu, choose the vibe, and name fair prices.",
-    "sameAs": [],
+    "alternateName": "കപ്പിലോ",
+    "description": "Kerala's first community-built artisanal café — co-created by the people of Kerala.",
+    "url": "https://cuppilo.in",
+    "logo": "https://cuppilo.in/img/logo-en-light.png",
+    "servesCuisine": ["Kerala", "South Indian", "Specialty Coffee"],
+    "priceRange": "₹20-₹150",
     "address": {
       "@type": "PostalAddress",
       "addressRegion": "Kerala",
       "addressCountry": "IN"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "CUPPILO",
-    "url": "https://cuppilo-cafe-website.vercel.app",
+    },
+    "sameAs": [],
     "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://cuppilo-cafe-website.vercel.app/community-results.html?q={search_term_string}",
-      "query-input": "required name=search_term_string"
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://cuppilo.in/menu-ballot.html"
+      }
     }
   }
   </script>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{overscroll-behavior:none}
 
-    .hero-section{padding:2rem 0 3rem;background:linear-gradient(135deg,rgba(169,59,43,.06) 0%,rgba(169,59,43,.02) 50%,transparent 100%);border-radius:1.5rem}
-    .hero-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
-    @media(min-width:1024px){.hero-grid{grid-template-columns:2fr 1fr}}
-
-    .malayalam-tag{display:flex;align-items:center;gap:.5rem}
-    .malayalam-tag .ml{font-family:'Newsreader',serif;font-size:1.125rem;font-weight:600;color:var(--primary)}
-    .malayalam-tag .en{font-size:.875rem;font-weight:500;color:var(--brass);text-transform:uppercase;letter-spacing:.05em}
-
-    .hero-title{font-size:clamp(1.75rem,5vw,2.75rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;color:var(--charcoal)}
-    .hero-title span{color:var(--primary)}
-
-    .hero-subtitle{font-size:1rem;line-height:1.65;color:var(--on-sv);max-width:36rem}
-
-    .hero-cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;padding-top:.5rem}
-    .cta-badge{display:flex;align-items:center;gap:.375rem;font-size:.8125rem;color:var(--on-sv)}
-    .cta-badge .material-symbols-outlined{font-size:18px;color:var(--brass)}
-
-    .hero-card{background:var(--cream);border-radius:1rem;padding:1rem;border:1px solid var(--muted);box-shadow:0 4px 16px -2px rgba(35,31,32,.06);position:relative;overflow:hidden}
-    .hero-card-body{padding-top:.75rem;display:flex;flex-direction:column;gap:.375rem}
-    .hero-card-body h4{font-size:.875rem;font-weight:700;color:var(--charcoal)}
-    .hero-card-body p{font-size:.8125rem;color:var(--on-sv);line-height:1.5}
-    .hero-card-stat{display:flex;justify-content:space-between;align-items:center;background:var(--surface-l);padding:.5rem;border-radius:.5rem;margin-top:.5rem}
-    .hero-card-stat .label{font-size:.75rem;color:var(--on-sv)}
-    .hero-card-stat .value{font-size:.875rem;font-weight:700;color:var(--primary)}
-    .hero-card-stat .pct{background:var(--surface-h);padding:.25rem .5rem;border-radius:9999px;font-size:.75rem;font-weight:700;color:var(--primary)}
-
-    .pillar-section{padding:1.5rem 0}
-    .pillar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
-    .pillar-header-left{display:flex;align-items:center;gap:.5rem}
-    .pillar-header-left .bar{width:4px;height:1.25rem;background:var(--primary);border-radius:9999px}
-    .pillar-header h2{font-size:1.125rem;font-weight:700;color:var(--charcoal)}
-    .pillar-header .count{font-size:.8125rem;color:var(--on-sv)}
-
-    .pillar-grid{display:grid;grid-template-columns:1fr;gap:1rem}
-    @media(min-width:768px){.pillar-grid{grid-template-columns:repeat(3,1fr)}}
-
-    .pillar-card{display:flex;flex-direction:column;justify-content:space-between;background:var(--surface-l);border-radius:1rem;padding:1.25rem;border:1px solid var(--muted);text-decoration:none;transition:all .3s}
-    .pillar-card:hover{background:var(--cream);box-shadow:0 10px 24px -4px rgba(169,59,43,.1)}
-    .pillar-card-icon{width:3rem;height:3rem;border-radius:.5rem;display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;transition:all .2s}
-    .pillar-card-icon .material-symbols-outlined{font-size:26px}
-    .pillar-card-step{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.25rem}
-    .pillar-card h3{font-size:1.125rem;font-weight:700;color:var(--charcoal);margin-bottom:.5rem}
-    .pillar-card p{font-size:.875rem;color:var(--on-sv);line-height:1.55}
-    .pillar-card-footer{display:flex;justify-content:space-between;align-items:center;font-size:.8125rem;color:var(--on-sv);margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--muted)}
-    .pillar-card-footer .bold{font-weight:700}
-    .pillar-card-footer .action{font-weight:600}
-
-    .pc1 .pillar-card-icon{background:var(--surface-h);color:var(--primary)}
-    .pc1 .pillar-card-icon:hover,.pillar-card:hover .pc1 .pillar-card-icon{background:var(--primary);color:var(--cream)}
-    .pc1 .pillar-card-step{color:var(--primary)}
-    .pc1 .action{color:var(--primary)}
-
-    .pc2 .pillar-card-icon{background:var(--surface-h);color:var(--brass)}
-    .pc2 .pillar-card-icon:hover,.pillar-card:hover .pc2 .pillar-card-icon{background:var(--brass);color:var(--cream)}
-    .pc2 .pillar-card-step{color:var(--brass)}
-    .pc2 .action{color:var(--brass)}
-
-    .pc3 .pillar-card-icon{background:var(--surface-h);color:var(--success)}
-    .pc3 .pillar-card-icon:hover,.pillar-card:hover .pc3 .pillar-card-icon{background:var(--success);color:var(--cream)}
-    .pc3 .pillar-card-step{color:var(--success)}
-    .pc3 .action{color:var(--success)}
-
-    .results-section{padding:2rem 0}
-    .results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem}
-    .results-header-left{display:flex;align-items:center;gap:.5rem}
-    .results-header-left .bar{width:4px;height:1.25rem;background:var(--brass);border-radius:9999px}
-    .results-header h2{font-size:1.25rem;font-weight:700;color:var(--charcoal)}
-    .results-header .live-pill{display:inline-flex;align-items:center;gap:.375rem;font-size:.75rem;font-weight:700;color:var(--primary);background:var(--surface-h);padding:.25rem .625rem;border-radius:9999px}
-    .results-header .live-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--live);animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-    .results-count-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
-    .results-count{font-size:clamp(1.5rem,4vw,2.25rem);font-weight:800;color:var(--primary)}
-    .results-count-label{font-size:.875rem;color:var(--on-sv);line-height:1.4}
-
-    .results-grid{display:grid;grid-template-columns:1fr;gap:1rem}
-    @media(min-width:640px){.results-grid{grid-template-columns:repeat(3,1fr)}}
-
-    .results-card{background:var(--surface-l);border-radius:1rem;padding:1.25rem;border:1px solid var(--muted);text-align:center}
-    .results-card-icon{font-size:2rem;margin-bottom:.5rem}
-    .results-card-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--on-sv);margin-bottom:.25rem}
-    .results-card-value{font-size:1.125rem;font-weight:800;color:var(--charcoal);margin-bottom:.25rem}
-    .results-card-sub{font-size:.75rem;color:var(--on-sv)}
-
-    .results-footer{display:flex;align-items:center;justify-content:center;margin-top:1.5rem}
-    .results-footer a{font-size:.875rem;font-weight:700;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:.375rem}
-    .results-footer a:hover{text-decoration:underline}
-    .results-footer a .material-symbols-outlined{font-size:18px}
-
-    .guarantee-section{background:var(--surface-l);border-radius:1rem;padding:1.25rem;border:1px solid var(--muted);display:flex;flex-direction:column;gap:1rem;box-shadow:0 2px 8px -2px rgba(35,31,32,.04)}
-    @media(min-width:768px){.guarantee-section{flex-direction:row;align-items:center;justify-content:space-between}}
-    .guarantee-left{display:flex;align-items:center;gap:1rem}
-    .guarantee-icon{width:2.5rem;height:2.5rem;border-radius:50%;background:var(--brass-soft);display:flex;align-items:center;justify-content:center;color:var(--brass);flex-shrink:0}
-    .guarantee-icon .material-symbols-outlined{font-size:20px}
-    .guarantee-text h4{font-size:.9375rem;font-weight:700;color:var(--charcoal)}
-    .guarantee-text p{font-size:.8125rem;color:var(--on-sv)}
-    .guarantee-chips{display:flex;flex-wrap:wrap;gap:.5rem}
-    .guarantee-chip{display:inline-flex;align-items:center;gap:.25rem;font-size:.8125rem;color:var(--on-sv);background:var(--surface-c);padding:.25rem .625rem;border-radius:9999px}
-    .guarantee-chip .material-symbols-outlined{font-size:14px;color:var(--success)}
-
-    .bottom-cta{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;text-align:center;padding:1.5rem 0}
-    .bottom-cta blockquote{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(.9375rem,2.5vw,1.125rem);color:var(--on-sv);max-width:32rem;line-height:1.6}
-    .bottom-cta .chapter{font-size:.8125rem;color:var(--on-sv)}
-  </style>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
 </head>
 
 <body>
@@ -176,17 +71,17 @@
   <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splash-screen">
     <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
-    <div class="splash-text">Before we open, you decide what we become.</div>
-    <div class="splash-sub">Kerala's first community-built café</div>
+    <div class="splash-text" data-en="Before we open, you decide what we become." data-ml="തുറക്കുന്നതിന് മുമ്പ്, നിങ്ങൾ തീരുമാനിക്കും ഞങ്ങൾ എന്തായി മാറുമെന്ന്.">Before we open, you decide what we become.</div>
+    <div class="splash-sub" data-en="Kerala's first community-built café" data-ml="കേരളത്തിലെ ആദ്യത്തെ കമ്മ്യൂണിറ്റി നിർമ്മിച്ച കഫേ">Kerala's first community-built café</div>
   </div>
 
   <!-- NAME CARD OVERLAY -->
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
-      <h2>Welcome to CUPPILO</h2>
-      <p>What should we call you?</p>
+      <h2 data-en="Welcome to CUPPILO" data-ml="കപ്പിലോയിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
+      <button class="btn btn-primary" onclick="submitName()" data-en="Start Co-Creating" data-ml="സഹ-നിർമ്മാണം ആരംഭിക്കുക">Start Co-Creating</button>
     </div>
   </div>
 
@@ -200,7 +95,7 @@
 
       <div class="container">
 
-        <!-- 1. HERO SECTION -->
+        <!-- HERO SECTION -->
         <section class="hero-section">
           <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1.5rem">
             <div class="hero-badge">
@@ -216,12 +111,14 @@
           <div class="hero-grid">
             <div style="display:flex;flex-direction:column;gap:1.25rem">
               <div class="malayalam-tag">
-                <span class="ml">കപ്പിലോ?</span>
-                <span class="en">In the cup, of course.</span>
+                <span class="ml" data-en="കപ്പിലോ?" data-ml="കപ്പിലോ?">കപ്പിലോ?</span>
+                <span class="en" data-en="In the cup, of course." data-ml="കപ്പിൽ, തീർച്ചയായും.">In the cup, of course.</span>
               </div>
 
               <h1 class="hero-title">
-                <span data-en="Help Us Build Your Dream " data-ml="നിങ്ങളുടെ സ്വപ്ന കഫേ നിർമ്മിക്കാൻ ഞങ്ങളെ സഹായിക്കൂ ">Help Us Build Your Dream </span><span data-en="Café" data-ml="കഫേ">Café</span><span data-en=" Before We Open." data-ml=" തുറക്കുന്നതിന് മുമ്പ്."> Before We Open.</span>
+                <span data-en="Help Us Build Your Dream " data-ml="നിങ്ങളുടെ സ്വപ്ന കഫേ നിർമ്മിക്കാൻ ഞങ്ങളെ സഹായിക്കൂ ">Help Us Build Your Dream </span>
+                <span data-en="Café" data-ml="കഫേ">Café</span>
+                <span data-en=" Before We Open." data-ml=" തുറക്കുന്നതിന് മുമ്പ്."> Before We Open.</span>
               </h1>
 
               <p class="hero-subtitle" data-en="We are ditching boardroom guesswork. Tell us what signature brews, reimagined bites, and late-night ambiance Kerala is actually missing — and we will build it with you before doors open." data-ml="ബോർഡ്‌റൂം ഊഹാപോഹങ്ങൾ ഉപേക്ഷിക്കുന്നു. കേരളത്തിൽ യഥാർത്ഥത്തിൽ എന്താണ് വേണ്ടതെന്ന് ഞങ്ങളെ അറിയിക്കൂ — നിങ്ങളോടൊപ്പം നിർമ്മിക്കും.">
@@ -258,7 +155,7 @@
           </div>
         </section>
 
-        <!-- 2. 3-PILLAR BENTO GRID -->
+        <!-- 3-PILLAR BENTO GRID -->
         <section class="pillar-section">
           <div class="pillar-header">
             <div class="pillar-header-left">
@@ -322,7 +219,7 @@
           </div>
         </section>
 
-        <!-- 3. COMMUNITY RESULTS -->
+        <!-- COMMUNITY RESULTS -->
         <section class="results-section">
           <div class="results-header">
             <div class="results-header-left">
@@ -339,19 +236,25 @@
 
           <div class="results-grid">
             <div class="results-card">
-              <div class="results-card-icon">☕</div>
+              <div class="results-card-icon">
+                <span class="material-symbols-outlined" style="font-size:2rem;color:var(--primary)">local_cafe</span>
+              </div>
               <div class="results-card-label" data-en="Most Wanted Drink" data-ml="ഏറ്റവും ആഗ്രഹിക്കുന്ന പാനീയം">Most Wanted Drink</div>
               <div class="results-card-value" id="top-drink" data-en="Awaiting first votes" data-ml="ആദ്യ വോട്ടുകൾക്കായി കാത്തിരിക്കുന്നു">Awaiting first votes</div>
               <div class="results-card-sub" data-en="Based on community ballots" data-ml="കമ്മ്യൂണിറ്റി ബാലറ്റുകളുടെ അടിസ്ഥാനത്തിൽ">Based on community ballots</div>
             </div>
             <div class="results-card">
-              <div class="results-card-icon">🏡</div>
+              <div class="results-card-icon">
+                <span class="material-symbols-outlined" style="font-size:2rem;color:var(--brass)">cottage</span>
+              </div>
               <div class="results-card-label" data-en="Most Wanted Ambience" data-ml="ഏറ്റവും ആഗ്രഹിക്കുന്ന അന്തരീക്ഷം">Most Wanted Ambience</div>
               <div class="results-card-value" id="top-vibe" data-en="Awaiting first votes" data-ml="ആദ്യ വോട്ടുകൾക്കായി കാത്തിരിക്കുന്നു">Awaiting first votes</div>
               <div class="results-card-sub" data-en="Based on community ballots" data-ml="കമ്മ്യൂണിറ്റി ബാലറ്റുകളുടെ അടിസ്ഥാനത്തിൽ">Based on community ballots</div>
             </div>
             <div class="results-card">
-              <div class="results-card-icon">💰</div>
+              <div class="results-card-icon">
+                <span class="material-symbols-outlined" style="font-size:2rem;color:var(--success)">payments</span>
+              </div>
               <div class="results-card-label" data-en="Preferred Coffee Price" data-ml="ഇഷ്ടപ്പെട്ട കാപ്പി വില">Preferred Coffee Price</div>
               <div class="results-card-value" id="avg-price" data-en="Awaiting first votes" data-ml="ആദ്യ വോട്ടുകൾക്കായി കാത്തിരിക്കുന്നു">Awaiting first votes</div>
               <div class="results-card-sub" data-en="Community median price" data-ml="കമ്മ്യൂണിറ്റി മീഡിയൻ വില">Community median price</div>
@@ -366,11 +269,11 @@
           </div>
         </section>
 
-        <!-- 4. CO-CREATION GUARANTEE -->
+        <!-- CO-CREATION GUARANTEE -->
         <section class="guarantee-section" style="margin-top:1.5rem">
           <div class="guarantee-left">
             <div class="guarantee-icon">
-              <span class="material-symbols-outlined">lock</span>
+              <span class="material-symbols-outlined">verified_user</span>
             </div>
             <div class="guarantee-text">
               <h4 data-en="Co-Creation Guarantee" data-ml="സഹ-നിർമ്മാണ ഗ്യാരന്റി">Co-Creation Guarantee</h4>
@@ -393,7 +296,7 @@
           </div>
         </section>
 
-        <!-- 5. BOTTOM CTA -->
+        <!-- BOTTOM CTA -->
         <section class="bottom-cta" style="margin-top:1.5rem">
           <blockquote data-en="&quot;A great café in Kerala belongs to the people who walk in at dusk, smelling freshly roasted beans and listening to gentle monsoon drizzle.&quot;" data-ml="&quot;കേരളത്തിലെ ഒരു മികച്ച കഫേ സന്ധ്യയ്ക്ക് കയറിവരുന്ന, പുതുതായി വറുത്ത ബീൻസുകളുടെ മണം നുകർന്ന്, മൃദുവായ മൺസൂൺ ചാറ്റൽ കേൾക്കുന്ന ആളുകൾക്ക് ഉടമസ്ഥരാണ്.&quot;">"A great café in Kerala belongs to the people who walk in at dusk, smelling freshly roasted beans and listening to gentle monsoon drizzle."</blockquote>
           <a href="menu-ballot.html" class="btn btn-primary" style="font-size:1rem;padding:.875rem 2rem">

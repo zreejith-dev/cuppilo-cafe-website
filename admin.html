@@ -83,6 +83,17 @@
     .stat-card .stat-label{font-size:.8125rem;color:var(--on-sv);font-weight:500}
     .stat-card .stat-sub{font-size:.6875rem;color:var(--on-sv);opacity:.6}
 
+    /* ── BAR CHART ── */
+    .chart-wrap{background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;margin-top:1rem}
+    .chart-wrap h3{font-size:.875rem;font-weight:700;margin-bottom:1rem;color:var(--on-s)}
+    .bar-chart{display:flex;flex-direction:column;gap:.5rem}
+    .bar-row{display:flex;align-items:center;gap:.75rem}
+    .bar-label{font-size:.75rem;font-weight:600;color:var(--on-sv);min-width:100px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .bar-track{flex:1;height:24px;background:var(--surface-h);border-radius:6px;overflow:hidden;position:relative}
+    .bar-fill{height:100%;background:var(--primary);border-radius:6px;transition:width .6s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:.5rem}
+    .bar-fill span{font-size:.6875rem;font-weight:700;color:#fff;white-space:nowrap}
+    .bar-empty{height:100%;display:flex;align-items:center;justify-content:center;font-size:.6875rem;color:var(--on-sv);opacity:.5}
+
     /* ── TABLES ── */
     .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--muted);border-radius:1rem;background:var(--bg-card)}
     .table-wrap table{width:100%;border-collapse:collapse;min-width:500px}
@@ -111,6 +122,8 @@
     .tier-free{background:var(--surface-h);color:var(--on-sv)}
     .tier-founding{background:var(--brass-soft);color:var(--brass)}
     .tier-premium{background:rgba(45,106,79,.15);color:var(--success)}
+    .tier-pioneer{background:var(--primary);color:#fff}
+    .tier-first-brew{background:var(--brass);color:#fff}
 
     /* ── LAST UPDATED ── */
     .last-updated{font-size:.75rem;color:var(--on-sv);opacity:.6;margin-top:1rem;text-align:right}
@@ -190,7 +203,7 @@
       <!-- MAIN CONTENT -->
       <main class="admin-content">
 
-        <!-- ═══ DASHBOARD TAB ═══ -->
+        <!-- DASHBOARD TAB -->
         <div class="tab-panel active" id="tab-dashboard">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
             <div>
@@ -257,7 +270,7 @@
               </div>
               <div class="stat-value" id="stat-contributions">--</div>
               <div class="stat-label">Total Contributions</div>
-              <div class="stat-sub">All form submissions</div>
+              <div class="stat-sub">Pioneer + First Brew</div>
             </div>
             <div class="stat-card">
               <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
@@ -269,10 +282,16 @@
             </div>
           </div>
 
+          <!-- Menu Votes Bar Chart -->
+          <div class="chart-wrap" id="chart-wrap" style="display:none">
+            <h3><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:.375rem">bar_chart</span>Menu Votes by Item</h3>
+            <div class="bar-chart" id="bar-chart"></div>
+          </div>
+
           <div class="last-updated" id="dashboard-updated">Last updated: --</div>
         </div>
 
-        <!-- ═══ FEEDBACK TAB ═══ -->
+        <!-- FEEDBACK TAB -->
         <div class="tab-panel" id="tab-feedback">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
             <div>
@@ -291,7 +310,7 @@
           </div>
         </div>
 
-        <!-- ═══ MENU VOTES TAB ═══ -->
+        <!-- MENU VOTES TAB -->
         <div class="tab-panel" id="tab-menu-votes">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
             <div>
@@ -310,7 +329,7 @@
           </div>
         </div>
 
-        <!-- ═══ AMBIANCE VOTES TAB ═══ -->
+        <!-- AMBIANCE VOTES TAB -->
         <div class="tab-panel" id="tab-ambiance-votes">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
             <div>
@@ -329,7 +348,7 @@
           </div>
         </div>
 
-        <!-- ═══ USERS TAB ═══ -->
+        <!-- USERS TAB -->
         <div class="tab-panel" id="tab-users">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
             <div>
@@ -348,7 +367,7 @@
           </div>
         </div>
 
-        <!-- ═══ SUPPORTERS TAB ═══ -->
+        <!-- SUPPORTERS TAB -->
         <div class="tab-panel" id="tab-supporters">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
             <div>
@@ -367,7 +386,7 @@
           </div>
         </div>
 
-        <!-- ═══ SETTINGS TAB ═══ -->
+        <!-- SETTINGS TAB -->
         <div class="tab-panel" id="tab-settings">
           <div style="margin-bottom:1.25rem">
             <h2 style="font-size:1.25rem;font-weight:800">Settings</h2>
@@ -400,7 +419,7 @@
             </div>
             <div class="setting-row">
               <span class="setting-label">Admin Version</span>
-              <span class="setting-value">1.0.0</span>
+              <span class="setting-value">2.0.0</span>
             </div>
           </div>
         </div>
@@ -411,7 +430,7 @@
     <!-- FOOTER -->
     <footer style="background:var(--surface-c);border-top:1px solid var(--muted);padding:1.25rem 1.5rem;text-align:center">
       <p style="font-size:.75rem;color:var(--on-sv)">
-        CUPPILO Admin Panel v1.0.0 &mdash; Co-creation campaign management
+        CUPPILO Admin Panel v2.0.0 &mdash; Co-creation campaign management
       </p>
     </footer>
   </div>
@@ -454,10 +473,9 @@
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('cuppilo_theme', next);
-      document.querySelectorAll('.theme-toggle .material-symbols-outlined').forEach(i => {
+      document.querySelectorAll('.theme-toggle .material-symbols-outlined').forEach(function(i) {
         i.textContent = next === 'dark' ? 'light_mode' : 'dark_mode';
       });
-      // Update logo
       updateLogo(next);
     }
 
@@ -470,7 +488,7 @@
     function setLang(lang) {
       document.documentElement.setAttribute('data-lang', lang);
       localStorage.setItem('cuppilo_lang', lang);
-      document.querySelectorAll('.lang-btn').forEach(b => {
+      document.querySelectorAll('.lang-btn').forEach(function(b) {
         b.classList.toggle('active', b.dataset.lang === lang);
       });
     }
@@ -482,8 +500,8 @@
 
     // Close sidebar on outside click (mobile)
     document.addEventListener('click', function(e) {
-      const sidebar = document.getElementById('admin-sidebar');
-      const toggle = document.querySelector('.sidebar-toggle');
+      var sidebar = document.getElementById('admin-sidebar');
+      var toggle = document.querySelector('.sidebar-toggle');
       if (sidebar && sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
         sidebar.classList.remove('open');
       }
@@ -491,14 +509,11 @@
 
     // ── TAB SWITCHING ──
     function switchTab(tabId, el) {
-      // Update sidebar
-      document.querySelectorAll('.admin-sidebar a').forEach(a => a.classList.remove('active'));
+      document.querySelectorAll('.admin-sidebar a').forEach(function(a) { a.classList.remove('active'); });
       if (el) el.classList.add('active');
-      // Update panels
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
       var panel = document.getElementById('tab-' + tabId);
       if (panel) panel.classList.add('active');
-      // Load data for tab
       var loaders = {
         'dashboard': loadDashboard,
         'feedback': loadFeedback,
@@ -509,45 +524,106 @@
         'settings': loadSettings
       };
       if (loaders[tabId]) loaders[tabId]();
-      // Close mobile sidebar
       document.getElementById('admin-sidebar').classList.remove('open');
       return false;
+    }
+
+    // ── HELPERS ──
+    function esc(str) {
+      if (!str) return '';
+      var d = document.createElement('div');
+      d.textContent = String(str);
+      return d.innerHTML;
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '--';
+      try {
+        var d = new Date(iso);
+        return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch (e) {
+        return iso;
+      }
+    }
+
+    function isToday(iso) {
+      if (!iso) return false;
+      return iso.startsWith(new Date().toISOString().split('T')[0]);
+    }
+
+    function safeLen(data) {
+      return Array.isArray(data) ? data.length : 0;
+    }
+
+    function todayCount(data) {
+      if (!Array.isArray(data)) return 0;
+      return data.filter(function(r) { return r.created_at && isToday(r.created_at); }).length;
     }
 
     // ── DATA LOADERS ──
 
     async function loadDashboard() {
       try {
-        const [profiles, menuVotes, ambianceVotes, prices, suggested, supporters] = await Promise.all([
+        var results = await Promise.all([
           sbSelect('user_profiles', 'id,created_at'),
-          sbSelect('menu_votes', 'id,created_at'),
-          sbSelect('ambiance_votes', 'id,created_at'),
+          sbSelect('menu_votes', 'id,item_id,item,menu_item,name,created_at'),
+          sbSelect('ambiance_votes', 'id,choice,vibe,option,created_at'),
           sbSelect('price_suggestions', 'id,created_at'),
-          sbSelect('suggested_items', 'id'),
-          sbSelect('supporters', 'id')
+          sbSelect('suggested_items', 'id,created_at'),
+          sbSelect('supporters', 'id,tier,created_at')
         ]);
 
-        const profilesArr = Array.isArray(profiles) ? profiles : [];
-        const menuVotesArr = Array.isArray(menuVotes) ? menuVotes : [];
-        const ambianceVotesArr = Array.isArray(ambianceVotes) ? ambianceVotes : [];
-        const pricesArr = Array.isArray(prices) ? prices : [];
-        const suggestedArr = Array.isArray(suggested) ? suggested : [];
-        const supportersArr = Array.isArray(supporters) ? supporters : [];
+        var profiles = results[0];
+        var menuVotes = results[1];
+        var ambianceVotes = results[2];
+        var priceSuggestions = results[3];
+        var suggestedItems = results[4];
+        var supporters = results[5];
 
-        document.getElementById('stat-visitors').textContent = profilesArr.length.toLocaleString();
-        document.getElementById('stat-menu-votes').textContent = menuVotesArr.length.toLocaleString();
-        document.getElementById('stat-ambiance-votes').textContent = ambianceVotesArr.length.toLocaleString();
-        document.getElementById('stat-price-suggestions').textContent = pricesArr.length.toLocaleString();
-        document.getElementById('stat-suggested-items').textContent = suggestedArr.length.toLocaleString();
-        document.getElementById('stat-supporters').textContent = supportersArr.length.toLocaleString();
-        document.getElementById('stat-contributions').textContent =
-          (menuVotesArr.length + ambianceVotesArr.length + pricesArr.length + suggestedArr.length).toLocaleString();
+        // Stat cards
+        document.getElementById('stat-visitors').textContent = safeLen(profiles).toLocaleString();
+        document.getElementById('stat-menu-votes').textContent = safeLen(menuVotes).toLocaleString();
+        document.getElementById('stat-ambiance-votes').textContent = safeLen(ambianceVotes).toLocaleString();
+        document.getElementById('stat-price-suggestions').textContent = safeLen(priceSuggestions).toLocaleString();
+        document.getElementById('stat-suggested-items').textContent = safeLen(suggestedItems).toLocaleString();
+        document.getElementById('stat-supporters').textContent = safeLen(supporters).toLocaleString();
 
-        const today = new Date().toISOString().split('T')[0];
-        const todayMenu = menuVotesArr.filter(r => r.created_at && r.created_at.startsWith(today)).length;
-        const todayAmb = ambianceVotesArr.filter(r => r.created_at && r.created_at.startsWith(today)).length;
-        const todayPrice = pricesArr.filter(r => r.created_at && r.created_at.startsWith(today)).length;
-        document.getElementById('stat-today').textContent = (todayMenu + todayAmb + todayPrice).toLocaleString();
+        // Total Contributions: sum from supporters where tier='pioneer' (10) or 'first-brew' (49)
+        var contributions = 0;
+        if (Array.isArray(supporters)) {
+          supporters.forEach(function(s) {
+            if (s.tier === 'pioneer') contributions += 10;
+            else if (s.tier === 'first-brew') contributions += 49;
+          });
+        }
+        document.getElementById('stat-contributions').textContent = '\u20B9' + contributions.toLocaleString();
+
+        // Today's Activity: count of records created today across all tables
+        var todayTotal = todayCount(profiles) + todayCount(menuVotes) + todayCount(ambianceVotes) + todayCount(priceSuggestions) + todayCount(suggestedItems) + todayCount(supporters);
+        document.getElementById('stat-today').textContent = todayTotal.toLocaleString();
+
+        // Bar chart: menu votes grouped by item
+        if (Array.isArray(menuVotes) && menuVotes.length > 0) {
+          var votes = {};
+          menuVotes.forEach(function(v) {
+            var item = v.item_id || v.item || v.menu_item || v.name || 'Unknown';
+            votes[item] = (votes[item] || 0) + 1;
+          });
+          var sorted = Object.entries(votes).sort(function(a, b) { return b[1] - a[1]; });
+          var maxCount = sorted[0][1] || 1;
+          var chartHtml = '';
+          sorted.forEach(function(entry) {
+            var pct = Math.round((entry[1] / maxCount) * 100);
+            chartHtml += '<div class="bar-row">' +
+              '<div class="bar-label">' + esc(entry[0]) + '</div>' +
+              '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"><span>' + entry[1] + '</span></div></div>' +
+              '</div>';
+          });
+          document.getElementById('bar-chart').innerHTML = chartHtml;
+          document.getElementById('chart-wrap').style.display = 'block';
+        } else {
+          document.getElementById('chart-wrap').style.display = 'none';
+        }
 
         document.getElementById('dashboard-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
       } catch (e) {
@@ -557,16 +633,25 @@
 
     async function loadFeedback() {
       try {
-        const data = await sbSelect('suggested_items', '*');
-        const arr = Array.isArray(data) ? data : [];
-        const wrap = document.getElementById('feedback-table-wrap');
+        var data = await sbSelect('suggested_items', '*');
+        var arr = Array.isArray(data) ? data : [];
+        var wrap = document.getElementById('feedback-table-wrap');
         if (arr.length === 0) {
           wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No suggestions yet.</p></div>';
           return;
         }
-        wrap.innerHTML = '<table><thead><tr><th>Name</th><th>Description</th><th>Category</th><th>Date</th></tr></thead><tbody>' +
-          arr.map(r => '<tr><td>' + esc(r.name || '--') + '</td><td>' + esc(r.description || '--') + '</td><td>' + esc(r.category || '--') + '</td><td>' + formatDate(r.created_at) + '</td></tr>').join('') +
-          '</tbody></table>';
+        var html = '<table><thead><tr><th>Name</th><th>Description</th><th>Category</th><th>User</th><th>Date</th></tr></thead><tbody>';
+        arr.forEach(function(r) {
+          html += '<tr>' +
+            '<td>' + esc(r.name || '--') + '</td>' +
+            '<td>' + esc(r.description || '--') + '</td>' +
+            '<td>' + esc(r.category || '--') + '</td>' +
+            '<td>' + esc(r.user || r.user_name || '--') + '</td>' +
+            '<td>' + formatDate(r.created_at) + '</td>' +
+            '</tr>';
+        });
+        html += '</tbody></table>';
+        wrap.innerHTML = html;
       } catch (e) {
         console.error('Feedback load error:', e);
       }
@@ -574,24 +659,33 @@
 
     async function loadMenuVotes() {
       try {
-        const data = await sbSelect('menu_votes', '*');
-        const arr = Array.isArray(data) ? data : [];
-        const votes = {};
-        arr.forEach(v => {
-          const item = v.item_id || v.item || v.menu_item || v.name || 'Unknown';
-          if (!votes[item]) votes[item] = { name: item, count: 0 };
+        var data = await sbSelect('menu_votes', '*');
+        var arr = Array.isArray(data) ? data : [];
+        var votes = {};
+        arr.forEach(function(v) {
+          var item = v.item_id || v.item || v.menu_item || v.name || 'Unknown';
+          if (!votes[item]) votes[item] = { name: item, count: 0, prices: [] };
           votes[item].count++;
+          if (v.suggested_price || v.price) votes[item].prices.push(parseFloat(v.suggested_price || v.price) || 0);
         });
 
-        const items = Object.values(votes).sort((a, b) => b.count - a.count);
-        const wrap = document.getElementById('menu-votes-table-wrap');
+        var items = Object.values(votes).sort(function(a, b) { return b.count - a.count; });
+        var wrap = document.getElementById('menu-votes-table-wrap');
         if (items.length === 0) {
           wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No menu votes yet.</p></div>';
           return;
         }
-        wrap.innerHTML = '<table><thead><tr><th>Item</th><th>Vote Count</th></tr></thead><tbody>' +
-          items.map(v => '<tr><td>' + esc(v.name) + '</td><td>' + v.count + '</td></tr>').join('') +
-          '</tbody></table>';
+        var html = '<table><thead><tr><th>Item</th><th>Vote Count</th><th>Avg Price</th></tr></thead><tbody>';
+        items.forEach(function(v) {
+          var avgPrice = '--';
+          if (v.prices.length > 0) {
+            var sum = v.prices.reduce(function(a, b) { return a + b; }, 0);
+            avgPrice = '\u20B9' + (sum / v.prices.length).toFixed(0);
+          }
+          html += '<tr><td>' + esc(v.name) + '</td><td>' + v.count + '</td><td>' + avgPrice + '</td></tr>';
+        });
+        html += '</tbody></table>';
+        wrap.innerHTML = html;
       } catch (e) {
         console.error('Menu votes load error:', e);
       }
@@ -599,29 +693,30 @@
 
     async function loadAmbianceVotes() {
       try {
-        const data = await sbSelect('ambiance_votes', '*');
-        const arr = Array.isArray(data) ? data : [];
-        // Aggregate
-        const tally = {};
-        arr.forEach(v => {
-          const choice = v.choice || v.vibe || v.option || 'Unknown';
-          if (!tally[choice]) tally[choice] = 0;
-          tally[choice]++;
+        var data = await sbSelect('ambiance_votes', '*');
+        var arr = Array.isArray(data) ? data : [];
+        var tally = {};
+        arr.forEach(function(v) {
+          var choice = v.choice || v.vibe || v.option || 'Unknown';
+          tally[choice] = (tally[choice] || 0) + 1;
         });
 
-        const total = arr.length || 1;
-        const items = Object.entries(tally).map(([choice, count]) => ({
-          choice, count, pct: ((count / total) * 100).toFixed(1)
-        })).sort((a, b) => b.count - a.count);
+        var total = arr.length || 1;
+        var items = Object.entries(tally).map(function(entry) {
+          return { choice: entry[0], count: entry[1], pct: ((entry[1] / total) * 100).toFixed(1) };
+        }).sort(function(a, b) { return b.count - a.count; });
 
-        const wrap = document.getElementById('ambiance-votes-table-wrap');
+        var wrap = document.getElementById('ambiance-votes-table-wrap');
         if (items.length === 0) {
           wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No ambiance votes yet.</p></div>';
           return;
         }
-        wrap.innerHTML = '<table><thead><tr><th>Option</th><th>Vote Count</th><th>Percentage</th></tr></thead><tbody>' +
-          items.map(v => '<tr><td>' + esc(v.choice) + '</td><td>' + v.count + '</td><td>' + v.pct + '%</td></tr>').join('') +
-          '</tbody></table>';
+        var html = '<table><thead><tr><th>Option</th><th>Vote Count</th><th>Percentage</th></tr></thead><tbody>';
+        items.forEach(function(v) {
+          html += '<tr><td>' + esc(v.choice) + '</td><td>' + v.count + '</td><td>' + v.pct + '%</td></tr>';
+        });
+        html += '</tbody></table>';
+        wrap.innerHTML = html;
       } catch (e) {
         console.error('Ambiance votes load error:', e);
       }
@@ -629,16 +724,23 @@
 
     async function loadUsers() {
       try {
-        const data = await sbSelect('user_profiles', '*');
-        const arr = Array.isArray(data) ? data : [];
-        const wrap = document.getElementById('users-table-wrap');
+        var data = await sbSelect('user_profiles', '*');
+        var arr = Array.isArray(data) ? data : [];
+        var wrap = document.getElementById('users-table-wrap');
         if (arr.length === 0) {
           wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No users yet.</p></div>';
           return;
         }
-        wrap.innerHTML = '<table><thead><tr><th>Name</th><th>Session ID</th><th>Created At</th></tr></thead><tbody>' +
-          arr.map(u => '<tr><td>' + esc(u.display_name || '--') + '</td><td style="font-family:monospace;font-size:.75rem">' + esc(u.session_id || '--') + '</td><td>' + formatDate(u.created_at) + '</td></tr>').join('') +
-          '</tbody></table>';
+        var html = '<table><thead><tr><th>Name</th><th>Session ID</th><th>Created At</th></tr></thead><tbody>';
+        arr.forEach(function(u) {
+          html += '<tr>' +
+            '<td>' + esc(u.display_name || '--') + '</td>' +
+            '<td style="font-family:monospace;font-size:.75rem">' + esc(u.session_id || '--') + '</td>' +
+            '<td>' + formatDate(u.created_at) + '</td>' +
+            '</tr>';
+        });
+        html += '</tbody></table>';
+        wrap.innerHTML = html;
       } catch (e) {
         console.error('Users load error:', e);
       }
@@ -646,20 +748,30 @@
 
     async function loadSupporters() {
       try {
-        const data = await sbSelect('supporters', '*');
-        const arr = Array.isArray(data) ? data : [];
-        const wrap = document.getElementById('supporters-table-wrap');
+        var data = await sbSelect('supporters', '*');
+        var arr = Array.isArray(data) ? data : [];
+        var wrap = document.getElementById('supporters-table-wrap');
         if (arr.length === 0) {
           wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No supporters yet.</p></div>';
           return;
         }
-        wrap.innerHTML = '<table><thead><tr><th>Name</th><th>Tier</th><th>Phone</th><th>Date</th></tr></thead><tbody>' +
-          arr.map(s => {
-            const tier = s.tier || 'free';
-            const tierClass = tier === 'founding' ? 'tier-founding' : tier === 'premium' ? 'tier-premium' : 'tier-free';
-            return '<tr><td>' + esc(s.display_name || s.name || '--') + '</td><td><span class="tier-badge ' + tierClass + '">' + esc(tier) + '</span></td><td>' + esc(s.phone_number || s.phone || '--') + '</td><td>' + formatDate(s.created_at) + '</td></tr>';
-          }).join('') +
-          '</tbody></table>';
+        var html = '<table><thead><tr><th>Name</th><th>Tier</th><th>Phone</th><th>Date</th></tr></thead><tbody>';
+        arr.forEach(function(s) {
+          var tier = s.tier || 'free';
+          var tierClass = 'tier-free';
+          if (tier === 'founding') tierClass = 'tier-founding';
+          else if (tier === 'premium') tierClass = 'tier-premium';
+          else if (tier === 'pioneer') tierClass = 'tier-pioneer';
+          else if (tier === 'first-brew') tierClass = 'tier-first-brew';
+          html += '<tr>' +
+            '<td>' + esc(s.display_name || s.name || '--') + '</td>' +
+            '<td><span class="tier-badge ' + tierClass + '">' + esc(tier) + '</span></td>' +
+            '<td>' + esc(s.phone_number || s.phone || '--') + '</td>' +
+            '<td>' + formatDate(s.created_at) + '</td>' +
+            '</tr>';
+        });
+        html += '</tbody></table>';
+        wrap.innerHTML = html;
       } catch (e) {
         console.error('Supporters load error:', e);
       }
@@ -667,50 +779,32 @@
 
     async function loadSettings() {
       try {
-        const [menuVotes, supporters] = await Promise.all([
+        var results = await Promise.all([
           sbSelect('menu_votes', 'id'),
           sbSelect('supporters', 'id')
         ]);
-        const menuVotesArr = Array.isArray(menuVotes) ? menuVotes : [];
-        const supportersArr = Array.isArray(supporters) ? supporters : [];
-        document.getElementById('setting-menu-count').textContent = menuVotesArr.length;
-        document.getElementById('setting-ballot-count').textContent = supportersArr.length;
+        var menuVotes = results[0];
+        var supporters = results[1];
+        document.getElementById('setting-menu-count').textContent = safeLen(menuVotes);
+        document.getElementById('setting-ballot-count').textContent = safeLen(supporters);
       } catch (e) {
         console.error('Settings load error:', e);
       }
     }
 
-    // ── HELPERS ──
-    function esc(str) {
-      if (!str) return '';
-      const d = document.createElement('div');
-      d.textContent = String(str);
-      return d.innerHTML;
-    }
-
-    function formatDate(iso) {
-      if (!iso) return '--';
-      try {
-        const d = new Date(iso);
-        return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-      } catch {
-        return iso;
-      }
-    }
-
     // ── INIT ──
     (function init() {
-      const theme = localStorage.getItem('cuppilo_theme') || 'dark';
+      var theme = localStorage.getItem('cuppilo_theme') || 'dark';
       document.documentElement.setAttribute('data-theme', theme);
       updateLogo(theme);
-      document.querySelectorAll('.theme-toggle .material-symbols-outlined').forEach(i => {
+      document.querySelectorAll('.theme-toggle .material-symbols-outlined').forEach(function(i) {
         i.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
       });
-      const lang = localStorage.getItem('cuppilo_lang') || 'en';
+      var lang = localStorage.getItem('cuppilo_lang') || 'en';
       setLang(lang);
     })();
 
-    console.log('CUPPILO Admin Panel loaded');
+    console.log('CUPPILO Admin Panel v2.0.0 loaded');
   </script>
 </body>
 </html>
