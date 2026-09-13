@@ -578,6 +578,7 @@
     async function submitAndNavigate() {
       showToast('Your ballot is saved! Redirecting...', 'success');
       await saveBallotToSupabase();
+      await trackProgress('ballot');
       window.location.href = 'ambiance.html';
     }
 

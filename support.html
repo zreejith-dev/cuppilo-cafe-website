@@ -26,9 +26,9 @@
   <link rel="stylesheet" href="css/styles.css"/>
   <style>
     .flip-card{perspective:1000px;width:100%;max-width:340px;margin:0 auto;cursor:pointer}
-    .flip-card-inner{position:relative;width:100%;transition:transform .6s;transform-style:preserve-3d}
+    .flip-card-inner{position:relative;width:100%;height:340px;transition:transform .6s;transform-style:preserve-3d}
     .flip-card.flipped .flip-card-inner{transform:rotateY(180deg)}
-    .flip-card-front,.flip-card-back{position:absolute;width:100%;backface-visibility:hidden;border-radius:1.5rem;padding:2rem;display:flex;align-items:center;justify-content:center;min-height:320px}
+    .flip-card-front,.flip-card-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:1.5rem;padding:2rem;display:flex;align-items:center;justify-content:center}
     .flip-card-front{background:var(--bg-card);border:2px solid var(--muted);box-shadow:var(--shadow-lg)}
     .flip-card-back{background:var(--bg-card);border:2px solid var(--brass);box-shadow:var(--shadow-lg);transform:rotateY(180deg);flex-direction:column}
     .supporter-row{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:.75rem;margin-bottom:.5rem}
@@ -121,6 +121,62 @@
         <p style="font-size:.75rem;color:var(--on-sv);margin-top:.5rem" data-en="or scan the QR code above" data-ml="അല്ലെങ്കിൽ മുകളിലെ QR കോഡ് സ്കാൻ ചെയ്യുക">or scan the QR code above</p>
       </div>
 
+      <!-- YOUR COUPON (hidden until supporter has a coupon) -->
+      <div id="my-coupon-section" style="display:none;margin-top:2.5rem;background:var(--bg-card);border:2px solid var(--brass);border-radius:1rem;padding:1.5rem;text-align:center">
+        <span class="material-symbols-outlined" style="font-size:36px;color:var(--brass)">confirmation_number</span>
+        <h2 style="font-size:1.125rem;font-weight:800;color:var(--charcoal);margin:.5rem 0 .25rem" data-en="Your Supporter Coupon" data-ml="നിങ്ങളുടെ പിന്തുണക്കാരൻ കൂപ്പൺ">Your Supporter Coupon</h2>
+        <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:1rem" data-en="Show this code at the cafe on opening day" data-ml="ഓപ്പണിംഗ് ദിവസം കഫേയിൽ ഈ കോഡ് കാണിക്കുക">Show this code at the cafe on opening day</p>
+        <div id="coupon-code-display" style="font-size:1.5rem;font-weight:800;color:var(--primary);letter-spacing:.1em;font-family:monospace;background:var(--surface-h);padding:.75rem 1.5rem;border-radius:.5rem;display:inline-block;margin-bottom:.75rem">CP-XXXXXX</div>
+        <br>
+        <button onclick="copyCouponCode()" class="btn btn-sm" style="background:var(--surface-h);color:var(--on-s);margin-bottom:1rem">
+          <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
+          <span data-en="Copy Code" data-ml="കോഡ് പകർത്തുക">Copy Code</span>
+        </button>
+      </div>
+
+      <!-- SHARE REFERRAL LINK (hidden until supporter has a coupon) -->
+      <div id="referral-share-section" style="display:none;margin-top:1.5rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.5rem;text-align:center">
+        <span class="material-symbols-outlined" style="font-size:32px;color:var(--primary)">share</span>
+        <h2 style="font-size:1.125rem;font-weight:800;color:var(--charcoal);margin:.5rem 0 .25rem" data-en="Share Your Referral Link" data-ml="നിങ്ങളുടെ റെഫറൽ ലിങ്ക് പങ്കിടുക">Share Your Referral Link</h2>
+        <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:1rem" data-en="Invite 3 friends to complete the co-creation journey and earn a free item on opening day!" data-ml="3 സുഹൃത്തുക്കളെ ക്ഷണിക്കുക, ഓപ്പണിംഗ് ദിവസം സൗജന്യ ഇനം നേടുക!">Invite 3 friends to complete the co-creation journey and earn a free item on opening day!</p>
+        <div id="referral-link-box" style="background:var(--surface-h);padding:.5rem .75rem;border-radius:.5rem;font-size:.8125rem;color:var(--on-s);word-break:break-all;margin-bottom:1rem;font-family:monospace">cuppilo.in/support.html?ref=CP-XXXXXX</div>
+        <div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap">
+          <button onclick="shareWhatsApp()" class="btn btn-sm" style="background:#25D366;color:#fff">
+            <span class="material-symbols-outlined" style="font-size:16px">chat</span> WhatsApp
+          </button>
+          <button onclick="shareTelegram()" class="btn btn-sm" style="background:#0088cc;color:#fff">
+            <span class="material-symbols-outlined" style="font-size:16px">send</span> Telegram
+          </button>
+          <button onclick="copyReferralLink()" class="btn btn-sm" style="background:var(--surface-h);color:var(--on-s)">
+            <span class="material-symbols-outlined" style="font-size:16px">content_copy</span> <span data-en="Copy" data-ml="പകർത്തുക">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- REFERRAL PROGRESS (hidden until supporter has a coupon) -->
+      <div id="referral-progress-section" style="display:none;margin-top:1.5rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.5rem;text-align:center">
+        <h2 style="font-size:1.125rem;font-weight:800;color:var(--charcoal);margin-bottom:.75rem" data-en="Your Referral Progress" data-ml="നിങ്ങളുടെ റെഫറൽ പുരോഗതി">Your Referral Progress</h2>
+        <div style="display:flex;justify-content:center;gap:.75rem;margin-bottom:.75rem">
+          <div id="ref-dot-1" class="ref-dot" style="width:40px;height:40px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;color:var(--on-sv);transition:all .3s">1</div>
+          <div id="ref-dot-2" class="ref-dot" style="width:40px;height:40px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;color:var(--on-sv);transition:all .3s">2</div>
+          <div id="ref-dot-3" class="ref-dot" style="width:40px;height:40px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;color:var(--on-sv);transition:all .3s">3</div>
+        </div>
+        <p id="ref-progress-text" style="font-size:.875rem;color:var(--on-sv);margin-bottom:.5rem">0 of 3 referrals completed</p>
+        <div id="ref-reward-status" style="display:none;margin-top:.75rem;padding:.75rem;background:var(--brass-soft);border-radius:.5rem">
+          <span class="material-symbols-outlined" style="font-size:24px;color:var(--success)">emoji_events</span>
+          <p style="font-size:.875rem;font-weight:700;color:var(--charcoal);margin-top:.25rem" data-en="Reward unlocked! Free item on opening day" data-ml="റെവാർഡ് അൺലോക്ക് ചെയ്തു! ഓപ്പണിംഗ് ദിവസം സൗജന്യ ഇനം">Reward unlocked! Free item on opening day</p>
+          <p id="ref-reward-code" style="font-size:1.125rem;font-weight:800;color:var(--primary);letter-spacing:.1em;font-family:monospace;margin-top:.25rem">XXXX-XXXX-XXXX</p>
+        </div>
+      </div>
+
+      <!-- 10% DISCOUNT FOR REFERRED PERSON (hidden unless referred and completed) -->
+      <div id="discount-section" style="display:none;margin-top:1.5rem;background:var(--bg-card);border:2px solid var(--success);border-radius:1rem;padding:1.5rem;text-align:center">
+        <span class="material-symbols-outlined" style="font-size:36px;color:var(--success)">local_offer</span>
+        <h2 style="font-size:1.125rem;font-weight:800;color:var(--charcoal);margin:.5rem 0 .25rem" data-en="Welcome! Here's Your 10% Discount" data-ml="സ്വാഗതം! നിങ്ങളുടെ 10% ഡിസ്‌കൗണ്ട്">Welcome! Here's Your 10% Discount</h2>
+        <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:1rem" data-en="You were invited by a CUPPILO supporter. Complete the journey and enjoy 10% off your first order!" data-ml="നിങ്ങളെ CUPPILO പിന്തുണക്കാരൻ ക്ഷണിച്ചു. യാത്ര പൂർത്തിയാക്കൂ, ആദ്യ ഓർഡറിൽ 10% ഡിസ്‌കൗണ്ട് ആസ്വദിക്കൂ!">You were invited by a CUPPILO supporter. Complete the journey and enjoy 10% off your first order!</p>
+        <div id="discount-code-display" style="font-size:1.5rem;font-weight:800;color:var(--success);letter-spacing:.1em;font-family:monospace;background:var(--surface-h);padding:.75rem 1.5rem;border-radius:.5rem;display:inline-block">CUPPILO10-XXXXXX</div>
+      </div>
+
       <div style="margin-top:2.5rem">
         <h2 style="font-size:1.125rem;font-weight:700;color:var(--charcoal);text-align:center;margin-bottom:1rem" data-en="Live Support Stats" data-ml="ലൈവ് പിന്തുണ സ്ഥിതിവിവരങ്ങൾ">Live Support Stats</h2>
         <div class="stats-grid" style="display:flex;gap:1rem">
@@ -197,7 +253,7 @@
         const stats = await sbSelect('bmc_stats', '*');
         if (stats && stats.length > 0) {
           document.getElementById('bmc-coffees').textContent = stats[0].total_coffees || 0;
-          document.getElementById('bmc-amount').textContent = '₹' + (stats[0].total_amount || 0);
+          document.getElementById('bmc-amount').textContent = '\u20B9' + (stats[0].total_amount || 0);
           document.getElementById('bmc-supporters').textContent = stats[0].unique_supporters || 0;
         }
       } catch(e) { console.log('BMC stats skipped:', e); }
@@ -216,7 +272,7 @@
             '<div class="supporter-avatar">' + (s.name || 'A').charAt(0).toUpperCase() + '</div>' +
             '<div style="flex:1"><strong>' + (s.name || 'Anonymous') + '</strong>' +
             (s.message ? '<br><span style="font-size:.75rem;color:var(--on-sv)">' + s.message + '</span>' : '') + '</div>' +
-            '<div style="text-align:right"><div style="font-weight:700;color:var(--primary)">₹' + s.amount + '</div>' +
+            '<div style="text-align:right"><div style="font-weight:700;color:var(--primary)">\u20B9' + s.amount + '</div>' +
             '<div style="font-size:.625rem;color:var(--on-sv)">' + timeAgo(s.created_at) + '</div></div>' +
           '</div>';
         }).join('');
@@ -224,7 +280,9 @@
     }
 
     function timeAgo(date) {
+      if (!date) return '';
       var diff = Date.now() - new Date(date).getTime();
+      if (diff < 0) return 'just now';
       var mins = Math.floor(diff / 60000);
       if (mins < 60) return mins + 'm ago';
       var hours = Math.floor(mins / 60);
@@ -233,10 +291,111 @@
       return days + 'd ago';
     }
 
+    // ── REFERRAL SYSTEM ──
+    var myCouponData = null;
+    var myReferralCode = null;
+
+    async function loadMyCoupon() {
+      var coupon = await getMyCoupon();
+      if (coupon) {
+        myCouponData = coupon;
+        myReferralCode = coupon.coupon_code;
+        document.getElementById('my-coupon-section').style.display = '';
+        document.getElementById('coupon-code-display').textContent = coupon.coupon_code;
+        document.getElementById('referral-share-section').style.display = '';
+        document.getElementById('referral-link-box').textContent = window.location.origin + '/support.html?ref=' + coupon.coupon_code;
+        document.getElementById('referral-progress-section').style.display = '';
+        await loadReferralProgress();
+      }
+    }
+
+    async function loadReferralProgress() {
+      if (!myReferralCode) return;
+      try {
+        var referrals = await sbSelect('referrals', '*');
+        if (!Array.isArray(referrals)) return;
+        var myRefs = referrals.filter(function(r) { return r.ref_code === myReferralCode; });
+        var completed = myRefs.filter(function(r) { return r.status === 'completed'; });
+        var count = completed.length;
+
+        // Update dots
+        for (var i = 1; i <= 3; i++) {
+          var dot = document.getElementById('ref-dot-' + i);
+          if (dot) {
+            if (i <= count) {
+              dot.style.borderColor = 'var(--success)';
+              dot.style.background = 'var(--success)';
+              dot.style.color = '#fff';
+            }
+          }
+        }
+        document.getElementById('ref-progress-text').textContent = count + ' of 3 referrals completed';
+
+        // Check reward
+        if (count >= 3 && myCouponData && !myCouponData.reward_code) {
+          // Generate reward
+          var rewardCode = generateRewardCode();
+          await sbUpdate('supporter_coupons', { reward_code: rewardCode, status: 'reward_earned' }, 'coupon_code', myReferralCode);
+          myCouponData.reward_code = rewardCode;
+          myCouponData.status = 'reward_earned';
+        }
+        if (myCouponData && myCouponData.reward_code) {
+          document.getElementById('ref-reward-status').style.display = '';
+          document.getElementById('ref-reward-code').textContent = myCouponData.reward_code;
+        }
+      } catch(e) { console.log('Referral progress skipped:', e); }
+    }
+
+    async function loadDiscountForReferred() {
+      var refCode = getReferralCode();
+      if (!refCode) return;
+      var profile = getProfile();
+      if (!profile) return;
+      try {
+        var refs = await sbSelect('referrals', '*');
+        if (!Array.isArray(refs)) return;
+        var myRef = refs.find(function(r) {
+          return r.ref_code === refCode && r.referee_session_id === profile.session_id;
+        });
+        if (myRef && myRef.discount_code) {
+          document.getElementById('discount-section').style.display = '';
+          document.getElementById('discount-code-display').textContent = myRef.discount_code;
+        }
+      } catch(e) { console.log('Discount check skipped:', e); }
+    }
+
+    function copyCouponCode() {
+      var code = document.getElementById('coupon-code-display').textContent;
+      navigator.clipboard.writeText(code).then(function() {
+        showToast('Coupon code copied!', 'success');
+      });
+    }
+
+    function copyReferralLink() {
+      var link = document.getElementById('referral-link-box').textContent;
+      navigator.clipboard.writeText(link).then(function() {
+        showToast('Referral link copied!', 'success');
+      });
+    }
+
+    function shareWhatsApp() {
+      var link = document.getElementById('referral-link-box').textContent;
+      var msg = 'Help me build CUPPILO! Complete the co-creation journey and we both get rewards: ' + link;
+      window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    function shareTelegram() {
+      var link = document.getElementById('referral-link-box').textContent;
+      var msg = 'Help me build CUPPILO! Complete the co-creation journey and we both get rewards: ' + link;
+      window.open('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(msg), '_blank');
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       initPage('support');
       loadBmcStats();
       loadRecentSupporters();
+      loadMyCoupon();
+      loadDiscountForReferred();
     });
   </script>
 

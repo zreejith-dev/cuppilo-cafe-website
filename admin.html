@@ -197,6 +197,9 @@
         <a href="#" data-tab="bmc" onclick="switchTab('bmc',this)">
           <span class="material-symbols-outlined">local_cafe</span> BMC Support
         </a>
+        <a href="#" data-tab="referrals" onclick="switchTab('referrals',this)">
+          <span class="material-symbols-outlined">group_add</span> Referrals
+        </a>
         <div class="section-label">System</div>
         <a href="#" data-tab="settings" onclick="switchTab('settings',this)">
           <span class="material-symbols-outlined">settings</span> Settings
@@ -500,6 +503,68 @@
           </div>
         </div>
 
+        <!-- REFERRALS TAB -->
+        <div class="tab-panel" id="tab-referrals">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+            <div>
+              <h2 style="font-size:1.25rem;font-weight:800">Referrals</h2>
+              <p style="font-size:.8125rem;color:var(--on-sv)">Coupon codes, referrals & reward tracking</p>
+            </div>
+            <button class="refresh-btn" onclick="loadReferrals()">
+              <span class="material-symbols-outlined">refresh</span> Refresh
+            </button>
+          </div>
+
+          <div class="stat-grid" style="margin-bottom:1.25rem">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--primary)">
+                <span class="material-symbols-outlined">confirmation_number</span>
+              </div>
+              <div class="stat-value" id="stat-total-coupons">--</div>
+              <div class="stat-label">Total Coupons Generated</div>
+              <div class="stat-sub">All codes</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--brass)">
+                <span class="material-symbols-outlined">group_add</span>
+              </div>
+              <div class="stat-value" id="stat-total-referrals">--</div>
+              <div class="stat-label">Total Referrals</div>
+              <div class="stat-sub">All + completed</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:var(--surface-h);color:var(--success)">
+                <span class="material-symbols-outlined">emoji_events</span>
+              </div>
+              <div class="stat-value" id="stat-rewards-earned">--</div>
+              <div class="stat-label">Rewards Earned</div>
+              <div class="stat-sub">Completed referrals</div>
+            </div>
+          </div>
+
+          <!-- Coupon Validation -->
+          <div style="background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;margin-bottom:1.25rem">
+            <h3 style="font-size:.875rem;font-weight:700;margin-bottom:.75rem">
+              <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:.375rem">search</span>Coupon Validation
+            </h3>
+            <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+              <input type="text" id="coupon-input" class="input" placeholder="Enter coupon code..." style="flex:1;min-width:180px;padding:.5rem .75rem;border-radius:.5rem;border:1px solid var(--muted);background:var(--surface-h);color:var(--on-s);font-family:monospace;font-size:.875rem"/>
+              <button class="refresh-btn" onclick="validateCoupon()" style="background:var(--primary);color:#fff;border-color:var(--primary)">
+                <span class="material-symbols-outlined">check_circle</span> Validate
+              </button>
+            </div>
+            <div id="coupon-result" style="margin-top:.75rem;display:none"></div>
+          </div>
+
+          <!-- Referral Dashboard Table -->
+          <div class="table-wrap" id="referrals-table-wrap">
+            <div class="empty-state" id="referrals-empty">
+              <span class="material-symbols-outlined">hourglass_empty</span>
+              <p>Loading...</p>
+            </div>
+          </div>
+        </div>
+
         <!-- SETTINGS TAB -->
         <div class="tab-panel" id="tab-settings">
           <div style="margin-bottom:1.25rem">
@@ -636,6 +701,7 @@
         'users': loadUsers,
         'supporters': loadSupporters,
         'bmc': loadBmc,
+        'referrals': loadReferrals,
         'settings': loadSettings
       };
       if (loaders[tabId]) loaders[tabId]();
@@ -937,6 +1003,84 @@
         wrap.innerHTML = html;
       } catch (e) {
         console.error('Supporters load error:', e);
+      }
+    }
+
+    async function loadReferrals() {
+      try {
+        var results = await Promise.all([
+          sbSelect('supporter_coupons', 'id,coupon_code,supporter_name,status,created_at'),
+          sbSelect('referrals', 'id,referrer_name,referred_name,completed,created_at'),
+          sbSelect('referral_dashboard', 'supporter_name,coupon_code,referral_count,completed_referrals,reward_code,status')
+        ]);
+        var coupons = Array.isArray(results[0]) ? results[0] : [];
+        var referrals = Array.isArray(results[1]) ? results[1] : [];
+        var dashboard = Array.isArray(results[2]) ? results[2] : [];
+
+        var totalCoupons = coupons.length;
+        var totalReferrals = referrals.length;
+        var completedReferrals = referrals.filter(function(r) { return r.completed === true || r.completed === 'true'; }).length;
+        var rewardsEarned = coupons.filter(function(c) { return c.status === 'reward_earned'; }).length;
+
+        document.getElementById('stat-total-coupons').textContent = totalCoupons.toLocaleString();
+        document.getElementById('stat-total-referrals').textContent = totalReferrals.toLocaleString();
+        document.getElementById('stat-rewards-earned').textContent = rewardsEarned.toLocaleString();
+
+        var wrap = document.getElementById('referrals-table-wrap');
+        if (dashboard.length === 0) {
+          wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No referral data yet.</p></div>';
+          return;
+        }
+        var html = '<table><thead><tr><th>Supporter</th><th>Coupon Code</th><th>Referrals</th><th>Completed</th><th>Reward Code</th><th>Status</th></tr></thead><tbody>';
+        dashboard.forEach(function(r) {
+          var statusClass = r.status === 'reward_earned' ? 'tier-premium' : r.status === 'active' ? 'tier-founding' : 'tier-free';
+          html += '<tr>' +
+            '<td>' + esc(r.supporter_name || '--') + '</td>' +
+            '<td style="font-family:monospace;font-weight:700">' + esc(r.coupon_code || '--') + '</td>' +
+            '<td>' + (r.referral_count || 0) + '</td>' +
+            '<td>' + (r.completed_referrals || 0) + '</td>' +
+            '<td>' + esc(r.reward_code || '--') + '</td>' +
+            '<td><span class="tier-badge ' + statusClass + '">' + esc(r.status || '--') + '</span></td>' +
+            '</tr>';
+        });
+        html += '</tbody></table>';
+        wrap.innerHTML = html;
+      } catch (e) {
+        console.error('Referrals load error:', e);
+      }
+    }
+
+    async function validateCoupon() {
+      var code = (document.getElementById('coupon-input').value || '').trim().toUpperCase();
+      var resultEl = document.getElementById('coupon-result');
+      if (!code) {
+        resultEl.style.display = 'block';
+        resultEl.innerHTML = '<div style="padding:.75rem;border-radius:.5rem;background:rgba(255,0,0,.08);color:var(--live);font-size:.8125rem">Please enter a coupon code.</div>';
+        return;
+      }
+      try {
+        var data = await sbSelect('coupon_validation', '*');
+        var arr = Array.isArray(data) ? data : [];
+        var match = arr.find(function(c) { return (c.coupon_code || '').toUpperCase() === code; });
+        if (match) {
+          var statusClass = match.status === 'reward_earned' ? 'tier-premium' : match.status === 'active' ? 'tier-founding' : 'tier-free';
+          resultEl.innerHTML = '<div style="padding:.75rem;border-radius:.5rem;background:rgba(45,106,79,.1);border:1px solid var(--success);font-size:.8125rem">' +
+            '<span style="font-weight:700;color:var(--success)">&#10003; Valid Coupon</span><br>' +
+            '<span style="color:var(--on-sv);margin-top:.25rem;display:inline-block">Supporter: <strong>' + esc(match.supporter_name || '--') + '</strong></span><br>' +
+            '<span style="color:var(--on-sv)">Amount: <strong>₹' + esc(match.amount || '--') + '</strong></span><br>' +
+            '<span style="color:var(--on-sv)">Status: <span class="tier-badge ' + statusClass + '">' + esc(match.status || '--') + '</span></span>' +
+            '</div>';
+        } else {
+          resultEl.innerHTML = '<div style="padding:.75rem;border-radius:.5rem;background:rgba(255,0,0,.08);border:1px solid var(--live);font-size:.8125rem">' +
+            '<span style="font-weight:700;color:var(--live)">&#10007; Invalid Coupon</span><br>' +
+            '<span style="color:var(--on-sv);margin-top:.25rem;display:inline-block">Code "' + esc(code) + '" not found in system.</span>' +
+            '</div>';
+        }
+        resultEl.style.display = 'block';
+      } catch (e) {
+        console.error('Coupon validation error:', e);
+        resultEl.innerHTML = '<div style="padding:.75rem;border-radius:.5rem;background:rgba(255,0,0,.08);color:var(--live);font-size:.8125rem">Error validating coupon. Please try again.</div>';
+        resultEl.style.display = 'block';
       }
     }
 

@@ -268,6 +268,123 @@ function clearBallotLocal() {
   localStorage.removeItem('cuppilo_ballot');
 }
 
+// ── REFERRAL SYSTEM ──
+function captureReferralFromURL() {
+  var params = new URLSearchParams(window.location.search);
+  var ref = params.get('ref');
+  if (ref && ref.startsWith('CP')) {
+    localStorage.setItem('cuppilo_ref', ref);
+    // Clean URL without reload
+    var url = new URL(window.location);
+    url.searchParams.delete('ref');
+    window.history.replaceState({}, '', url);
+  }
+}
+
+function getReferralCode() {
+  return localStorage.getItem('cuppilo_ref') || null;
+}
+
+function clearReferralCode() {
+  localStorage.removeItem('cuppilo_ref');
+}
+
+async function trackProgress(step) {
+  var profile = getProfile();
+  if (!profile || !profile.session_id) return;
+  try {
+    if (typeof sbInsert === 'function') {
+      await sbInsert('user_progress', {
+        session_id: profile.session_id,
+        step: step,
+        completed_at: new Date().toISOString()
+      });
+    }
+  } catch (e) { console.log('Progress tracking skipped:', e); }
+}
+
+async function getMyProgress() {
+  var profile = getProfile();
+  if (!profile || !profile.session_id) return [];
+  try {
+    if (typeof sbSelect === 'function') {
+      var data = await sbSelect('user_progress', 'step,completed_at');
+      if (Array.isArray(data)) {
+        return data.filter(function (r) { return r.session_id === profile.session_id; });
+      }
+    }
+  } catch (e) { console.log('Progress fetch skipped:', e); }
+  return [];
+}
+
+async function getMyReferrals() {
+  var profile = getProfile();
+  if (!profile) return [];
+  try {
+    if (typeof sbSelect === 'function') {
+      var data = await sbSelect('referrals', '*');
+      if (Array.isArray(data)) {
+        return data.filter(function (r) {
+          return r.referee_session_id === profile.session_id || r.referee_name === profile.display_name;
+        });
+      }
+    }
+  } catch (e) { console.log('Referrals fetch skipped:', e); }
+  return [];
+}
+
+async function getMyCoupon() {
+  var profile = getProfile();
+  if (!profile) return null;
+  try {
+    if (typeof sbSelect === 'function') {
+      var data = await sbSelect('supporter_coupons', '*');
+      if (Array.isArray(data)) {
+        return data.find(function (c) {
+          return c.supporter_name === profile.display_name;
+        }) || null;
+      }
+    }
+  } catch (e) { console.log('Coupon fetch skipped:', e); }
+  return null;
+}
+
+async function getReferrerByCode(code) {
+  try {
+    if (typeof sbSelect === 'function') {
+      var data = await sbSelect('supporter_coupons', '*');
+      if (Array.isArray(data)) {
+        return data.find(function (c) { return c.coupon_code === code; }) || null;
+      }
+    }
+  } catch (e) { console.log('Referrer fetch skipped:', e); }
+  return null;
+}
+
+function generateCouponCode() {
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var code = 'CP-';
+  for (var i = 0; i < 6; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+  return code;
+}
+
+function generateDiscountCode() {
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var code = 'CUPPILO10-';
+  for (var i = 0; i < 6; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+  return code;
+}
+
+function generateRewardCode() {
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var seg = '';
+  for (var s = 0; s < 3; s++) {
+    if (s > 0) seg += '-';
+    for (var i = 0; i < 4; i++) seg += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return seg;
+}
+
 // ── INIT PAGE ──
 function initPage(activePage) {
   var nav = document.getElementById('navbar');
@@ -278,6 +395,7 @@ function initPage(activePage) {
   initTheme();
   initMobileMenu();
   initSplash();
+  captureReferralFromURL();
   var profile = getProfile();
   if (profile) updateNavbarProfile(profile);
 }

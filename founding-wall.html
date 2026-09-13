@@ -509,6 +509,54 @@
           badge_number: allPatrons.length + 1
         };
         await sbInsert('participants', participant);
+
+        // Track wall step
+        await trackProgress('wall');
+
+        // Handle referral completion
+        var refCode = getReferralCode();
+        if (refCode) {
+          try {
+            var profile = getProfile();
+            var discountCode = generateDiscountCode();
+
+            // Record the referral as completed
+            await sbInsert('referrals', {
+              ref_code: refCode,
+              referee_name: name,
+              referee_session_id: profile ? profile.session_id : null,
+              steps_completed: 3,
+              discount_code: discountCode,
+              status: 'completed',
+              completed_at: new Date().toISOString()
+            });
+
+            // Increment referrer's referral count
+            var referrer = await getReferrerByCode(refCode);
+            if (referrer) {
+              var newCount = (referrer.referral_count || 0) + 1;
+              var updateData = { referral_count: newCount };
+
+              // If 3 referrals reached, generate reward
+              if (newCount >= 3 && !referrer.reward_code) {
+                updateData.reward_code = generateRewardCode();
+                updateData.status = 'reward_earned';
+              }
+              await sbUpdate('supporter_coupons', updateData, 'coupon_code', refCode);
+            }
+
+            // Clear the referral code
+            clearReferralCode();
+
+            // Show discount code
+            setTimeout(function() {
+              showToast('Your 10% discount: ' + discountCode, 'success');
+            }, 1500);
+          } catch (refErr) {
+            console.error('Referral recording error:', refErr);
+          }
+        }
+
         form.style.display = 'none';
         formSuccess.style.display = '';
         showToast('Welcome to the Founding Wall!', 'success');
