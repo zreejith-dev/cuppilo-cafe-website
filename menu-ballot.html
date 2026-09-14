@@ -3,137 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu Ballot — CUPPILO Co-Creation | Vote for Your Favourites</title>
-  <meta name="description" content="Vote for your favourite items and set fair prices. The community median wins — every vote shapes our opening menu."/>
-  <!-- Theme & Mobile -->
+  <title>Taste Test — CUPPILO Co-Creation</title>
+  <meta name="description" content="Quick taste test — vote for your favourite items. The community median wins."/>
   <meta name="theme-color" content="#A93B2B">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="icon" type="image/png" href="img/logo.png">
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Menu Ballot — CUPPILO Co-Creation"/>
-  <meta property="og:description" content="Vote for your favourite items and set fair prices. The community median wins."/>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Taste Test — CUPPILO Co-Creation"/>
+  <meta property="og:description" content="Quick taste test — vote for your favourite items."/>
   <meta property="og:url" content="https://cuppilo.in/menu-ballot.html"/>
   <meta property="og:image" content="https://cuppilo.in/img/logo-en-light.png"/>
-  <meta property="og:site_name" content="CUPPILO">
-  <!-- Twitter -->
+  <meta property="og:site_name" content="CUPPILO"/>
   <meta name="twitter:card" content="summary"/>
-  <meta name="twitter:title" content="Menu Ballot — CUPPILO Co-Creation"/>
-  <meta name="twitter:description" content="Vote for your favourite items and set fair prices. The community median wins."/>
-  <meta name="twitter:image" content="https://cuppilo.in/img/logo-en-light.png"/>
-  <!-- Canonical -->
   <link rel="canonical" href="https://cuppilo.in/menu-ballot.html"/>
-  <!-- Robots -->
-  <meta name="robots" content="index, follow">
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
   <style>
-    .ballot-progress{padding:1rem 0 .5rem}
-    .progress-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;font-size:.8rem;color:var(--on-sv)}
-    .badge{background:var(--primary);color:#fff;padding:.25rem .6rem;border-radius:9999px;font-weight:600;font-size:.75rem}
-
-    .ballot-header{text-align:center;padding:1.5rem 1rem 1rem}
-    .ballot-subtitle{font-size:.85rem;color:var(--brass);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;font-weight:600}
-    .ballot-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin:0 0 .75rem}
-    .ballot-desc{color:var(--on-sv);max-width:560px;margin:0 auto;font-size:.95rem;line-height:1.6}
-
-    .chip-group{display:flex;gap:.5rem;flex-wrap:wrap;padding:1rem 0}
-    .chip{display:inline-flex;align-items:center;gap:.35rem}
-    .chip .material-symbols-outlined{font-size:16px}
-
-    .category-section{margin-bottom:1.5rem}
-    .category-heading{display:flex;align-items:center;gap:.5rem;font-size:1.1rem;font-weight:700;margin-bottom:.75rem;padding-bottom:.35rem;border-bottom:2px solid var(--muted)}
-    .category-heading .material-symbols-outlined{font-size:20px;color:var(--primary)}
-
-    .menu-grid{display:flex;flex-direction:column;gap:1rem;padding-bottom:2rem}
-    .menu-row{display:flex;gap:1rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;transition:all .3s}
-    .menu-row:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
-    .menu-row-img{width:100px;min-width:100px;height:100px;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .menu-row-img .material-symbols-outlined{font-size:2.5rem;color:#fff}
-    .menu-row-body{flex:1;min-width:0}
-    .menu-row-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
-    .menu-row-name{font-size:1.05rem;font-weight:700;margin:0 0 .35rem;display:flex;align-items:center;gap:.4rem}
-    .menu-row-desc{font-size:.82rem;color:var(--on-sv);line-height:1.5;margin-bottom:.5rem}
-    .menu-row-meta{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.6rem}
-    .pill{padding:.15rem .5rem;border-radius:9999px;font-size:.65rem;font-weight:600;display:inline-flex;align-items:center;gap:.25rem}
-    .pill .material-symbols-outlined{font-size:12px}
-
-    .price-display{font-weight:700;font-size:.95rem;color:var(--primary);margin-bottom:.3rem}
-
-    .menu-row-votes{display:flex;align-items:center;gap:.5rem}
-    .vote-bar{flex:1;height:6px;background:var(--muted);border-radius:9999px;overflow:hidden}
-    .vote-bar-fill{height:100%;background:var(--primary);border-radius:9999px;transition:width .3s}
-    .vote-pct{font-size:.75rem;font-weight:700;color:var(--primary);min-width:32px;text-align:right}
-
-    .vote-btn{background:none;border:none;cursor:pointer;padding:.25rem;transition:transform .15s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-    .vote-btn:hover{transform:scale(1.2)}
-    .vote-btn.shake{animation:shake .4s ease}
-    .vote-btn .material-symbols-outlined{font-size:1.5rem}
-    @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
-
-    .badge-popular{background:#E0533C;color:#fff}
-    .badge-premium{background:#C89D5C;color:#fff}
-    .badge-signature{background:#231F20;color:#C89D5C}
-
-    .veg-dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0}
-    .veg-dot.veg{background:#2D6A4F}
-    .veg-dot.nonveg{background:#D32F2F}
-
-    .barometer-banner{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1rem;margin:1.5rem 0;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;font-size:.9rem}
-    .barometer-banner .material-symbols-outlined{font-size:1.2rem;color:var(--primary)}
-
-    .suggest-card{border:2px dashed var(--muted);border-radius:1rem;padding:2rem;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:2rem}
-    .suggest-card:hover{border-color:var(--primary);background:rgba(169,59,43,.03)}
-    .suggest-icon{display:flex;align-items:center;justify-content:center;color:var(--primary);margin-bottom:.5rem}
-    .suggest-icon .material-symbols-outlined{font-size:2rem}
-    .suggest-text{display:block;font-weight:700;font-size:1rem}
-    .suggest-sub{display:block;font-size:.8rem;color:var(--on-sv);margin-top:.25rem}
-
-    .sticky-bottom{position:fixed;bottom:0;left:0;right:0;background:var(--bar-bg);border-top:1px solid var(--nav-border);z-index:100;padding:.75rem 0}
-    .sticky-inner{display:flex;justify-content:space-between;align-items:center}
-    .sticky-votes{font-weight:600;font-size:.85rem;color:var(--bar-text)}
-
-    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
-    .modal-overlay.open{opacity:1;pointer-events:auto}
-    .modal{background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.5rem;width:90%;max-width:440px;box-shadow:0 25px 50px -12px rgba(0,0,0,.25)}
-    .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
-    .modal-header h2{font-size:1.1rem;margin:0}
-    .modal-close{background:none;border:none;cursor:pointer;color:var(--on-sv);padding:.25rem;display:flex;align-items:center;justify-content:center}
-    .modal-close .material-symbols-outlined{font-size:1.2rem}
-    .form-group{margin-bottom:1rem}
-    .form-group label{display:block;font-size:.75rem;font-weight:600;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em;color:var(--on-sv)}
-    .input{width:100%;padding:.6rem .8rem;border-radius:.5rem;border:1px solid var(--input-border);background:var(--input-bg);color:var(--on-s);font-size:.9rem;font-family:inherit;box-sizing:border-box}
-    .input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(169,59,43,.15)}
-    select.input{appearance:auto}
-    .char-count{font-size:.65rem;color:var(--on-sv);display:block;text-align:right;margin-top:.2rem}
-
-    @media(max-width:640px){
-      .menu-row{flex-direction:column}
-      .menu-row-img{width:100%;min-width:0;height:140px;border-radius:.75rem}
-      .progress-meta{flex-direction:column;gap:.4rem;text-align:center}
-    }
-    @media(min-width:641px){
-      .menu-row{flex-direction:row}
-      .menu-row-img{width:100px;min-width:100px;height:100px}
-    }
+    .taste-header{text-align:center;padding:2rem 1rem 1rem}
+    .taste-subtitle{font-size:.85rem;color:var(--brass);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;font-weight:600}
+    .taste-title{font-size:clamp(1.5rem,4vw,2.25rem);font-weight:800;margin:0 0 .75rem}
+    .taste-desc{color:var(--on-sv);max-width:480px;margin:0 auto;font-size:.9375rem;line-height:1.6}
+    .taste-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;padding:1.5rem 0 2rem}
+    .taste-card{background:var(--bg-card);border:2px solid var(--muted);border-radius:1rem;padding:1.25rem;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+    .taste-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+    .taste-card.voted{border-color:var(--primary);background:var(--surface-l)}
+    .taste-card.voted::after{content:'♥';position:absolute;top:.75rem;right:.75rem;font-size:1.25rem;color:var(--primary);animation:popIn .3s ease}
+    @keyframes popIn{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+    .taste-card-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+    .taste-icon{width:48px;height:48px;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .taste-icon .material-symbols-outlined{font-size:1.5rem;color:#fff}
+    .taste-name{font-size:1rem;font-weight:700;color:var(--charcoal)}
+    .taste-price{font-size:.8rem;color:var(--primary);font-weight:600}
+    .taste-desc{font-size:.8125rem;color:var(--on-sv);line-height:1.5}
+    .taste-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.75rem}
+    .taste-pill{display:inline-flex;align-items:center;gap:.25rem;padding:.2rem .5rem;border-radius:9999px;font-size:.65rem;font-weight:600;background:var(--surface-h);color:var(--on-sv)}
+    .taste-pill .material-symbols-outlined{font-size:12px}
+    .taste-check{width:28px;height:28px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .taste-card.voted .taste-check{background:var(--primary);border-color:var(--primary);color:#fff}
+    .taste-check .material-symbols-outlined{font-size:16px}
+    .taste-count{text-align:center;padding:.5rem 1rem;font-size:.8125rem;color:var(--on-sv);background:var(--surface-h);border-radius:.75rem;margin:0 auto;width:fit-content}
+    .taste-count strong{color:var(--primary)}
+    .taste-cta{text-align:center;padding:2rem 1rem}
+    @media(max-width:640px){.taste-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-
-  <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splash-screen">
     <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
     <div class="splash-text" data-en="Before we open, you decide what we become." data-ml="തുറക്കുന്നതിന് മുമ്പ്, നിങ്ങൾ നിർണ്ണയിക്കുന്നു നമ്മൾ എന്താകണമെന്ന്.">Before we open, you decide what we become.</div>
     <div class="splash-sub" data-en="Kerala's first community-built cafe" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built cafe</div>
   </div>
-
-  <!-- NAME ENTRY CARD -->
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
       <div id="name-card-form">
@@ -141,7 +62,7 @@
         <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
         <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
         <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
-        <p style="font-size:.75rem;color:var(--on-sv);margin-top:.75rem" data-en="No login required. 100% free. Takes 2 minutes." data-ml="ലോഗിൻ ആവശ്യമില്ല. 100% സൗജന്യം. 2 മിനിറ്റ് മതി.">No login required. 100% free. Takes 2 minutes.</p>
+        <p style="font-size:.75rem;color:var(--on-sv);margin-top:.75rem" data-en="No login required. 100% free." data-ml="ലോഗിൻ ആവശ്യമില്ല. 100% സൗജന്യം.">No login required. 100% free.</p>
       </div>
       <div id="name-card-success" style="display:none;text-align:center">
         <span class="material-symbols-outlined" style="font-size:48px;color:var(--brass)">emoji_events</span>
@@ -151,17 +72,15 @@
           <span style="font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--on-sv)" data-en="Founding Guest" data-ml="സ്ഥാപക അതിഥി">Founding Guest</span>
           <div id="founding-guest-number" style="font-size:1.5rem;font-weight:800;color:var(--primary);font-family:monospace">#00001</div>
         </div>
-        <button class="btn btn-primary" onclick="document.getElementById('name-card-overlay').classList.remove('active')" data-en="Start Exploring" data-ml="എക്സ്പ്ലോർ ചെയ്യാൻ തുടങ്ങുക">Start Exploring</button>
+        <button class="btn btn-primary" onclick="document.getElementById('name-card-overlay').classList.remove('active')" data-en="Continue" data-ml="തുടരുക">Continue</button>
       </div>
     </div>
   </div>
 
   <nav class="navbar" id="navbar"></nav>
 
-  <main style="padding-bottom:6rem">
-
-    <!-- Progress Bar -->
-    <section class="container ballot-progress progress-wrap">
+  <main>
+    <section class="container" style="padding-bottom:6rem">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0">
         <div class="step-pill">
           <span class="step-num">1</span>
@@ -174,434 +93,120 @@
           <span class="step-dot" style="width:.625rem;background:var(--muted)"></span>
         </div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:25%"></div>
-      </div>
-      <div class="progress-meta">
-        <span data-en="Opening Menu Curation" data-ml="ഓപ്പണിംഗ് മെനു ക്രമീകരണം">Opening Menu Curation</span>
-        <span class="badge" id="vote-counter-badge">0 / 5 votes</span>
-      </div>
-    </section>
+      <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
 
-    <!-- Header -->
-    <header class="container ballot-header">
-      <p class="ballot-subtitle" data-en="Community Flavor Co-Design" data-ml="കമ്മ്യൂണിറ്റി ഫ്ലേവർ കോ-ഡിസൈൻ">Community Flavor Co-Design</p>
-      <h1 class="ballot-title" data-en="Curate the Opening Menu" data-ml="ഓപ്പണിംഗ് മെനു ക്രമീകരിക്കുക">Curate the Opening Menu</h1>
-      <p class="ballot-desc" data-en="Vote for your favourite items. Tap the heart on up to 5 items to tell us what belongs on the menu." data-ml="നിങ്ങൾക്ക് ഇഷ്ടമുള്ള ഇനങ്ങൾക്ക് വോട്ട് ചെയ്യുക. മെനുവിൽ ഇടമുണ്ടായിരിക്കേണ്ട 5 ഇനങ്ങൾ ഹൃദയം അമർത്തി തിരഞ്ഞെടുക്കുക.">Vote for your favourite items. Tap the heart on up to 5 items to tell us what belongs on the menu.</p>
-    </header>
+      <header class="taste-header">
+        <p class="taste-subtitle" data-en="Quick Taste Test" data-ml="വേഗത്തിലുള്ള രുചി പരിശോധന">Quick Taste Test</p>
+        <h1 class="taste-title" data-en="What would you order?" data-ml="നിങ്ങൾ എന്താണ് ഓർഡർ ചെയ്യുക?">What would you order?</h1>
+        <p class="taste-desc" data-en="Tap the items you'd love to see at Cuppilo. Pick up to 5." data-ml="CUPPILO-യിൽ കാണാൻ ആഗ്രഹിക്കുന്ന ഇനങ്ങൾ ടാപ്പ് ചെയ്യുക. 5 വരെ തിരഞ്ഞെടുക്കുക.">Tap the items you'd love to see at Cuppilo. Pick up to 5.</p>
+      </header>
 
-    <!-- Category Filters -->
-    <section class="container">
-      <div class="chip-group" id="chip-group">
-        <button class="chip active" data-filter="all"><span class="material-symbols-outlined">apps</span><span data-en="All" data-ml="എല്ലാം">All</span></button>
-        <button class="chip" data-filter="hot-coffee"><span class="material-symbols-outlined">local_cafe</span><span data-en="Hot Coffee" data-ml="ചൂട് കാപ്പി">Hot Coffee</span></button>
-        <button class="chip" data-filter="tea"><span class="material-symbols-outlined">emoji_food_beverage</span><span data-en="Tea" data-ml="ചായ">Tea</span></button>
-        <button class="chip" data-filter="cold-drinks"><span class="material-symbols-outlined">local_drink</span><span data-en="Cold Drinks" data-ml="കോൾഡ് ഡ്രിങ്ക്സ്">Cold Drinks</span></button>
-        <button class="chip" data-filter="kerala-coolers"><span class="material-symbols-outlined">water_drop</span><span data-en="Kerala Coolers" data-ml="കേരള കൂളേഴ്സ്">Kerala Coolers</span></button>
-        <button class="chip" data-filter="kerala-snacks"><span class="material-symbols-outlined">restaurant</span><span data-en="Kerala Snacks" data-ml="കേരള സ്നാക്സ്">Kerala Snacks</span></button>
-        <button class="chip" data-filter="cafe-bites"><span class="material-symbols-outlined">fastfood</span><span data-en="Cafe Bites" data-ml="കഫേ ബൈറ്റ്സ്">Cafe Bites</span></button>
-        <button class="chip" data-filter="sandwiches"><span class="material-symbols-outlined">lunch_dining</span><span data-en="Sandwiches" data-ml="സാൻഡ്‌വിച്ചുകൾ">Sandwiches</span></button>
-        <button class="chip" data-filter="burgers"><span class="material-symbols-outlined">hamburger</span><span data-en="Burgers" data-ml="ബർഗറുകൾ">Burgers</span></button>
-        <button class="chip" data-filter="desserts"><span class="material-symbols-outlined">cake</span><span data-en="Desserts" data-ml="ഡെസേർട്ട്">Desserts</span></button>
-        <button class="chip" data-filter="signatures"><span class="material-symbols-outlined">star</span><span data-en="Signatures" data-ml="സിഗ്നേച്ചേഴ്സ്">Signatures</span></button>
+      <div class="taste-count">
+        <span id="vote-count">0</span> / 5 <span data-en="selected" data-ml="തിരഞ്ഞെടുത്തു">selected</span>
+      </div>
+
+      <div class="taste-grid" id="taste-grid"></div>
+
+      <div class="taste-cta">
+        <button class="btn btn-primary" onclick="submitAndNavigate()" style="padding:.875rem 2rem;font-size:1rem">
+          <span data-en="Next: Choose Vibe" data-ml="അടുത്തത്: വൈബ് തിരഞ്ഞെടുക്കുക">Next: Choose Vibe</span>
+          <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
+        </button>
       </div>
     </section>
-
-    <!-- Menu Items -->
-    <section class="container menu-grid" id="menu-grid"></section>
-
-    <!-- Live Barometer -->
-    <section class="container">
-      <div class="barometer-banner">
-        <span class="material-symbols-outlined">bar_chart</span>
-        <span class="barometer-text"><strong id="ballot-count-display">0</strong> <span data-en="ballots submitted this week" data-ml="ഈ ആഴ്ച സമർപ്പിച്ച ബാലറ്റുകൾ">ballots submitted this week</span></span>
-      </div>
-    </section>
-
-    <!-- Suggest Item Card -->
-    <section class="container">
-      <div class="suggest-card" onclick="openSuggestModal()">
-        <span class="suggest-icon"><span class="material-symbols-outlined">add_circle</span></span>
-        <span class="suggest-text" data-en="Suggest an Item" data-ml="ഒരു ഇനം നിർദ്ദേശിക്കുക">Suggest an Item</span>
-        <span class="suggest-sub" data-en="Add your own Kerala flavour to the ballot" data-ml="നിങ്ങളുടെ കേരള രുചി ബാലറ്റിൽ ചേർക്കുക">Add your own Kerala flavour to the ballot</span>
-      </div>
-    </section>
-
   </main>
-
-  <!-- Sticky Bottom Bar -->
-  <div class="sticky-bottom" id="sticky-bottom">
-    <div class="container sticky-inner">
-      <span class="sticky-votes"><span id="sticky-count">0</span> / 5 <span data-en="votes cast" data-ml="വോട്ടുകൾ നൽകി">votes cast</span></span>
-      <button onclick="submitAndNavigate()" class="btn btn-primary" style="padding:.625rem 1.25rem;font-size:.8125rem">
-        <span data-en="Next: Choose Vibe" data-ml="അടുത്തത്: വൈബ് തിരഞ്ഞെടുക്കുക">Next: Choose Vibe</span>
-        <span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Suggest Item Modal -->
-  <div class="modal-overlay" id="suggest-modal">
-    <div class="modal">
-      <div class="modal-header">
-        <h2 data-en="Suggest a Menu Item" data-ml="ഒരു മെനു ഇനം നിർദ്ദേശിക്കുക">Suggest a Menu Item</h2>
-        <button class="modal-close" onclick="closeSuggestModal()"><span class="material-symbols-outlined">close</span></button>
-      </div>
-      <form id="suggest-form" onsubmit="submitSuggest(event)">
-        <div class="form-group">
-          <label for="suggest-name" data-en="Item Name" data-ml="ഇനത്തിന്റെ പേര്">Item Name</label>
-          <input type="text" id="suggest-name" class="input" placeholder="e.g. Jackfruit Biryani" required maxlength="60">
-        </div>
-        <div class="form-group">
-          <label for="suggest-desc" data-en="Description" data-ml="വിവരണം">Description</label>
-          <input type="text" id="suggest-desc" class="input" placeholder="Short description..." required maxlength="120">
-          <span class="char-count"><span id="desc-count">0</span>/120</span>
-        </div>
-        <div class="form-group">
-          <label for="suggest-category" data-en="Category" data-ml="വിഭാഗം">Category</label>
-          <select id="suggest-category" class="input" required>
-            <option value="" data-en="Select category" data-ml="വിഭാഗം തിരഞ്ഞെടുക്കുക">Select category</option>
-            <option value="hot-coffee" data-en="Hot Coffee" data-ml="ചൂടുകാപ്പി">Hot Coffee</option>
-            <option value="tea" data-en="Tea" data-ml="ചായ">Tea</option>
-            <option value="cold-drinks" data-en="Cold Drinks" data-ml="തണുത്ത പാനീയങ്ങൾ">Cold Drinks</option>
-            <option value="kerala-coolers" data-en="Kerala Coolers" data-ml="കേരള കൂളേഴ്സ്">Kerala Coolers</option>
-            <option value="kerala-snacks" data-en="Kerala Snacks" data-ml="കേരള സ്നാക്കുകൾ">Kerala Snacks</option>
-            <option value="cafe-bites" data-en="Cafe Bites" data-ml="കഫേ ബൈറ്റ്സ്">Cafe Bites</option>
-            <option value="sandwiches" data-en="Sandwiches" data-ml="സാൻഡ്‌വിച്ചുകൾ">Sandwiches</option>
-            <option value="burgers" data-en="Burgers" data-ml="ബർഗറുകൾ">Burgers</option>
-            <option value="desserts" data-en="Desserts" data-ml="ഡെസേർട്ടുകൾ">Desserts</option>
-            <option value="signatures" data-en="Signatures" data-ml="സിഗ്നേച്ചുകൾ">Signatures</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem" data-en="Add to Ballot" data-ml="ബാലറ്റിലേക്ക് ചേർക്കുക">Add to Ballot</button>
-      </form>
-    </div>
-  </div>
 
   <footer class="footer" id="footer"></footer>
 
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
-    const categoryConfig = {
-      'hot-coffee':   { icon:'local_cafe', gradient:'#3e2723,#795548', label:'Hot Coffee' },
-      'tea':          { icon:'emoji_food_beverage', gradient:'#fff3e0,#ffb74d', label:'Tea' },
-      'cold-drinks':  { icon:'local_drink', gradient:'#e0f2f1,#80cbc4', label:'Cold Drinks' },
-      'kerala-coolers':{ icon:'water_drop', gradient:'#e8f5e9,#81c784', label:'Kerala Coolers' },
-      'kerala-snacks':{ icon:'restaurant', gradient:'#fff8e1,#ffd54f', label:'Kerala Snacks' },
-      'cafe-bites':   { icon:'fastfood', gradient:'#f1f8e9,#aed581', label:'Cafe Bites' },
-      'sandwiches':   { icon:'lunch_dining', gradient:'#fce4ec,#f48fb1', label:'Sandwiches' },
-      'burgers':      { icon:'hamburger', gradient:'#fbe9e7,#ff8a65', label:'Burgers' },
-      'desserts':     { icon:'cake', gradient:'#f3e5f5,#ce93d8', label:'Desserts' },
-      'signatures':   { icon:'star', gradient:'#231F20,#C89D5C', label:'CUPPILO Signatures' }
-    };
-
-    const cuppiloMenu = [
-      { id:'coffee-001', category:'hot-coffee', icon:'local_cafe', name:'Kerala Coffee', description:'Classic Kerala-style milk coffee', price:35, premium:false, popular:true, veg:true },
-      { id:'coffee-002', category:'hot-coffee', icon:'local_cafe', name:'Kattan Coffee', description:'Strong black coffee, Kerala style', price:30, premium:false, popular:true, veg:true },
-      { id:'coffee-003', category:'hot-coffee', icon:'local_cafe', name:'Filter Coffee', description:'South Indian filter coffee with rich aroma', price:45, premium:true, popular:true, veg:true },
-      { id:'coffee-004', category:'hot-coffee', icon:'local_cafe', name:'Cappuccino', description:'Espresso with steamed milk and silky foam', price:129, premium:true, popular:true, veg:true },
-      { id:'coffee-005', category:'hot-coffee', icon:'local_cafe', name:'Cafe Latte', description:'Smooth espresso with creamy steamed milk', price:139, premium:true, popular:true, veg:true },
-      { id:'coffee-006', category:'hot-coffee', icon:'local_cafe', name:'Cafe Mocha', description:'Espresso, chocolate and steamed milk', price:149, premium:true, popular:true, veg:true },
-      { id:'coffee-007', category:'hot-coffee', icon:'local_cafe', name:'Spanish Latte', description:'Espresso, creamy milk and condensed milk', price:149, premium:true, popular:true, veg:true },
-      { id:'coffee-008', category:'hot-coffee', icon:'local_cafe', name:'Caramel Latte', description:'Creamy latte with caramel', price:149, premium:true, popular:false, veg:true },
-      { id:'coffee-009', category:'hot-coffee', icon:'local_cafe', name:'Jaggery Filter Coffee', description:'Traditional filter coffee sweetened with Kerala jaggery', price:59, premium:true, popular:true, veg:true },
-
-      { id:'tea-001', category:'tea', icon:'emoji_food_beverage', name:'Kerala Chaya', description:'Classic strong milk tea', price:20, premium:false, popular:true, veg:true },
-      { id:'tea-002', category:'tea', icon:'emoji_food_beverage', name:'Strong Chaya', description:'Extra strong Kerala tea', price:25, premium:false, popular:true, veg:true },
-      { id:'tea-003', category:'tea', icon:'emoji_food_beverage', name:'Ginger Chaya', description:'Milk tea infused with fresh ginger', price:30, premium:false, popular:true, veg:true },
-      { id:'tea-004', category:'tea', icon:'emoji_food_beverage', name:'Cardamom Chaya', description:'Aromatic tea with cardamom', price:30, premium:false, popular:true, veg:true },
-      { id:'tea-005', category:'tea', icon:'emoji_food_beverage', name:'Sulaimani', description:'Kerala-style spiced black tea', price:35, premium:true, popular:true, veg:true },
-      { id:'tea-006', category:'tea', icon:'emoji_food_beverage', name:'Mint Lemon Tea', description:'Refreshing mint and lemon tea', price:40, premium:true, popular:false, veg:true },
-      { id:'tea-007', category:'tea', icon:'emoji_food_beverage', name:'Signature Chaya', description:'CUPPILO house tea blend', price:49, premium:true, popular:true, veg:true },
-
-      { id:'cold-001', category:'cold-drinks', icon:'local_drink', name:'Cold Coffee', description:'Chilled creamy coffee', price:99, premium:true, popular:true, veg:true },
-      { id:'cold-002', category:'cold-drinks', icon:'local_drink', name:'Iced Latte', description:'Chilled espresso with creamy milk', price:119, premium:true, popular:true, veg:true },
-      { id:'cold-003', category:'cold-drinks', icon:'local_drink', name:'Mocha Frappe', description:'Blended coffee and chocolate', price:139, premium:true, popular:true, veg:true },
-      { id:'cold-004', category:'cold-drinks', icon:'local_drink', name:'Chocolate Shake', description:'Rich chocolate milkshake', price:109, premium:true, popular:true, veg:true },
-      { id:'cold-005', category:'cold-drinks', icon:'local_drink', name:'Oreo Shake', description:'Creamy chocolate-cookie shake', price:129, premium:true, popular:true, veg:true },
-      { id:'cold-006', category:'cold-drinks', icon:'local_drink', name:'Banana Jaggery Shake', description:'Banana blended with milk and Kerala jaggery', price:109, premium:true, popular:true, veg:true },
-      { id:'cold-007', category:'cold-drinks', icon:'local_drink', name:'Tender Coconut Shake', description:'Fresh tender coconut blended with creamy milk', price:129, premium:true, popular:true, veg:true },
-
-      { id:'cooler-001', category:'kerala-coolers', icon:'water_drop', name:'Nannari Sarbath', description:'Traditional Kerala summer cooler', price:49, premium:false, popular:true, veg:true },
-      { id:'cooler-002', category:'kerala-coolers', icon:'water_drop', name:'Lemon Mint Cooler', description:'Fresh lemon, mint and chilled soda', price:69, premium:true, popular:true, veg:true },
-      { id:'cooler-003', category:'kerala-coolers', icon:'water_drop', name:'Passion Fruit Cooler', description:'Tropical passion fruit refresher', price:89, premium:true, popular:true, veg:true },
-      { id:'cooler-004', category:'kerala-coolers', icon:'water_drop', name:'Karikku Cooler', description:'Tender coconut with refreshing citrus', price:99, premium:true, popular:true, veg:true },
-
-      { id:'snack-001', category:'kerala-snacks', icon:'restaurant', name:'Pazham Pori', description:'Crispy Kerala banana fritter', price:20, premium:false, popular:true, veg:true },
-      { id:'snack-002', category:'kerala-snacks', icon:'restaurant', name:'Uzhunnu Vada', description:'Crispy urad dal fritter', price:20, premium:false, popular:true, veg:true },
-      { id:'snack-003', category:'kerala-snacks', icon:'restaurant', name:'Parippu Vada', description:'Crispy Kerala lentil fritter', price:20, premium:false, popular:true, veg:true },
-      { id:'snack-004', category:'kerala-snacks', icon:'restaurant', name:'Unniyappam', description:'Soft jaggery and banana rice cake', price:30, premium:true, popular:true, veg:true },
-      { id:'snack-005', category:'kerala-snacks', icon:'restaurant', name:'Kozhukatta', description:'Steamed rice dumpling with coconut filling', price:35, premium:true, popular:false, veg:true },
-      { id:'snack-006', category:'kerala-snacks', icon:'restaurant', name:'Egg Puffs', description:'Flaky pastry filled with spiced egg', price:40, premium:false, popular:true, veg:false },
-      { id:'snack-007', category:'kerala-snacks', icon:'restaurant', name:'Chicken Puffs', description:'Flaky pastry with spiced chicken filling', price:55, premium:true, popular:true, veg:false },
-
-      { id:'bites-001', category:'cafe-bites', icon:'fastfood', name:'Classic Fries', description:'Crispy golden fries', price:79, premium:false, popular:true, veg:true },
-      { id:'bites-002', category:'cafe-bites', icon:'fastfood', name:'Peri Peri Fries', description:'Crispy fries with peri peri seasoning', price:99, premium:true, popular:true, veg:true },
-      { id:'bites-003', category:'cafe-bites', icon:'fastfood', name:'Cheese Fries', description:'Fries topped with creamy cheese', price:119, premium:true, popular:true, veg:true },
-      { id:'bites-004', category:'cafe-bites', icon:'fastfood', name:'Garlic Bread', description:'Toasted bread with garlic butter', price:89, premium:false, popular:true, veg:true },
-      { id:'bites-005', category:'cafe-bites', icon:'fastfood', name:'Cheese Garlic Bread', description:'Garlic bread with melted cheese', price:119, premium:true, popular:true, veg:true },
-
-      { id:'sandwich-001', category:'sandwiches', icon:'lunch_dining', name:'Veg Grilled Sandwich', description:'Grilled vegetables and cheese', price:89, premium:false, popular:true, veg:true },
-      { id:'sandwich-002', category:'sandwiches', icon:'lunch_dining', name:'Cheese Corn Sandwich', description:'Creamy cheese and sweet corn', price:109, premium:true, popular:true, veg:true },
-      { id:'sandwich-003', category:'sandwiches', icon:'lunch_dining', name:'Chicken Grilled Sandwich', description:'Grilled chicken, vegetables and cheese', price:129, premium:true, popular:true, veg:false },
-
-      { id:'burger-001', category:'burgers', icon:'hamburger', name:'Veg Cheese Burger', description:'Crispy veg patty with cheese', price:119, premium:true, popular:true, veg:true },
-      { id:'burger-002', category:'burgers', icon:'hamburger', name:'Crispy Chicken Burger', description:'Crispy chicken fillet with fresh vegetables', price:149, premium:true, popular:true, veg:false },
-
-      { id:'dessert-001', category:'desserts', icon:'cake', name:'Brownie', description:'Warm chocolate brownie', price:69, premium:true, popular:true, veg:true },
-      { id:'dessert-002', category:'desserts', icon:'cake', name:'Brownie & Ice Cream', description:'Warm brownie with vanilla ice cream', price:109, premium:true, popular:true, veg:true },
-      { id:'dessert-003', category:'desserts', icon:'cake', name:'Chocolate Cake', description:'Rich chocolate cake slice', price:89, premium:true, popular:true, veg:true },
-
-      { id:'signature-001', category:'signatures', icon:'star', name:'CUPPILO Signature Coffee', description:'House coffee with Kerala-inspired flavours', price:129, premium:true, popular:true, veg:true, signature:true },
-      { id:'signature-002', category:'signatures', icon:'star', name:'Copper Chaya', description:'Signature spiced milk tea served CUPPILO style', price:69, premium:true, popular:true, veg:true, signature:true },
-      { id:'signature-003', category:'signatures', icon:'star', name:'Kerala Jaggery Latte', description:'Espresso, steamed milk and Kerala jaggery', price:139, premium:true, popular:true, veg:true, signature:true },
-      { id:'signature-004', category:'signatures', icon:'star', name:'Karikku Coffee', description:'Coconut-inspired cold coffee creation', price:149, premium:true, popular:true, veg:true, signature:true }
+    const tasteItems = [
+      { id:'coffee-004', name:'Cappuccino', desc:'Espresso with steamed milk and silky foam', price:129, icon:'local_cafe', gradient:'#3e2723,#795548', cat:'Hot Coffee', veg:true },
+      { id:'coffee-005', name:'Cafe Latte', desc:'Smooth espresso with creamy steamed milk', price:139, icon:'local_cafe', gradient:'#3e2723,#795548', cat:'Hot Coffee', veg:true },
+      { id:'coffee-009', name:'Jaggery Filter Coffee', desc:'Traditional filter coffee with Kerala jaggery', price:59, icon:'local_cafe', gradient:'#3e2723,#795548', cat:'Hot Coffee', veg:true },
+      { id:'tea-005', name:'Sulaimani', desc:'Kerala-style spiced black tea', price:35, icon:'emoji_food_beverage', gradient:'#fff3e0,#ffb74d', cat:'Tea', veg:true },
+      { id:'tea-007', name:'Signature Chaya', desc:'CUPPILO house tea blend', price:49, icon:'emoji_food_beverage', gradient:'#fff3e0,#ffb74d', cat:'Tea', veg:true },
+      { id:'cold-001', name:'Cold Coffee', desc:'Chilled creamy coffee', price:99, icon:'local_drink', gradient:'#e0f2f1,#80cbc4', cat:'Cold Drinks', veg:true },
+      { id:'cold-006', name:'Banana Jaggery Shake', desc:'Banana blended with milk and Kerala jaggery', price:109, icon:'local_drink', gradient:'#e0f2f1,#80cbc4', cat:'Cold Drinks', veg:true },
+      { id:'cooler-001', name:'Nannari Sarbath', desc:'Traditional Kerala summer cooler', price:49, icon:'water_drop', gradient:'#e8f5e9,#81c784', cat:'Kerala Coolers', veg:true },
+      { id:'snack-001', name:'Pazham Pori', desc:'Crispy Kerala banana fritter', price:20, icon:'restaurant', gradient:'#fff8e1,#ffd54f', cat:'Kerala Snacks', veg:true },
+      { id:'snack-004', name:'Unniyappam', desc:'Soft jaggery and banana rice cake', price:30, icon:'restaurant', gradient:'#fff8e1,#ffd54f', cat:'Kerala Snacks', veg:true },
+      { id:'dessert-001', name:'Brownie', desc:'Warm chocolate brownie', price:69, icon:'cake', gradient:'#f3e5f5,#ce93d8', cat:'Desserts', veg:true },
+      { id:'signature-001', name:'CUPPILO Signature Coffee', desc:'House coffee with Kerala-inspired flavours', price:129, icon:'star', gradient:'#231F20,#C89D5C', cat:'Signatures', veg:true }
     ];
-
-    let saveTimeout = null;
-    function debouncedSave() {
-      if (saveTimeout) clearTimeout(saveTimeout);
-      saveTimeout = setTimeout(() => { saveBallotToSupabase(); }, 1500);
-    }
 
     let votes = 0;
     const MAX_VOTES = 5;
-    let votedItems = new Set();
-    let ballot = {};
-    let suggestedItems = [];
-    let currentFilter = 'all';
+    let votedIds = new Set();
 
-    function renderMenuItems(filter) {
-      currentFilter = filter;
-      const grid = document.getElementById('menu-grid');
+    function renderTasteGrid() {
+      const grid = document.getElementById('taste-grid');
       grid.innerHTML = '';
-
-      const categories = Object.keys(categoryConfig);
-      const order = filter === 'all' ? categories : [filter];
-
-      order.forEach(cat => {
-        const items = cuppiloMenu.filter(item => item.category === cat);
-        if (items.length === 0) return;
-        const cfg = categoryConfig[cat];
-
-        const section = document.createElement('div');
-        section.className = 'category-section';
-
-        if (filter === 'all') {
-          const heading = document.createElement('div');
-          heading.className = 'category-heading';
-          heading.innerHTML = '<span class="material-symbols-outlined">' + cfg.icon + '</span> ' + cfg.label;
-          section.appendChild(heading);
-        }
-
-        const rowContainer = document.createElement('div');
-        rowContainer.className = 'menu-grid';
-
-        items.forEach(item => {
-          const badges = [];
-          if (item.popular) badges.push('<span class="pill badge-popular"><span class="material-symbols-outlined">local_fire_department</span>Popular</span>');
-          if (item.premium) badges.push('<span class="pill badge-premium"><span class="material-symbols-outlined">diamond</span>Premium</span>');
-          if (item.signature) badges.push('<span class="pill badge-signature"><span class="material-symbols-outlined">star</span>Signature</span>');
-
-          const vegDot = item.veg
-            ? '<span class="veg-dot veg" title="Vegetarian"></span>'
-            : '<span class="veg-dot nonveg" title="Non-Vegetarian"></span>';
-
-          const isVoted = votedItems.has(item.id);
-
-          const row = document.createElement('div');
-          row.className = 'menu-row';
-          row.dataset.id = item.id;
-          row.innerHTML =
-            '<div class="menu-row-img" style="background:linear-gradient(135deg,' + cfg.gradient + ')"><span class="material-symbols-outlined">' + (item.icon || cfg.icon) + '</span></div>' +
-            '<div class="menu-row-body">' +
-              '<div class="menu-row-head">' +
-                '<div>' +
-                  '<h3 class="menu-row-name">' + vegDot + ' ' + item.name + '</h3>' +
-                '</div>' +
-                '<button class="vote-btn" onclick="toggleVote(this,\'' + item.id + '\')" aria-label="Vote"><span class="material-symbols-outlined" style="color:' + (isVoted ? 'var(--primary)' : 'var(--muted)') + '">' + (isVoted ? 'favorite' : 'favorite_border') + '</span></button>' +
-              '</div>' +
-              '<p class="menu-row-desc">' + item.description + '</p>' +
-              '<div class="menu-row-meta">' +
-                '<span class="pill" style="background:' + cfg.gradient.split(',')[0] + ';color:#fff"><span class="material-symbols-outlined">' + cfg.icon + '</span>' + cfg.label + '</span>' +
-                badges.join(' ') +
-              '</div>' +
-              '<div class="price-display">₹' + item.price + '</div>' +
-              '<div class="menu-row-votes">' +
-                '<div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>' +
-                '<span class="vote-pct">0%</span>' +
-              '</div>' +
-            '</div>';
-          rowContainer.appendChild(row);
-        });
-
-        section.appendChild(rowContainer);
-        grid.appendChild(section);
+      tasteItems.forEach(item => {
+        const isVoted = votedIds.has(item.id);
+        const vegDot = item.veg ? '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2D6A4F;margin-right:.25rem"></span>' : '';
+        const card = document.createElement('div');
+        card.className = 'taste-card' + (isVoted ? ' voted' : '');
+        card.dataset.id = item.id;
+        card.innerHTML =
+          '<div class="taste-card-top">' +
+            '<div class="taste-icon" style="background:linear-gradient(135deg,' + item.gradient + ')"><span class="material-symbols-outlined">' + item.icon + '</span></div>' +
+            '<div><div class="taste-name">' + vegDot + item.name + '</div><div class="taste-price">₹' + item.price + '</div></div>' +
+          '</div>' +
+          '<div class="taste-desc">' + item.desc + '</div>' +
+          '<div class="taste-footer">' +
+            '<span class="taste-pill"><span class="material-symbols-outlined">label</span>' + item.cat + '</span>' +
+            '<div class="taste-check"><span class="material-symbols-outlined">' + (isVoted ? 'check' : 'add') + '</span></div>' +
+          '</div>';
+        card.onclick = function() { toggleVote(item.id); };
+        grid.appendChild(card);
       });
     }
 
-    async function toggleVote(btn, itemId) {
-      const icon = btn.querySelector('.material-symbols-outlined');
-      const isVoted = icon.textContent.trim() === 'favorite';
-
-      if (isVoted) {
-        icon.textContent = 'favorite_border';
-        icon.style.color = 'var(--muted)';
+    function toggleVote(id) {
+      if (votedIds.has(id)) {
+        votedIds.delete(id);
         votes--;
-        votedItems.delete(itemId);
-        delete ballot[itemId];
       } else {
         if (votes >= MAX_VOTES) {
-          btn.classList.add('shake');
-          setTimeout(() => btn.classList.remove('shake'), 400);
+          showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'പരമാവധി 5 ഇനങ്ങൾ മാത്രം' : 'Maximum 5 items only', 'error');
           return;
         }
-        icon.textContent = 'favorite';
-        icon.style.color = 'var(--primary)';
+        votedIds.add(id);
         votes++;
-        votedItems.add(itemId);
-        ballot[itemId] = {};
       }
-
-      updateVoteUI();
-      saveBallotLocal(ballot);
-      debouncedSave();
-    }
-
-    function updateVoteUI() {
-      document.getElementById('vote-counter-badge').textContent = votes + ' / 5 votes';
-      document.getElementById('sticky-count').textContent = votes;
-    }
-
-    async function saveBallotToSupabase() {
-      try {
-        const ip = await getClientIP();
-        const ipHash = await hashIP(ip);
-        const menuVotes = Array.from(votedItems).map(id => ({
-          item_id: id, price: (cuppiloMenu.find(m => m.id === id) || {}).price || 0
-        }));
-
-        const ballotData = {
-          ip_hash: ipHash,
-          menu_votes: menuVotes,
-          suggested_items: suggestedItems,
-          created_at: new Date().toISOString()
-        };
-
-        await sbInsert('ballots', ballotData);
-
-        const existing = getBallotLocal();
-        if (existing.participant_id) {
-          await sbInsert('participants', {
-            id: existing.participant_id,
-            display_name: existing.display_name || null,
-            phone_number: existing.phone || null,
-            dpdp_consent: true,
-            consent_ts: new Date().toISOString(),
-            voucher_code: generateVoucherCode(),
-            tier: 'free',
-            payment_id: null
-          });
-        }
-      } catch (e) {
-        console.error('Error saving ballot to Supabase:', e);
-      }
-    }
-
-    document.getElementById('chip-group').addEventListener('click', function(e) {
-      const chip = e.target.closest('.chip');
-      if (!chip) return;
-      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      renderMenuItems(chip.dataset.filter);
-    });
-
-    function openSuggestModal() {
-      document.getElementById('suggest-modal').classList.add('open');
-    }
-
-    function closeSuggestModal() {
-      document.getElementById('suggest-modal').classList.remove('open');
-      document.getElementById('suggest-form').reset();
-      document.getElementById('desc-count').textContent = '0';
-    }
-
-    document.getElementById('suggest-desc').addEventListener('input', function() {
-      document.getElementById('desc-count').textContent = this.value.length;
-    });
-
-    async function submitSuggest(e) {
-      e.preventDefault();
-      const name = document.getElementById('suggest-name').value.trim();
-      const desc = document.getElementById('suggest-desc').value.trim();
-      const cat = document.getElementById('suggest-category').value;
-      if (!name || !desc || !cat) return;
-
-      const cfg = categoryConfig[cat] || { icon:'restaurant', gradient:'#37474f,#78909c', label:'Other' };
-      const id = 'custom-' + Date.now();
-
-      const html =
-        '<div class="menu-row" data-category="' + cat + '" data-id="' + id + '">' +
-          '<div class="menu-row-img" style="background:linear-gradient(135deg,' + cfg.gradient + ')"><span class="material-symbols-outlined">' + cfg.icon + '</span></div>' +
-          '<div class="menu-row-body">' +
-            '<div class="menu-row-head">' +
-              '<div>' +
-                '<h3 class="menu-row-name">' + name + '</h3>' +
-              '</div>' +
-              '<button class="vote-btn" onclick="toggleVote(this,\'' + id + '\')" aria-label="Vote"><span class="material-symbols-outlined" style="color:var(--muted)">favorite_border</span></button>' +
-            '</div>' +
-            '<p class="menu-row-desc">' + desc + '</p>' +
-            '<div class="menu-row-meta">' +
-              '<span class="pill" style="background:' + cfg.gradient.split(',')[0] + ';color:#fff"><span class="material-symbols-outlined">' + cfg.icon + '</span>' + cfg.label + '</span>' +
-              '<span class="pill" style="background:var(--muted);color:var(--on-sv)">' + (document.documentElement.getAttribute('data-lang') === 'ml' ? 'നിങ്ങൾ നിർദ്ദേശിച്ചത്' : 'Suggested by you') + '</span>' +
-            '</div>' +
-            '<div class="menu-row-votes">' +
-              '<div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>' +
-              '<span class="vote-pct">0%</span>' +
-            '</div>' +
-          '</div>' +
-        '</div>';
-
-      document.getElementById('menu-grid').insertAdjacentHTML('beforeend', html);
-
-      suggestedItems.push({ name, desc, category: cat, created_at: new Date().toISOString() });
-      saveBallotLocal({ suggested_items: suggestedItems });
-      debouncedSave();
-
-      closeSuggestModal();
-      showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'ഇനം ബാലറ്റിൽ ചേർത്തു!' : 'Item added to ballot!', 'success');
-    }
-
-    document.getElementById('suggest-modal').addEventListener('click', function(e) {
-      if (e.target === this) closeSuggestModal();
-    });
-
-    async function loadBallotCount() {
-      try {
-        const data = await sbSelect('ballots', 'id=count');
-        const count = Array.isArray(data) ? data.length : 0;
-        const el = document.getElementById('ballot-count-display');
-        if (el) el.textContent = count;
-      } catch (e) {
-        console.error('Error loading ballot count:', e);
-      }
+      document.getElementById('vote-count').textContent = votes;
+      renderTasteGrid();
+      saveBallotLocal({ menu_votes: Array.from(votedIds).map(function(id) { return { item_id: id }; }) });
     }
 
     async function submitAndNavigate() {
-      showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'നിങ്ങളുടെ ബാലറ്റ് സേവ് ചെയ്തു! റീഡയറക്ട് ചെയ്യുന്നു...' : 'Your ballot is saved! Redirecting...', 'success');
-      await saveBallotToSupabase();
+      if (votes === 0) {
+        showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'ദയവായി ഒരു ഇനം തിരഞ്ഞെടുക്കുക' : 'Please select at least one item', 'error');
+        return;
+      }
+      try {
+        const ip = await getClientIP();
+        const ipHash = await hashIP(ip);
+        await sbInsert('ballots', {
+          ip_hash: ipHash,
+          menu_votes: Array.from(votedIds).map(function(id) {
+            var item = tasteItems.find(function(i) { return i.id === id; });
+            return { item_id: id, price: item ? item.price : 0 };
+          }),
+          created_at: new Date().toISOString()
+        });
+      } catch (e) { console.error('Save error:', e); }
       await trackProgress('ballot');
-      window.location.href = 'ambiance.html';
+      showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'സേവ് ചെയ്തു! അടുത്ത പേജിലേക്ക്...' : 'Saved! Moving to next...', 'success');
+      setTimeout(function() { window.location.href = 'ambiance.html'; }, 800);
     }
 
     document.addEventListener('DOMContentLoaded', function() {
       initPage('menu');
-      renderMenuItems('all');
-      updateVoteUI();
-      loadBallotCount();
+      renderTasteGrid();
     });
   </script>
-
 </body>
 </html>
