@@ -129,17 +129,17 @@
   <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splash-screen">
     <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
-    <div class="splash-text">Before we open, you decide what we become.</div>
-    <div class="splash-sub">Kerala's first community-built cafe</div>
+    <div class="splash-text" data-en="Before we open, you decide what we become." data-ml="തുറക്കുന്നതിന് മുമ്പ്, നിങ്ങൾ നിർണ്ണയിക്കുന്നു നമ്മൾ എന്താകണമെന്ന്.">Before we open, you decide what we become.</div>
+    <div class="splash-sub" data-en="Kerala's first community-built cafe" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built cafe</div>
   </div>
 
   <!-- NAME ENTRY CARD -->
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
-      <h2>Welcome to CUPPILO</h2>
-      <p>What should we call you?</p>
+      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
+      <button class="btn btn-primary" onclick="submitName()" data-en="Start Co-Creating" data-ml="സഹ-നിർമ്മാണം ആരംഭിക്കുക">Start Co-Creating</button>
     </div>
   </div>
 
@@ -152,7 +152,7 @@
       <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0">
         <div class="step-pill">
           <span class="step-num">1</span>
-          <span class="step-text" data-en="Step 1 of 4" data-ml="ഘട്ടം 1 of 4">Step 1 of 4</span>
+          <span class="step-text" data-en="Step 1 of 4" data-ml="ഘട്ടം 1 / 4">Step 1 of 4</span>
         </div>
         <div class="step-dots">
           <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
@@ -180,17 +180,17 @@
     <!-- Category Filters -->
     <section class="container">
       <div class="chip-group" id="chip-group">
-        <button class="chip active" data-filter="all" data-en="All" data-ml="എല്ലാം"><span class="material-symbols-outlined">apps</span>All</button>
-        <button class="chip" data-filter="hot-coffee" data-en="Hot Coffee" data-ml="ചൂട് കാപ്പി"><span class="material-symbols-outlined">local_cafe</span>Hot Coffee</button>
-        <button class="chip" data-filter="tea" data-en="Tea" data-ml="ചായ"><span class="material-symbols-outlined">emoji_food_beverage</span>Tea</button>
-        <button class="chip" data-filter="cold-drinks" data-en="Cold Drinks" data-ml="കോൾഡ് ഡ്രിങ്ക്സ്"><span class="material-symbols-outlined">local_drink</span>Cold Drinks</button>
-        <button class="chip" data-filter="kerala-coolers" data-en="Kerala Coolers" data-ml="കേരള കൂളേഴ്സ്"><span class="material-symbols-outlined">water_drop</span>Kerala Coolers</button>
-        <button class="chip" data-filter="kerala-snacks" data-en="Kerala Snacks" data-ml="കേരള സ്നാക്സ്"><span class="material-symbols-outlined">restaurant</span>Kerala Snacks</button>
-        <button class="chip" data-filter="cafe-bites" data-en="Cafe Bites" data-ml="കഫേ ബൈറ്റ്സ്"><span class="material-symbols-outlined">fastfood</span>Cafe Bites</button>
-        <button class="chip" data-filter="sandwiches" data-en="Sandwiches" data-ml="സാൻഡ്‌വിച്ചുകൾ"><span class="material-symbols-outlined">lunch_dining</span>Sandwiches</button>
-        <button class="chip" data-filter="burgers" data-en="Burgers" data-ml="ബർഗറുകൾ"><span class="material-symbols-outlined">hamburger</span>Burgers</button>
-        <button class="chip" data-filter="desserts" data-en="Desserts" data-ml="ഡെസേർട്ട്"><span class="material-symbols-outlined">cake</span>Desserts</button>
-        <button class="chip" data-filter="signatures" data-en="Signatures" data-ml="സിഗ്നേച്ചേഴ്സ്"><span class="material-symbols-outlined">star</span>Signatures</button>
+        <button class="chip active" data-filter="all"><span class="material-symbols-outlined">apps</span><span data-en="All" data-ml="എല്ലാം">All</span></button>
+        <button class="chip" data-filter="hot-coffee"><span class="material-symbols-outlined">local_cafe</span><span data-en="Hot Coffee" data-ml="ചൂട് കാപ്പി">Hot Coffee</span></button>
+        <button class="chip" data-filter="tea"><span class="material-symbols-outlined">emoji_food_beverage</span><span data-en="Tea" data-ml="ചായ">Tea</span></button>
+        <button class="chip" data-filter="cold-drinks"><span class="material-symbols-outlined">local_drink</span><span data-en="Cold Drinks" data-ml="കോൾഡ് ഡ്രിങ്ക്സ്">Cold Drinks</span></button>
+        <button class="chip" data-filter="kerala-coolers"><span class="material-symbols-outlined">water_drop</span><span data-en="Kerala Coolers" data-ml="കേരള കൂളേഴ്സ്">Kerala Coolers</span></button>
+        <button class="chip" data-filter="kerala-snacks"><span class="material-symbols-outlined">restaurant</span><span data-en="Kerala Snacks" data-ml="കേരള സ്നാക്സ്">Kerala Snacks</span></button>
+        <button class="chip" data-filter="cafe-bites"><span class="material-symbols-outlined">fastfood</span><span data-en="Cafe Bites" data-ml="കഫേ ബൈറ്റ്സ്">Cafe Bites</span></button>
+        <button class="chip" data-filter="sandwiches"><span class="material-symbols-outlined">lunch_dining</span><span data-en="Sandwiches" data-ml="സാൻഡ്‌വിച്ചുകൾ">Sandwiches</span></button>
+        <button class="chip" data-filter="burgers"><span class="material-symbols-outlined">hamburger</span><span data-en="Burgers" data-ml="ബർഗറുകൾ">Burgers</span></button>
+        <button class="chip" data-filter="desserts"><span class="material-symbols-outlined">cake</span><span data-en="Desserts" data-ml="ഡെസേർട്ട്">Desserts</span></button>
+        <button class="chip" data-filter="signatures"><span class="material-symbols-outlined">star</span><span data-en="Signatures" data-ml="സിഗ്നേച്ചേഴ്സ്">Signatures</span></button>
       </div>
     </section>
 
@@ -248,16 +248,16 @@
           <label for="suggest-category" data-en="Category" data-ml="വിഭാഗം">Category</label>
           <select id="suggest-category" class="input" required>
             <option value="" data-en="Select category" data-ml="വിഭാഗം തിരഞ്ഞെടുക്കുക">Select category</option>
-            <option value="hot-coffee">Hot Coffee</option>
-            <option value="tea">Tea</option>
-            <option value="cold-drinks">Cold Drinks</option>
-            <option value="kerala-coolers">Kerala Coolers</option>
-            <option value="kerala-snacks">Kerala Snacks</option>
-            <option value="cafe-bites">Cafe Bites</option>
-            <option value="sandwiches">Sandwiches</option>
-            <option value="burgers">Burgers</option>
-            <option value="desserts">Desserts</option>
-            <option value="signatures">Signatures</option>
+            <option value="hot-coffee" data-en="Hot Coffee" data-ml="ചൂടുകാപ്പി">Hot Coffee</option>
+            <option value="tea" data-en="Tea" data-ml="ചായ">Tea</option>
+            <option value="cold-drinks" data-en="Cold Drinks" data-ml="തണുത്ത പാനീയങ്ങൾ">Cold Drinks</option>
+            <option value="kerala-coolers" data-en="Kerala Coolers" data-ml="കേരള കൂളേഴ്സ്">Kerala Coolers</option>
+            <option value="kerala-snacks" data-en="Kerala Snacks" data-ml="കേരള സ്നാക്കുകൾ">Kerala Snacks</option>
+            <option value="cafe-bites" data-en="Cafe Bites" data-ml="കഫേ ബൈറ്റ്സ്">Cafe Bites</option>
+            <option value="sandwiches" data-en="Sandwiches" data-ml="സാൻഡ്‌വിച്ചുകൾ">Sandwiches</option>
+            <option value="burgers" data-en="Burgers" data-ml="ബർഗറുകൾ">Burgers</option>
+            <option value="desserts" data-en="Desserts" data-ml="ഡെസേർട്ടുകൾ">Desserts</option>
+            <option value="signatures" data-en="Signatures" data-ml="സിഗ്നേച്ചുകൾ">Signatures</option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem" data-en="Add to Ballot" data-ml="ബാലറ്റിലേക്ക് ചേർക്കുക">Add to Ballot</button>
@@ -541,7 +541,7 @@
             '<p class="menu-row-desc">' + desc + '</p>' +
             '<div class="menu-row-meta">' +
               '<span class="pill" style="background:' + cfg.gradient.split(',')[0] + ';color:#fff"><span class="material-symbols-outlined">' + cfg.icon + '</span>' + cfg.label + '</span>' +
-              '<span class="pill" style="background:var(--muted);color:var(--on-sv)">Suggested by you</span>' +
+              '<span class="pill" style="background:var(--muted);color:var(--on-sv)">' + (document.documentElement.getAttribute('data-lang') === 'ml' ? 'നിങ്ങൾ നിർദ്ദേശിച്ചത്' : 'Suggested by you') + '</span>' +
             '</div>' +
             '<div class="menu-row-votes">' +
               '<div class="vote-bar"><div class="vote-bar-fill" style="width:0%"></div></div>' +
@@ -557,7 +557,7 @@
       debouncedSave();
 
       closeSuggestModal();
-      showToast('Item added to ballot!', 'success');
+      showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'ഇനം ബാലറ്റിൽ ചേർത്തു!' : 'Item added to ballot!', 'success');
     }
 
     document.getElementById('suggest-modal').addEventListener('click', function(e) {
@@ -576,7 +576,7 @@
     }
 
     async function submitAndNavigate() {
-      showToast('Your ballot is saved! Redirecting...', 'success');
+      showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'നിങ്ങളുടെ ബാലറ്റ് സേവ് ചെയ്തു! റീഡയറക്ട് ചെയ്യുന്നു...' : 'Your ballot is saved! Redirecting...', 'success');
       await saveBallotToSupabase();
       await trackProgress('ballot');
       window.location.href = 'ambiance.html';

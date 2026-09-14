@@ -95,15 +95,15 @@
 
   <div class="splash-screen" id="splash-screen">
     <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
-    <div class="splash-text">Before we open, you decide what we become.</div>
-    <div class="splash-sub">Kerala's first community-built cafe</div>
+    <div class="splash-text" data-en="Before we open, you decide what we become." data-ml="തുറക്കുന്നതിന് മുമ്പ്, നിങ്ങൾ നിർണ്ണയിക്കുന്നു നമ്മൾ എന്താകണമെന്ന്.">Before we open, you decide what we become.</div>
+    <div class="splash-sub" data-en="Kerala's first community-built cafe" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built cafe</div>
   </div>
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
-      <h2>Welcome to CUPPILO</h2>
-      <p>What should we call you?</p>
+      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
+      <button class="btn btn-primary" onclick="submitName()" data-en="Start Co-Creating" data-ml="സഹ-നിർമ്മാണം ആരംഭിക്കുക">Start Co-Creating</button>
     </div>
   </div>
 
@@ -116,7 +116,7 @@
         <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0">
           <div class="step-pill">
             <span class="step-num">2</span>
-            <span class="step-text" data-en="Step 2 of 4" data-ml="ഘട്ടം 2 of 4">Step 2 of 4</span>
+            <span class="step-text" data-en="Step 2 of 4" data-ml="ഘട്ടം 2 / 4">Step 2 of 4</span>
           </div>
           <div class="step-dots">
             <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
@@ -209,7 +209,7 @@
             <p class="moodboard-desc" data-en="A contemporary retreat where tropical greenery meets minimalist architecture — polished concrete, floor-to-ceiling glass, and clean geometric lines." data-ml="ട്രോപ്പിക്കൽ പച്ചപ്പും മിനിമലിസ്റ്റ് വാസ്തുവിദ്യയും കൂടിച്ചേരുന്ന സമകാലിക റിട്രീറ്റ് — പോളിഷ് ചെയ്ത കോൺക്രീറ്റ്, നിലമുതൽ സീലിംഗ് വരെ ഗ്ലാസ്, വൃത്തിയുള്ള ജ്യാമിതീയ രേഖകൾ.">A contemporary retreat where tropical greenery meets minimalist architecture — polished concrete, floor-to-ceiling glass, and clean geometric lines.</p>
             <div class="tag-row">
               <span class="tag-pill"><span class="material-symbols-outlined" style="font-size:12px">check</span> <span data-en="Concrete" data-ml="കോൺക്രീറ്റ്">Concrete</span></span>
-              <span class="tag-pill"><span class="material-symbols-outlined" style="font-size:12px">check</span> <span data-en="Ferns" data-ml="ച്വാലകൾ">Ferns</span></span>
+              <span class="tag-pill"><span class="material-symbols-outlined" style="font-size:12px">check</span> <span data-en="Ferns" data-ml="ഫെർണുകൾ">Ferns</span></span>
               <span class="tag-pill"><span class="material-symbols-outlined" style="font-size:12px">check</span> <span data-en="Clean" data-ml="വൃത്തിയുള്ളത്">Clean</span></span>
             </div>
             <div class="vote-row">
@@ -235,8 +235,8 @@
             </div>
             <span class="material-symbols-outlined moodboard-icon" style="color:rgba(196,181,253,.7)">music_note</span>
             <h3 class="moodboard-title" data-en="Late Night Acoustic Courtyard" data-ml="വൈകിയ രാത്രിയിലെ അകൗസ്റ്റിക് ഉൾമുറ്റം">Late Night Acoustic Courtyard</h3>
-            <p class="moodboard-subtitle" style="color:rgba(196,181,253,.8)" data-en="Fairy lights, lo-fi, floor cushions" data-ml="ഫെയറി ലൈറ്റുകൾ, ലോ-ഫൈ, നിലത്തുള്ള കഷ്ടിയനുകൾ">Fairy lights, lo-fi, floor cushions</p>
-            <p class="moodboard-desc" data-en="An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations." data-ml="തുറന്ന ഉൾമുറ്റത്ത് കെട്ടിയ ഫെയറി ലൈറ്റുകൾ, ചൂടുള്ള കാറ്റിലൂടെ ഒഴുകുന്ന ലോ-ഫൈ ബീറ്റുകൾ, വൈകിയ രാത്രി സംഭാഷണങ്ങൾക്കുള്ള താഴ്ന്ന നിലത്തുള്ള കഷ്ടിയനുകൾ.">An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations.</p>
+            <p class="moodboard-subtitle" style="color:rgba(196,181,253,.8)" data-en="Fairy lights, lo-fi, floor cushions" data-ml="ഫെയറി ലൈറ്റുകൾ, ലോ-ഫൈ, നിലത്തുള്ള കുഷ്യനുകൾ">Fairy lights, lo-fi, floor cushions</p>
+            <p class="moodboard-desc" data-en="An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations." data-ml="തുറന്ന ഉൾമുറ്റത്ത് കെട്ടിയ ഫെയറി ലൈറ്റുകൾ, ചൂടുള്ള കാറ്റിലൂടെ ഒഴുകുന്ന ലോ-ഫൈ ബീറ്റുകൾ, വൈകിയ രാത്രി സംഭാഷണങ്ങൾക്കുള്ള താഴ്ന്ന നിലത്തുള്ള കുഷ്യനുകൾ.">An intimate after-hours hideaway — fairy lights strung across an open courtyard, lo-fi beats drifting through warm air, and low floor cushions for late-night conversations.</p>
             <div class="tag-row">
               <span class="tag-pill" style="background:rgba(139,92,246,.2);color:#c4b5fd;border-color:rgba(196,181,253,.2)"><span class="material-symbols-outlined" style="font-size:12px">check</span> <span data-en="Fairy Lights" data-ml="ഫെയറി ലൈറ്റുകൾ">Fairy Lights</span></span>
               <span class="tag-pill" style="background:rgba(139,92,246,.2);color:#c4b5fd;border-color:rgba(196,181,253,.2)"><span class="material-symbols-outlined" style="font-size:12px">check</span> <span data-en="Acoustic" data-ml="അകൗസ്റ്റിക്">Acoustic</span></span>

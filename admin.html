@@ -12,18 +12,18 @@
   <link rel="icon" type="image/png" href="img/logo.png">
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cuppilo-cafe-website.vercel.app/admin.html">
+  <meta property="og:url" content="https://cuppilo.in/admin.html">
   <meta property="og:title" content="CUPPILO Admin Panel">
   <meta property="og:description" content="CUPPILO admin panel for managing co-creation data.">
-  <meta property="og:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
+  <meta property="og:image" content="https://cuppilo.in/img/logo-en-light.png">
   <meta property="og:site_name" content="CUPPILO">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CUPPILO Admin Panel">
   <meta name="twitter:description" content="CUPPILO admin panel for managing co-creation data.">
-  <meta name="twitter:image" content="https://cuppilo-cafe-website.vercel.app/img/logo-en-light.png">
+  <meta name="twitter:image" content="https://cuppilo.in/img/logo-en-light.png">
   <!-- Canonical -->
-  <link rel="canonical" href="https://cuppilo-cafe-website.vercel.app/admin.html">
+  <link rel="canonical" href="https://cuppilo.in/admin.html">
   <!-- Robots -->
   <meta name="robots" content="noindex, nofollow">
 
@@ -681,7 +681,7 @@
     document.addEventListener('click', function(e) {
       var sidebar = document.getElementById('admin-sidebar');
       var toggle = document.querySelector('.sidebar-toggle');
-      if (sidebar && sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
+      if (sidebar && sidebar.classList.contains('open') && !sidebar.contains(e.target) && toggle && toggle.contains(e.target)) {
         sidebar.classList.remove('open');
       }
     });

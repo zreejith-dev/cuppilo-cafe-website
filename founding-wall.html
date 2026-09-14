@@ -116,15 +116,15 @@
 
   <div class="splash-screen" id="splash-screen">
     <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
-    <div class="splash-text">Before we open, you decide what we become.</div>
-    <div class="splash-sub">Kerala's first community-built cafe</div>
+    <div class="splash-text" data-en="Before we open, you decide what we become." data-ml="തുറക്കുന്നതിന് മുമ്പ്, നിങ്ങൾ നിർണ്ണയിക്കുന്നു നമ്മൾ എന്താകണമെന്ന്.">Before we open, you decide what we become.</div>
+    <div class="splash-sub" data-en="Kerala's first community-built cafe" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built cafe</div>
   </div>
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
-      <h2>Welcome to CUPPILO</h2>
-      <p>What should we call you?</p>
+      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()">Start Co-Creating</button>
+      <button class="btn btn-primary" onclick="submitName()" data-en="Start Co-Creating" data-ml="സഹ-നിർമ്മാണം ആരംഭിക്കുക">Start Co-Creating</button>
     </div>
   </div>
 
@@ -137,7 +137,7 @@
         <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0">
           <div class="step-pill">
             <span class="step-num">4</span>
-            <span class="step-text" data-en="Step 4 of 4" data-ml="ഘട്ടം 4 of 4">Step 4 of 4</span>
+            <span class="step-text" data-en="Step 4 of 4" data-ml="ഘട്ടം 4 / 4">Step 4 of 4</span>
           </div>
           <div class="step-dots">
             <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
