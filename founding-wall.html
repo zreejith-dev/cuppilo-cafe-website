@@ -121,10 +121,23 @@
   </div>
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
-      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
-      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
-      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()" data-en="Start Co-Creating" data-ml="സഹ-നിർമ്മാണം ആരംഭിക്കുക">Start Co-Creating</button>
+      <div id="name-card-form">
+        <h2 data-en="Welcome to CUPPILO" data-ml="കപ്പിലോയിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+        <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
+        <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
+        <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
+        <p style="font-size:.75rem;color:var(--on-sv);margin-top:.75rem" data-en="No login required. 100% free. Takes 2 minutes." data-ml="ലോഗിൻ ആവശ്യമില്ല. 100% സൗജന്യം. 2 മിനിറ്റ് മതി.">No login required. 100% free. Takes 2 minutes.</p>
+      </div>
+      <div id="name-card-success" style="display:none;text-align:center">
+        <span class="material-symbols-outlined" style="font-size:48px;color:var(--brass)">emoji_events</span>
+        <h2 style="margin-top:.5rem" data-en="You're part of CUPPILO" data-ml="നിങ്ങൾ CUPPILO-യുടെ ഭാഗമാണ്">You're part of CUPPILO</h2>
+        <p style="font-size:.875rem;color:var(--on-sv);margin-bottom:.5rem" data-en="You were here before the first cup." data-ml="ആദ്യത്തെ കപ്പിന് മുമ്പ് നിങ്ങൾ ഇവിടെ ഉണ്ടായിരുന്നു.">You were here before the first cup.</p>
+        <div style="background:var(--surface-h);padding:.75rem 1.5rem;border-radius:.5rem;margin-bottom:1rem">
+          <span style="font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--on-sv)" data-en="Founding Guest" data-ml="സ്ഥാപക അതിഥി">Founding Guest</span>
+          <div id="founding-guest-number" style="font-size:1.5rem;font-weight:800;color:var(--primary);font-family:monospace">#00001</div>
+        </div>
+        <button class="btn btn-primary" onclick="document.getElementById('name-card-overlay').classList.remove('active')" data-en="Start Exploring" data-ml="എക്സ്പ്ലോർ ചെയ്യാൻ തുടങ്ങുക">Start Exploring</button>
+      </div>
     </div>
   </div>
 

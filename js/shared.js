@@ -125,10 +125,30 @@ async function submitName() {
   } catch (e) { handleError(e, 'Profile save'); }
 
   localStorage.setItem('cuppilo_profile', JSON.stringify(profile));
-  var overlay = document.getElementById('name-card-overlay');
-  if (overlay) overlay.classList.remove('active');
   updateNavbarProfile(profile);
-  showToast('Welcome, ' + name + '!', 'success');
+
+  // Show Founding Guest reward moment
+  var formEl = document.getElementById('name-card-form');
+  var successEl = document.getElementById('name-card-success');
+  if (formEl && successEl) {
+    formEl.style.display = 'none';
+    successEl.style.display = '';
+    // Get guest number from profile count
+    try {
+      var countData = await sbSelect('profile_count', '*');
+      var count = Array.isArray(countData) && countData.length > 0 ? (countData[0].count || countData[0].total || 1) : 1;
+      var guestNum = document.getElementById('founding-guest-number');
+      if (guestNum) guestNum.textContent = '#' + String(count).padStart(5, '0');
+    } catch (e) {
+      var guestNum = document.getElementById('founding-guest-number');
+      if (guestNum) guestNum.textContent = '#00001';
+    }
+  } else {
+    // Fallback for non-index pages
+    var overlay = document.getElementById('name-card-overlay');
+    if (overlay) overlay.classList.remove('active');
+    showToast('Welcome, ' + name + '!', 'success');
+  }
 }
 
 // ── LANGUAGE TOGGLE ──
