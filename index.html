@@ -15,7 +15,6 @@
   <meta property="og:description" content="We don't have a café yet. We're building one with you."/>
   <meta property="og:image" content="https://cuppilo.in/img/logo-en-light.png"/>
   <meta property="og:site_name" content="CUPPILO"/>
-  <meta property="og:locale" content="en_IN"/>
   <meta name="twitter:card" content="summary"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -23,96 +22,137 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <style>
-    .hero-new{min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem 1rem;position:relative;overflow:hidden}
-    .hero-new::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:rgba(169,59,43,.05);border-radius:50%;filter:blur(80px);pointer-events:none;z-index:-1}
-    .hero-tagline{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.25rem);color:var(--brass);margin-bottom:.5rem}
-    .hero-title-new{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:var(--charcoal);line-height:1.1;margin-bottom:.75rem}
-    .hero-title-new em{font-style:italic;font-family:'Newsreader',serif;color:var(--primary)}
-    .hero-sub{font-size:1.0625rem;color:var(--on-sv);max-width:28rem;margin:0 auto 2rem;line-height:1.7}
-    .hero-cta{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;font-size:1.125rem;font-weight:700;border-radius:.75rem;background:var(--primary);color:#fff;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:inherit;min-height:56px}
-    .hero-cta:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-    .hero-cta:active{transform:scale(.97)}
-    .hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:1.5rem;font-size:.8125rem;color:var(--on-sv)}
-    .hero-meta span{display:flex;align-items:center;gap:.375rem}
-    .hero-meta .material-symbols-outlined{font-size:16px;color:var(--primary)}
+    .u-hero{min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem 1rem;position:relative}
+    .u-hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:rgba(169,59,43,.04);border-radius:50%;filter:blur(80px);pointer-events:none}
+    .u-hero-tag{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(.9rem,2vw,1.125rem);color:var(--brass);margin-bottom:.5rem}
+    .u-hero h1{font-size:clamp(2rem,5vw,3.25rem);font-weight:800;color:var(--charcoal);line-height:1.1;margin-bottom:.75rem}
+    .u-hero h1 em{font-style:italic;font-family:'Newsreader',serif;color:var(--primary)}
+    .u-hero p{font-size:1rem;color:var(--on-sv);max-width:28rem;margin:0 auto 2rem;line-height:1.7}
+    .u-cta{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;font-size:1.125rem;font-weight:700;border-radius:.75rem;background:var(--primary);color:#fff;border:none;cursor:pointer;font-family:inherit;transition:all .2s}
+    .u-cta:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+    .u-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:1.5rem;font-size:.8125rem;color:var(--on-sv)}
+    .u-meta span{display:flex;align-items:center;gap:.375rem}
+    .u-meta .material-symbols-outlined{font-size:16px;color:var(--primary)}
 
-    /* Survey Section */
-    .survey-section{padding:3rem 0;background:var(--bg);display:none}
-    .survey-section.active{display:block}
-    .survey-container{max-width:480px;margin:0 auto;padding:0 1rem}
-    .survey-progress{display:flex;gap:.25rem;margin-bottom:2rem}
-    .survey-progress .bar{flex:1;height:4px;border-radius:2px;background:var(--muted);transition:background .3s}
-    .survey-progress .bar.filled{background:var(--primary)}
-    .survey-step{display:none}
-    .survey-step.active{display:block}
-    .survey-step h2{font-size:1.375rem;font-weight:800;color:var(--charcoal);margin-bottom:.25rem;text-align:center}
-    .survey-step p{font-size:.875rem;color:var(--on-sv);text-align:center;margin-bottom:1.5rem}
-    .survey-options{display:flex;flex-direction:column;gap:.75rem}
-    .survey-option{display:flex;align-items:center;gap:.75rem;padding:1rem 1.25rem;background:var(--bg-card);border:2px solid var(--muted);border-radius:.75rem;cursor:pointer;transition:all .2s}
-    .survey-option:hover{border-color:var(--primary);background:var(--surface-l)}
-    .survey-option.selected{border-color:var(--primary);background:var(--surface-l)}
-    .survey-option input{display:none}
-    .survey-option .icon{width:40px;height:40px;border-radius:.5rem;display:flex;align-items:center;justify-content:center;background:var(--surface-h);color:var(--on-sv);flex-shrink:0;transition:all .2s}
-    .survey-option.selected .icon{background:var(--primary);color:#fff}
-    .survey-option .text{flex:1}
-    .survey-option .text strong{display:block;font-size:.9375rem;color:var(--on-s);margin-bottom:.125rem}
-    .survey-option .text span{font-size:.8125rem;color:var(--on-sv)}
-    .survey-option .check{width:24px;height:24px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
-    .survey-option.selected .check{background:var(--primary);border-color:var(--primary);color:#fff}
-    .survey-nav{display:flex;gap:.75rem;margin-top:2rem}
-    .survey-nav .btn{flex:1}
-    .survey-back{background:transparent;border:1.5px solid var(--muted);color:var(--on-sv)}
-    .survey-back:hover{background:var(--surface-h)}
+    /* Steps wrapper */
+    .u-steps{display:none;padding:2rem 0 4rem}
+    .u-steps.active{display:block}
+    .u-step{display:none;max-width:640px;margin:0 auto;padding:0 1rem}
+    .u-step.active{display:block}
+    .u-step-head{text-align:center;margin-bottom:1.5rem}
+    .u-step-head h2{font-size:1.5rem;font-weight:800;color:var(--charcoal);margin-bottom:.25rem}
+    .u-step-head p{font-size:.875rem;color:var(--on-sv)}
 
-    /* Founding Guest Card */
-    .founding-card-section{padding:3rem 0;display:none;text-align:center}
-    .founding-card-section.active{display:block}
-    .founding-card{max-width:360px;margin:0 auto;background:var(--charcoal);border-radius:1.5rem;padding:2.5rem 2rem;color:var(--cream);position:relative;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.3)}
-    .founding-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:var(--primary);border-radius:50%;opacity:.15}
-    .founding-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;background:var(--brass);border-radius:50%;opacity:.1}
-    .founding-card .badge{font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--brass);margin-bottom:1.5rem}
-    .founding-card .logo-text{font-size:1.5rem;font-weight:800;letter-spacing:.08em;margin-bottom:.25rem}
-    .founding-card .subtitle{font-family:'Newsreader',serif;font-style:italic;font-size:.875rem;color:rgba(247,244,235,.6);margin-bottom:1.5rem}
-    .founding-card .guest-label{font-size:.6875rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(247,244,235,.5);margin-bottom:.25rem}
-    .founding-card .guest-number{font-size:3rem;font-weight:800;color:var(--brass);line-height:1;margin-bottom:1.5rem;font-family:monospace}
-    .founding-card .quote{font-family:'Newsreader',serif;font-style:italic;font-size:.875rem;color:rgba(247,244,235,.7);line-height:1.5;margin-bottom:1.5rem}
-    .founding-card .year{font-size:.75rem;color:rgba(247,244,235,.4)}
-    .founding-card .divider{width:60px;height:2px;background:var(--brass);margin:0 auto 1rem;opacity:.4}
-    .founding-actions{display:flex;gap:.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+    /* Progress bar */
+    .u-progress{display:flex;gap:.25rem;margin-bottom:2rem}
+    .u-progress .bar{flex:1;height:4px;border-radius:2px;background:var(--muted);transition:background .3s}
+    .u-progress .bar.filled{background:var(--primary)}
 
-    /* About Section */
-    .about-section{padding:4rem 0;background:var(--bg-card)}
-    .about-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
-    @media(min-width:768px){.about-grid{grid-template-columns:1fr 1fr}}
-    .about-visual{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:1.5rem;padding:2.5rem;color:var(--cream);position:relative;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center}
-    .about-visual::before{content:'"';position:absolute;top:1rem;left:1.5rem;font-size:6rem;color:rgba(255,255,255,.1);font-family:'Newsreader',serif;line-height:1}
-    .about-visual blockquote{font-family:'Newsreader',serif;font-style:italic;font-size:1.125rem;line-height:1.6;position:relative;z-index:1;text-align:center;padding:0 1rem}
-    .about-text h2{font-size:1.5rem;font-weight:800;color:var(--charcoal);margin-bottom:.75rem}
-    .about-text p{font-size:.9375rem;color:var(--on-sv);line-height:1.7;margin-bottom:1rem}
+    /* Single select cards */
+    .u-options{display:flex;flex-direction:column;gap:.75rem}
+    .u-opt{display:flex;align-items:center;gap:.75rem;padding:1rem 1.25rem;background:var(--bg-card);border:2px solid var(--muted);border-radius:.75rem;cursor:pointer;transition:all .2s}
+    .u-opt:hover{border-color:var(--primary);background:var(--surface-l)}
+    .u-opt.selected{border-color:var(--primary);background:var(--surface-l)}
+    .u-opt-icon{width:44px;height:44px;border-radius:.5rem;display:flex;align-items:center;justify-content:center;background:var(--surface-h);color:var(--on-sv);flex-shrink:0;transition:all .2s}
+    .u-opt.selected .u-opt-icon{background:var(--primary);color:#fff}
+    .u-opt-text{flex:1}
+    .u-opt-text strong{display:block;font-size:.9375rem;color:var(--on-s);margin-bottom:.125rem}
+    .u-opt-text span{font-size:.8125rem;color:var(--on-sv)}
+    .u-opt-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+    .u-opt.selected .u-opt-check{background:var(--primary);border-color:var(--primary);color:#fff}
+    .u-opt-check .material-symbols-outlined{font-size:16px}
 
-    /* How It Works */
-    .how-section{padding:4rem 0}
-    .how-steps{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:1.5rem}
-    @media(min-width:640px){.how-steps{grid-template-columns:repeat(3,1fr)}}
-    .how-step{text-align:center;padding:1.5rem}
-    .how-step-num{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:800;margin:0 auto 1rem}
-    .how-step h3{font-size:1rem;font-weight:700;color:var(--charcoal);margin-bottom:.5rem}
-    .how-step p{font-size:.8125rem;color:var(--on-sv);line-height:1.6}
+    /* Multi-select grid (drinks & food) */
+    .u-multi-info{text-align:center;margin-bottom:1rem;font-size:.8125rem;color:var(--on-sv)}
+    .u-multi-info strong{color:var(--primary)}
+    .u-multi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem}
+    .u-multi-card{background:var(--bg-card);border:2px solid var(--muted);border-radius:.75rem;padding:1rem;cursor:pointer;transition:all .2s;position:relative}
+    .u-multi-card:hover{border-color:var(--primary)}
+    .u-multi-card.selected{border-color:var(--primary);background:var(--surface-l)}
+    .u-multi-top{display:flex;align-items:center;gap:.625rem;margin-bottom:.375rem}
+    .u-multi-icon{width:36px;height:36px;border-radius:.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .u-multi-icon .material-symbols-outlined{font-size:1.125rem;color:#fff}
+    .u-multi-name{font-size:.875rem;font-weight:700;color:var(--on-s)}
+    .u-multi-price{font-size:.75rem;color:var(--primary);font-weight:600}
+    .u-multi-desc{font-size:.75rem;color:var(--on-sv);line-height:1.4}
+    .u-multi-trend{display:inline-flex;align-items:center;gap:.2rem;font-size:.65rem;font-weight:700;color:var(--brass);margin-top:.375rem;padding:.15rem .5rem;background:rgba(200,157,92,.1);border-radius:9999px}
+    .u-multi-trend .material-symbols-outlined{font-size:12px}
+    .u-multi-check{position:absolute;top:.75rem;right:.75rem;width:22px;height:22px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .u-multi-card.selected .u-multi-check{background:var(--primary);border-color:var(--primary);color:#fff}
+    .u-multi-check .material-symbols-outlined{font-size:14px}
 
-    /* Live Results */
-    .results-section{padding:4rem 0;background:var(--bg-card)}
-    .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem}
-    .result-card{background:var(--bg);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;text-align:center}
-    .result-card .material-symbols-outlined{font-size:2rem;color:var(--primary);margin-bottom:.5rem}
-    .result-card .label{font-size:.75rem;font-weight:600;color:var(--on-sv);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.25rem}
-    .result-card .value{font-size:1.25rem;font-weight:800;color:var(--charcoal)}
-    .result-card .sub{font-size:.75rem;color:var(--on-sv);margin-top:.25rem}
+    /* Ambiance theme cards */
+    .u-amb-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+    @media(min-width:640px){.u-amb-grid{grid-template-columns:1fr 1fr}}
+    .u-amb-card{border-radius:1rem;overflow:hidden;cursor:pointer;border:3px solid var(--muted);transition:all .3s;position:relative}
+    .u-amb-card:hover{transform:translateY(-3px)}
+    .u-amb-card.selected{border-color:var(--brass);box-shadow:0 0 0 3px rgba(200,157,92,.3)}
+    .u-amb-visual{height:120px;display:flex;align-items:center;justify-content:center;position:relative}
+    .u-amb-visual .material-symbols-outlined{font-size:2.5rem;color:rgba(255,255,255,.8)}
+    .u-amb-body{padding:1rem;background:var(--bg-card)}
+    .u-amb-name{font-size:1rem;font-weight:700;color:var(--on-s);margin-bottom:.125rem}
+    .u-amb-desc{font-size:.8125rem;color:var(--on-sv);line-height:1.5}
+    .u-amb-tags{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.5rem}
+    .u-amb-tag{font-size:.625rem;font-weight:600;padding:.15rem .5rem;border-radius:9999px;background:var(--surface-h);color:var(--on-sv)}
+    .u-amb-check{position:absolute;top:.75rem;right:.75rem;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:all .2s}
+    .u-amb-card.selected .u-amb-check{background:var(--brass);border-color:var(--brass);color:var(--charcoal)}
+
+    /* Custom ambiance input */
+    .u-custom-wrap{margin-top:1rem;display:none}
+    .u-custom-wrap.show{display:block}
+    .u-custom-input{width:100%;padding:.75rem 1rem;border:1.5px solid var(--muted);border-radius:.75rem;background:var(--bg-card);color:var(--on-s);font-size:.875rem;font-family:inherit;box-sizing:border-box}
+    .u-custom-input:focus{outline:none;border-color:var(--primary)}
+    .u-custom-label{font-size:.75rem;color:var(--on-sv);margin-bottom:.375rem;display:block}
+
+    /* Nav buttons */
+    .u-nav{display:flex;gap:.75rem;margin-top:2rem}
+    .u-nav .u-cta{flex:1;font-size:.9375rem;padding:.875rem}
+    .u-nav .u-back{background:transparent;border:1.5px solid var(--muted);color:var(--on-sv)}
+    .u-nav .u-back:hover{background:var(--surface-h)}
+
+    /* Founding Card */
+    .u-card-section{display:none;padding:3rem 0;text-align:center}
+    .u-card-section.active{display:block}
+    .f-card{max-width:360px;margin:0 auto;background:var(--charcoal);border-radius:1.5rem;padding:2.5rem 2rem;color:var(--cream);position:relative;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.3)}
+    .f-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:var(--primary);border-radius:50%;opacity:.15}
+    .f-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;background:var(--brass);border-radius:50%;opacity:.1}
+    .f-card .badge{font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--brass);margin-bottom:1.5rem}
+    .f-card .logo-text{font-size:1.5rem;font-weight:800;letter-spacing:.08em;margin-bottom:.25rem}
+    .f-card .subtitle{font-family:'Newsreader',serif;font-style:italic;font-size:.875rem;color:rgba(247,244,235,.6);margin-bottom:1.5rem}
+    .f-card .divider{width:60px;height:2px;background:var(--brass);margin:0 auto 1rem;opacity:.4}
+    .f-card .guest-label{font-size:.6875rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(247,244,235,.5);margin-bottom:.25rem}
+    .f-card .guest-number{font-size:3rem;font-weight:800;color:var(--brass);line-height:1;margin-bottom:1.5rem;font-family:monospace}
+    .f-card .quote{font-family:'Newsreader',serif;font-style:italic;font-size:.875rem;color:rgba(247,244,235,.7);line-height:1.5;margin-bottom:1rem}
+    .f-card .year{font-size:.75rem;color:rgba(247,244,235,.4)}
+    .f-actions{display:flex;gap:.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+    .f-actions .btn{min-width:140px}
+
+    /* Trending live badge */
+    .u-live-badge{display:inline-flex;align-items:center;gap:.375rem;font-size:.75rem;font-weight:600;color:var(--primary);margin-bottom:1rem;padding:.375rem .75rem;background:rgba(169,59,43,.06);border-radius:9999px}
+    .u-live-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);animation:pulse 1.5s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+    /* Bottom CTA */
+    .u-bottom-cta{padding:4rem 0;text-align:center;background:var(--charcoal);color:var(--cream)}
+    .u-bottom-cta h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.75rem}
+    .u-bottom-cta p{font-family:'Newsreader',serif;font-style:italic;font-size:1.125rem;color:rgba(247,244,235,.6);margin-bottom:2rem}
+
+    /* About */
+    .u-about{padding:4rem 0;background:var(--bg-card)}
+    .u-about-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
+    @media(min-width:768px){.u-about-grid{grid-template-columns:1fr 1fr}}
+    .u-about-quote{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:1.5rem;padding:2.5rem;color:var(--cream);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .u-about-quote::before{content:'"';position:absolute;top:1rem;left:1.5rem;font-size:6rem;color:rgba(255,255,255,.1);font-family:'Newsreader',serif}
+    .u-about-quote blockquote{font-family:'Newsreader',serif;font-style:italic;font-size:1.0625rem;line-height:1.6;text-align:center;padding:0 1rem;position:relative;z-index:1}
+    .u-about-text h2{font-size:1.5rem;font-weight:800;color:var(--charcoal);margin-bottom:.75rem}
+    .u-about-text p{font-size:.9375rem;color:var(--on-sv);line-height:1.7;margin-bottom:1rem}
 
     @media(max-width:640px){
-      .hero-meta{flex-direction:column;gap:.5rem}
-      .founding-card{margin:0 .5rem}
-      .founding-actions{flex-direction:column}
-      .founding-actions .btn{width:100%}
+      .u-meta{flex-direction:column;gap:.5rem}
+      .u-multi-grid{grid-template-columns:1fr}
+      .f-card{margin:0 .5rem}
+      .f-actions{flex-direction:column}
+      .f-actions .btn{width:100%}
     }
   </style>
 </head>
@@ -134,236 +174,146 @@
 
   <nav class="navbar" id="navbar"></nav>
 
-  <!-- HERO -->
   <main>
-    <section class="hero-new" id="hero-section">
+    <!-- ═══ HERO ═══ -->
+    <section class="u-hero" id="hero">
       <div>
-        <div class="hero-tagline" data-en="Kerala's first community-built café" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built café</div>
-        <h1 class="hero-title-new">
-          <span data-en="The café that doesn't exist" data-ml="നിലവിലില്ലാത്ത കഫേ">The café that doesn't exist</span><br>
-          <em data-en="...yet." data-ml="...ഇതുവരെ.">...yet.</em>
-        </h1>
-        <p class="hero-sub" data-en="We're researching what Kerala actually wants from their café. Your voice shapes our menu, ambiance, and pricing. It takes 2 minutes." data-ml="കേരളം യഥാർത്ഥത്തിൽ അവരുടെ കഫേയിൽ നിന്ന് എന്താണ് ആഗ്രഹിക്കുന്നതെന്ന് ഞങ്ങൾ ഗവേഷണം ചെയ്യുന്നു. നിങ്ങളുടെ ശബ്ദം ഞങ്ങളുടെ മെനു, അന്തരീക്ഷം, വില എന്നിവ രൂപപ്പെടുത്തുന്നു. 2 മിനിറ്റ് മതി.">We're researching what Kerala actually wants from their café. Your voice shapes our menu, ambiance, and pricing. It takes 2 minutes.</p>
-        <button class="hero-cta" onclick="startSurvey()">
+        <div class="u-hero-tag" data-en="Kerala's first community-built café" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built café</div>
+        <h1><span data-en="The café that doesn't exist" data-ml="നിലവിലില്ലാത്ത കഫേ">The café that doesn't exist</span><br><em data-en="...yet." data-ml="...ഇതുവരെ.">...yet.</em></h1>
+        <p data-en="We're researching what Kerala actually wants. Your voice shapes our menu, ambiance, and pricing. It takes 2 minutes." data-ml="കേരളം യഥാർത്ഥത്തിൽ എന്താണ് ആഗ്രഹിക്കുന്നതെന്ന് ഞങ്ങൾ ഗവേഷണം ചെയ്യുന്നു. നിങ്ങളുടെ ശബ്ദം ഞങ്ങളുടെ മെനു, അന്തരീക്ഷം, വില എന്നിവ രൂപപ്പെടുത്തുന്നു. 2 മിനിറ്റ് മതി.">We're researching what Kerala actually wants. Your voice shapes our menu, ambiance, and pricing. It takes 2 minutes.</p>
+        <button class="u-cta" onclick="startSurvey()">
           <span data-en="Get Started — 2 min" data-ml="ആരംഭിക്കുക — 2 മിനിറ്റ്">Get Started — 2 min</span>
           <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
         </button>
-        <div class="hero-meta">
+        <div class="u-meta">
           <span><span class="material-symbols-outlined">groups</span> <span id="hero-count">0</span> <span data-en="people joined" data-ml="ആളുകൾ ചേർന്നു">people joined</span></span>
           <span><span class="material-symbols-outlined">schedule</span> <span data-en="2 min · No login" data-ml="2 മിനിറ്റ് · ലോഗിൻ ഇല്ല">2 min · No login</span></span>
         </div>
       </div>
     </section>
 
-    <!-- SURVEY -->
-    <section class="survey-section" id="survey-section">
-      <div class="survey-container">
-        <div class="survey-progress" id="survey-progress"></div>
+    <!-- ═══ SURVEY FLOW ═══ -->
+    <section class="u-steps" id="u-steps">
+      <div style="max-width:640px;margin:0 auto;padding:0 1rem">
+        <div class="u-progress" id="u-progress"></div>
 
-        <!-- Step 1: Café Type -->
-        <div class="survey-step active" data-step="1">
-          <h2 data-en="What kind of café do you dream of?" data-ml="നിങ്ങൾ ആഗ്രഹിക്കുന്ന തരം കഫേ ഏതാണ്?">What kind of café do you dream of?</h2>
-          <p data-en="Pick the one that feels right" data-ml="ശരിയായത് തിരഞ്ഞെടുക്കുക">Pick the one that feels right</p>
-          <div class="survey-options">
-            <label class="survey-option" onclick="selectOption(this,'cafe_type','specialty')">
+        <!-- STEP 1: Café Type -->
+        <div class="u-step active" data-step="1">
+          <div class="u-step-head">
+            <h2 data-en="What kind of café do you dream of?" data-ml="നിങ്ങൾ ആഗ്രഹിക്കുന്ന തരം കഫേ ഏതാണ്?">What kind of café do you dream of?</h2>
+            <p data-en="Pick the one that feels right" data-ml="ശരിയായത് തിരഞ്ഞെടുക്കുക">Pick the one that feels right</p>
+          </div>
+          <div class="u-options">
+            <label class="u-opt" onclick="selectSingle(this,'cafe_type','specialty')">
               <input type="radio" name="cafe_type" value="specialty">
-              <div class="icon"><span class="material-symbols-outlined">local_cafe</span></div>
-              <div class="text"><strong data-en="Specialty Coffee" data-ml="സ്പെഷ്യൽറ്റി കാപ്പി">Specialty Coffee</strong><span data-en="Single-origin, pour-over, latte art" data-ml="സിംഗിൾ ഓറിജിൻ, പോർ ഓവർ, ലാറ്റെ ആർട്ട്">Single-origin, pour-over, latte art</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
+              <div class="u-opt-icon"><span class="material-symbols-outlined">local_cafe</span></div>
+              <div class="u-opt-text"><strong data-en="Specialty Coffee" data-ml="സ്പെഷ്യൽറ്റി കാപ്പി">Specialty Coffee</strong><span data-en="Single-origin, pour-over, latte art" data-ml="സിംഗിൾ ഓറിജിൻ, പോർ ഓവർ, ലാറ്റെ ആർട്ട്">Single-origin, pour-over, latte art</span></div>
+              <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
-            <label class="survey-option" onclick="selectOption(this,'cafe_type','traditional')">
+            <label class="u-opt" onclick="selectSingle(this,'cafe_type','traditional')">
               <input type="radio" name="cafe_type" value="traditional">
-              <div class="icon"><span class="material-symbols-outlined">emoji_food_beverage</span></div>
-              <div class="text"><strong data-en="Traditional Kerala" data-ml="പരമ്പരാഗത കേരളം">Traditional Kerala</strong><span data-en="Filter kaapi, chai, Malabar snacks" data-ml="ഫിൽട്ടർ കാപ്പി, ചായ, മലബാർ സ്നാക്കുകൾ">Filter kaapi, chai, Malabar snacks</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
+              <div class="u-opt-icon"><span class="material-symbols-outlined">emoji_food_beverage</span></div>
+              <div class="u-opt-text"><strong data-en="Traditional Kerala" data-ml="പരമ്പരാഗത കേരളം">Traditional Kerala</strong><span data-en="Filter kaapi, chai, Malabar snacks" data-ml="ഫിൽട്ടർ കാപ്പി, ചായ, മലബാർ സ്നാക്കുകൾ">Filter kaapi, chai, Malabar snacks</span></div>
+              <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
-            <label class="survey-option" onclick="selectOption(this,'cafe_type','fusion')">
+            <label class="u-opt" onclick="selectSingle(this,'cafe_type','fusion')">
               <input type="radio" name="cafe_type" value="fusion">
-              <div class="icon"><span class="material-symbols-outlined">auto_awesome</span></div>
-              <div class="text"><strong data-en="Modern Fusion" data-ml="ആധുനിക ഫ്യൂഷൻ">Modern Fusion</strong><span data-en="Karupatti latte, jackfruit cold brew" data-ml="കരുപ്പട്ടി ലാറ്റെ, ചക്ക കോൾഡ് ബ്രൂ">Karupatti latte, jackfruit cold brew</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
+              <div class="u-opt-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+              <div class="u-opt-text"><strong data-en="Modern Fusion" data-ml="ആധുനിക ഫ്യൂഷൻ">Modern Fusion</strong><span data-en="Karupatti latte, jackfruit cold brew" data-ml="കരുപ്പട്ടി ലാറ്റെ, ചക്ക കോൾഡ് ബ്രൂ">Karupatti latte, jackfruit cold brew</span></div>
+              <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
           </div>
-          <div class="survey-nav">
-            <button class="btn survey-back" onclick="prevStep()" style="display:none" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
-            <button class="btn btn-primary" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
-          </div>
-        </div>
-
-        <!-- Step 2: Drink Type -->
-        <div class="survey-step" data-step="2">
-          <h2 data-en="Your go-to drink?" data-ml="നിങ്ങളുടെ ഇഷ്ടപ്പെട്ട പാനീയം?">Your go-to drink?</h2>
-          <p data-en="What would you order first?" data-ml="ആദ്യം എന്താണ് ഓർഡർ ചെയ്യുക?">What would you order first?</p>
-          <div class="survey-options">
-            <label class="survey-option" onclick="selectOption(this,'drink_type','coffee')">
-              <input type="radio" name="drink_type" value="coffee">
-              <div class="icon"><span class="material-symbols-outlined">coffee</span></div>
-              <div class="text"><strong data-en="Coffee" data-ml="കാപ്പി">Coffee</strong><span data-en="Espresso, cold brew, cappuccino" data-ml="എസ്പ്രെസ്സോ, കോൾഡ് ബ്രൂ, കാപ്പുച്ചിനോ">Espresso, cold brew, cappuccino</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'drink_type','tea')">
-              <input type="radio" name="drink_type" value="tea">
-              <div class="icon"><span class="material-symbols-outlined">emoji_food_beverage</span></div>
-              <div class="text"><strong data-en="Tea" data-ml="ചായ">Tea</strong><span data-en="Chai, green tea, herbal" data-ml="ചായ, പച്ച ചായ, ഹെർബൽ">Chai, green tea, herbal</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'drink_type','cold')">
-              <input type="radio" name="drink_type" value="cold">
-              <div class="icon"><span class="material-symbols-outlined">local_bar</span></div>
-              <div class="text"><strong data-en="Cold Drinks" data-ml="തണുത്ത പാനീയങ്ങൾ">Cold Drinks</strong><span data-en="Smoothies, juice, iced tea" data-ml="സ്മൂത്തി, ജ്യൂസ്, ഐസ്ഡ് ടീ">Smoothies, juice, iced tea</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'drink_type','kerala')">
-              <input type="radio" name="drink_type" value="kerala">
-              <div class="icon"><span class="material-symbols-outlined">park</span></div>
-              <div class="text"><strong data-en="Kerala Special" data-ml="കേരള പ്രത്യേക">Kerala Special</strong><span data-en="Elaneer, Karupatti, Suleimani" data-ml="എളനീർ, കരുപ്പട്ടി, സുലൈമാനി">Elaneer, Karupatti, Suleimani</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-          </div>
-          <div class="survey-nav">
-            <button class="btn survey-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
-            <button class="btn btn-primary" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
+          <div class="u-nav">
+            <button class="u-cta u-back" onclick="prevStep()" style="display:none" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
           </div>
         </div>
 
-        <!-- Step 3: Price Range -->
-        <div class="survey-step" data-step="3">
-          <h2 data-en="What feels fair for a great cup?" data-ml="ഒരു മികച്ച കപ്പിന് എന്താണ് ന്യായം?">What feels fair for a great cup?</h2>
-          <p data-en="Your ideal price range" data-ml="നിങ്ങളുടെ ഇഷ്ടപ്പെട്ട വില പരിധി">Your ideal price range</p>
-          <div class="survey-options">
-            <label class="survey-option" onclick="selectOption(this,'price_range','budget')">
+        <!-- STEP 2: Drinks (Multi-Select) -->
+        <div class="u-step" data-step="2">
+          <div class="u-step-head">
+            <div class="u-live-badge"><span class="u-live-dot"></span> <span data-en="Live — see what others are picking" data-ml="ലൈവ് — മറ്റുള്ളവർ എന്താണ് തിരഞ്ഞെടുക്കുന്നത് കാണുക">Live — see what others are picking</span></div>
+            <h2 data-en="Pick your drinks" data-ml="നിങ്ങളുടെ പാനീയങ്ങൾ തിരഞ്ഞെടുക്കുക">Pick your drinks</h2>
+            <p data-en="Select all that you'd love at Cuppilo" data-ml="CUPPILO-യിൽ ആഗ്രഹിക്കുന്നവ എല്ലാം തിരഞ്ഞെടുക്കുക">Select all that you'd love at Cuppilo</p>
+          </div>
+          <div class="u-multi-info"><strong id="drink-count">0</strong> <span data-en="selected" data-ml="തിരഞ്ഞെടുത്തു">selected</span></div>
+          <div class="u-multi-grid" id="drinks-grid"></div>
+          <div class="u-nav">
+            <button class="u-cta u-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Food (Multi-Select) -->
+        <div class="u-step" data-step="3">
+          <div class="u-step-head">
+            <div class="u-live-badge"><span class="u-live-dot"></span> <span data-en="Live — trending picks" data-ml="ലൈവ് — ട്രെൻഡിംഗ് പിക്കുകൾ">Live — trending picks</span></div>
+            <h2 data-en="What should we serve?" data-ml="നമ്മൾ എന്താണ് വിളമ്പേണ്ടത്?">What should we serve?</h2>
+            <p data-en="Select all that you'd love at Cuppilo (or skip)" data-ml="CUPPILO-യിൽ ആഗ്രഹിക്കുന്നവ തിരഞ്ഞെടുക്കുക (അല്ലെങ്കിൽ ഒഴിവാക്കുക)">Select all that you'd love at Cuppilo (or skip)</p>
+          </div>
+          <div class="u-multi-info"><strong id="food-count">0</strong> <span data-en="selected" data-ml="തിരഞ്ഞെടുത്തു">selected</span></div>
+          <div class="u-multi-grid" id="food-grid"></div>
+          <div class="u-nav">
+            <button class="u-cta u-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="nextStep()" data-en="Skip for now" data-ml="ഇപ്പോൾ ഒഴിവാക്കുക">Skip for now</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Ambiance Theme -->
+        <div class="u-step" data-step="4">
+          <div class="u-step-head">
+            <h2 data-en="Your perfect vibe?" data-ml="നിങ്ങളുടെ പൂർണ്ണ വൈബ്?">Your perfect vibe?</h2>
+            <p data-en="Where would you spend hours?" data-ml="നിങ്ങൾ മണിക്കൂറുകൾ ചെലവഴിക്കുന്നത് എവിടെ?">Where would you spend hours?</p>
+          </div>
+          <div class="u-amb-grid" id="amb-grid"></div>
+          <div class="u-custom-wrap" id="custom-wrap">
+            <label class="u-custom-label" data-en="Describe your dream café vibe (optional)" data-ml="നിങ്ങളുടെ സ്വപ്ന കഫേ വൈബ് വിവരിക്കുക (ഓപ്ഷണൽ)">Describe your dream café vibe (optional)</label>
+            <input type="text" class="u-custom-input" id="custom-ambiance" placeholder="e.g. Rooftop with fairy lights and old Malayalam film posters..." maxlength="120"/>
+          </div>
+          <div class="u-nav">
+            <button class="u-cta u-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Price Range -->
+        <div class="u-step" data-step="5">
+          <div class="u-step-head">
+            <h2 data-en="What feels fair for a great cup?" data-ml="ഒരു മികച്ച കപ്പിന് എന്താണ് ന്യായം?">What feels fair for a great cup?</h2>
+            <p data-en="Your ideal price range" data-ml="നിങ്ങളുടെ ഇഷ്ടപ്പെട്ട വില പരിധി">Your ideal price range</p>
+          </div>
+          <div class="u-options">
+            <label class="u-opt" onclick="selectSingle(this,'price_range','budget')">
               <input type="radio" name="price_range" value="budget">
-              <div class="icon"><span class="material-symbols-outlined">savings</span></div>
-              <div class="text"><strong data-en="₹40–80" data-ml="₹40–80">₹40–80</strong><span data-en="Everyday affordable" data-ml="എല്ലാ ദിവസവും പ്രാപ്യം">Everyday affordable</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
+              <div class="u-opt-icon"><span class="material-symbols-outlined">savings</span></div>
+              <div class="u-opt-text"><strong data-en="₹40–80" data-ml="₹40–80">₹40–80</strong><span data-en="Everyday affordable" data-ml="എല്ലാ ദിവസവും പ്രാപ്യം">Everyday affordable</span></div>
+              <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
-            <label class="survey-option" onclick="selectOption(this,'price_range','mid')">
+            <label class="u-opt" onclick="selectSingle(this,'price_range','mid')">
               <input type="radio" name="price_range" value="mid">
-              <div class="icon"><span class="material-symbols-outlined">payments</span></div>
-              <div class="text"><strong data-en="₹80–150" data-ml="₹80–150">₹80–150</strong><span data-en="Quality feels right" data-ml="ഗുണമേമ്മന്മ ശരിയാണ്">Quality feels right</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
+              <div class="u-opt-icon"><span class="material-symbols-outlined">payments</span></div>
+              <div class="u-opt-text"><strong data-en="₹80–150" data-ml="₹80–150">₹80–150</strong><span data-en="Quality feels right" data-ml="ഗുണമേമ്മന്മ ശരിയാണ്">Quality feels right</span></div>
+              <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
-            <label class="survey-option" onclick="selectOption(this,'price_range','premium')">
+            <label class="u-opt" onclick="selectSingle(this,'price_range','premium')">
               <input type="radio" name="price_range" value="premium">
-              <div class="icon"><span class="material-symbols-outlined">diamond</span></div>
-              <div class="text"><strong data-en="₹150+" data-ml="₹150+">₹150+</strong><span data-en="Worth the experience" data-ml="അനുഭവത്തിന് വിലമതിക്കും">Worth the experience</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
+              <div class="u-opt-icon"><span class="material-symbols-outlined">diamond</span></div>
+              <div class="u-opt-text"><strong data-en="₹150+" data-ml="₹150+">₹150+</strong><span data-en="Worth the experience" data-ml="അനുഭവത്തിന് വിലമതിക്കും">Worth the experience</span></div>
+              <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
           </div>
-          <div class="survey-nav">
-            <button class="btn survey-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
-            <button class="btn btn-primary" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
-          </div>
-        </div>
-
-        <!-- Step 4: Atmosphere -->
-        <div class="survey-step" data-step="4">
-          <h2 data-en="Your perfect vibe?" data-ml="നിങ്ങളുടെ പൂർണ്ണ വൈബ്?">Your perfect vibe?</h2>
-          <p data-en="Where would you spend hours?" data-ml="നിങ്ങൾ മണിക്കൂറുകൾ ചെലവഴിക്കുന്നത് എവിടെ?">Where would you spend hours?</p>
-          <div class="survey-options">
-            <label class="survey-option" onclick="selectOption(this,'atmosphere','work')">
-              <input type="radio" name="atmosphere" value="work">
-              <div class="icon"><span class="material-symbols-outlined">laptop</span></div>
-              <div class="text"><strong data-en="Quiet & Work-Friendly" data-ml="ശാന്തവും ജോലി സൗഹൃദവും">Quiet & Work-Friendly</strong><span data-en="WiFi, sockets, soft music" data-ml="വൈഫൈ, സോക്കറ്റുകൾ, മൃദു സംഗീതം">WiFi, sockets, soft music</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'atmosphere','social')">
-              <input type="radio" name="atmosphere" value="social">
-              <div class="icon"><span class="material-symbols-outlined">groups</span></div>
-              <div class="text"><strong data-en="Social & Lively" data-ml="സാമൂഹ്യവും ജീവസ്സുറ്റതും">Social & Lively</strong><span data-en="Long tables, board games, chatter" data-ml="നീണ്ട മേശകൾ, ബോർഡ് ഗെയിമുകൾ, സംഭാഷണം">Long tables, board games, chatter</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'atmosphere','cozy')">
-              <input type="radio" name="atmosphere" value="cozy">
-              <div class="icon"><span class="material-symbols-outlined">nights_stay</span></div>
-              <div class="text"><strong data-en="Cozy & Intimate" data-ml="സുഖകരവും അടുത്തവും">Cozy & Intimate</strong><span data-en="Fairy lights, warm corners, slow" data-ml="ഫെയറി ലൈറ്റുകൾ, ചൂടുള്ള കോണുകൾ, സാവധാനം">Fairy lights, warm corners, slow</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'atmosphere','open')">
-              <input type="radio" name="atmosphere" value="open">
-              <div class="icon"><span class="material-symbols-outlined">deck</span></div>
-              <div class="text"><strong data-en="Open Air & Veranda" data-ml="തുറന്ന വായു & വരാന്ത">Open Air & Veranda</strong><span data-en="Plants, breeze, evening sun" data-ml="സസ്യങ്ങൾ, കാറ്റ്, വൈകുന്നേര സൂര്യൻ">Plants, breeze, evening sun</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-          </div>
-          <div class="survey-nav">
-            <button class="btn survey-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
-            <button class="btn btn-primary" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
-          </div>
-        </div>
-
-        <!-- Step 5: Food -->
-        <div class="survey-step" data-step="5">
-          <h2 data-en="What should we serve?" data-ml="നമ്മൾ എന്താണ് വിളമ്പേണ്ടത്?">What should we serve?</h2>
-          <p data-en="Pick your must-haves" data-ml="നിങ്ങളുടെ നിർബന്ധം തിരഞ്ഞെടുക്കുക">Pick your must-haves</p>
-          <div class="survey-options">
-            <label class="survey-option" onclick="selectOption(this,'food_type','kerala')">
-              <input type="radio" name="food_type" value="kerala">
-              <div class="icon"><span class="material-symbols-outlined">restaurant</span></div>
-              <div class="text"><strong data-en="Kerala Snacks" data-ml="കേരള സ്നാക്കുകൾ">Kerala Snacks</strong><span data-en="Pazham pori, medu vada, samosa" data-ml="പഴം പൊരി, മെഡു വട, സമൂസ">Pazham pori, medu vada, samosa</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'food_type','cafe')">
-              <input type="radio" name="food_type" value="cafe">
-              <div class="icon"><span class="material-symbols-outlined">lunch_dining</span></div>
-              <div class="text"><strong data-en="Café Bites" data-ml="കഫേ ബൈറ്റ്സ്">Café Bites</strong><span data-en="Sandwiches, burgers, toast" data-ml="സാൻഡ്‌വിച്ച്, ബർഗർ, ടോസ്റ്റ്">Sandwiches, burgers, toast</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'food_type','dessert')">
-              <input type="radio" name="food_type" value="dessert">
-              <div class="icon"><span class="material-symbols-outlined">cake</span></div>
-              <div class="text"><strong data-en="Desserts" data-ml="ഡെസേർട്ടുകൾ">Desserts</strong><span data-en="Cake, brownie, payasam" data-ml="കേക്ക്, ബ്രൗണി, പായസം">Cake, brownie, payasam</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'food_type','none')">
-              <input type="radio" name="food_type" value="none">
-              <div class="icon"><span class="material-symbols-outlined">coffee</span></div>
-              <div class="text"><strong data-en="Drinks Only" data-ml="പാനീയങ്ങൾ മാത്രം">Drinks Only</strong><span data-en="Just great coffee is enough" data-ml="മികച്ച കാപ്പി മതി">Just great coffee is enough</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-          </div>
-          <div class="survey-nav">
-            <button class="btn survey-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
-            <button class="btn btn-primary" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
-          </div>
-        </div>
-
-        <!-- Step 6: Location -->
-        <div class="survey-step" data-step="6">
-          <h2 data-en="Where should Cuppilo open?" data-ml="CUPPILO എവിടെ തുറക്കണം?">Where should Cuppilo open?</h2>
-          <p data-en="Help us find the right spot" data-ml="ശരിയായ സ്ഥലം കണ്ടെത്താൻ സഹായിക്കുക">Help us find the right spot</p>
-          <div class="survey-options">
-            <label class="survey-option" onclick="selectOption(this,'location_pref','city')">
-              <input type="radio" name="location_pref" value="city">
-              <div class="icon"><span class="material-symbols-outlined">location_city</span></div>
-              <div class="text"><strong data-en="City Center" data-ml="സിറ്റി സെന്റർ">City Center</strong><span data-en="Busy, accessible, central" data-ml="തിരക്കേറിയ, പ്രാപ്യം, കേന്ദ്രീയം">Busy, accessible, central</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'location_pref','quiet')">
-              <input type="radio" name="location_pref" value="quiet">
-              <div class="icon"><span class="material-symbols-outlined">park</span></div>
-              <div class="text"><strong data-en="Quiet Neighborhood" data-ml="ശാന്തമായ പരിസരം">Quiet Neighborhood</strong><span data-en="Residential, peaceful, hidden gem" data-ml="റെസിഡൻഷ്യൽ, ശാന്തം, ഒളിഞ്ഞിരിക്കുന്ന ഗ്രഹം">Residential, peaceful, hidden gem</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-            <label class="survey-option" onclick="selectOption(this,'location_pref','college')">
-              <input type="radio" name="location_pref" value="college">
-              <div class="icon"><span class="material-symbols-outlined">school</span></div>
-              <div class="text"><strong data-en="Near College / Office" data-ml="കോളേജ് / ഓഫീസ് അടുത്ത്">Near College / Office</strong><span data-en="Student-friendly, quick stops" data-ml="വിദ്യാർത്ഥി സൗഹൃദം, വേഗത്തിലുള്ള സന്ദർശനങ്ങൾ">Student-friendly, quick stops</span></div>
-              <div class="check"><span class="material-symbols-outlined" style="font-size:16px">check</span></div>
-            </label>
-          </div>
-          <div class="survey-nav">
-            <button class="btn survey-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
-            <button class="btn btn-primary" onclick="submitSurvey()" data-en="Submit" data-ml="സമർപ്പിക്കുക">Submit</button>
+          <div class="u-nav">
+            <button class="u-cta u-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="submitSurvey()" data-en="See My Founding Card" data-ml="എന്റെ സ്ഥാപക കാർഡ് കാണുക">See My Founding Card</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FOUNDING GUEST CARD -->
-    <section class="founding-card-section" id="founding-card-section">
-      <div class="survey-container">
-        <div class="founding-card">
+    <!-- ═══ FOUNDING GUEST CARD ═══ -->
+    <section class="u-card-section" id="u-card-section">
+      <div style="max-width:480px;margin:0 auto;padding:0 1rem">
+        <div class="f-card">
           <div class="badge" data-en="FOUNDING GUEST" data-ml="സ്ഥാപക അതിഥി">FOUNDING GUEST</div>
           <div class="logo-text">CUPPILO</div>
           <div class="subtitle" data-en="Before the first cup" data-ml="ആദ്യ കപ്പിന് മുമ്പ്">Before the first cup</div>
@@ -373,102 +323,45 @@
           <div class="quote" data-en="I was here before the first cup." data-ml="ഞാൻ ആദ്യ കപ്പിന് മുമ്പ് ഇവിടെ ഉണ്ടായിരുന്നു.">I was here before the first cup.</div>
           <div class="year">2026</div>
         </div>
-        <div class="founding-actions">
-          <a href="support.html" class="btn btn-primary">
-            <span class="material-symbols-outlined" style="font-size:18px">local_cafe</span>
-            <span data-en="Support CUPPILO" data-ml="CUPPILO-യെ പിന്തുണയ്ക്കുക">Support CUPPILO</span>
-          </a>
-          <a href="community-results.html" class="btn btn-outline">
-            <span class="material-symbols-outlined" style="font-size:18px">bar_chart</span>
-            <span data-en="See Results" data-ml="ഫലങ്ങൾ കാണുക">See Results</span>
-          </a>
-          <button class="btn" style="background:var(--surface-h);color:var(--on-s)" onclick="shareResult()">
+        <div class="f-actions">
+          <button class="btn btn-primary" onclick="shareResult()">
             <span class="material-symbols-outlined" style="font-size:18px">share</span>
             <span data-en="Share" data-ml="പങ്കിടുക">Share</span>
           </button>
+          <a href="support.html" class="btn btn-outline">
+            <span class="material-symbols-outlined" style="font-size:18px">favorite</span>
+            <span data-en="Support Us" data-ml="പിന്തുണയ്ക്കുക">Support Us</span>
+          </a>
+          <a href="community-results.html" class="btn" style="background:var(--surface-h);color:var(--on-s)">
+            <span class="material-symbols-outlined" style="font-size:18px">bar_chart</span>
+            <span data-en="See Results" data-ml="ഫലങ്ങൾ കാണുക">See Results</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="about-section" id="about-section">
+    <!-- ═══ ABOUT ═══ -->
+    <section class="u-about" id="u-about">
       <div class="container">
-        <div class="about-grid">
-          <div class="about-visual">
-            <blockquote data-en="&quot;We don't have a café yet. Because Cuppilo doesn't exist yet. Help us create it.&quot;" data-ml="&quot;ഞങ്ങൾക്ക് ഇപ്പോൾ കഫേ ഇല്ല. കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.&quot;">"We don't have a café yet. Because Cuppilo doesn't exist yet. Help us create it."</blockquote>
+        <div class="u-about-grid">
+          <div class="u-about-quote">
+            <blockquote data-en="&quot;You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it.&quot;" data-ml="&quot;നിങ്ങൾ ഇതുവരെ CUPPILO സന്ദർശിച്ചിട്ടില്ല. കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.&quot;">"You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it."</blockquote>
           </div>
-          <div class="about-text">
+          <div class="u-about-text">
             <h2 data-en="About CUPPILO" data-ml="CUPPILO-യെ കുറിച്ച്">About CUPPILO</h2>
-            <p data-en="Cupillo is a 1-year research campaign to build Kerala's first community-built specialty café. We're not selling coffee yet — we're building the menu, ambiance, and pricing with you." data-ml="CUPPILO കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച സ്പെഷ്യൽറ്റി കഫേ നിർമ്മിക്കാനുള്ള 1-വർഷത്തെ ഗവേഷണ കാമ്പെയ്‌നാണ്. ഞങ്ങൾ ഇപ്പോൾ കാപ്പി വിൽക്കുന്നില്ല — നിങ്ങളോടൊപ്പം മെനു, അന്തരീക്ഷം, വില എന്നിവ നിർമ്മിക്കുകയാണ്.">Cupillo is a 1-year research campaign to build Kerala's first community-built specialty café. We're not selling coffee yet — we're building the menu, ambiance, and pricing with you.</p>
-            <p data-en="Every response shapes what Cuppilo becomes. Your vote on drinks, food, atmosphere, and pricing directly influences our concept." data-ml="ഓരോ മറുപടിയും CUPPILO എന്താകണമെന്ന് രൂപപ്പെടുത്തുന്നു. പാനീയങ്ങൾ, ഭക്ഷണം, അന്തരീക്ഷം, വില എന്നിവയിലുള്ള നിങ്ങളുടെ വോട്ട് നേരിട്ട് ഞങ്ങളുടെ ആശയത്തെ സ്വാധീനിക്കുന്നു.">Every response shapes what Cuppilo becomes. Your vote on drinks, food, atmosphere, and pricing directly influences our concept.</p>
+            <p data-en="Cupillo is a 1-year research campaign to build Kerala's first community-built specialty café. We're not selling coffee yet — we're building the menu, ambiance, and pricing with you." data-ml="CUPPILO കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച സ്പെഷ്യൽറ്റി കഫേ നിർമ്മിക്കാനുള്ള 1-വർഷത്തെ ഗവേഷണ കാമ്പെയ്‌നാണ്.">Cupillo is a 1-year research campaign to build Kerala's first community-built specialty café. We're not selling coffee yet — we're building the menu, ambiance, and pricing with you.</p>
+            <p data-en="Every response shapes what Cuppilo becomes. Your vote on drinks, food, atmosphere, and pricing directly influences our concept." data-ml="ഓരോ മറുപടിയും CUPPILO എന്താകണമെന്ന് രൂപപ്പെടുത്തുന്നു.">Every response shapes what Cuppilo becomes. Your vote on drinks, food, atmosphere, and pricing directly influences our concept.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="how-section">
+    <!-- ═══ BOTTOM CTA ═══ -->
+    <section class="u-bottom-cta" id="u-bottom-cta">
       <div class="container">
-        <div style="text-align:center">
-          <h2 style="font-size:1.5rem;font-weight:800;color:var(--charcoal)" data-en="How It Works" data-ml="എങ്ങനെ പ്രവർത്തിക്കുന്നു">How It Works</h2>
-          <p style="font-size:.9375rem;color:var(--on-sv);margin-top:.5rem" data-en="3 simple steps. 2 minutes. Zero spam." data-ml="3 ലളിത ഘട്ടങ്ങൾ. 2 മിനിറ്റ്. സ്പാം ഇല്ല.">3 simple steps. 2 minutes. Zero spam.</p>
-        </div>
-        <div class="how-steps">
-          <div class="how-step">
-            <div class="how-step-num">1</div>
-            <h3 data-en="Answer 6 Questions" data-ml="6 ചോദ്യങ്ങൾക്ക് ഉത്തരിക്കുക">Answer 6 Questions</h3>
-            <p data-en="Quick taps on your café preferences — drinks, food, vibe, price, location." data-ml="നിങ്ങളുടെ കഫേ മുൻഗണനകൾ — പാനീയങ്ങൾ, ഭക്ഷണം, വൈബ്, വില, ലൊക്കേഷൻ.">Quick taps on your café preferences — drinks, food, vibe, price, location.</p>
-          </div>
-          <div class="how-step">
-            <div class="how-step-num">2</div>
-            <h3 data-en="Become a Founding Guest" data-ml="സ്ഥാപക അതിഥിയാകുക">Become a Founding Guest</h3>
-            <p data-en="Get your unique Founding Guest number — proof you were here before the first cup." data-ml="നിങ്ങളുടെ അദ്വിതീയ സ്ഥാപക അതിഥി നമ്പർ നേടുക — ആദ്യ കപ്പിന് മുമ്പ് നിങ്ങൾ ഇവിടെ ഉണ്ടായിരുന്നു എന്ന തെളിവ്.">Get your unique Founding Guest number — proof you were here before the first cup.</p>
-          </div>
-          <div class="how-step">
-            <div class="how-step-num">3</div>
-            <h3 data-en="Help Build Cuppilo" data-ml="CUPPILO നിർമ്മിക്കാൻ സഹായിക്കുക">Help Build Cuppilo</h3>
-            <p data-en="Your answers shape our menu, pricing, and ambiance. We listen and build with you." data-ml="നിങ്ങളുടെ ഉത്തരങ്ങൾ ഞങ്ങളുടെ മെനു, വില, അന്തരീക്ഷം രൂപപ്പെടുത്തുന്നു. ഞങ്ങൾ കേൾക്കുകയും നിങ്ങളോടൊപ്പം നിർമ്മിക്കുകയും ചെയ്യുന്നു.">Your answers shape our menu, pricing, and ambiance. We listen and build with you.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIVE RESULTS -->
-    <section class="results-section" id="results-section">
-      <div class="container">
-        <div style="text-align:center">
-          <h2 style="font-size:1.5rem;font-weight:800;color:var(--charcoal)" data-en="What Kerala Is Choosing" data-ml="കേരളം തിരഞ്ഞെടുക്കുന്നത് എന്ത്">What Kerala Is Choosing</h2>
-          <p style="font-size:.9375rem;color:var(--on-sv);margin-top:.5rem" data-en="Live results from real people" data-ml="യഥാർത്ഥ ആളുകളിൽ നിന്നുള്ള ലൈവ് ഫലങ്ങൾ">Live results from real people</p>
-        </div>
-        <div class="results-grid">
-          <div class="result-card">
-            <span class="material-symbols-outlined">local_cafe</span>
-            <div class="label" data-en="Most Wanted" data-ml="ഏറ്റവും ആഗ്രഹിക്കുന്നത്">Most Wanted</div>
-            <div class="value" id="top-cafe">—</div>
-            <div class="sub" data-en="café type" data-ml="കഫേ തരം">café type</div>
-          </div>
-          <div class="result-card">
-            <span class="material-symbols-outlined">payments</span>
-            <div class="label" data-en="Sweet Spot" data-ml="സ്വീറ്റ് സ്പോട്ട്">Sweet Spot</div>
-            <div class="value" id="top-price">—</div>
-            <div class="sub" data-en="price range" data-ml="വില പരിധി">price range</div>
-          </div>
-          <div class="result-card">
-            <span class="material-symbols-outlined">groups</span>
-            <div class="label" data-en="People" data-ml="ആളുകൾ">People</div>
-            <div class="value" id="total-responses">0</div>
-            <div class="sub" data-en="participated" data-ml="പങ്കെടുത്തു">participated</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BOTTOM CTA -->
-    <section style="padding:4rem 0;text-align:center;background:var(--charcoal);color:var(--cream)">
-      <div class="container">
-        <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.75rem" data-en="You haven't visited Cuppilo yet." data-ml="നിങ്ങൾ ഇതുവരെ CUPPILO സന്ദർശിച്ചിട്ടില്ല.">You haven't visited Cuppilo yet.</h2>
-        <p style="font-family:'Newsreader',serif;font-style:italic;font-size:1.125rem;color:rgba(247,244,235,.6);margin-bottom:2rem" data-en="Because Cuppilo doesn't exist yet. Help us create it." data-ml="കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.">Because Cuppilo doesn't exist yet. Help us create it.</p>
-        <button class="hero-cta" onclick="startSurvey()" style="background:var(--brass);color:var(--charcoal)">
+        <h2 data-en="You haven't visited Cuppilo yet." data-ml="നിങ്ങൾ ഇതുവരെ CUPPILO സന്ദർശിച്ചിട്ടില്ല.">You haven't visited Cuppilo yet.</h2>
+        <p data-en="Because Cuppilo doesn't exist yet. Help us create it." data-ml="കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.">Because Cuppilo doesn't exist yet. Help us create it.</p>
+        <button class="u-cta" onclick="startSurvey()" style="background:var(--brass);color:var(--charcoal)">
           <span data-en="Get Started — 2 min" data-ml="ആരംഭിക്കുക — 2 മിനിറ്റ്">Get Started — 2 min</span>
           <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
         </button>
@@ -481,145 +374,272 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
-    var currentStep = 1;
-    var totalSteps = 6;
-    var surveyData = {};
+    // ══════════════════════════════════════════
+    //  DATA — Top menu items for quick picks
+    // ══════════════════════════════════════════
+    var drinkItems = [
+      {id:'c004',name:'Cappuccino',desc:'Espresso, steamed milk, silky foam',price:129,icon:'local_cafe',grad:'#3e2723,#795548',cat:'Coffee'},
+      {id:'c005',name:'Cafe Latte',desc:'Smooth espresso, creamy steamed milk',price:139,icon:'local_cafe',grad:'#3e2723,#795548',cat:'Coffee'},
+      {id:'c009',name:'Jaggery Filter Coffee',desc:'Traditional with Kerala jaggery',price:59,icon:'local_cafe',grad:'#3e2723,#795548',cat:'Coffee'},
+      {id:'t005',name:'Sulaimani',desc:'Kerala-style spiced black tea',price:35,icon:'emoji_food_beverage',grad:'#fff3e0,#ffb74d',cat:'Tea'},
+      {id:'t007',name:'Signature Chaya',desc:'CUPPILO house tea blend',price:49,icon:'emoji_food_beverage',grad:'#fff3e0,#ffb74d',cat:'Tea'},
+      {id:'cl01',name:'Cold Coffee',desc:'Chilled creamy coffee',price:99,icon:'local_drink',grad:'#e0f2f1,#80cbc4',cat:'Cold'},
+      {id:'cl06',name:'Banana Jaggery Shake',desc:'Banana, milk, Kerala jaggery',price:109,icon:'local_drink',grad:'#e0f2f1,#80cbc4',cat:'Cold'},
+      {id:'k001',name:'Nannari Sarbath',desc:'Traditional Kerala summer cooler',price:49,icon:'water_drop',grad:'#e8f5e9,#81c784',cat:'Kerala'},
+      {id:'s001',name:'CUPPILO Signature Coffee',desc:'House coffee, Kerala-inspired',price:129,icon:'star',grad:'#231F20,#C89D5C',cat:'Signature'}
+    ];
 
+    var foodItems = [
+      {id:'f001',name:'Pazham Pori',desc:'Crispy Kerala banana fritter',price:20,icon:'restaurant',grad:'#fff8e1,#ffd54f',cat:'Snacks'},
+      {id:'f004',name:'Unniyappam',desc:'Jaggery & banana rice cake',price:30,icon:'restaurant',grad:'#fff8e1,#ffd54f',cat:'Snacks'},
+      {id:'f006',name:'Egg Puff',desc:'Flaky pastry, spiced egg',price:40,icon:'restaurant',grad:'#fff8e1,#ffd54f',cat:'Snacks'},
+      {id:'b001',name:'Classic Fries',desc:'Crispy golden fries',price:79,icon:'fastfood',grad:'#f1f8e9,#aed581',cat:'Bites'},
+      {id:'b005',name:'Cheese Garlic Bread',desc:'Garlic bread with melted cheese',price:119,icon:'fastfood',grad:'#f1f8e9,#aed581',cat:'Bites'},
+      {id:'s001',name:'Veg Grilled Sandwich',desc:'Grilled vegetables & cheese',price:89,icon:'lunch_dining',grad:'#fce4ec,#f48fb1',cat:'Sandwich'},
+      {id:'d001',name:'Brownie',desc:'Warm chocolate brownie',price:69,icon:'cake',grad:'#f3e5f5,#ce93d8',cat:'Dessert'},
+      {id:'d002',name:'Brownie & Ice Cream',desc:'Warm brownie, vanilla ice cream',price:109,icon:'cake',grad:'#f3e5f5,#ce93d8',cat:'Dessert'}
+    ];
+
+    var ambThemes = [
+      {id:'work',name:'Quiet & Work-Friendly',desc:'WiFi, power sockets, soft lo-fi. The focused freelancer\'s paradise.',icon:'laptop',grad:'linear-gradient(135deg,#1a1a2e,#16213e)',tags:['WiFi','Sockets','Soft Music','Laptop-friendly']},
+      {id:'social',name:'Social & Lively',desc:'Long communal tables, board games, conversations that spill over.',icon:'groups',grad:'linear-gradient(135deg,#e65100,#ff8f00)',tags:['Communal','Games','Chatter','Shared tables']},
+      {id:'cozy',name:'Cozy & Intimate',desc:'Fairy lights, warm corners, the kind of place you lose track of time.',icon:'nights_stay',grad:'linear-gradient(135deg,#4a148c,#7b1fa2)',tags:['Fairy lights','Warm','Intimate','Slow']},
+      {id:'open',name:'Open Air & Veranda',desc:'Plants, evening breeze, Kerala-style veranda seating.',icon:'deck',grad:'linear-gradient(135deg,#1b5e20,#388e3c)',tags:['Plants','Breeze','Veranda','Evening sun']}
+    ];
+
+    // ══════════════════════════════════════════
+    //  STATE
+    // ══════════════════════════════════════════
+    var currentStep = 1, totalSteps = 5;
+    var surveyData = { drinks: [], food: [], ambiance: null };
+    var trendingDrinks = {}, trendingFood = {};
+
+    // ══════════════════════════════════════════
+    //  FLOW CONTROL
+    // ══════════════════════════════════════════
     function startSurvey() {
-      var profile = getProfile();
-      if (!profile) {
+      if (!getProfile()) {
         document.getElementById('name-card-overlay').classList.add('active');
         return;
       }
-      document.getElementById('hero-section').style.display = 'none';
-      document.getElementById('about-section').style.display = 'none';
-      document.querySelector('.how-section').style.display = 'none';
-      document.getElementById('results-section').style.display = 'none';
-      document.querySelectorAll('section[style*="background:var(--charcoal)"]').forEach(function(s) { s.style.display = 'none'; });
-      document.getElementById('survey-section').classList.add('active');
-      document.getElementById('founding-card-section').classList.remove('active');
+      document.getElementById('hero').style.display = 'none';
+      document.getElementById('u-about').style.display = 'none';
+      document.getElementById('u-bottom-cta').style.display = 'none';
+      document.getElementById('u-steps').classList.add('active');
+      document.getElementById('u-card-section').classList.remove('active');
       renderProgress();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      renderDrinks();
+      renderFood();
+      renderAmbiance();
+      loadTrending();
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
     function renderProgress() {
-      var html = '';
-      for (var i = 1; i <= totalSteps; i++) {
-        html += '<div class="bar' + (i <= currentStep ? ' filled' : '') + '"></div>';
-      }
-      document.getElementById('survey-progress').innerHTML = html;
+      var h = '';
+      for (var i = 1; i <= totalSteps; i++) h += '<div class="bar' + (i <= currentStep ? ' filled' : '') + '"></div>';
+      document.getElementById('u-progress').innerHTML = h;
     }
 
-    function selectOption(el, name, value) {
-      el.closest('.survey-options').querySelectorAll('.survey-option').forEach(function(o) { o.classList.remove('selected'); });
+    function showStep(n) {
+      document.querySelectorAll('.u-step').forEach(function(s) { s.classList.remove('active'); });
+      document.querySelector('[data-step="' + n + '"]').classList.add('active');
+      renderProgress();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function nextStep() {
+      if (currentStep === 1 && !surveyData.cafe_type) {
+        showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'ദയവായി ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക' : 'Please select an option','error');
+        return;
+      }
+      if (currentStep === 4 && !surveyData.ambiance) {
+        showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'ദയവായി ഒരു വൈബ് തിരഞ്ഞെടുക്കുക' : 'Please pick a vibe','error');
+        return;
+      }
+      if (currentStep < totalSteps) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) { currentStep--; showStep(currentStep); }
+    }
+
+    // ══════════════════════════════════════════
+    //  SINGLE SELECT
+    // ══════════════════════════════════════════
+    function selectSingle(el, name, value) {
+      el.closest('.u-options').querySelectorAll('.u-opt').forEach(function(o) { o.classList.remove('selected'); });
       el.classList.add('selected');
       el.querySelector('input').checked = true;
       surveyData[name] = value;
     }
 
-    function nextStep() {
-      var active = document.querySelector('.survey-step.active');
-      var name = active.querySelector('input[type="radio"]') ? active.querySelector('input[type="radio"]').name : null;
-      if (name && !surveyData[name]) {
-        showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'ദയവായി ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക' : 'Please select an option', 'error');
-        return;
-      }
-      if (currentStep < totalSteps) {
-        active.classList.remove('active');
-        currentStep++;
-        document.querySelector('[data-step="' + currentStep + '"]').classList.add('active');
-        renderProgress();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+    // ══════════════════════════════════════════
+    //  MULTI SELECT — Drinks
+    // ══════════════════════════════════════════
+    function renderDrinks() {
+      var grid = document.getElementById('drinks-grid');
+      grid.innerHTML = '';
+      drinkItems.forEach(function(item) {
+        var trend = trendingDrinks[item.id] || 0;
+        var card = document.createElement('div');
+        card.className = 'u-multi-card';
+        card.dataset.id = item.id;
+        card.innerHTML =
+          '<div class="u-multi-check"><span class="material-symbols-outlined">check</span></div>' +
+          '<div class="u-multi-top">' +
+            '<div class="u-multi-icon" style="background:linear-gradient(135deg,' + item.grad + ')"><span class="material-symbols-outlined">' + item.icon + '</span></div>' +
+            '<div><div class="u-multi-name">' + item.name + '</div><div class="u-multi-price">₹' + item.price + '</div></div>' +
+          '</div>' +
+          '<div class="u-multi-desc">' + item.desc + '</div>' +
+          (trend > 0 ? '<div class="u-multi-trend"><span class="material-symbols-outlined">trending_up</span>' + trend + ' picked this</div>' : '');
+        card.onclick = function() { toggleMulti('drinks', item.id, item.name); card.classList.toggle('selected'); };
+        grid.appendChild(card);
+      });
     }
 
-    function prevStep() {
-      if (currentStep > 1) {
-        document.querySelector('.survey-step.active').classList.remove('active');
-        currentStep--;
-        document.querySelector('[data-step="' + currentStep + '"]').classList.add('active');
-        renderProgress();
-      }
+    // ══════════════════════════════════════════
+    //  MULTI SELECT — Food
+    // ══════════════════════════════════════════
+    function renderFood() {
+      var grid = document.getElementById('food-grid');
+      grid.innerHTML = '';
+      foodItems.forEach(function(item) {
+        var trend = trendingFood[item.id] || 0;
+        var card = document.createElement('div');
+        card.className = 'u-multi-card';
+        card.dataset.id = item.id;
+        card.innerHTML =
+          '<div class="u-multi-check"><span class="material-symbols-outlined">check</span></div>' +
+          '<div class="u-multi-top">' +
+            '<div class="u-multi-icon" style="background:linear-gradient(135deg,' + item.grad + ')"><span class="material-symbols-outlined">' + item.icon + '</span></div>' +
+            '<div><div class="u-multi-name">' + item.name + '</div><div class="u-multi-price">₹' + item.price + '</div></div>' +
+          '</div>' +
+          '<div class="u-multi-desc">' + item.desc + '</div>' +
+          (trend > 0 ? '<div class="u-multi-trend"><span class="material-symbols-outlined">trending_up</span>' + trend + ' picked this</div>' : '');
+        card.onclick = function() { toggleMulti('food', item.id, item.name); card.classList.toggle('selected'); };
+        grid.appendChild(card);
+      });
     }
 
+    function toggleMulti(type, id, name) {
+      var arr = surveyData[type];
+      var idx = arr.findIndex(function(x) { return x.id === id; });
+      if (idx >= 0) arr.splice(idx, 1); else arr.push({id: id, name: name});
+      var countEl = document.getElementById(type === 'drinks' ? 'drink-count' : 'food-count');
+      if (countEl) countEl.textContent = arr.length;
+    }
+
+    // ══════════════════════════════════════════
+    //  AMBIANCE THEME PICKER
+    // ══════════════════════════════════════════
+    function renderAmbiance() {
+      var grid = document.getElementById('amb-grid');
+      grid.innerHTML = '';
+      ambThemes.forEach(function(t) {
+        var card = document.createElement('div');
+        card.className = 'u-amb-card';
+        card.dataset.id = t.id;
+        card.innerHTML =
+          '<div class="u-amb-check"><span class="material-symbols-outlined">check</span></div>' +
+          '<div class="u-amb-visual" style="background:' + t.grad + '"><span class="material-symbols-outlined">' + t.icon + '</span></div>' +
+          '<div class="u-amb-body">' +
+            '<div class="u-amb-name">' + t.name + '</div>' +
+            '<div class="u-amb-desc">' + t.desc + '</div>' +
+            '<div class="u-amb-tags">' + t.tags.map(function(tag) { return '<span class="u-amb-tag">' + tag + '</span>'; }).join('') + '</div>' +
+          '</div>';
+        card.onclick = function() {
+          grid.querySelectorAll('.u-amb-card').forEach(function(c) { c.classList.remove('selected'); });
+          card.classList.add('selected');
+          surveyData.ambiance = t.id;
+          document.getElementById('custom-wrap').classList.toggle('show', t.id === 'open');
+        };
+        grid.appendChild(card);
+      });
+    }
+
+    // ══════════════════════════════════════════
+    //  LIVE TRENDING
+    // ══════════════════════════════════════════
+    async function loadTrending() {
+      try {
+        var results = await Promise.all([
+          sbSelect('trending_drinks', 'item_id,item_name,vote_count'),
+          sbSelect('trending_food', 'item_id,item_name,vote_count'),
+          sbSelect('survey_responses', 'id')
+        ]);
+        if (Array.isArray(results[0])) {
+          results[0].forEach(function(r) { trendingDrinks[r.item_id] = r.vote_count; });
+          renderDrinks();
+        }
+        if (Array.isArray(results[1])) {
+          results[1].forEach(function(r) { trendingFood[r.item_id] = r.vote_count; });
+          renderFood();
+        }
+        var total = Array.isArray(results[2]) ? results[2].length : 0;
+        document.getElementById('hero-count').textContent = total;
+      } catch(e) { console.log('Trending load skipped:', e); }
+    }
+
+    // ══════════════════════════════════════════
+    //  SUBMIT
+    // ══════════════════════════════════════════
     async function submitSurvey() {
-      var active = document.querySelector('.survey-step.active');
-      var name = active.querySelector('input[type="radio"]') ? active.querySelector('input[type="radio"]').name : null;
-      if (name && !surveyData[name]) {
-        showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'ദയവായി ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക' : 'Please select an option', 'error');
+      if (!surveyData.price_range) {
+        showToast(document.documentElement.getAttribute('data-lang') === 'ml' ? 'ദയവായി ഒരു വില തിരഞ്ഞെടുക്കുക' : 'Please select a price range','error');
         return;
       }
       var profile = getProfile();
-      if (!profile) {
-        showToast('Please enter your name first', 'error');
-        return;
-      }
+      if (!profile) { showToast('Please enter your name first','error'); return; }
       try {
         var result = await sbInsert('survey_responses', {
           display_name: profile.display_name,
           session_id: profile.session_id,
           cafe_type: surveyData.cafe_type || null,
-          drink_type: surveyData.drink_type || null,
-          price_range: surveyData.price_range || null,
-          atmosphere: surveyData.atmosphere || null,
-          food_type: surveyData.food_type || null,
-          location_pref: surveyData.location_pref || null
+          drinks_voted: JSON.stringify(surveyData.drinks),
+          food_voted: JSON.stringify(surveyData.food),
+          ambiance_choice: surveyData.ambiance || null,
+          custom_ambiance: document.getElementById('custom-ambiance').value.trim() || null,
+          price_range: surveyData.price_range || null
         });
         var guestNum = result && result[0] ? result[0].founding_guest_number : 1;
-        showFoundingCard(guestNum);
-      } catch (e) {
-        console.error('Survey submit error:', e);
-        showToast('Something went wrong. Please try again.', 'error');
+        showCard(guestNum);
+      } catch(e) {
+        console.error('Submit error:', e);
+        showToast('Something went wrong. Please try again.','error');
       }
     }
 
-    function showFoundingCard(num) {
-      document.getElementById('survey-section').classList.remove('active');
-      document.getElementById('survey-section').style.display = 'none';
-      document.getElementById('founding-card-section').classList.add('active');
-      document.getElementById('guest-number').textContent = '#' + String(num).padStart(5, '0');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function showCard(num) {
+      document.getElementById('u-steps').classList.remove('active');
+      document.getElementById('u-steps').style.display = 'none';
+      document.getElementById('u-about').style.display = 'none';
+      document.getElementById('u-bottom-cta').style.display = 'none';
+      document.getElementById('u-card-section').classList.add('active');
+      document.getElementById('guest-number').textContent = '#' + String(num).padStart(5,'0');
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
     function shareResult() {
       var num = document.getElementById('guest-number').textContent;
       var msg = "I'm Founding Guest " + num + " at CUPPILO! I helped shape Kerala's first community-built café. Join me: " + window.location.origin;
       if (navigator.share) {
-        navigator.share({ title: 'CUPPILO — Before the first cup', text: msg, url: window.location.origin });
+        navigator.share({title:'CUPPILO — Before the first cup',text:msg,url:window.location.origin});
       } else {
-        navigator.clipboard.writeText(msg).then(function() {
-          showToast('Copied to clipboard!', 'success');
-        });
+        navigator.clipboard.writeText(msg).then(function() { showToast('Copied to clipboard!','success'); });
       }
     }
 
-    async function loadLiveResults() {
-      try {
-        var data = await sbSelect('survey_responses', 'cafe_type,price_range');
-        if (!Array.isArray(data)) return;
-        document.getElementById('total-responses').textContent = data.length;
-        if (data.length === 0) return;
-        var cafeCounts = {};
-        var priceCounts = {};
-        data.forEach(function(r) {
-          if (r.cafe_type) cafeCounts[r.cafe_type] = (cafeCounts[r.cafe_type] || 0) + 1;
-          if (r.price_range) priceCounts[r.price_range] = (priceCounts[r.price_range] || 0) + 1;
-        });
-        var topCafe = Object.keys(cafeCounts).sort(function(a,b) { return cafeCounts[b] - cafeCounts[a]; })[0];
-        var topPrice = Object.keys(priceCounts).sort(function(a,b) { return priceCounts[b] - priceCounts[a]; })[0];
-        var cafeNames = { specialty: 'Specialty Coffee', traditional: 'Traditional Kerala', fusion: 'Modern Fusion' };
-        var priceNames = { budget: '₹40–80', mid: '₹80–150', premium: '₹150+' };
-        if (topCafe) document.getElementById('top-cafe').textContent = cafeNames[topCafe] || topCafe;
-        if (topPrice) document.getElementById('top-price').textContent = priceNames[topPrice] || topPrice;
-        document.getElementById('hero-count').textContent = data.length;
-      } catch (e) { console.log('Results skipped:', e); }
-    }
-
+    // ══════════════════════════════════════════
+    //  INIT
+    // ══════════════════════════════════════════
     document.addEventListener('DOMContentLoaded', function() {
       initPage('index');
-      loadLiveResults();
+      loadTrending();
     });
   </script>
-
 </body>
 </html>

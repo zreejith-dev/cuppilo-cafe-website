@@ -369,6 +369,12 @@
             <div id="survey-breakdown"></div>
           </div>
 
+          <!-- Trending Items -->
+          <div class="chart-wrap" style="margin-bottom:1.25rem" id="trending-wrap">
+            <h3><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;margin-right:.375rem">trending_up</span>Trending Items</h3>
+            <div id="trending-breakdown"></div>
+          </div>
+
           <!-- Individual Responses Table -->
           <div class="table-wrap" id="survey-table-wrap">
             <div class="empty-state" id="survey-empty">
@@ -822,25 +828,16 @@
         // Top café type
         var cafeCounts = {};
         var priceCounts = {};
-        var drinkCounts = {};
-        var atmoCounts = {};
-        var foodCounts = {};
-        var locCounts = {};
+        var ambCounts = {};
         arr.forEach(function(r) {
           if (r.cafe_type) cafeCounts[r.cafe_type] = (cafeCounts[r.cafe_type] || 0) + 1;
           if (r.price_range) priceCounts[r.price_range] = (priceCounts[r.price_range] || 0) + 1;
-          if (r.drink_type) drinkCounts[r.drink_type] = (drinkCounts[r.drink_type] || 0) + 1;
-          if (r.atmosphere) atmoCounts[r.atmosphere] = (atmoCounts[r.atmosphere] || 0) + 1;
-          if (r.food_type) foodCounts[r.food_type] = (foodCounts[r.food_type] || 0) + 1;
-          if (r.location_pref) locCounts[r.location_pref] = (locCounts[r.location_pref] || 0) + 1;
+          if (r.ambiance_choice) ambCounts[r.ambiance_choice] = (ambCounts[r.ambiance_choice] || 0) + 1;
         });
 
         var cafeNames = { specialty: 'Specialty Coffee', traditional: 'Traditional Kerala', fusion: 'Modern Fusion' };
         var priceNames = { budget: '₹40–80', mid: '₹80–150', premium: '₹150+' };
-        var drinkNames = { coffee: 'Coffee', tea: 'Tea', cold: 'Cold Drinks', kerala: 'Kerala Special' };
-        var atmoNames = { work: 'Quiet & Work', social: 'Social & Lively', cozy: 'Cozy & Intimate', open: 'Open Air' };
-        var foodNames = { kerala: 'Kerala Snacks', cafe: 'Café Bites', dessert: 'Desserts', none: 'Drinks Only' };
-        var locNames = { city: 'City Center', quiet: 'Quiet Area', college: 'Near College/Office' };
+        var ambNames = { work: 'Quiet & Work', social: 'Social & Lively', cozy: 'Cozy & Intimate', open: 'Open Air & Veranda' };
 
         function topItem(counts, names) {
           var sorted = Object.entries(counts).sort(function(a, b) { return b[1] - a[1]; });
@@ -855,11 +852,8 @@
         var breakdownHtml = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1rem">';
         var sections = [
           { title: 'Café Type', counts: cafeCounts, names: cafeNames, icon: 'local_cafe' },
-          { title: 'Drink Type', counts: drinkCounts, names: drinkNames, icon: 'emoji_food_beverage' },
-          { title: 'Price Range', counts: priceCounts, names: priceNames, icon: 'payments' },
-          { title: 'Atmosphere', counts: atmoCounts, names: atmoNames, icon: 'palette' },
-          { title: 'Food Type', counts: foodCounts, names: foodNames, icon: 'restaurant' },
-          { title: 'Location', counts: locCounts, names: locNames, icon: 'location_on' }
+          { title: 'Ambiance Theme', counts: ambCounts, names: ambNames, icon: 'palette' },
+          { title: 'Price Range', counts: priceCounts, names: priceNames, icon: 'payments' }
         ];
         sections.forEach(function(sec) {
           var total = Object.values(sec.counts).reduce(function(a, b) { return a + b; }, 0) || 1;
@@ -872,23 +866,69 @@
         breakdownHtml += '</div>';
         document.getElementById('survey-breakdown').innerHTML = breakdownHtml;
 
+        // Trending items from jsonb
+        var allDrinks = {};
+        var allFood = {};
+        arr.forEach(function(r) {
+          try {
+            var drinks = JSON.parse(r.drinks_voted || '[]');
+            drinks.forEach(function(d) {
+              var key = d.id || d.name;
+              if (key) allDrinks[key] = (allDrinks[key] || {name: d.name || key, count: 0});
+              allDrinks[key].count++;
+            });
+          } catch(e) {}
+          try {
+            var food = JSON.parse(r.food_voted || '[]');
+            food.forEach(function(f) {
+              var key = f.id || f.name;
+              if (key) allFood[key] = (allFood[key] || {name: f.name || key, count: 0});
+              allFood[key].count++;
+            });
+          } catch(e) {}
+        });
+        var trendingHtml = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem">';
+        // Drinks
+        var sortedDrinks = Object.values(allDrinks).sort(function(a,b){return b.count-a.count;}).slice(0,10);
+        trendingHtml += '<div><h4 style="font-size:.8125rem;font-weight:700;margin-bottom:.5rem"><span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle;color:var(--primary)">local_cafe</span> Trending Drinks</h4>';
+        if (sortedDrinks.length === 0) trendingHtml += '<p style="font-size:.8125rem;color:var(--on-sv)">No drink votes yet.</p>';
+        else sortedDrinks.forEach(function(d) {
+          var pct = arr.length > 0 ? Math.round((d.count / arr.length) * 100) : 0;
+          trendingHtml += '<div class="bar-row"><div class="bar-label">' + esc(d.name) + '</div><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"><span>' + d.count + '</span></div></div></div>';
+        });
+        trendingHtml += '</div>';
+        // Food
+        var sortedFood = Object.values(allFood).sort(function(a,b){return b.count-a.count;}).slice(0,10);
+        trendingHtml += '<div><h4 style="font-size:.8125rem;font-weight:700;margin-bottom:.5rem"><span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle;color:var(--brass)">restaurant</span> Trending Food</h4>';
+        if (sortedFood.length === 0) trendingHtml += '<p style="font-size:.8125rem;color:var(--on-sv)">No food votes yet.</p>';
+        else sortedFood.forEach(function(f) {
+          var pct = arr.length > 0 ? Math.round((f.count / arr.length) * 100) : 0;
+          trendingHtml += '<div class="bar-row"><div class="bar-label">' + esc(f.name) + '</div><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"><span>' + f.count + '</span></div></div></div>';
+        });
+        trendingHtml += '</div></div>';
+        document.getElementById('trending-breakdown').innerHTML = trendingHtml;
+
         // Individual responses table
         var wrap = document.getElementById('survey-table-wrap');
         if (arr.length === 0) {
           wrap.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">inbox</span><p>No survey responses yet.</p></div>';
           return;
         }
-        var html = '<table><thead><tr><th>#</th><th>Name</th><th>Café</th><th>Drink</th><th>Price</th><th>Vibe</th><th>Food</th><th>Location</th><th>Date</th></tr></thead><tbody>';
+        var ambLabels = {work:'Quiet',social:'Social',cozy:'Cozy',open:'Open Air'};
+        var html = '<table><thead><tr><th>#</th><th>Name</th><th>Café</th><th>Drinks</th><th>Food</th><th>Vibe</th><th>Price</th><th>Date</th></tr></thead><tbody>';
         arr.sort(function(a, b) { return (b.founding_guest_number || 0) - (a.founding_guest_number || 0); }).forEach(function(r) {
+          var drinks = [];
+          try { drinks = JSON.parse(r.drinks_voted || '[]'); } catch(e) {}
+          var food = [];
+          try { food = JSON.parse(r.food_voted || '[]'); } catch(e) {}
           html += '<tr>' +
             '<td style="font-family:monospace;font-weight:700;color:var(--primary)">#' + String(r.founding_guest_number || 0).padStart(5, '0') + '</td>' +
             '<td>' + esc(r.display_name || '--') + '</td>' +
             '<td>' + esc(cafeNames[r.cafe_type] || r.cafe_type || '--') + '</td>' +
-            '<td>' + esc(drinkNames[r.drink_type] || r.drink_type || '--') + '</td>' +
+            '<td>' + (drinks.length > 0 ? drinks.map(function(d){return esc(d.name||d.id);}).join(', ') : '--') + '</td>' +
+            '<td>' + (food.length > 0 ? food.map(function(f){return esc(f.name||f.id);}).join(', ') : '--') + '</td>' +
+            '<td>' + esc(ambLabels[r.ambiance_choice] || r.ambiance_choice || '--') + '</td>' +
             '<td>' + esc(priceNames[r.price_range] || r.price_range || '--') + '</td>' +
-            '<td>' + esc(atmoNames[r.atmosphere] || r.atmosphere || '--') + '</td>' +
-            '<td>' + esc(foodNames[r.food_type] || r.food_type || '--') + '</td>' +
-            '<td>' + esc(locNames[r.location_pref] || r.location_pref || '--') + '</td>' +
             '<td>' + formatDate(r.created_at) + '</td>' +
             '</tr>';
         });
