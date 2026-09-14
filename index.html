@@ -187,8 +187,29 @@
         </button>
         <div class="u-meta">
           <span><span class="material-symbols-outlined">groups</span> <span id="hero-count">0</span> <span data-en="people joined" data-ml="ആളുകൾ ചേർന്നു">people joined</span></span>
-          <span><span class="material-symbols-outlined">schedule</span> <span data-en="2 min · No login" data-ml="2 മിനിറ്റ് · ലോഗിൻ ഇല്ല">2 min · No login</span></span>
         </div>
+        <div id="countdown" style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.5rem">
+          <div style="text-align:center">
+            <div id="cd-days" style="font-size:2rem;font-weight:800;color:var(--primary);font-family:monospace;line-height:1">---</div>
+            <div style="font-size:.6875rem;font-weight:600;color:var(--on-sv);text-transform:uppercase;letter-spacing:.05em" data-en="Days" data-ml="ദിവസം">Days</div>
+          </div>
+          <div style="font-size:1.5rem;color:var(--muted);font-weight:300">:</div>
+          <div style="text-align:center">
+            <div id="cd-hours" style="font-size:2rem;font-weight:800;color:var(--primary);font-family:monospace;line-height:1">--</div>
+            <div style="font-size:.6875rem;font-weight:600;color:var(--on-sv);text-transform:uppercase;letter-spacing:.05em" data-en="Hours" data-ml="മണിക്കൂർ">Hours</div>
+          </div>
+          <div style="font-size:1.5rem;color:var(--muted);font-weight:300">:</div>
+          <div style="text-align:center">
+            <div id="cd-mins" style="font-size:2rem;font-weight:800;color:var(--primary);font-family:monospace;line-height:1">--</div>
+            <div style="font-size:.6875rem;font-weight:600;color:var(--on-sv);text-transform:uppercase;letter-spacing:.05em" data-en="Min" data-ml="മിനിറ്റ്">Min</div>
+          </div>
+          <div style="font-size:1.5rem;color:var(--muted);font-weight:300">:</div>
+          <div style="text-align:center">
+            <div id="cd-secs" style="font-size:2rem;font-weight:800;color:var(--primary);font-family:monospace;line-height:1">--</div>
+            <div style="font-size:.6875rem;font-weight:600;color:var(--on-sv);text-transform:uppercase;letter-spacing:.05em" data-en="Sec" data-ml="സെക്കൻഡ്">Sec</div>
+          </div>
+        </div>
+        <div style="font-size:.75rem;color:var(--on-sv);margin-top:.5rem" data-en="Until Cuppilo opens" data-ml="CUPPILO തുറക്കുന്നത് വരെ">Until Cuppilo opens</div>
       </div>
     </section>
 
@@ -634,10 +655,43 @@
     }
 
     // ══════════════════════════════════════════
+    //  COUNTDOWN — 356 days from tomorrow
+    // ══════════════════════════════════════════
+    function initCountdown() {
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0, 0, 0, 0);
+      var target = new Date(tomorrow.getTime() + 356 * 24 * 60 * 60 * 1000);
+
+      function update() {
+        var now = new Date();
+        var diff = target - now;
+        if (diff <= 0) {
+          document.getElementById('cd-days').textContent = '0';
+          document.getElementById('cd-hours').textContent = '00';
+          document.getElementById('cd-mins').textContent = '00';
+          document.getElementById('cd-secs').textContent = '00';
+          return;
+        }
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var secs = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById('cd-days').textContent = days;
+        document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+        document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+      }
+      update();
+      setInterval(update, 1000);
+    }
+
+    // ══════════════════════════════════════════
     //  INIT
     // ══════════════════════════════════════════
     document.addEventListener('DOMContentLoaded', function() {
       initPage('index');
+      initCountdown();
       loadTrending();
     });
   </script>

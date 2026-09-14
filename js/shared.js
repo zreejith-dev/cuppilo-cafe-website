@@ -266,10 +266,7 @@ function renderFooter() {
       '</div>' +
     '</div>' +
     '<div style="border-top:1px solid var(--muted);margin-top:2rem;padding-top:1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem">' +
-      '<span style="font-size:.75rem;color:var(--on-sv)">&copy; 2026 CUPPILO. All rights reserved.</span>' +
-      '<div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--on-sv)">' +
-        '<span class="material-symbols-outlined" style="font-size:14px;color:var(--success)">eco</span>' +
-        '<span data-en="Wayanad & Nelliyampathy Arabica sourcing" data-ml="\u0d35\u0d2f\u0d28\u0d3e\u0d1f\u0d4d & \u0d28\u0d46\u0d32\u0d4d\u0d32\u0d3f\u0d2f\u0d2e\u0d4d\u0d2a\u0d24\u0d3f \u0d05\u0d31\u0d47\u0d2c\u0d3f\u0d15\u0d4d\u0d15 \u0d38\u0d4b\u0d30\u0d4d\u0d38\u0d3f\u0d02\u0d17\u0d4d">Wayanad & Nelliyampathy Arabica sourcing</span>' +
+        '<span style="font-size:.75rem;color:var(--on-sv)">&copy; 2026 CUPPILO. All rights reserved.</span>' +
       '</div>' +
     '</div>' +
   '</div>';
