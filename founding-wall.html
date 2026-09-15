@@ -2,64 +2,65 @@
 <html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Founding Wall — CUPPILO</title>
   <meta name="description" content="The people who helped build Cuppilo before the first cup."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://cuppilo.in/founding-wall.html"/>
-  <meta name="theme-color" content="#A93B2B"/>
+  <meta name="theme-color" content="#872419"/>
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://cuppilo.in/founding-wall.html"/>
   <meta property="og:title" content="Founding Wall — CUPPILO"/>
   <meta property="og:description" content="The people who helped build Cuppilo before the first cup."/>
-  <meta property="og:image" content="https://cuppilo.in/img/logo-en-light.png"/>
   <meta property="og:site_name" content="CUPPILO"/>
   <meta name="twitter:card" content="summary"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <style>
     .wall-hero{text-align:center;padding:3rem 1rem 2rem}
-    .wall-badge{display:inline-flex;align-items:center;gap:.375rem;background:rgba(169,59,43,.08);padding:.375rem .875rem;border-radius:9999px;font-size:.75rem;font-weight:600;color:var(--primary);margin-bottom:1rem}
+    .wall-badge{display:inline-flex;align-items:center;gap:.375rem;background:rgba(135,36,25,.08);padding:.375rem .875rem;border-radius:9999px;font-size:.75rem;font-weight:600;color:var(--primary);margin-bottom:1rem}
     .wall-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--primary);animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
     .wall-title{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:800;color:var(--charcoal);margin-bottom:.5rem}
     .wall-sub{font-size:1rem;color:var(--on-sv);max-width:28rem;margin:0 auto}
     .wall-count{text-align:center;margin:1.5rem 0}
-    .wall-count-num{font-size:3rem;font-weight:800;color:var(--primary);font-family:monospace;line-height:1}
+    .wall-count-num{font-size:3rem;font-weight:800;color:var(--primary);line-height:1}
     .wall-count-label{font-size:.8125rem;color:var(--on-sv);margin-top:.25rem}
     .wall-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.75rem;padding:0 1rem 3rem;max-width:800px;margin:0 auto}
-    .wall-person{display:flex;align-items:center;gap:.75rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:.75rem;padding:1rem;transition:all .2s}
-    .wall-person:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
-    .wall-avatar{width:40px;height:40px;border-radius:50%;background:var(--surface-l);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;flex-shrink:0}
+    .wall-person{display:flex;align-items:center;gap:.75rem;background:var(--surface-card);border:1.5px solid var(--muted);border-radius:1rem;padding:1rem;transition:all .2s}
+    .wall-person:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+    .wall-person.highlighted{border-color:var(--brass);box-shadow:0 0 0 3px rgba(217,164,65,.3);background:var(--surface-l)}
+    .wall-avatar{width:40px;height:40px;border-radius:50%;background:var(--primary-container);color:var(--on-p);display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;flex-shrink:0}
     .wall-info{flex:1;min-width:0}
     .wall-name{font-size:.875rem;font-weight:700;color:var(--on-s);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .wall-guest{font-size:.75rem;font-weight:600;color:var(--primary);font-family:monospace}
+    .wall-guest{font-size:.75rem;font-weight:600;color:var(--primary)}
     .wall-empty{text-align:center;padding:4rem 1rem}
     .wall-empty .material-symbols-outlined{font-size:48px;color:var(--on-sv);opacity:.3;margin-bottom:.75rem;display:block}
     .wall-empty p{font-size:.9375rem;color:var(--on-sv)}
-    .wall-cta{text-align:center;padding:2rem 1rem}
-    .wall-bottom{text-align:center;padding:3rem 0;background:var(--charcoal);color:var(--cream)}
+    .wall-bottom{text-align:center;padding:3rem 0;background:var(--surface-dark);color:var(--cream)}
     .wall-bottom h2{font-size:1.5rem;font-weight:800;margin-bottom:.5rem}
-    .wall-bottom p{font-family:'Newsreader',serif;font-style:italic;color:rgba(247,244,235,.6);margin-bottom:1.5rem}
+    .wall-bottom p{font-family:'Playfair Display',serif;font-style:italic;color:rgba(247,241,235,.6);margin-bottom:1.5rem}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
   </style>
 </head>
 <body>
 
   <div class="splash-screen" id="splash-screen">
-    <img src="img/logo-en-light.png" alt="CUPPILO" class="splash-logo">
-    <div class="splash-text" data-en="Before we open, you decide what we become." data-ml="തുറക്കുന്നതിന് മുമ്പ്, നിങ്ങൾ നിർണ്ണയിക്കുന്നു നമ്മൾ എന്താകണമെന്ന്.">Before we open, you decide what we become.</div>
-    <div class="splash-sub" data-en="Kerala's first community-built cafe" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built cafe</div>
+    <div class="splash-logo-wrap">
+      <svg class="splash-logo" viewBox="0 0 160 48" fill="none"><text x="0" y="34" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-weight="900" font-size="32" letter-spacing="3" fill="var(--primary)">CUPPILO</text><circle cx="152" cy="18" r="4" fill="var(--brass)"/></svg>
+    </div>
+    <div class="splash-progress"><div class="splash-progress-fill"></div></div>
   </div>
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
-      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
-      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
+      <span class="material-symbols-outlined" style="font-size:40px;color:var(--primary);margin-bottom:.75rem">waving_hand</span>
+      <h2>Welcome to CUPPILO</h2>
+      <p>What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
+      <button class="btn btn-primary" onclick="submitName()">Get Started</button>
     </div>
   </div>
 
@@ -67,22 +68,22 @@
 
   <main>
     <section class="wall-hero">
-      <div class="wall-badge"><span class="dot"></span> <span data-en="Live Wall" data-ml="ലൈവ് മതിൽ">Live Wall</span></div>
-      <h1 class="wall-title" data-en="Founding Wall" data-ml="സ്ഥാപക മതിൽ">Founding Wall</h1>
-      <p class="wall-sub" data-en="These people helped build Cuppilo before the first cup." data-ml="ആദ്യ കപ്പിന് മുമ്പ് ഇവർ CUPPILO നിർമ്മിക്കാൻ സഹായിച്ചു.">These people helped build Cuppilo before the first cup.</p>
+      <div class="wall-badge"><span class="dot"></span> Live Wall</div>
+      <h1 class="wall-title">Founding Wall</h1>
+      <p class="wall-sub">These people helped build Cuppilo before the first cup.</p>
     </section>
 
     <div class="wall-count">
       <div class="wall-count-num" id="wall-total">0</div>
-      <div class="wall-count-label" data-en="Founding Guests" data-ml="സ്ഥാപക അതിഥികൾ">Founding Guests</div>
+      <div class="wall-count-label">Founding Guests</div>
     </div>
 
     <div class="wall-grid" id="wall-grid">
       <div class="wall-empty" id="wall-empty">
         <span class="material-symbols-outlined">group</span>
-        <p data-en="No founding guests yet. Be the first!" data-ml="ഇപ്പോൾ ഒരു സ്ഥാപക അതിഥിയുമില്ല. ആദ്യത്തെ ആൾ ആകൂ!">No founding guests yet. Be the first!</p>
+        <p>No founding guests yet. Be the first!</p>
         <a href="index.html" class="btn btn-primary" style="margin-top:1rem">
-          <span data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</span>
+          Get Started
           <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
         </a>
       </div>
@@ -90,10 +91,10 @@
 
     <section class="wall-bottom">
       <div class="container">
-        <h2 data-en="You haven't visited Cuppilo yet." data-ml="നിങ്ങൾ ഇതുവരെ CUPPILO സന്ദർശിച്ചിട്ടില്ല.">You haven't visited Cuppilo yet.</h2>
-        <p data-en="Because Cuppilo doesn't exist yet. Help us create it." data-ml="കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.">Because Cuppilo doesn't exist yet. Help us create it.</p>
+        <h2>You haven't visited Cuppilo yet.</h2>
+        <p>Because Cuppilo doesn't exist yet. Help us create it.</p>
         <a href="index.html" class="btn btn-primary" style="padding:.875rem 2rem;font-size:1rem">
-          <span data-en="Join the Wall" data-ml="മതിലിൽ ചേരുക">Join the Wall</span>
+          Join the Wall
           <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
         </a>
       </div>
@@ -121,18 +122,33 @@
         }
         empty.style.display = 'none';
 
+        // Check for ?guest= param to highlight
+        var params = new URLSearchParams(window.location.search);
+        var highlightGuest = parseInt(params.get('guest')) || 0;
+
         grid.innerHTML = arr.map(function(p) {
           var name = p.display_name || 'Anonymous';
           var initials = name.split(' ').map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
-          var num = '#' + String(p.founding_guest_number || 0).padStart(5, '0');
-          return '<div class="wall-person">' +
+          var num = p.founding_guest_number || 0;
+          var numStr = '#' + String(num).padStart(5, '0');
+          var isHighlighted = num === highlightGuest;
+          return '<div class="wall-person' + (isHighlighted ? ' highlighted' : '') + '">' +
             '<div class="wall-avatar">' + initials + '</div>' +
             '<div class="wall-info">' +
               '<div class="wall-name">' + name + '</div>' +
-              '<div class="wall-guest">' + num + '</div>' +
+              '<div class="wall-guest">' + numStr + '</div>' +
             '</div>' +
+            (isHighlighted ? '<span class="material-symbols-outlined" style="color:var(--brass);font-size:20px">bookmark</span>' : '') +
           '</div>';
         }).join('');
+
+        // Scroll to highlighted guest
+        if (highlightGuest) {
+          setTimeout(function() {
+            var el = document.querySelector('.wall-person.highlighted');
+            if (el) el.scrollIntoView({behavior:'smooth',block:'center'});
+          }, 500);
+        }
       } catch (e) {
         console.error('Wall load error:', e);
       }
