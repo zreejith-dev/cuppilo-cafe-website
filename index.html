@@ -113,17 +113,27 @@
     /* Founding Card */
     .u-card-section{display:none;padding:3rem 0;text-align:center}
     .u-card-section.active{display:block}
-    .f-card{max-width:360px;margin:0 auto;background:var(--charcoal);border-radius:1.5rem;padding:2.5rem 2rem;color:var(--cream);position:relative;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.3)}
-    .f-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:var(--primary);border-radius:50%;opacity:.15}
-    .f-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;background:var(--brass);border-radius:50%;opacity:.1}
+    .f-card{max-width:360px;margin:0 auto;perspective:1000px;cursor:pointer}
+    .f-card-inner{position:relative;width:100%;transition:transform .6s;transform-style:preserve-3d}
+    .f-card.flipped .f-card-inner{transform:rotateY(180deg)}
+    .f-card-front,.f-card-back{backface-visibility:hidden;border-radius:1.5rem;padding:2.5rem 2rem;color:var(--cream);position:relative;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.3)}
+    .f-card-front{background:var(--charcoal)}
+    .f-card-back{background:var(--charcoal);position:absolute;top:0;left:0;right:0;transform:rotateY(180deg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .f-card-front::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:var(--primary);border-radius:50%;opacity:.15}
+    .f-card-front::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;background:var(--brass);border-radius:50%;opacity:.1}
     .f-card .badge{font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--brass);margin-bottom:1.5rem}
     .f-card .logo-text{font-size:1.5rem;font-weight:800;letter-spacing:.08em;margin-bottom:.25rem}
     .f-card .subtitle{font-family:'Newsreader',serif;font-style:italic;font-size:.875rem;color:rgba(247,244,235,.6);margin-bottom:1.5rem}
     .f-card .divider{width:60px;height:2px;background:var(--brass);margin:0 auto 1rem;opacity:.4}
     .f-card .guest-label{font-size:.6875rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(247,244,235,.5);margin-bottom:.25rem}
-    .f-card .guest-number{font-size:3rem;font-weight:800;color:var(--brass);line-height:1;margin-bottom:1.5rem;font-family:monospace}
-    .f-card .quote{font-family:'Newsreader',serif;font-style:italic;font-size:.875rem;color:rgba(247,244,235,.7);line-height:1.5;margin-bottom:1rem}
+    .f-card .guest-number{font-size:3rem;font-weight:800;color:var(--brass);line-height:1;margin-bottom:1rem;font-family:monospace}
+    .f-card .quote{font-family:'Newsreader',serif;font-style:italic;font-size:.875rem;color:rgba(247,244,235,.7);line-height:1.5;margin-bottom:.5rem}
     .f-card .year{font-size:.75rem;color:rgba(247,244,235,.4)}
+    .f-card .flip-hint{font-size:.6875rem;color:rgba(247,244,235,.4);margin-top:.75rem;display:flex;align-items:center;gap:.25rem}
+    .f-card .flip-hint .material-symbols-outlined{font-size:14px}
+    .f-card-back .qr-box{width:180px;height:180px;background:#fff;border-radius:1rem;padding:.75rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:center}
+    .f-card-back .qr-label{font-size:.8125rem;color:rgba(247,244,235,.6);margin-bottom:.25rem}
+    .f-card-back .qr-url{font-size:.6875rem;color:var(--brass);font-family:monospace}
     .f-actions{display:flex;gap:.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
     .f-actions .btn{min-width:140px}
 
@@ -334,28 +344,40 @@
     <!-- ═══ FOUNDING GUEST CARD ═══ -->
     <section class="u-card-section" id="u-card-section">
       <div style="max-width:480px;margin:0 auto;padding:0 1rem">
-        <div class="f-card">
-          <div class="badge" data-en="FOUNDING GUEST" data-ml="സ്ഥാപക അതിഥി">FOUNDING GUEST</div>
-          <div class="logo-text">CUPPILO</div>
-          <div class="subtitle" data-en="Before the first cup" data-ml="ആദ്യ കപ്പിന് മുമ്പ്">Before the first cup</div>
-          <div class="divider"></div>
-          <div class="guest-label" data-en="You are guest number" data-ml="നിങ്ങൾ അതിഥി നമ്പറാണ്">You are guest number</div>
-          <div class="guest-number" id="guest-number">#00001</div>
-          <div class="quote" data-en="I was here before the first cup." data-ml="ഞാൻ ആദ്യ കപ്പിന് മുമ്പ് ഇവിടെ ഉണ്ടായിരുന്നു.">I was here before the first cup.</div>
-          <div class="year">2026</div>
+        <div class="f-card" id="f-card" onclick="document.getElementById('f-card').classList.toggle('flipped')">
+          <div class="f-card-inner">
+            <!-- FRONT -->
+            <div class="f-card-front">
+              <div class="badge" data-en="FOUNDING GUEST" data-ml="സ്ഥാപക അതിഥി">FOUNDING GUEST</div>
+              <div class="logo-text">CUPPILO</div>
+              <div class="subtitle" data-en="Before the first cup" data-ml="ആദ്യ കപ്പിന് മുമ്പ്">Before the first cup</div>
+              <div class="divider"></div>
+              <div class="guest-label" data-en="You are guest number" data-ml="നിങ്ങൾ അതിഥി നമ്പറാണ്">You are guest number</div>
+              <div class="guest-number" id="guest-number">#00001</div>
+              <div class="quote" data-en="I was here before the first cup." data-ml="ഞാൻ ആദ്യ കപ്പിന് മുമ്പ് ഇവിടെ ഉണ്ടായിരുന്നു.">I was here before the first cup.</div>
+              <div class="year">2026</div>
+              <div class="flip-hint"><span class="material-symbols-outlined">touch_app</span> <span data-en="Tap to flip" data-ml="ഫ്ലിപ്പ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക">Tap to flip</span></div>
+            </div>
+            <!-- BACK -->
+            <div class="f-card-back">
+              <div class="badge" data-en="YOUR QR CODE" data-ml="നിങ്ങളുടെ QR കോഡ്">YOUR QR CODE</div>
+              <div class="qr-box" id="qr-box">
+                <canvas id="qr-canvas"></canvas>
+              </div>
+              <div class="qr-label" data-en="Scan to view your founding card" data-ml="നിങ്ങളുടെ സ്ഥാപക കാർഡ് കാണാൻ സ്കാൻ ചെയ്യുക">Scan to view your founding card</div>
+              <div class="qr-url" id="qr-url">cuppilo.in</div>
+              <div class="flip-hint" style="margin-top:1rem"><span class="material-symbols-outlined">touch_app</span> <span data-en="Tap to flip back" data-ml="തിരികെ ഫ്ലിപ്പ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക">Tap to flip back</span></div>
+            </div>
+          </div>
         </div>
         <div class="f-actions">
           <button class="btn btn-primary" onclick="shareResult()">
             <span class="material-symbols-outlined" style="font-size:18px">share</span>
-            <span data-en="Share" data-ml="പങ്കിടുക">Share</span>
+            <span data-en="Share Card" data-ml="കാർഡ് പങ്കിടുക">Share Card</span>
           </button>
-          <a href="support.html" class="btn btn-outline">
-            <span class="material-symbols-outlined" style="font-size:18px">favorite</span>
-            <span data-en="Support Us" data-ml="പിന്തുണയ്ക്കുക">Support Us</span>
-          </a>
-          <a href="community-results.html" class="btn" style="background:var(--surface-h);color:var(--on-s)">
-            <span class="material-symbols-outlined" style="font-size:18px">bar_chart</span>
-            <span data-en="See Results" data-ml="ഫലങ്ങൾ കാണുക">See Results</span>
+          <a href="founding-wall.html" class="btn btn-outline">
+            <span class="material-symbols-outlined" style="font-size:18px">wall_art</span>
+            <span data-en="Check Your Position" data-ml="നിങ്ങളുടെ സ്ഥാനം പരിശോധിക്കുക">Check Your Position</span>
           </a>
         </div>
       </div>
@@ -641,6 +663,11 @@
       document.getElementById('u-bottom-cta').style.display = 'none';
       document.getElementById('u-card-section').classList.add('active');
       document.getElementById('guest-number').textContent = '#' + String(num).padStart(5,'0');
+      // Generate QR code
+      var url = window.location.origin + '/founding-wall.html';
+      var qrBox = document.getElementById('qr-box');
+      qrBox.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + encodeURIComponent(url) + '&bgcolor=231F20&color=C89D5C" alt="QR Code" style="width:100%;height:100%;border-radius:.5rem"/>';
+      document.getElementById('qr-url').textContent = url.replace('https://','');
       window.scrollTo({top:0,behavior:'smooth'});
     }
 

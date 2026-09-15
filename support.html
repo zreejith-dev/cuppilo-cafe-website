@@ -3,52 +3,57 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Support CUPPILO — Buy Me a Coffee</title>
-  <meta name="description" content="Support CUPPILO's journey from idea to reality. Every coffee counts. Scan the QR or tap to support."/>
+  <title>Support — CUPPILO</title>
+  <meta name="description" content="Buy a coffee to support CUPPILO. Every cup helps us build Kerala's first community café."/>
   <meta name="robots" content="index, follow"/>
   <link rel="canonical" href="https://cuppilo.in/support.html"/>
   <meta name="theme-color" content="#A93B2B"/>
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
-  <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://cuppilo.in/support.html"/>
-  <meta property="og:title" content="Support CUPPILO — Buy Me a Coffee"/>
-  <meta property="og:description" content="Support CUPPILO's journey from idea to reality. Every coffee counts."/>
+  <meta property="og:title" content="Support — CUPPILO"/>
+  <meta property="og:description" content="Buy a coffee to support CUPPILO."/>
   <meta property="og:image" content="https://cuppilo.in/img/logo-en-light.png"/>
   <meta property="og:site_name" content="CUPPILO"/>
-  <meta property="og:locale" content="en_IN"/>
   <meta name="twitter:card" content="summary"/>
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <style>
-    .flip-card{perspective:1000px;width:100%;max-width:340px;margin:0 auto;cursor:pointer}
-    .flip-card-inner{position:relative;width:100%;height:340px;transition:transform .6s;transform-style:preserve-3d}
-    .flip-card.flipped .flip-card-inner{transform:rotateY(180deg)}
-    .flip-card-front,.flip-card-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:1.5rem;padding:2rem;display:flex;align-items:center;justify-content:center}
-    .flip-card-front{background:var(--bg-card);border:2px solid var(--muted);box-shadow:var(--shadow-lg)}
-    .flip-card-back{background:var(--bg-card);border:2px solid var(--brass);box-shadow:var(--shadow-lg);transform:rotateY(180deg);flex-direction:column}
-    .supporter-row{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:.75rem;margin-bottom:.5rem}
-    .supporter-avatar{width:36px;height:36px;border-radius:50%;background:var(--brass-soft);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;flex-shrink:0}
-    .stat-card{text-align:center;padding:1.25rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:.75rem;flex:1}
-    .stat-card .material-symbols-outlined{font-size:28px;color:var(--primary);margin-bottom:.5rem}
-    .stat-value{font-size:1.5rem;font-weight:800;color:var(--charcoal)}
-    .stat-label{font-size:.75rem;color:var(--on-sv);margin-top:.25rem}
-    .tier-support-card{border:1.5px solid var(--muted);border-radius:.75rem;padding:1.25rem;transition:all .2s}
-    .tier-support-card:hover{border-color:var(--brass);box-shadow:var(--shadow-md)}
-    .tier-support-card h3{font-size:1rem;font-weight:700;color:var(--charcoal);margin-bottom:.25rem}
-    .tier-support-card .tier-price{font-size:1.25rem;font-weight:800;color:var(--primary)}
-    .tier-support-card p{font-size:.8125rem;color:var(--on-sv);line-height:1.6}
-    @media(max-width:768px){
-      .stats-grid{flex-direction:column !important}
-      .stat-card{width:100%}
-    }
-    @media(min-width:769px){
-      .stats-grid{flex-direction:row;gap:1rem}
-    }
+    .sup-hero{text-align:center;padding:3rem 1rem 2rem}
+    .sup-hero h1{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:800;color:var(--charcoal);margin-bottom:.5rem}
+    .sup-hero p{font-size:1rem;color:var(--on-sv);max-width:28rem;margin:0 auto}
+
+    .flip-container{max-width:320px;margin:2rem auto;perspective:1000px;cursor:pointer}
+    .flip-inner{position:relative;width:100%;height:320px;transition:transform .6s;transform-style:preserve-3d}
+    .flip-container.flipped .flip-inner{transform:rotateY(180deg)}
+    .flip-front,.flip-back{backface-visibility:hidden;position:absolute;width:100%;height:100%;border-radius:1.5rem;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .flip-front{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--cream)}
+    .flip-back{background:var(--charcoal);color:var(--cream);transform:rotateY(180deg)}
+    .flip-front .material-symbols-outlined{font-size:4rem;margin-bottom:1rem;opacity:.8}
+    .flip-front h2{font-size:1.5rem;font-weight:800;margin-bottom:.25rem}
+    .flip-front p{font-size:.875rem;opacity:.7}
+    .flip-hint{font-size:.75rem;opacity:.5;margin-top:1rem;display:flex;align-items:center;gap:.25rem}
+    .flip-hint .material-symbols-outlined{font-size:14px}
+    .flip-back img{width:180px;height:180px;border-radius:1rem;margin-bottom:1rem}
+    .flip-back .qr-label{font-size:.8125rem;opacity:.7;margin-bottom:.25rem}
+    .flip-back .qr-link{font-size:.6875rem;color:var(--brass);font-family:monospace}
+
+    .sup-btn{text-align:center;padding:1.5rem 1rem}
+    .sup-btn a{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;border-radius:9999px;background:#FFDD00;color:#000;font-weight:700;font-size:1rem;text-decoration:none;transition:all .2s}
+    .sup-btn a:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,221,0,.3)}
+
+    .live-reports{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:400px;margin:2rem auto;padding:0 1rem}
+    .report-card{background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.25rem;text-align:center}
+    .report-card .material-symbols-outlined{font-size:2rem;color:var(--primary);margin-bottom:.5rem}
+    .report-card .value{font-size:1.5rem;font-weight:800;color:var(--charcoal)}
+    .report-card .label{font-size:.8125rem;color:var(--on-sv);margin-top:.25rem}
+
+    .sup-note{text-align:center;padding:2rem 1rem;max-width:400px;margin:0 auto}
+    .sup-note p{font-size:.8125rem;color:var(--on-sv);line-height:1.6}
+    .sup-note strong{color:var(--primary)}
   </style>
 </head>
 <body>
@@ -60,199 +65,63 @@
   </div>
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
-      <div id="name-card-form">
-        <h2 data-en="Welcome to CUPPILO" data-ml="കപ്പിലോയിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
-        <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
-        <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-        <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
-        <p style="font-size:.75rem;color:var(--on-sv);margin-top:.75rem" data-en="No login required. 100% free. Takes 2 minutes." data-ml="ലോഗിൻ ആവശ്യമില്ല. 100% സൗജന്യം. 2 മിനിറ്റ് മതി.">No login required. 100% free. Takes 2 minutes.</p>
-      </div>
-      <div id="name-card-success" style="display:none;text-align:center">
-        <span class="material-symbols-outlined" style="font-size:48px;color:var(--brass)">emoji_events</span>
-        <h2 style="margin-top:.5rem" data-en="You're part of CUPPILO" data-ml="നിങ്ങൾ CUPPILO-യുടെ ഭാഗമാണ്">You're part of CUPPILO</h2>
-        <p style="font-size:.875rem;color:var(--on-sv);margin-bottom:.5rem" data-en="You were here before the first cup." data-ml="ആദ്യത്തെ കപ്പിന് മുമ്പ് നിങ്ങൾ ഇവിടെ ഉണ്ടായിരുന്നു.">You were here before the first cup.</p>
-        <div style="background:var(--surface-h);padding:.75rem 1.5rem;border-radius:.5rem;margin-bottom:1rem">
-          <span style="font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--on-sv)" data-en="Founding Guest" data-ml="സ്ഥാപക അതിഥി">Founding Guest</span>
-          <div id="founding-guest-number" style="font-size:1.5rem;font-weight:800;color:var(--primary);font-family:monospace">#00001</div>
-        </div>
-        <button class="btn btn-primary" onclick="document.getElementById('name-card-overlay').classList.remove('active')" data-en="Start Exploring" data-ml="എക്സ്പ്ലോർ ചെയ്യാൻ തുടങ്ങുക">Start Exploring</button>
-      </div>
+      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
+      <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
+      <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
     </div>
   </div>
 
   <nav class="navbar" id="navbar"></nav>
 
-  <main class="section">
-    <div class="container">
+  <main>
+    <section class="sup-hero">
+      <h1 data-en="Buy me a Coffee" data-ml="എനിക്ക് ഒരു കാപ്പി തരൂ">Buy me a Coffee</h1>
+      <p data-en="For support CUPPILO" data-ml="CUPPILO-യെ പിന്തുണയ്ക്കാൻ">For support CUPPILO</p>
+    </section>
 
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 0">
-        <div class="step-pill">
-          <span class="step-num">3</span>
-          <span class="step-text" data-en="Step 3 of 4" data-ml="ഘട്ടം 3 / 4">Step 3 of 4</span>
+    <!-- Tap to Flip Card -->
+    <div class="flip-container" id="flip-card" onclick="document.getElementById('flip-card').classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <span class="material-symbols-outlined">local_cafe</span>
+          <h2>CUPPILO</h2>
+          <p data-en="Tap to flip for QR code" data-ml="QR കോഡിനായി ഫ്ലിപ്പ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക">Tap to flip for QR code</p>
+          <div class="flip-hint"><span class="material-symbols-outlined">touch_app</span> <span data-en="Tap to flip" data-ml="ഫ്ലിപ്പ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക">Tap to flip</span></div>
         </div>
-        <div class="step-dots">
-          <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
-          <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
-          <span class="step-dot" style="width:2rem;background:var(--primary)"></span>
-          <span class="step-dot" style="width:.625rem;background:var(--muted)"></span>
-        </div>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:75%"></div>
-      </div>
-
-      <div style="text-align:center;margin-bottom:2rem">
-        <h1 style="font-size:1.75rem;color:var(--charcoal);margin-bottom:.25rem" data-en="Support CUPPILO" data-ml="CUPPILO-യെ പിന്തുണയ്ക്കുക">Support CUPPILO</h1>
-        <p style="font-size:.9375rem;color:var(--on-sv)" data-en="Every coffee brings us closer to opening day" data-ml="ഓരോ കാപ്പിയും തുറക്കുന്ന ദിവസത്തിലേക്ക് അടുത്തതാണ്">Every coffee brings us closer to opening day</p>
-      </div>
-
-      <div class="flip-card" onclick="this.classList.toggle('flipped')">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center">
-              <span class="material-symbols-outlined" style="font-size:48px;color:var(--primary)">local_cafe</span>
-              <h2 style="font-size:1.5rem;font-weight:800;color:var(--charcoal)" data-en="Support CUPPILO" data-ml="CUPPILO-യെ പിന്തുണയ്ക്കുക">Support CUPPILO</h2>
-              <p style="font-size:.875rem;color:var(--on-sv)" data-en="Tap to see QR code" data-ml="QR കോഡ് കാണാൻ ടാപ്പ് ചെയ്യുക">Tap to see QR code</p>
-              <div style="display:flex;align-items:center;gap:.5rem;margin-top:.5rem">
-                <span class="material-symbols-outlined" style="font-size:20px;color:var(--brass)">tap_and_play</span>
-                <span style="font-size:.8125rem;color:var(--on-sv)" data-en="Flip card to scan" data-ml="സ്കാൻ ചെയ്യാൻ കാർഡ് ഫ്ലിപ്പ് ചെയ്യുക">Flip card to scan</span>
-              </div>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <img src="img/bmc-qr.png" alt="Buy Me a Coffee QR Code" style="width:200px;height:200px;border-radius:1rem;object-fit:contain;background:#fff;padding:.5rem"/>
-            <p style="font-size:.8125rem;color:var(--on-sv);margin-top:.75rem" data-en="Scan to support on Buy Me a Coffee" data-ml="Buy Me a Coffee-ൽ പിന്തുണയ്ക്കാൻ സ്കാൻ ചെയ്യുക">Scan to support on Buy Me a Coffee</p>
-          </div>
+        <div class="flip-back">
+          <img src="img/bmc-qr.png" alt="BMC QR Code"/>
+          <div class="qr-label" data-en="Scan to support" data-ml="പിന്തുണയ്ക്കാൻ സ്കാൻ ചെയ്യുക">Scan to support</div>
+          <div class="qr-link">buymeacoffee.com/cuppilocafe</div>
         </div>
       </div>
+    </div>
 
-      <div style="text-align:center;margin-top:1.5rem">
-        <a href="https://buymeacoffee.com/cuppilocafe" target="_blank" rel="noopener" class="btn" style="background:#FFDD00;color:#000;font-weight:700;padding:.875rem 2rem;font-size:1rem;border-radius:.5rem">
-          <span class="material-symbols-outlined" style="font-size:20px">local_cafe</span>
-          <span data-en="Buy Me a Coffee" data-ml="എനിക്ക് ഒരു കാപ്പി വാങ്ങൂ">Buy Me a Coffee</span>
-        </a>
-        <p style="font-size:.75rem;color:var(--on-sv);margin-top:.5rem" data-en="or scan the QR code above" data-ml="അല്ലെങ്കിൽ മുകളിലെ QR കോഡ് സ്കാൻ ചെയ്യുക">or scan the QR code above</p>
+    <!-- Buy me a Coffee Button -->
+    <div class="sup-btn">
+      <a href="https://buymeacoffee.com/cuppilocafe" target="_blank" rel="noopener">
+        <span class="material-symbols-outlined" style="font-size:20px">local_cafe</span>
+        <span data-en="Buy me a Coffee" data-ml="എനിക്ക് ഒരു കാപ്പി തരൂ">Buy me a Coffee</span>
+      </a>
+    </div>
+
+    <!-- Live Reports -->
+    <div class="live-reports">
+      <div class="report-card">
+        <span class="material-symbols-outlined">local_cafe</span>
+        <div class="value" id="report-coffees">--</div>
+        <div class="label" data-en="Coffees bought" data-ml="വാങ്ങിയ കാപ്പികൾ">Coffees bought</div>
       </div>
-
-      <!-- YOUR COUPON (hidden until supporter has a coupon) -->
-      <div id="my-coupon-section" style="display:none;margin-top:2.5rem;background:var(--bg-card);border:2px solid var(--brass);border-radius:1rem;padding:1.5rem;text-align:center">
-        <span class="material-symbols-outlined" style="font-size:36px;color:var(--brass)">confirmation_number</span>
-        <h2 style="font-size:1.125rem;font-weight:800;color:var(--charcoal);margin:.5rem 0 .25rem" data-en="Your Supporter Coupon" data-ml="നിങ്ങളുടെ പിന്തുണക്കാരൻ കൂപ്പൺ">Your Supporter Coupon</h2>
-        <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:1rem" data-en="Show this code at the cafe on opening day" data-ml="ഓപ്പണിംഗ് ദിവസം കഫേയിൽ ഈ കോഡ് കാണിക്കുക">Show this code at the cafe on opening day</p>
-        <div id="coupon-code-display" style="font-size:1.5rem;font-weight:800;color:var(--primary);letter-spacing:.1em;font-family:monospace;background:var(--surface-h);padding:.75rem 1.5rem;border-radius:.5rem;display:inline-block;margin-bottom:.75rem">CP-XXXXXX</div>
-        <br>
-        <button onclick="copyCouponCode()" class="btn btn-sm" style="background:var(--surface-h);color:var(--on-s);margin-bottom:1rem">
-          <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
-          <span data-en="Copy Code" data-ml="കോഡ് പകർത്തുക">Copy Code</span>
-        </button>
+      <div class="report-card">
+        <span class="material-symbols-outlined">payments</span>
+        <div class="value" id="report-amount">--</div>
+        <div class="label" data-en="Total raised" data-ml="ആകെ ശേഖരിച്ചത്">Total raised</div>
       </div>
+    </div>
 
-      <!-- SHARE REFERRAL LINK (hidden until supporter has a coupon) -->
-      <div id="referral-share-section" style="display:none;margin-top:1.5rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.5rem;text-align:center">
-        <span class="material-symbols-outlined" style="font-size:32px;color:var(--primary)">share</span>
-        <h2 style="font-size:1.125rem;font-weight:800;color:var(--charcoal);margin:.5rem 0 .25rem" data-en="Share Your Referral Link" data-ml="നിങ്ങളുടെ റെഫറൽ ലിങ്ക് പങ്കിടുക">Share Your Referral Link</h2>
-        <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:1rem" data-en="Invite 3 friends to complete the co-creation journey and earn a free item on opening day!" data-ml="3 സുഹൃത്തുക്കളെ ക്ഷണിക്കുക, ഓപ്പണിംഗ് ദിവസം സൗജന്യ ഇനം നേടുക!">Invite 3 friends to complete the co-creation journey and earn a free item on opening day!</p>
-        <div id="referral-link-box" style="background:var(--surface-h);padding:.5rem .75rem;border-radius:.5rem;font-size:.8125rem;color:var(--on-s);word-break:break-all;margin-bottom:1rem;font-family:monospace">cuppilo.in/support.html?ref=CP-XXXXXX</div>
-        <div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap">
-          <button onclick="shareWhatsApp()" class="btn btn-sm" style="background:#25D366;color:#fff">
-            <span class="material-symbols-outlined" style="font-size:16px">chat</span> WhatsApp
-          </button>
-          <button onclick="shareTelegram()" class="btn btn-sm" style="background:#0088cc;color:#fff">
-            <span class="material-symbols-outlined" style="font-size:16px">send</span> Telegram
-          </button>
-          <button onclick="copyReferralLink()" class="btn btn-sm" style="background:var(--surface-h);color:var(--on-s)">
-            <span class="material-symbols-outlined" style="font-size:16px">content_copy</span> <span data-en="Copy" data-ml="പകർത്തുക">Copy</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- REFERRAL PROGRESS (hidden until supporter has a coupon) -->
-      <div id="referral-progress-section" style="display:none;margin-top:1.5rem;background:var(--bg-card);border:1px solid var(--muted);border-radius:1rem;padding:1.5rem;text-align:center">
-        <h2 style="font-size:1.125rem;font-weight:800;color:var(--charcoal);margin-bottom:.75rem" data-en="Your Referral Progress" data-ml="നിങ്ങളുടെ റെഫറൽ പുരോഗതി">Your Referral Progress</h2>
-        <div style="display:flex;justify-content:center;gap:.75rem;margin-bottom:.75rem">
-          <div id="ref-dot-1" class="ref-dot" style="width:40px;height:40px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;color:var(--on-sv);transition:all .3s">1</div>
-          <div id="ref-dot-2" class="ref-dot" style="width:40px;height:40px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;color:var(--on-sv);transition:all .3s">2</div>
-          <div id="ref-dot-3" class="ref-dot" style="width:40px;height:40px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;color:var(--on-sv);transition:all .3s">3</div>
-        </div>
-        <p id="ref-progress-text" style="font-size:.875rem;color:var(--on-sv);margin-bottom:.5rem">0 of 3 referrals completed</p>
-        <div id="ref-reward-status" style="display:none;margin-top:.75rem;padding:.75rem;background:var(--brass-soft);border-radius:.5rem">
-          <span class="material-symbols-outlined" style="font-size:24px;color:var(--success)">emoji_events</span>
-          <p style="font-size:.875rem;font-weight:700;color:var(--charcoal);margin-top:.25rem" data-en="Reward unlocked! Free item on opening day" data-ml="റെവാർഡ് അൺലോക്ക് ചെയ്തു! ഓപ്പണിംഗ് ദിവസം സൗജന്യ ഇനം">Reward unlocked! Free item on opening day</p>
-          <p id="ref-reward-code" style="font-size:1.125rem;font-weight:800;color:var(--primary);letter-spacing:.1em;font-family:monospace;margin-top:.25rem">XXXX-XXXX-XXXX</p>
-        </div>
-      </div>
-
-      <!-- 10% DISCOUNT FOR REFERRED PERSON (hidden unless referred and completed) -->
-      <div id="discount-section" style="display:none;margin-top:1.5rem;background:var(--bg-card);border:2px solid var(--success);border-radius:1rem;padding:1.5rem;text-align:center">
-        <span class="material-symbols-outlined" style="font-size:36px;color:var(--success)">local_offer</span>
-        <h2 style="font-size:1.125rem;font-weight:800;color:var(--charcoal);margin:.5rem 0 .25rem" data-en="Welcome! Here's Your 10% Discount" data-ml="സ്വാഗതം! നിങ്ങളുടെ 10% ഡിസ്‌കൗണ്ട്">Welcome! Here's Your 10% Discount</h2>
-        <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:1rem" data-en="You were invited by a CUPPILO supporter. Complete the journey and enjoy 10% off your first order!" data-ml="നിങ്ങളെ CUPPILO പിന്തുണക്കാരൻ ക്ഷണിച്ചു. യാത്ര പൂർത്തിയാക്കൂ, ആദ്യ ഓർഡറിൽ 10% ഡിസ്‌കൗണ്ട് ആസ്വദിക്കൂ!">You were invited by a CUPPILO supporter. Complete the journey and enjoy 10% off your first order!</p>
-        <div id="discount-code-display" style="font-size:1.5rem;font-weight:800;color:var(--success);letter-spacing:.1em;font-family:monospace;background:var(--surface-h);padding:.75rem 1.5rem;border-radius:.5rem;display:inline-block">CUPPILO10-XXXXXX</div>
-      </div>
-
-      <div style="margin-top:2.5rem">
-        <h2 style="font-size:1.125rem;font-weight:700;color:var(--charcoal);text-align:center;margin-bottom:1rem" data-en="Live Support Stats" data-ml="ലൈവ് പിന്തുണ സ്ഥിതിവിവരങ്ങൾ">Live Support Stats</h2>
-        <div class="stats-grid" style="display:flex;gap:1rem">
-          <div class="stat-card">
-            <span class="material-symbols-outlined">local_cafe</span>
-            <div class="stat-value" id="bmc-coffees">0</div>
-            <div class="stat-label" data-en="Coffees Supported" data-ml="കാപ്പികൾ പിന്തുണയ്ക്കപ്പെട്ടു">Coffees Supported</div>
-          </div>
-          <div class="stat-card">
-            <span class="material-symbols-outlined">payments</span>
-            <div class="stat-value" id="bmc-amount">₹0</div>
-            <div class="stat-label" data-en="Total Raised" data-ml="ആകെ ഉയർത്തി">Total Raised</div>
-          </div>
-          <div class="stat-card">
-            <span class="material-symbols-outlined">people</span>
-            <div class="stat-value" id="bmc-supporters">0</div>
-            <div class="stat-label" data-en="Unique Supporters" data-ml="യഥാർത്ഥ പിന്തുണക്കാർ">Unique Supporters</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:2.5rem">
-        <h2 style="font-size:1.125rem;font-weight:700;color:var(--charcoal);margin-bottom:1rem" data-en="Recent Supporters" data-ml="സമീപകാല പിന്തുണക്കാർ">Recent Supporters</h2>
-        <div id="recent-supporters">
-          <p style="text-align:center;color:var(--on-sv);font-size:.875rem;padding:1.5rem 0" data-en="Loading supporters..." data-ml="പിന്തുണക്കാരെ ലോഡ് ചെയ്യുന്നു...">Loading supporters...</p>
-        </div>
-      </div>
-
-      <div style="margin-top:2.5rem">
-        <h2 style="font-size:1.125rem;font-weight:700;color:var(--charcoal);text-align:center;margin-bottom:1rem" data-en="Support Tiers" data-ml="പിന്തുണ ടയറുകൾ">Support Tiers</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <div class="tier-support-card">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem">
-              <h3 data-en="Pioneer" data-ml="പയനീയർ">Pioneer</h3>
-              <span class="tier-price">₹10</span>
-            </div>
-            <p data-en="Name on the Founding Wall, early access invites" data-ml="സ്ഥാപക മതിലിൽ പേര്, നേരത്തെ ആക്സസ് ക്ഷണങ്ങൾ">Name on the Founding Wall, early access invites</p>
-          </div>
-          <div class="tier-support-card">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem">
-              <h3 data-en="First-Brew" data-ml="ഫസ്റ്റ്-ബ്രൂ">First-Brew</h3>
-              <span class="tier-price">₹49</span>
-            </div>
-            <p data-en="Free opening cold brew, Founding Patron badge, priority seating" data-ml="സൗജന്യ ഓപ്പണിംഗ് കോൾഡ് ബ്രൂ, സ്ഥാപക പാട്രൺ ബാഡ്ജ്, മുൻഗണനാ സീറ്റിംഗ്">Free opening cold brew, Founding Patron badge, priority seating</p>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--muted)">
-        <p style="font-size:.75rem;color:var(--on-sv);text-align:center;margin-bottom:1rem" data-en="Your privacy matters. We only collect information you choose to share." data-ml="നിങ്ങളുടെ സ്വകാര്യത പ്രധാനമാണ്. നിങ്ങൾ പങ്കിടാൻ തിരഞ്ഞെടുക്കുന്ന വിവരങ്ങൾ മാത്രമേ ഞങ്ങൾ ശേഖരിക്കൂ.">Your privacy matters. We only collect information you choose to share.</p>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem">
-        <a href="ambiance.html" class="nav-back">
-          <span class="material-symbols-outlined">arrow_back</span>
-          <span data-en="Back to Ambiance" data-ml="അന്തരീക്ഷത്തിലേക്ക് മടങ്ങുക">Back to Ambiance</span>
-        </a>
-        <a href="founding-wall.html" class="nav-next">
-          <span data-en="Continue to Founding Wall" data-ml="സ്ഥാപക മതിലിലേക്ക് തുടരുക">Continue to Founding Wall</span>
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </a>
-      </div>
-
+    <!-- Note -->
+    <div class="sup-note">
+      <p data-en="<strong>Fully anonymous</strong> bought Coffee status = <strong>lifetime 10% on anything in Cuppilo</strong>" data-ml="<strong>പൂർണ്ണ അജ്ഞാത</strong> കാപ്പി വാങ്ങിയ നില = <strong>CUPPILO-യിൽ എന്തിലും ജീവിതകാലം 10%</strong>"><strong>Fully anonymous</strong> bought Coffee status = <strong>lifetime 10% on anything in Cuppilo</strong></p>
     </div>
   </main>
 
@@ -261,156 +130,26 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
-    async function loadBmcStats() {
+    async function loadReports() {
       try {
-        const stats = await sbSelect('bmc_stats', '*');
-        if (stats && stats.length > 0) {
-          document.getElementById('bmc-coffees').textContent = stats[0].total_coffees || 0;
-          document.getElementById('bmc-amount').textContent = '\u20B9' + (stats[0].total_amount || 0);
-          document.getElementById('bmc-supporters').textContent = stats[0].unique_supporters || 0;
+        var data = await sbSelect('bmc_stats', '*');
+        if (Array.isArray(data) && data.length > 0) {
+          var s = data[0];
+          document.getElementById('report-coffees').textContent = s.total_supporters || s.total_coffees || 0;
+          document.getElementById('report-amount').textContent = '\u20B9' + (s.total_raised || s.total_amount || 0).toLocaleString();
+        } else {
+          document.getElementById('report-coffees').textContent = '0';
+          document.getElementById('report-amount').textContent = '\u20B90';
         }
-      } catch(e) { console.log('BMC stats skipped:', e); }
-    }
-
-    async function loadRecentSupporters() {
-      try {
-        const supporters = await sbSelect('bmc_supporters', '*');
-        const container = document.getElementById('recent-supporters');
-        if (!supporters || supporters.length === 0) {
-          container.innerHTML = '<p style="text-align:center;color:var(--on-sv);font-size:.875rem" data-en="Be the first to support CUPPILO!" data-ml="CUPPILO-യെ ആദ്യം പിന്തുണയ്ക്കൂ!">Be the first to support CUPPILO!</p>';
-          return;
-        }
-        container.innerHTML = supporters.slice(0,5).map(function(s) {
-          return '<div class="supporter-row">' +
-            '<div class="supporter-avatar">' + (s.name || 'A').charAt(0).toUpperCase() + '</div>' +
-            '<div style="flex:1"><strong>' + (s.name || 'Anonymous') + '</strong>' +
-            (s.message ? '<br><span style="font-size:.75rem;color:var(--on-sv)">' + s.message + '</span>' : '') + '</div>' +
-            '<div style="text-align:right"><div style="font-weight:700;color:var(--primary)">\u20B9' + s.amount + '</div>' +
-            '<div style="font-size:.625rem;color:var(--on-sv)">' + timeAgo(s.created_at) + '</div></div>' +
-          '</div>';
-        }).join('');
-      } catch(e) { console.log('Supporters skipped:', e); }
-    }
-
-    function timeAgo(date) {
-      if (!date) return '';
-      var diff = Date.now() - new Date(date).getTime();
-      if (diff < 0) return 'just now';
-      var mins = Math.floor(diff / 60000);
-      if (mins < 60) return mins + 'm ago';
-      var hours = Math.floor(mins / 60);
-      if (hours < 24) return hours + 'h ago';
-      var days = Math.floor(hours / 24);
-      return days + 'd ago';
-    }
-
-    // ── REFERRAL SYSTEM ──
-    var myCouponData = null;
-    var myReferralCode = null;
-
-    async function loadMyCoupon() {
-      var coupon = await getMyCoupon();
-      if (coupon) {
-        myCouponData = coupon;
-        myReferralCode = coupon.coupon_code;
-        document.getElementById('my-coupon-section').style.display = '';
-        document.getElementById('coupon-code-display').textContent = coupon.coupon_code;
-        document.getElementById('referral-share-section').style.display = '';
-        document.getElementById('referral-link-box').textContent = window.location.origin + '/support.html?ref=' + coupon.coupon_code;
-        document.getElementById('referral-progress-section').style.display = '';
-        await loadReferralProgress();
+      } catch(e) {
+        document.getElementById('report-coffees').textContent = '0';
+        document.getElementById('report-amount').textContent = '\u20B90';
       }
     }
-
-    async function loadReferralProgress() {
-      if (!myReferralCode) return;
-      try {
-        var referrals = await sbSelect('referrals', '*');
-        if (!Array.isArray(referrals)) return;
-        var myRefs = referrals.filter(function(r) { return r.ref_code === myReferralCode; });
-        var completed = myRefs.filter(function(r) { return r.status === 'completed'; });
-        var count = completed.length;
-
-        // Update dots
-        for (var i = 1; i <= 3; i++) {
-          var dot = document.getElementById('ref-dot-' + i);
-          if (dot) {
-            if (i <= count) {
-              dot.style.borderColor = 'var(--success)';
-              dot.style.background = 'var(--success)';
-              dot.style.color = '#fff';
-            }
-          }
-        }
-        document.getElementById('ref-progress-text').textContent = count + ' of 3 referrals completed';
-
-        // Check reward
-        if (count >= 3 && myCouponData && !myCouponData.reward_code) {
-          // Generate reward
-          var rewardCode = generateRewardCode();
-          await sbUpdate('supporter_coupons', { reward_code: rewardCode, status: 'reward_earned' }, 'coupon_code', myReferralCode);
-          myCouponData.reward_code = rewardCode;
-          myCouponData.status = 'reward_earned';
-        }
-        if (myCouponData && myCouponData.reward_code) {
-          document.getElementById('ref-reward-status').style.display = '';
-          document.getElementById('ref-reward-code').textContent = myCouponData.reward_code;
-        }
-      } catch(e) { console.log('Referral progress skipped:', e); }
-    }
-
-    async function loadDiscountForReferred() {
-      var refCode = getReferralCode();
-      if (!refCode) return;
-      var profile = getProfile();
-      if (!profile) return;
-      try {
-        var refs = await sbSelect('referrals', '*');
-        if (!Array.isArray(refs)) return;
-        var myRef = refs.find(function(r) {
-          return r.ref_code === refCode && r.referee_session_id === profile.session_id;
-        });
-        if (myRef && myRef.discount_code) {
-          document.getElementById('discount-section').style.display = '';
-          document.getElementById('discount-code-display').textContent = myRef.discount_code;
-        }
-      } catch(e) { console.log('Discount check skipped:', e); }
-    }
-
-    function copyCouponCode() {
-      var code = document.getElementById('coupon-code-display').textContent;
-      navigator.clipboard.writeText(code).then(function() {
-        showToast('Coupon code copied!', 'success');
-      });
-    }
-
-    function copyReferralLink() {
-      var link = document.getElementById('referral-link-box').textContent;
-      navigator.clipboard.writeText(link).then(function() {
-        showToast('Referral link copied!', 'success');
-      });
-    }
-
-    function shareWhatsApp() {
-      var link = document.getElementById('referral-link-box').textContent;
-      var msg = 'Help me build CUPPILO! Complete the co-creation journey and we both get rewards: ' + link;
-      window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
-    }
-
-    function shareTelegram() {
-      var link = document.getElementById('referral-link-box').textContent;
-      var msg = 'Help me build CUPPILO! Complete the co-creation journey and we both get rewards: ' + link;
-      window.open('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(msg), '_blank');
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
       initPage('support');
-      loadBmcStats();
-      loadRecentSupporters();
-      loadMyCoupon();
-      loadDiscountForReferred();
+      loadReports();
     });
   </script>
-
 </body>
 </html>

@@ -203,12 +203,10 @@ function initMobileMenu() {
 // ── NAVBAR ──
 function renderNavbar(activePage) {
   var links = [
-    { id: 'index', href: 'index.html', en: 'Home', ml: '\u0d39\u0d4b\u0d2e\u0d4d' },
-    { id: 'fullmenu', href: 'menu.html', en: 'Menu', ml: '\u0d2e\u0d46\u0d28\u0d41' },
-    { id: 'menu', href: 'menu-ballot.html', en: 'Vote', ml: '\u0d35\u0d4b\u0d1f\u0d4d' },
-    { id: 'ambiance', href: 'ambiance.html', en: 'Vibe', ml: '\u0d35\u0d48\u0d2c\u0d4d' },
-    { id: 'support', href: 'support.html', en: 'Support', ml: '\u0d2a\u0d3f\u0d28\u0d4d\u0d24\u0d41\u0d23\u0d4d' },
-    { id: 'wall', href: 'founding-wall.html', en: 'Wall', ml: '\u0d2e\u0d24\u0d3f\u0d32\u0d4d' },
+    { id: 'index', href: 'index.html', en: 'Home', ml: 'ഹോം' },
+    { id: 'about', href: 'about.html', en: 'About', ml: 'കുറിച്ച്' },
+    { id: 'support', href: 'support.html', en: 'Support', ml: 'പിന്തുണ' },
+    { id: 'wall', href: 'founding-wall.html', en: 'Wall', ml: 'മതിൽ' },
   ];
   var dLinks = links.map(function (l) {
     return '<a href="' + l.href + '" class="nav-link ' + (activePage === l.id ? 'active' : '') + '" data-en="' + l.en + '" data-ml="' + l.ml + '">' + l.en + '</a>';
@@ -241,28 +239,32 @@ function renderFooter() {
     '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;align-items:start">' +
       '<div>' +
         '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem"><img src="img/logo-en-light.png" alt="CUPPILO" class="nav-logo" style="height:24px"></div>' +
-        '<p class="font-editorial" style="font-size:.875rem;color:var(--on-sv);max-width:280px" ' +
-          'data-en="Bringing artisanal specialty roasts, shade-grown Western Ghats heritage beans, and warm veranda conversations to Kerala." ' +
-          'data-ml="\u0d15\u0d47\u0db1\u0d35\u0d2f\u0d3e\u0d2f\u0d46 \u0d15\u0db5\u0d3f\u0d2f\u0d4d \u0d30\u0d4b\u0d38\u0d4d\u0d1f\u0d41\u0d15\u0d3e\u0d33\u0d4d, \u0d28\u0d3f\u0d34\u0d32\u0d3f\u0d32\u0d4d \u0d35\u0d33\u0d30\u0d4d\u0d28\u0d4d \u0d2a\u0d36\u0d4d\u0d1a\u0d3f\u0d2e\u0d02 \u0d18\u0d3e\u0d1f\u0d4d\u0d1f\u0d4d \u0d2a\u0d48\u0d24\u0d43\u0d15 \u0d15\u0d3e\u0d2a\u0d4d\u0d2a\u0d3f \u0d35\u0d3f\u0d24\u0d4d\u0d24\u0d41\u0d15\u0d3e\u0d33\u0d4d, \u0d1a\u0d42\u0d1f\u0d41\u0d33\u0d4d\u0d33 \u0d35\u0d30\u0d3e\u0d28\u0d4d\u0d24 \u0d38\u0d02\u0d2d\u0d3e\u0d37\u0d23\u0d19\u0d4d\u0d33 \u0d15\u0d4b\u0d23\u0d4d\u0d1f\u0d41 \u0d35\u0d30\u0d41\u0d28\u0d4d\u0d28\u0d41 \u0d28\u0d3f\u0d37\u0d2f\u0d2e\u0d3e\u0d23\u0d3f.">' +
-          'Bringing artisanal specialty roasts, shade-grown Western Ghats heritage beans, and warm veranda conversations to Kerala.</p>' +
+        '<p style="font-size:.875rem;color:var(--on-sv);max-width:280px" ' +
+          'data-en="Building Kerala\'s first community-born café. Your voice shapes what we become." ' +
+          'data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-ജനിച്ച കഫേ നിർമ്മിക്കുന്നു. നിങ്ങളുടെ ശബ്ദം നമ്മൾ എന്താകണമെന്ന് നിർണ്ണയിക്കുന്നു.">' +
+          'Building Kerala\'s first community-born café. Your voice shapes what we become.</p>' +
+        '<div style="display:flex;gap:.75rem;margin-top:1rem">' +
+          '<a href="https://instagram.com/cuppilocafe" target="_blank" rel="noopener" style="width:36px;height:36px;border-radius:50%;background:var(--surface-h);display:flex;align-items:center;justify-content:center;color:var(--on-sv);text-decoration:none;transition:all .2s" onmouseover="this.style.background=\'var(--primary)\';this.style.color=\'#fff\'" onmouseout="this.style.background=\'var(--surface-h)\';this.style.color=\'var(--on-sv)\'"><span class="material-symbols-outlined" style="font-size:18px">photo_camera</span></a>' +
+          '<a href="support.html" style="height:36px;padding:0 .75rem;border-radius:9999px;background:#FFDD00;color:#000;display:inline-flex;align-items:center;gap:.375rem;font-size:.75rem;font-weight:700;text-decoration:none;transition:all .2s" onmouseover="this.style.transform=\'translateY(-1px)\'" onmouseout="this.style.transform=\'none\'"><span class="material-symbols-outlined" style="font-size:16px">local_cafe</span> Buy me a coffee</a>' +
+        '</div>' +
       '</div>' +
       '<div>' +
-        '<h4 style="font-size:.875rem;font-weight:600;margin-bottom:.75rem" data-en="Co-Creation" data-ml="\u0d38\u0d39-\u0d28\u0d3f\u0d30\u0d4d\u0d2e\u0d3e\u0d23\u0d02">Co-Creation</h4>' +
+        '<h4 style="font-size:.875rem;font-weight:600;margin-bottom:.75rem" data-en="Explore" data-ml="Exploring">Explore</h4>' +
         '<nav style="display:flex;flex-direction:column;gap:.5rem">' +
-          '<a href="index.html" data-en="Home" data-ml="\u0d39\u0d4b\u0d2e\u0d4d">Home</a>' +
-          '<a href="menu-ballot.html" data-en="Menu Ballot" data-ml="\u0d2e\u0d46\u0d28\u0d41 \u0d2c\u0d3e\u0da9\u0d32\u0d32\u0d4d">Menu Ballot</a>' +
-          '<a href="ambiance.html" data-en="Ambiance" data-ml="\u0d05\u0d28\u0d4d\u0d24\u0d30\u0d40\u0d15\u0d4d\u0d37\u0d02">Ambiance</a>' +
-          '<a href="support.html" data-en="Support" data-ml="\u0d2a\u0d3f\u0d28\u0d4d\u0d24\u0d41\u0d23\u0d4d">Support</a>' +
-          '<a href="founding-wall.html" data-en="Founding Wall" data-ml="\u0d38\u0d4d\u0d25\u0d3e\u0d2a\u0d15 \u0d2e\u0d24\u0d3f\u0d32\u0d4d">Founding Wall</a>' +
-          '<a href="community-results.html" data-en="Community Results" data-ml="\u0d15\u0d2e\u0d4d\u0d2e\u0d4d\u0d2f\u0d42\u0d23\u0d3f\u0d1f\u0d3f \u0d2b\u0da4\u0d02">Community Results</a>' +
+          '<a href="index.html" data-en="Home" data-ml="ഹോം">Home</a>' +
+          '<a href="about.html" data-en="About" data-ml="കുറിച്ച്">About</a>' +
+          '<a href="support.html" data-en="Support" data-ml="പിന്തുണ">Support</a>' +
+          '<a href="founding-wall.html" data-en="Founding Wall" data-ml="സ്ഥാപക മതിൽ">Founding Wall</a>' +
         '</nav>' +
       '</div>' +
       '<div>' +
-        '<h4 style="font-size:.875rem;font-weight:600;margin-bottom:.75rem" data-en="Legal" data-ml="\u0d28\u0d3f\u0d2f\u0d2e\u0d02">Legal</h4>' +
-        '<nav style="display:flex;flex-direction:column;gap:.5rem">' +
-          '<a href="#" data-en="Privacy Policy" data-ml="\u0d38\u0d4d\u0d35\u0d15\u0d3e\u0d30\u0d4d\u0d2f \u0d28\u0d2f\u0d02">Privacy Policy</a>' +
-          '<a href="#" data-en="Terms" data-ml="\u0d28\u0d3f\u0d2c\u0d28\u0d4d\u0d27\u0d28\u0d15\u0d3e\u0d33\u0d4d">Terms</a>' +
-        '</nav>' +
+        '<h4 style="font-size:.875rem;font-weight:600;margin-bottom:.75rem" data-en="Get Updates" data-ml="അപ്ഡേറ്റുകൾ നേടുക">Get Updates</h4>' +
+        '<p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:.75rem" data-en="Enter your number to get notified when Cuppilo opens." data-ml="CUPPILO തുറക്കുമ്പോൾ അറിയിപ്പ് നേടാൻ നിങ്ങളുടെ നമ്പർ നൽകുക.">Enter your number to get notified when Cuppilo opens.</p>' +
+        '<form id="footer-phone-form" onsubmit="submitFooterPhone(event)" style="display:flex;gap:.5rem">' +
+          '<input type="tel" id="footer-phone" placeholder="+91 XXXXX XXXXX" required style="flex:1;min-width:0;padding:.5rem .75rem;border-radius:.5rem;border:1px solid var(--muted);background:var(--input-bg);color:var(--on-s);font-size:.8125rem;font-family:inherit">' +
+          '<button type="submit" style="padding:.5rem .75rem;border-radius:.5rem;background:var(--primary);color:#fff;border:none;cursor:pointer;font-size:.8125rem;font-weight:600;font-family:inherit;white-space:nowrap" data-en="Notify Me" data-ml="എന്നെ അറിയിക്കുക">Notify Me</button>' +
+        '</form>' +
+        '<p id="footer-phone-msg" style="font-size:.75rem;color:var(--success);margin-top:.375rem;display:none" data-en="Thanks! We\'ll notify you." data-ml="നന്ദി! ഞങ്ങൾ അറിയിക്കാം.">Thanks! We\'ll notify you.</p>' +
       '</div>' +
     '</div>' +
     '<div style="border-top:1px solid var(--muted);margin-top:2rem;padding-top:1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem">' +
@@ -270,6 +272,23 @@ function renderFooter() {
       '</div>' +
     '</div>' +
   '</div>';
+}
+
+async function submitFooterPhone(e) {
+  e.preventDefault();
+  var input = document.getElementById('footer-phone');
+  var msg = document.getElementById('footer-phone-msg');
+  var phone = input.value.trim();
+  if (!phone) return;
+  try {
+    await sbInsert('phone_signups', { phone: phone, created_at: new Date().toISOString() });
+    input.value = '';
+    msg.style.display = 'block';
+    setTimeout(function() { msg.style.display = 'none'; }, 4000);
+  } catch (err) {
+    console.log('Phone signup error:', err);
+    showToast('Something went wrong', 'error');
+  }
 }
 
 // ── HELPERS ──
