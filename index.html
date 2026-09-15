@@ -25,10 +25,7 @@
 
   <div class="splash-screen" id="splash-screen">
     <div class="splash-logo-wrap">
-      <svg class="splash-logo" viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="34" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-weight="900" font-size="32" letter-spacing="3" fill="var(--primary)">CUPPILO</text>
-        <circle cx="152" cy="18" r="4" fill="var(--brass)"/>
-      </svg>
+      <img class="splash-logo" src="img/logo-en-light.png" alt="CUPPILO" id="splash-logo">
     </div>
     <div class="splash-progress"><div class="splash-progress-fill"></div></div>
   </div>
@@ -52,7 +49,7 @@
           <span class="dot"></span>
           <span data-en="Kerala's first community-built café" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built café</span>
         </div>
-        <h1 data-en="The café that doesn't exist <em>...yet.</em>" data-ml="നിലവിലില്ലാത്ത കഫേ <em>...ഇതുവരെ.</em>">The café that doesn't exist <em>...yet.</em></h1>
+        <h1 data-en='The café that doesn\'t exist <span class="text-accent">...yet.</span>' data-ml='നിലവിലില്ലാത്ത കഫേ <span class="text-accent">...ഇതുവരെ.</span>'>The café that doesn't exist <span class="text-accent">...yet.</span></h1>
         <p data-en="A participatory roastery experiment. We're asking Kerala what they actually want — the drinks, the food, the vibe, the pricing. Every answer shapes what we build." data-ml="കേരളം യഥാർത്ഥത്തിൽ എന്താണ് ആഗ്രഹിക്കുന്നതെന്ന് ഞങ്ങൾ ചോദിക്കുന്നു — പാനീയങ്ങൾ, ഭക്ഷണം, വൈബ്, വില. ഓരോ ഉത്തരവും ഞങ്ങൾ നിർമ്മിക്കുന്നതിനെ രൂപപ്പെടുത്തുന്നു.">A participatory roastery experiment. We're asking Kerala what they actually want — the drinks, the food, the vibe, the pricing. Every answer shapes what we build.</p>
         <button class="hero-cta" onclick="startSurvey()">
           <span data-en="Get Started — 2 min" data-ml="ആരംഭിക്കുക — 2 മിനിറ്റ്">Get Started — 2 min</span>
@@ -409,7 +406,8 @@
           custom_ambiance:document.getElementById('custom-ambiance').value.trim()||null,
           price_range:surveyData.price_range||null
         });
-        var guestNum = result&&result[0]?result[0].founding_guest_number:1;
+        var guestNum = result&&result[0]&&result[0].founding_guest_number ? result[0].founding_guest_number : null;
+        if (!guestNum) { showToast('Something went wrong. Please try again.','error'); return; }
         showCard(guestNum);
       } catch(e) { console.error('Submit error:',e); showToast('Something went wrong.','error'); }
     }

@@ -101,9 +101,18 @@ function setLang(lang) {
   localStorage.setItem('cuppilo_lang', lang);
   document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.lang === lang); });
   document.querySelectorAll('[data-en]').forEach(function (el) {
-    if (lang === 'ml' && el.hasAttribute('data-ml')) el.textContent = el.getAttribute('data-ml');
-    else if (el.hasAttribute('data-en')) el.textContent = el.getAttribute('data-en');
+    if (lang === 'ml' && el.hasAttribute('data-ml')) el.innerHTML = el.getAttribute('data-ml');
+    else if (el.hasAttribute('data-en')) el.innerHTML = el.getAttribute('data-en');
   });
+  updateLogo();
+}
+
+function updateLogo() {
+  var lang = document.documentElement.getAttribute('data-lang') || 'en';
+  var theme = document.documentElement.getAttribute('data-theme') || 'light';
+  var src = 'img/logo-' + lang + '-' + theme + '.png';
+  var img = document.getElementById('nav-logo-img');
+  if (img) img.src = src;
 }
 
 function initLang() {
@@ -121,6 +130,7 @@ function setTheme(theme) {
   document.querySelectorAll('.theme-toggle .material-symbols-outlined').forEach(function (i) {
     i.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
   });
+  updateLogo();
 }
 
 function initTheme() {
@@ -159,7 +169,7 @@ function renderNavbar(activePage) {
   }).join('');
 
   return '<div class="container" style="display:flex;align-items:center;justify-content:space-between;height:56px">' +
-    '<a href="index.html" class="nav-logo-text">CUPPILO</a>' +
+    '<a href="index.html" class="nav-logo" id="nav-logo"><img src="img/logo-en-light.png" alt="CUPPILO" style="height:28px" id="nav-logo-img"></a>' +
     '<div class="nav-right-group">' +
       '<button class="mobile-menu-btn" aria-label="Menu"><span class="material-symbols-outlined" style="font-size:22px">menu</span></button>' +
       '<div class="lang-toggle"><button class="lang-btn" data-lang="en">EN</button><button class="lang-btn" data-lang="ml">ML</button></div>' +
@@ -214,8 +224,10 @@ async function submitFooterPhone(e) {
   var msg = document.getElementById('footer-phone-msg');
   var phone = input.value.trim();
   if (!phone) return;
+  var cleaned = phone.replace(/[\s\-()]/g, '');
+  if (!/^\+?\d{10,13}$/.test(cleaned)) { showToast('Please enter a valid phone number', 'error'); return; }
   try {
-    await sbInsert('phone_subscribers', { phone: phone, created_at: new Date().toISOString() });
+    await sbInsert('phone_subscribers', { phone: cleaned, created_at: new Date().toISOString() });
     input.value = '';
     msg.style.display = 'block';
     setTimeout(function() { msg.style.display = 'none'; }, 4000);
@@ -233,6 +245,7 @@ function initPage(activePage) {
   if (footer) footer.innerHTML = renderFooter();
   initLang();
   initTheme();
+  updateLogo();
   initMobileMenu();
   initSplash();
   var profile = getProfile();

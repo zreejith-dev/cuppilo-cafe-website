@@ -48,6 +48,7 @@ body{background:var(--bg);color:var(--on-s)}
 @media(min-width:1024px){.container{padding:0 2rem}}
 
 h1,h2,h3,h4{font-weight:700;letter-spacing:-0.01em;line-height:1.2}
+.text-accent{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:var(--primary);letter-spacing:0}
 
 /* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:9999px;font-weight:600;font-size:.875rem;text-decoration:none;cursor:pointer;transition:all .2s;border:none;min-height:48px;font-family:inherit}
@@ -307,8 +308,9 @@ h1,h2,h3,h4{font-weight:700;letter-spacing:-0.01em;line-height:1.2}
 .u-multi-trend{display:inline-flex;align-items:center;gap:.2rem;font-size:.65rem;font-weight:700;color:var(--brass);margin-top:.375rem;padding:.15rem .5rem;background:rgba(217,164,65,.1);border-radius:9999px}
 .u-multi-trend .material-symbols-outlined{font-size:12px}
 .u-multi-check{position:absolute;top:.75rem;right:.75rem;width:22px;height:22px;border-radius:50%;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.u-multi-check .material-symbols-outlined{font-size:14px;opacity:0;transition:opacity .2s}
 .u-multi-card.selected .u-multi-check{background:var(--primary);border-color:var(--primary);color:var(--on-p)}
-.u-multi-check .material-symbols-outlined{font-size:14px}
+.u-multi-card.selected .u-multi-check .material-symbols-outlined{opacity:1}
 .u-amb-grid{display:grid;grid-template-columns:1fr;gap:1rem}
 @media(min-width:640px){.u-amb-grid{grid-template-columns:1fr 1fr}}
 .u-amb-card{border-radius:1rem;overflow:hidden;cursor:pointer;border:3px solid var(--muted);transition:all .3s;position:relative}
@@ -322,7 +324,9 @@ h1,h2,h3,h4{font-weight:700;letter-spacing:-0.01em;line-height:1.2}
 .u-amb-tags{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.5rem}
 .u-amb-tag{font-size:.625rem;font-weight:600;padding:.15rem .5rem;border-radius:9999px;background:var(--surface-h);color:var(--on-sv)}
 .u-amb-check{position:absolute;top:.75rem;right:.75rem;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:all .2s}
+.u-amb-check .material-symbols-outlined{opacity:0;transition:opacity .2s}
 .u-amb-card.selected .u-amb-check{background:var(--brass);border-color:var(--brass);color:var(--charcoal)}
+.u-amb-card.selected .u-amb-check .material-symbols-outlined{opacity:1}
 .u-custom-wrap{margin-top:1rem;display:none}
 .u-custom-wrap.show{display:block}
 .u-custom-input{width:100%;padding:.75rem 1rem;border:1.5px solid var(--muted);border-radius:.75rem;background:var(--surface-card);color:var(--on-s);font-size:.875rem;font-family:inherit;box-sizing:border-box}
