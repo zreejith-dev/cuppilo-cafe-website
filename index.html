@@ -23,7 +23,6 @@
 </head>
 <body>
 
-  <!-- ═══ SPLASH ═══ -->
   <div class="splash-screen" id="splash-screen">
     <div class="splash-logo-wrap">
       <svg class="splash-logo" viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,66 +33,62 @@
     <div class="splash-progress"><div class="splash-progress-fill"></div></div>
   </div>
 
-  <!-- ═══ NAME ENTRY ═══ -->
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
       <span class="material-symbols-outlined" style="font-size:40px;color:var(--primary);margin-bottom:.75rem">waving_hand</span>
-      <h2>Welcome to CUPPILO</h2>
-      <p>What should we call you?</p>
+      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()">Get Started</button>
+      <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
     </div>
   </div>
 
   <nav class="navbar" id="navbar"></nav>
 
   <main>
-    <!-- ═══ HERO ═══ -->
     <section class="hero" id="hero">
       <div>
         <div class="hero-badge">
           <span class="dot"></span>
-          <span data-en="Kerala's first community-built café" data-ml="\u0D15\u0D47\u0D30\u0D33\u0D32\u0D24\u0D4D\u0D24\u0D3F\u0D32\u0D46 \u0D06\u0D26\u0D4D\u0D2F \u0D15\u0D2E\u0D4D\u0D2E\u0D4D\u0D2F\u0D42\u0D23\u0D3F\u0D1F\u0D3F-\u0D28\u0D3F\u0D30\u0D4D\u0D2E\u0D4D\u0D3F\u0D1A\u0D4D\u0D1A \u0D15\u0D2B\u0D47">Kerala's first community-built café</span>
+          <span data-en="Kerala's first community-built café" data-ml="കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-നിർമ്മിച്ച കഫേ">Kerala's first community-built café</span>
         </div>
-        <h1 data-en="The café that doesn't exist <em>...yet.</em>" data-ml="\u0D28\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D32\u0D4D\u0D24\u0D4D \u0D15\u0D2B\u0D47 <em>...\u0D07\u0D24\u0D41\u0D35\u0D30\u0D46.</em>">The café that doesn't exist <em>...yet.</em></h1>
-        <p data-en="A participatory roastery experiment. We're asking Kerala what they actually want — the drinks, the food, the vibe, the pricing. Every answer shapes what we build." data-ml="\u0D15\u0D47\u0D30\u0D32\u0D3E \u0D2F\u0D3E\u0D25\u0D3E\u0D30\u0D4D\u0D24\u0D4D\u0D24 \u0D0E\u0D28\u0D4D\u0D24 \u0D06\u0D17\u0D4D\u0D30\u0D39\u0D3F\u0D1A\u0D4D\u0D1A\u0D41\u0D28\u0D4D\u0D24\u0D4D \u0D1A\u0D4B\u0D26\u0D3F\u0D15\u0D4D\u0D15\u0D41\u0D28\u0D4D\u0D24\u0D41. \u0D2A\u0D3E\u0D28\u0D40\u0D2F\u0D19\u0D4D\u0D23\u0D3E\u0D32\u0D4D, \u0D2D\u0D15\u0D4D\u0D37\u0D23\u0D02, \u0D35\u0D48\u0D2A\u0D4D, \u0D35\u0D3F\u0D32.">A participatory roastery experiment. We're asking Kerala what they actually want — the drinks, the food, the vibe, the pricing. Every answer shapes what we build.</p>
+        <h1 data-en="The café that doesn't exist <em>...yet.</em>" data-ml="നിലവിലില്ലാത്ത കഫേ <em>...ഇതുവരെ.</em>">The café that doesn't exist <em>...yet.</em></h1>
+        <p data-en="A participatory roastery experiment. We're asking Kerala what they actually want — the drinks, the food, the vibe, the pricing. Every answer shapes what we build." data-ml="കേരളം യഥാർത്ഥത്തിൽ എന്താണ് ആഗ്രഹിക്കുന്നതെന്ന് ഞങ്ങൾ ചോദിക്കുന്നു — പാനീയങ്ങൾ, ഭക്ഷണം, വൈബ്, വില. ഓരോ ഉത്തരവും ഞങ്ങൾ നിർമ്മിക്കുന്നതിനെ രൂപപ്പെടുത്തുന്നു.">A participatory roastery experiment. We're asking Kerala what they actually want — the drinks, the food, the vibe, the pricing. Every answer shapes what we build.</p>
         <button class="hero-cta" onclick="startSurvey()">
-          <span data-en="Get Started — 2 min" data-ml="\u0D06\u0D30\u0D02\u0D2D\u0D3F\u0D15\u0D4D\u0D15\u0D41\u0D15 — 2 \u0D2E\u0D3F\u0D23\u0D3F\u0D1F\u0D4D">Get Started — 2 min</span>
+          <span data-en="Get Started — 2 min" data-ml="ആരംഭിക്കുക — 2 മിനിറ്റ്">Get Started — 2 min</span>
           <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
         </button>
         <div class="hero-meta">
-          <span><span class="material-symbols-outlined">groups</span> <span id="hero-count">0</span> <span data-en="people joined" data-ml="\u0D06\u0D33\u0D41\u0D15\u0D3E\u0D33 \u0D1A\u0D47\u0D30\u0D4D\u0D28\u0D41">people joined</span></span>
+          <span><span class="material-symbols-outlined">groups</span> <span id="hero-count">0</span> <span data-en="people joined" data-ml="ആളുകൾ ചേർന്നു">people joined</span></span>
         </div>
         <div class="countdown" id="countdown">
-          <div class="countdown-item"><div class="countdown-val" id="cd-days">---</div><div class="countdown-label" data-en="Days" data-ml="\u0D26\u0D3F\u0D35\u0D38\u0D02">Days</div></div>
+          <div class="countdown-item"><div class="countdown-val" id="cd-days">---</div><div class="countdown-label" data-en="Days" data-ml="ദിവസം">Days</div></div>
           <div class="countdown-sep">:</div>
-          <div class="countdown-item"><div class="countdown-val" id="cd-hours">--</div><div class="countdown-label" data-en="Hours" data-ml="\u0D2E\u0D23\u0D3F\u0D15\u0D4D\u0D15\u0D42\u0D30\u0D4D">Hours</div></div>
+          <div class="countdown-item"><div class="countdown-val" id="cd-hours">--</div><div class="countdown-label" data-en="Hours" data-ml="മണിക്കൂർ">Hours</div></div>
           <div class="countdown-sep">:</div>
-          <div class="countdown-item"><div class="countdown-val" id="cd-mins">--</div><div class="countdown-label" data-en="Min" data-ml="\u0D2E\u0D3F\u0D23\u0D3F\u0D1F\u0D4D">Min</div></div>
+          <div class="countdown-item"><div class="countdown-val" id="cd-mins">--</div><div class="countdown-label" data-en="Min" data-ml="മിനിറ്റ്">Min</div></div>
           <div class="countdown-sep">:</div>
-          <div class="countdown-item"><div class="countdown-val" id="cd-secs">--</div><div class="countdown-label" data-en="Sec" data-ml="\u0D38\u0D46\u0D15\u0D4D\u0D15\u0D28\u0D4D\u0D1F\u0D4D">Sec</div></div>
+          <div class="countdown-item"><div class="countdown-val" id="cd-secs">--</div><div class="countdown-label" data-en="Sec" data-ml="സെക്കൻഡ്">Sec</div></div>
         </div>
-        <div style="font-size:.75rem;color:var(--on-sv);margin-top:.5rem" data-en="Until Cuppilo opens" data-ml="CUPPILO \u0D24\u0D41\u0D31\u0D15\u0D4D\u0D15\u0D41\u0D28\u0D4D\u0D24\u0D4D \u0D35\u0D30\u0D46">Until Cuppilo opens</div>
+        <div style="font-size:.75rem;color:var(--on-sv);margin-top:.5rem" data-en="Until Cuppilo opens" data-ml="CUPPILO തുറക്കുന്നത് വരെ">Until Cuppilo opens</div>
       </div>
     </section>
 
-    <!-- ═══ QUOTE ═══ -->
     <section style="padding:2rem 1rem">
       <div class="quote-card">
-        <blockquote data-en="&quot;You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it.&quot;" data-ml="&quot;\u0D28\u0D3F\u0D19\u0D4D\u0D19\u0D33\u0D4D \u0D07\u0D24\u0D41\u0D35\u0D30\u0D46 CUPPILO \u0D38\u0D28\u0D4D\u0D26\u0D30\u0D4D\u0D36\u0D3F\u0D1A\u0D4D\u0D1A\u0D3F\u0D1F\u0D4D\u0D1F\u0D3F\u0D32\u0D4D. \u0D15\u0D3E\u0D30\u0D23\u0D02 CUPPILO \u0D07\u0D2A\u0D4D\u0D2A\u0D4B\u0D32\u0D4D \u0D28\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D4D\u0D24\u0D4D. \u0D05\u0D24\u0D4D \u0D38\u0D43\u0D37\u0D4D\u0D1F\u0D3F\u0D15\u0D4D\u0D15\u0D3E\u0D28\u0D4D \u0D38\u0D39\u0D3E\u0D2F\u0D3F\u0D15\u0D4D\u0D15\u0D42.&quot;">"You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it."</blockquote>
+        <blockquote data-en="&quot;You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it.&quot;" data-ml="&quot;നിങ്ങൾ ഇതുവരെ CUPPILO സന്ദർശിച്ചിട്ടില്ല. കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.&quot;">"You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it."</blockquote>
         <div class="quote-meta">
           <span>Founding Open Ballot Phase 01</span>
-          <span class="badge" data-en="Open Access" data-ml="\u0D13\u0D2A\u0D28\u0D4D \u0D06\u0D15\u0D4D\u0D38\u0D46\u0D38\u0D4D">Open Access</span>
+          <span class="badge" data-en="Open Access" data-ml="ഓപ്പൺ ആക്സസ്">Open Access</span>
         </div>
       </div>
     </section>
 
-    <!-- ═══ STEPS ═══ -->
     <section style="padding:2rem 1rem">
       <div class="container">
         <div style="text-align:center;margin-bottom:1.5rem">
-          <span style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--primary)" data-en="Co-Creation Track" data-ml="\u0D38\u0D39\u0D15\u0D3E\u0D30\u0D4D\u0D2F \u0D1F\u0D4D\u0D31\u0D3E\u0D15\u0D4D">Co-Creation Track</span>
-          <h2 style="font-size:1.5rem;font-weight:800;color:var(--charcoal);margin-top:.25rem" data-en="Five decisions you make with us" data-ml="\u0D05\u0D2F\u0D3E\u0D36 \u0D24\u0D40\u0D31\u0D4D\u0D2E\u0D3E\u0D28\u0D42\u0D13\u0D1F\u0D41\u0D28\u0D4D\u0D24 \u0D28\u0D3F\u0D19\u0D4D\u0D19\u0D3D \u0D1E\u0D2E\u0D4D\u0D2E\u0D3E\u0D2F\u0D4D">Five decisions you make with us</h2>
+          <span style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--primary)" data-en="Co-Creation Track" data-ml="സഹകരണ ട്രാക്ക്">Co-Creation Track</span>
+          <h2 style="font-size:1.5rem;font-weight:800;color:var(--charcoal);margin-top:.25rem" data-en="Five decisions you make with us" data-ml="അഞ്ച് തീരുമാനങ്ങൾ നിങ്ങൾ ഞങ്ങളോടൊപ്പം ചെയ്യുന്നു">Five decisions you make with us</h2>
         </div>
         <div class="steps-track">
           <a class="step-item" href="#" onclick="startSurvey();return false">
@@ -125,167 +120,161 @@
       </div>
     </section>
 
-    <!-- ═══ SURVEY FLOW ═══ -->
     <section class="u-steps" id="u-steps">
       <div style="max-width:640px;margin:0 auto;padding:0 1rem">
         <div class="u-progress" id="u-progress"></div>
 
-        <!-- STEP 1 -->
         <div class="u-step active" data-step="1">
           <div class="u-step-head">
-            <h2>What kind of café do you dream of?</h2>
-            <p>Pick the one that feels right</p>
+            <h2 data-en="What kind of café do you dream of?" data-ml="നിങ്ങൾ ആഗ്രഹിക്കുന്ന തരം കഫേ ഏതാണ്?">What kind of café do you dream of?</h2>
+            <p data-en="Pick the one that feels right" data-ml="ശരിയായത് തിരഞ്ഞെടുക്കുക">Pick the one that feels right</p>
           </div>
           <div class="u-options">
             <label class="u-opt" onclick="selectSingle(this,'cafe_type','specialty')">
               <input type="radio" name="cafe_type" value="specialty">
               <div class="u-opt-icon"><span class="material-symbols-outlined">local_cafe</span></div>
-              <div class="u-opt-text"><strong>Specialty Coffee</strong><span>Single-origin, pour-over, latte art</span></div>
+              <div class="u-opt-text"><strong data-en="Specialty Coffee" data-ml="സ്പെഷ്യൽറ്റി കാപ്പി">Specialty Coffee</strong><span data-en="Single-origin, pour-over, latte art" data-ml="സിംഗിൾ ഓറിജിൻ, പോർ ഓവർ, ലാറ്റെ ആർട്ട്">Single-origin, pour-over, latte art</span></div>
               <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
             <label class="u-opt" onclick="selectSingle(this,'cafe_type','traditional')">
               <input type="radio" name="cafe_type" value="traditional">
               <div class="u-opt-icon"><span class="material-symbols-outlined">emoji_food_beverage</span></div>
-              <div class="u-opt-text"><strong>Traditional Kerala</strong><span>Filter kaapi, chai, Malabar snacks</span></div>
+              <div class="u-opt-text"><strong data-en="Traditional Kerala" data-ml="പരമ്പരാഗത കേരളം">Traditional Kerala</strong><span data-en="Filter kaapi, chai, Malabar snacks" data-ml="ഫിൽട്ടർ കാപ്പി, ചായ, മലബാർ സ്നാക്കുകൾ">Filter kaapi, chai, Malabar snacks</span></div>
               <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
             <label class="u-opt" onclick="selectSingle(this,'cafe_type','fusion')">
               <input type="radio" name="cafe_type" value="fusion">
               <div class="u-opt-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
-              <div class="u-opt-text"><strong>Modern Fusion</strong><span>Karupatti latte, jackfruit cold brew</span></div>
+              <div class="u-opt-text"><strong data-en="Modern Fusion" data-ml="ആധുനിക ഫ്യൂഷൻ">Modern Fusion</strong><span data-en="Karupatti latte, jackfruit cold brew" data-ml="കരുപ്പട്ടി ലാറ്റെ, ചക്ക കോൾഡ് ബ്രൂ">Karupatti latte, jackfruit cold brew</span></div>
               <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
           </div>
           <div class="u-nav">
-            <button class="u-cta u-back" onclick="prevStep()" style="display:none">Back</button>
-            <button class="u-cta" onclick="nextStep()">Next</button>
+            <button class="u-cta u-back" onclick="prevStep()" style="display:none" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
           </div>
         </div>
 
-        <!-- STEP 2 -->
         <div class="u-step" data-step="2">
           <div class="u-step-head">
-            <div class="u-live-badge"><span class="u-live-dot"></span> Live — see what others are picking</div>
-            <h2>Pick your drinks</h2>
-            <p>Select all that you'd love at Cuppilo</p>
+            <div class="u-live-badge"><span class="u-live-dot"></span> <span data-en="Live — see what others are picking" data-ml="ലൈവ് — മറ്റുള്ളവർ എന്താണ് തിരഞ്ഞെടുക്കുന്നത് കാണുക">Live — see what others are picking</span></div>
+            <h2 data-en="Pick your drinks" data-ml="നിങ്ങളുടെ പാനീയങ്ങൾ തിരഞ്ഞെടുക്കുക">Pick your drinks</h2>
+            <p data-en="Select all that you'd love at Cuppilo" data-ml="CUPPILO-യിൽ ആഗ്രഹിക്കുന്നവ എല്ലാം തിരഞ്ഞെടുക്കുക">Select all that you'd love at Cuppilo</p>
           </div>
-          <div class="u-multi-info"><strong id="drink-count">0</strong> selected</div>
+          <div class="u-multi-info"><strong id="drink-count">0</strong> <span data-en="selected" data-ml="തിരഞ്ഞെടുത്തു">selected</span></div>
           <div class="u-multi-grid" id="drinks-grid"></div>
           <div class="u-nav">
-            <button class="u-cta u-back" onclick="prevStep()">Back</button>
-            <button class="u-cta" onclick="nextStep()">Next</button>
+            <button class="u-cta u-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
           </div>
         </div>
 
-        <!-- STEP 3 -->
         <div class="u-step" data-step="3">
           <div class="u-step-head">
-            <div class="u-live-badge"><span class="u-live-dot"></span> Live — trending picks</div>
-            <h2>What should we serve?</h2>
-            <p>Select all that you'd love at Cuppilo (or skip)</p>
+            <div class="u-live-badge"><span class="u-live-dot"></span> <span data-en="Live — trending picks" data-ml="ലൈവ് — ട്രെൻഡിംഗ് പിക്കുകൾ">Live — trending picks</span></div>
+            <h2 data-en="What should we serve?" data-ml="നമ്മൾ എന്താണ് വിളമ്പേണ്ടത്?">What should we serve?</h2>
+            <p data-en="Select all that you'd love at Cuppilo (or skip)" data-ml="CUPPILO-യിൽ ആഗ്രഹിക്കുന്നവ തിരഞ്ഞെടുക്കുക (അല്ലെങ്കിൽ ഒഴിവാക്കുക)">Select all that you'd love at Cuppilo (or skip)</p>
           </div>
-          <div class="u-multi-info"><strong id="food-count">0</strong> selected</div>
+          <div class="u-multi-info"><strong id="food-count">0</strong> <span data-en="selected" data-ml="തിരഞ്ഞെടുത്തു">selected</span></div>
           <div class="u-multi-grid" id="food-grid"></div>
           <div class="u-nav">
-            <button class="u-cta u-back" onclick="prevStep()">Back</button>
-            <button class="u-cta" onclick="nextStep()">Skip for now</button>
+            <button class="u-cta u-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="nextStep()" data-en="Skip for now" data-ml="ഇപ്പോൾ ഒഴിവാക്കുക">Skip for now</button>
           </div>
         </div>
 
-        <!-- STEP 4 -->
         <div class="u-step" data-step="4">
           <div class="u-step-head">
-            <h2>Your perfect vibe?</h2>
-            <p>Where would you spend hours?</p>
+            <h2 data-en="Your perfect vibe?" data-ml="നിങ്ങളുടെ പൂർണ്ണ വൈബ്?">Your perfect vibe?</h2>
+            <p data-en="Where would you spend hours?" data-ml="നിങ്ങൾ മണിക്കൂറുകൾ ചെലവഴിക്കുന്നത് എവിടെ?">Where would you spend hours?</p>
           </div>
           <div class="u-amb-grid" id="amb-grid"></div>
           <div class="u-custom-wrap" id="custom-wrap">
-            <label class="u-custom-label">Describe your dream café vibe (optional)</label>
+            <label class="u-custom-label" data-en="Describe your dream café vibe (optional)" data-ml="നിങ്ങളുടെ സ്വപ്ന കഫേ വൈബ് വിവരിക്കുക (ഓപ്ഷണൽ)">Describe your dream café vibe (optional)</label>
             <input type="text" class="u-custom-input" id="custom-ambiance" placeholder="e.g. Rooftop with fairy lights..." maxlength="120"/>
           </div>
           <div class="u-nav">
-            <button class="u-cta u-back" onclick="prevStep()">Back</button>
-            <button class="u-cta" onclick="nextStep()">Next</button>
+            <button class="u-cta u-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="nextStep()" data-en="Next" data-ml="അടുത്തത്">Next</button>
           </div>
         </div>
 
-        <!-- STEP 5 -->
         <div class="u-step" data-step="5">
           <div class="u-step-head">
-            <h2>What feels fair for a great cup?</h2>
-            <p>Your ideal price range</p>
+            <h2 data-en="What feels fair for a great cup?" data-ml="ഒരു മികച്ച കപ്പിന് എന്താണ് ന്യായം?">What feels fair for a great cup?</h2>
+            <p data-en="Your ideal price range" data-ml="നിങ്ങളുടെ ഇഷ്ടപ്പെട്ട വില പരിധി">Your ideal price range</p>
           </div>
           <div class="u-options">
             <label class="u-opt" onclick="selectSingle(this,'price_range','budget')">
               <input type="radio" name="price_range" value="budget">
               <div class="u-opt-icon"><span class="material-symbols-outlined">savings</span></div>
-              <div class="u-opt-text"><strong>₹40–80</strong><span>Everyday affordable</span></div>
+              <div class="u-opt-text"><strong>₹40–80</strong><span data-en="Everyday affordable" data-ml="എല്ലാ ദിവസവും പ്രാപ്യം">Everyday affordable</span></div>
               <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
             <label class="u-opt" onclick="selectSingle(this,'price_range','mid')">
               <input type="radio" name="price_range" value="mid">
               <div class="u-opt-icon"><span class="material-symbols-outlined">payments</span></div>
-              <div class="u-opt-text"><strong>₹80–150</strong><span>Quality feels right</span></div>
+              <div class="u-opt-text"><strong>₹80–150</strong><span data-en="Quality feels right" data-ml="ഗുണമേന്മ ശരിയാണ്">Quality feels right</span></div>
               <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
             <label class="u-opt" onclick="selectSingle(this,'price_range','premium')">
               <input type="radio" name="price_range" value="premium">
               <div class="u-opt-icon"><span class="material-symbols-outlined">diamond</span></div>
-              <div class="u-opt-text"><strong>₹150+</strong><span>Worth the experience</span></div>
+              <div class="u-opt-text"><strong>₹150+</strong><span data-en="Worth the experience" data-ml="അനുഭവത്തിന് വിലമതിക്കും">Worth the experience</span></div>
               <div class="u-opt-check"><span class="material-symbols-outlined">check</span></div>
             </label>
           </div>
           <div class="u-nav">
-            <button class="u-cta u-back" onclick="prevStep()">Back</button>
-            <button class="u-cta" onclick="submitSurvey()">See My Founding Card</button>
+            <button class="u-cta u-back" onclick="prevStep()" data-en="Back" data-ml="പിന്നോട്ട്">Back</button>
+            <button class="u-cta" onclick="submitSurvey()" data-en="See My Founding Card" data-ml="എന്റെ സ്ഥാപക കാർഡ് കാണുക">See My Founding Card</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══ FOUNDING CARD ═══ -->
     <section class="card-section" id="u-card-section">
       <div style="max-width:480px;margin:0 auto;padding:0 1rem">
         <div class="f-card" id="f-card" onclick="document.getElementById('f-card').classList.toggle('flipped')">
           <div class="f-card-inner">
             <div class="f-card-front">
-              <div class="badge">FOUNDING GUEST</div>
+              <div class="badge" data-en="FOUNDING GUEST" data-ml="സ്ഥാപക അതിഥി">FOUNDING GUEST</div>
               <div class="logo-text">CUPPILO</div>
-              <div class="subtitle">Before the first cup</div>
+              <div class="subtitle" data-en="Before the first cup" data-ml="ആദ്യ കപ്പിന് മുമ്പ്">Before the first cup</div>
               <div class="divider"></div>
-              <div class="guest-label">You are guest number</div>
+              <div class="guest-label" data-en="You are guest number" data-ml="നിങ്ങൾ അതിഥി നമ്പറാണ്">You are guest number</div>
               <div class="guest-number" id="guest-number">#00001</div>
-              <div class="quote">I was here before the first cup.</div>
+              <div class="quote" data-en="I was here before the first cup." data-ml="ഞാൻ ആദ്യ കപ്പിന് മുമ്പ് ഇവിടെ ഉണ്ടായിരുന്നു.">I was here before the first cup.</div>
               <div class="year">2026</div>
-              <div class="flip-hint"><span class="material-symbols-outlined">touch_app</span> Tap to flip</div>
+              <div class="flip-hint"><span class="material-symbols-outlined">touch_app</span> <span data-en="Tap to flip" data-ml="ഫ്ലിപ്പ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക">Tap to flip</span></div>
             </div>
             <div class="f-card-back">
-              <div class="badge">YOUR QR CODE</div>
+              <div class="badge" data-en="YOUR QR CODE" data-ml="നിങ്ങളുടെ QR കോഡ്">YOUR QR CODE</div>
               <div class="qr-box" id="qr-box"></div>
-              <div class="qr-label">Scan to view your founding card</div>
+              <div class="qr-label" data-en="Scan to view your founding card" data-ml="നിങ്ങളുടെ സ്ഥാപക കാർഡ് കാണാൻ സ്കാൻ ചെയ്യുക">Scan to view your founding card</div>
               <div class="qr-url" id="qr-url">cuppilo.in</div>
-              <div class="flip-hint" style="margin-top:1rem"><span class="material-symbols-outlined">touch_app</span> Tap to flip back</div>
+              <div class="flip-hint" style="margin-top:1rem"><span class="material-symbols-outlined">touch_app</span> <span data-en="Tap to flip back" data-ml="തിരികെ ഫ്ലിപ്പ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക">Tap to flip back</span></div>
             </div>
           </div>
         </div>
         <div class="f-actions">
           <button class="btn btn-primary" onclick="shareResult()">
-            <span class="material-symbols-outlined" style="font-size:18px">share</span> Share Card
+            <span class="material-symbols-outlined" style="font-size:18px">share</span>
+            <span data-en="Share Card" data-ml="കാർഡ് പങ്കിടുക">Share Card</span>
           </button>
           <a href="founding-wall.html" class="btn btn-outline">
-            <span class="material-symbols-outlined" style="font-size:18px">wall_art</span> Check Your Position
+            <span class="material-symbols-outlined" style="font-size:18px">wall_art</span>
+            <span data-en="Check Your Position" data-ml="നിങ്ങളുടെ സ്ഥാനം പരിശോധിക്കുക">Check Your Position</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ═══ BOTTOM CTA ═══ -->
     <section class="bottom-cta" id="u-bottom-cta">
       <div class="container">
-        <h2>You haven't visited Cuppilo yet.</h2>
-        <p>Because Cuppilo doesn't exist yet. Help us create it.</p>
+        <h2 data-en="You haven't visited Cuppilo yet." data-ml="നിങ്ങൾ ഇതുവരെ CUPPILO സന്ദർശിച്ചിട്ടില്ല.">You haven't visited Cuppilo yet.</h2>
+        <p data-en="Because Cuppilo doesn't exist yet. Help us create it." data-ml="കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.">Because Cuppilo doesn't exist yet. Help us create it.</p>
         <button class="hero-cta" onclick="startSurvey()" style="background:var(--brass);color:var(--charcoal)">
-          <span>Get Started — 2 min</span>
+          <span data-en="Get Started — 2 min" data-ml="ആരംഭിക്കുക — 2 മിനിറ്റ്">Get Started — 2 min</span>
           <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
         </button>
       </div>
@@ -308,7 +297,6 @@
       {id:'k001',name:'Nannari Sarbath',desc:'Traditional Kerala summer cooler',price:49,icon:'water_drop',grad:'#e8f5e9,#81c784'},
       {id:'s001',name:'CUPPILO Signature Coffee',desc:'House coffee, Kerala-inspired',price:129,icon:'star',grad:'#231F20,#C89D5C'}
     ];
-
     var foodItems = [
       {id:'f001',name:'Pazham Pori',desc:'Crispy Kerala banana fritter',price:20,icon:'restaurant',grad:'#fff8e1,#ffd54f'},
       {id:'f004',name:'Unniyappam',desc:'Jaggery & banana rice cake',price:30,icon:'restaurant',grad:'#fff8e1,#ffd54f'},
@@ -319,232 +307,143 @@
       {id:'d001',name:'Brownie',desc:'Warm chocolate brownie',price:69,icon:'cake',grad:'#f3e5f5,#ce93d8'},
       {id:'d002',name:'Brownie & Ice Cream',desc:'Warm brownie, vanilla ice cream',price:109,icon:'cake',grad:'#f3e5f5,#ce93d8'}
     ];
-
     var ambThemes = [
       {id:'work',name:'Quiet & Work-Friendly',desc:'WiFi, power sockets, soft lo-fi.',icon:'laptop',grad:'linear-gradient(135deg,#1a1a2e,#16213e)',tags:['WiFi','Sockets','Soft Music']},
       {id:'social',name:'Social & Lively',desc:'Long communal tables, board games.',icon:'groups',grad:'linear-gradient(135deg,#e65100,#ff8f00)',tags:['Communal','Games','Chatter']},
       {id:'cozy',name:'Cozy & Intimate',desc:'Fairy lights, warm corners.',icon:'nights_stay',grad:'linear-gradient(135deg,#4a148c,#7b1fa2)',tags:['Fairy lights','Warm','Intimate']},
       {id:'open',name:'Open Air & Veranda',desc:'Plants, evening breeze, Kerala veranda.',icon:'deck',grad:'linear-gradient(135deg,#1b5e20,#388e3c)',tags:['Plants','Breeze','Veranda']}
     ];
-
     var currentStep = 1, totalSteps = 5;
     var surveyData = { drinks: [], food: [], ambiance: null };
     var trendingDrinks = {}, trendingFood = {};
 
     function startSurvey() {
-      if (!getProfile()) {
-        document.getElementById('name-card-overlay').classList.add('active');
-        return;
-      }
+      if (!getProfile()) { document.getElementById('name-card-overlay').classList.add('active'); return; }
       document.getElementById('hero').style.display = 'none';
-      document.getElementById('u-about') && (document.getElementById('u-about').style.display = 'none');
-      document.getElementById('u-bottom-cta').style.display = 'none';
-      document.querySelectorAll('section:not(.u-steps):not(.card-section)').forEach(function(s) {
-        if (s.id !== 'hero' && s.id !== 'u-steps' && s.id !== 'u-card-section' && s.id !== 'u-bottom-cta') s.style.display = 'none';
+      document.querySelectorAll('section').forEach(function(s) {
+        if (s.id !== 'u-steps' && s.id !== 'u-card-section') s.style.display = 'none';
       });
       document.getElementById('u-steps').classList.add('active');
       document.getElementById('u-card-section').classList.remove('active');
       currentStep = 1;
-      renderProgress();
-      renderDrinks();
-      renderFood();
-      renderAmbiance();
-      loadTrending();
+      renderProgress(); renderDrinks(); renderFood(); renderAmbiance(); loadTrending();
       window.scrollTo({top:0,behavior:'smooth'});
     }
-
     function renderProgress() {
       var h = '';
       for (var i = 1; i <= totalSteps; i++) h += '<div class="bar' + (i <= currentStep ? ' filled' : '') + '"></div>';
       document.getElementById('u-progress').innerHTML = h;
     }
-
     function showStep(n) {
       document.querySelectorAll('.u-step').forEach(function(s) { s.classList.remove('active'); });
       document.querySelector('[data-step="' + n + '"]').classList.add('active');
-      renderProgress();
-      window.scrollTo({top:0,behavior:'smooth'});
+      renderProgress(); window.scrollTo({top:0,behavior:'smooth'});
     }
-
     function nextStep() {
-      if (currentStep === 1 && !surveyData.cafe_type) { showToast('Please select an option','error'); return; }
-      if (currentStep === 4 && !surveyData.ambiance) { showToast('Please pick a vibe','error'); return; }
+      if (currentStep === 1 && !surveyData.cafe_type) { showToast(document.documentElement.getAttribute('data-lang')==='ml'?'ദയവായി ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക':'Please select an option','error'); return; }
+      if (currentStep === 4 && !surveyData.ambiance) { showToast(document.documentElement.getAttribute('data-lang')==='ml'?'ദയവായി ഒരു വൈബ് തിരഞ്ഞെടുക്കുക':'Please pick a vibe','error'); return; }
       if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
     }
-
     function prevStep() { if (currentStep > 1) { currentStep--; showStep(currentStep); } }
-
     function selectSingle(el, name, value) {
       el.closest('.u-options').querySelectorAll('.u-opt').forEach(function(o) { o.classList.remove('selected'); });
-      el.classList.add('selected');
-      el.querySelector('input').checked = true;
-      surveyData[name] = value;
+      el.classList.add('selected'); el.querySelector('input').checked = true; surveyData[name] = value;
     }
-
     function renderDrinks() {
-      var grid = document.getElementById('drinks-grid');
-      grid.innerHTML = '';
+      var grid = document.getElementById('drinks-grid'); grid.innerHTML = '';
       drinkItems.forEach(function(item) {
         var trend = trendingDrinks[item.id] || 0;
-        var card = document.createElement('div');
-        card.className = 'u-multi-card';
-        card.innerHTML =
-          '<div class="u-multi-check"><span class="material-symbols-outlined">check</span></div>' +
-          '<div class="u-multi-top">' +
-            '<div class="u-multi-icon" style="background:linear-gradient(135deg,' + item.grad + ')"><span class="material-symbols-outlined">' + item.icon + '</span></div>' +
-            '<div><div class="u-multi-name">' + item.name + '</div><div class="u-multi-price">\u20B9' + item.price + '</div></div>' +
-          '</div>' +
-          '<div class="u-multi-desc">' + item.desc + '</div>' +
-          (trend > 0 ? '<div class="u-multi-trend"><span class="material-symbols-outlined">trending_up</span>' + trend + ' picked this</div>' : '');
-        card.onclick = function() { toggleMulti('drinks', item.id, item.name); card.classList.toggle('selected'); };
+        var card = document.createElement('div'); card.className = 'u-multi-card';
+        card.innerHTML = '<div class="u-multi-check"><span class="material-symbols-outlined">check</span></div><div class="u-multi-top"><div class="u-multi-icon" style="background:linear-gradient(135deg,'+item.grad+')"><span class="material-symbols-outlined">'+item.icon+'</span></div><div><div class="u-multi-name">'+item.name+'</div><div class="u-multi-price">₹'+item.price+'</div></div></div><div class="u-multi-desc">'+item.desc+'</div>'+(trend>0?'<div class="u-multi-trend"><span class="material-symbols-outlined">trending_up</span>'+trend+' picked this</div>':'');
+        card.onclick = function() { toggleMulti('drinks',item.id,item.name); card.classList.toggle('selected'); };
         grid.appendChild(card);
       });
     }
-
     function renderFood() {
-      var grid = document.getElementById('food-grid');
-      grid.innerHTML = '';
+      var grid = document.getElementById('food-grid'); grid.innerHTML = '';
       foodItems.forEach(function(item) {
         var trend = trendingFood[item.id] || 0;
-        var card = document.createElement('div');
-        card.className = 'u-multi-card';
-        card.innerHTML =
-          '<div class="u-multi-check"><span class="material-symbols-outlined">check</span></div>' +
-          '<div class="u-multi-top">' +
-            '<div class="u-multi-icon" style="background:linear-gradient(135deg,' + item.grad + ')"><span class="material-symbols-outlined">' + item.icon + '</span></div>' +
-            '<div><div class="u-multi-name">' + item.name + '</div><div class="u-multi-price">\u20B9' + item.price + '</div></div>' +
-          '</div>' +
-          '<div class="u-multi-desc">' + item.desc + '</div>' +
-          (trend > 0 ? '<div class="u-multi-trend"><span class="material-symbols-outlined">trending_up</span>' + trend + ' picked this</div>' : '');
-        card.onclick = function() { toggleMulti('food', item.id, item.name); card.classList.toggle('selected'); };
+        var card = document.createElement('div'); card.className = 'u-multi-card';
+        card.innerHTML = '<div class="u-multi-check"><span class="material-symbols-outlined">check</span></div><div class="u-multi-top"><div class="u-multi-icon" style="background:linear-gradient(135deg,'+item.grad+')"><span class="material-symbols-outlined">'+item.icon+'</span></div><div><div class="u-multi-name">'+item.name+'</div><div class="u-multi-price">₹'+item.price+'</div></div></div><div class="u-multi-desc">'+item.desc+'</div>'+(trend>0?'<div class="u-multi-trend"><span class="material-symbols-outlined">trending_up</span>'+trend+' picked this</div>':'');
+        card.onclick = function() { toggleMulti('food',item.id,item.name); card.classList.toggle('selected'); };
         grid.appendChild(card);
       });
     }
-
-    function toggleMulti(type, id, name) {
-      var arr = surveyData[type];
-      var idx = arr.findIndex(function(x) { return x.id === id; });
-      if (idx >= 0) arr.splice(idx, 1); else arr.push({id: id, name: name});
-      var countEl = document.getElementById(type === 'drinks' ? 'drink-count' : 'food-count');
-      if (countEl) countEl.textContent = arr.length;
+    function toggleMulti(type,id,name) {
+      var arr = surveyData[type]; var idx = arr.findIndex(function(x){return x.id===id;});
+      if(idx>=0) arr.splice(idx,1); else arr.push({id:id,name:name});
+      var countEl = document.getElementById(type==='drinks'?'drink-count':'food-count');
+      if(countEl) countEl.textContent = arr.length;
     }
-
     function renderAmbiance() {
-      var grid = document.getElementById('amb-grid');
-      grid.innerHTML = '';
+      var grid = document.getElementById('amb-grid'); grid.innerHTML = '';
       ambThemes.forEach(function(t) {
-        var card = document.createElement('div');
-        card.className = 'u-amb-card';
-        card.innerHTML =
-          '<div class="u-amb-check"><span class="material-symbols-outlined">check</span></div>' +
-          '<div class="u-amb-visual" style="background:' + t.grad + '"><span class="material-symbols-outlined">' + t.icon + '</span></div>' +
-          '<div class="u-amb-body">' +
-            '<div class="u-amb-name">' + t.name + '</div>' +
-            '<div class="u-amb-desc">' + t.desc + '</div>' +
-            '<div class="u-amb-tags">' + t.tags.map(function(tag) { return '<span class="u-amb-tag">' + tag + '</span>'; }).join('') + '</div>' +
-          '</div>';
+        var card = document.createElement('div'); card.className = 'u-amb-card';
+        card.innerHTML = '<div class="u-amb-check"><span class="material-symbols-outlined">check</span></div><div class="u-amb-visual" style="background:'+t.grad+'"><span class="material-symbols-outlined">'+t.icon+'</span></div><div class="u-amb-body"><div class="u-amb-name">'+t.name+'</div><div class="u-amb-desc">'+t.desc+'</div><div class="u-amb-tags">'+t.tags.map(function(tag){return '<span class="u-amb-tag">'+tag+'</span>';}).join('')+'</div></div>';
         card.onclick = function() {
-          grid.querySelectorAll('.u-amb-card').forEach(function(c) { c.classList.remove('selected'); });
-          card.classList.add('selected');
-          surveyData.ambiance = t.id;
-          document.getElementById('custom-wrap').classList.toggle('show', t.id === 'open');
+          grid.querySelectorAll('.u-amb-card').forEach(function(c){c.classList.remove('selected');});
+          card.classList.add('selected'); surveyData.ambiance = t.id;
+          document.getElementById('custom-wrap').classList.toggle('show', t.id==='open');
         };
         grid.appendChild(card);
       });
     }
-
     async function loadTrending() {
       try {
-        var results = await Promise.all([
-          sbSelect('trending_drinks', 'item_id,item_name,vote_count'),
-          sbSelect('trending_food', 'item_id,item_name,vote_count'),
-          sbSelect('survey_responses', 'id')
-        ]);
-        if (Array.isArray(results[0])) { results[0].forEach(function(r) { trendingDrinks[r.item_id] = r.vote_count; }); renderDrinks(); }
-        if (Array.isArray(results[1])) { results[1].forEach(function(r) { trendingFood[r.item_id] = r.vote_count; }); renderFood(); }
-        var total = Array.isArray(results[2]) ? results[2].length : 0;
+        var results = await Promise.all([sbSelect('trending_drinks','item_id,item_name,vote_count'),sbSelect('trending_food','item_id,item_name,vote_count'),sbSelect('survey_responses','id')]);
+        if(Array.isArray(results[0])){results[0].forEach(function(r){trendingDrinks[r.item_id]=r.vote_count;});renderDrinks();}
+        if(Array.isArray(results[1])){results[1].forEach(function(r){trendingFood[r.item_id]=r.vote_count;});renderFood();}
+        var total = Array.isArray(results[2])?results[2].length:0;
         document.getElementById('hero-count').textContent = total;
-      } catch(e) { console.log('Trending load skipped:', e); }
+      } catch(e) { console.log('Trending load skipped:',e); }
     }
-
     async function submitSurvey() {
-      if (!surveyData.price_range) { showToast('Please select a price range','error'); return; }
+      if(!surveyData.price_range){showToast(document.documentElement.getAttribute('data-lang')==='ml'?'ദയവായി ഒരു വില തിരഞ്ഞെടുക്കുക':'Please select a price range','error');return;}
       var profile = getProfile();
-      if (!profile) { showToast('Please enter your name first','error'); return; }
+      if(!profile){showToast('Please enter your name first','error');return;}
       try {
-        var result = await sbInsert('survey_responses', {
-          display_name: profile.display_name,
-          session_id: profile.session_id,
-          cafe_type: surveyData.cafe_type || null,
-          drinks_voted: JSON.stringify(surveyData.drinks),
-          food_voted: JSON.stringify(surveyData.food),
-          ambiance_choice: surveyData.ambiance || null,
-          custom_ambiance: document.getElementById('custom-ambiance').value.trim() || null,
-          price_range: surveyData.price_range || null
+        var result = await sbInsert('survey_responses',{
+          display_name:profile.display_name,session_id:profile.session_id,
+          cafe_type:surveyData.cafe_type||null,drinks_voted:JSON.stringify(surveyData.drinks),
+          food_voted:JSON.stringify(surveyData.food),ambiance_choice:surveyData.ambiance||null,
+          custom_ambiance:document.getElementById('custom-ambiance').value.trim()||null,
+          price_range:surveyData.price_range||null
         });
-        var guestNum = result && result[0] ? result[0].founding_guest_number : 1;
+        var guestNum = result&&result[0]?result[0].founding_guest_number:1;
         showCard(guestNum);
-      } catch(e) {
-        console.error('Submit error:', e);
-        showToast('Something went wrong. Please try again.','error');
-      }
+      } catch(e) { console.error('Submit error:',e); showToast('Something went wrong.','error'); }
     }
-
     function showCard(num) {
       document.getElementById('u-steps').classList.remove('active');
       document.getElementById('u-steps').style.display = 'none';
-      document.querySelectorAll('section').forEach(function(s) {
-        if (s.id !== 'u-card-section' && s.id !== 'navbar' && !s.classList.contains('footer')) s.style.display = 'none';
-      });
+      document.querySelectorAll('section').forEach(function(s){if(s.id!=='u-card-section')s.style.display='none';});
       document.getElementById('u-card-section').classList.add('active');
       document.getElementById('u-card-section').style.display = 'block';
-      document.getElementById('guest-number').textContent = '#' + String(num).padStart(5,'0');
-
-      // Generate unique QR code for this member
-      var uniqueUrl = window.location.origin + '/founding-wall.html?guest=' + num;
-      var qrBox = document.getElementById('qr-box');
-      qrBox.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(uniqueUrl) + '&bgcolor=1e1b19&color=D9A441&margin=12" alt="QR Code" style="width:100%;height:100%;border-radius:.5rem"/>';
-      document.getElementById('qr-url').textContent = 'cuppilo.in/guest/' + num;
+      document.getElementById('guest-number').textContent = '#'+String(num).padStart(5,'0');
+      var uniqueUrl = window.location.origin+'/founding-wall.html?guest='+num;
+      document.getElementById('qr-box').innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data='+encodeURIComponent(uniqueUrl)+'&bgcolor=1e1b19&color=D9A441&margin=12" alt="QR Code" style="width:100%;height:100%;border-radius:.5rem"/>';
+      document.getElementById('qr-url').textContent = 'cuppilo.in/guest/'+num;
       window.scrollTo({top:0,behavior:'smooth'});
     }
-
     function shareResult() {
-      var profile = getProfile();
       var num = document.getElementById('guest-number').textContent;
-      var text = 'I am Founding Guest ' + num + ' at CUPPILO!\nHelp build Kerala\'s first community café — cuppilo.in';
-      if (navigator.share) {
-        navigator.share({title:'My CUPPILO Founding Card',text:text,url:window.location.origin}).catch(function(){});
-      } else {
-        navigator.clipboard.writeText(text).then(function(){showToast('Copied to clipboard!','success');}).catch(function(){});
-      }
+      var text = 'I am Founding Guest '+num+' at CUPPILO!\nHelp build Kerala\'s first community café — cuppilo.in';
+      if(navigator.share){navigator.share({title:'My CUPPILO Founding Card',text:text,url:window.location.origin}).catch(function(){});}
+      else{navigator.clipboard.writeText(text).then(function(){showToast('Copied!','success');}).catch(function(){});}
     }
-
-    // ── COUNTDOWN ──
     (function(){
-      var target = new Date();
-      target.setDate(target.getDate() + 356);
-      target.setHours(0,0,0,0);
-      function update() {
-        var now = new Date();
-        var diff = target - now;
-        if (diff <= 0) { document.getElementById('cd-days').textContent = '0'; return; }
-        var d = Math.floor(diff / 86400000);
-        var h = Math.floor((diff % 86400000) / 3600000);
-        var m = Math.floor((diff % 3600000) / 60000);
-        var s = Math.floor((diff % 60000) / 1000);
-        document.getElementById('cd-days').textContent = d;
-        document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-        document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
-        document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+      var target=new Date();target.setDate(target.getDate()+356);target.setHours(0,0,0,0);
+      function update(){
+        var now=new Date();var diff=target-now;if(diff<=0){document.getElementById('cd-days').textContent='0';return;}
+        var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+        document.getElementById('cd-days').textContent=d;
+        document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
+        document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
+        document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
       }
-      update();
-      setInterval(update, 1000);
+      update();setInterval(update,1000);
     })();
-
-    // ── INIT ──
-    document.addEventListener('DOMContentLoaded', function() {
-      initPage('index');
-    });
+    document.addEventListener('DOMContentLoaded',function(){initPage('index');});
   </script>
 </body>
 </html>

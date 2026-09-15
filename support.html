@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Support — CUPPILO</title>
-  <meta name="description" content="Buy a coffee to support CUPPILO. Every cup helps us build Kerala's first community café."/>
+  <meta name="description" content="Buy a coffee to support CUPPILO."/>
   <meta name="robots" content="noindex"/>
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
   <meta name="theme-color" content="#872419"/>
@@ -25,10 +25,10 @@
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
       <span class="material-symbols-outlined" style="font-size:40px;color:var(--primary);margin-bottom:.75rem">waving_hand</span>
-      <h2>Welcome to CUPPILO</h2>
-      <p>What should we call you?</p>
+      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()">Get Started</button>
+      <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
     </div>
   </div>
 
@@ -36,8 +36,8 @@
 
   <main>
     <section class="sup-hero">
-      <h1>Buy me a Coffee</h1>
-      <p>For support CUPPILO</p>
+      <h1 data-en="Buy me a Coffee" data-ml="എനിക്ക് ഒരു കാപ്പി തരൂ">Buy me a Coffee</h1>
+      <p data-en="For support CUPPILO" data-ml="CUPPILO-യെ പിന്തുണയ്ക്കാൻ">For support CUPPILO</p>
     </section>
 
     <div class="flip-container" id="flip-card" onclick="document.getElementById('flip-card').classList.toggle('flipped')">
@@ -45,12 +45,12 @@
         <div class="flip-front">
           <span class="material-symbols-outlined">local_cafe</span>
           <h2>CUPPILO</h2>
-          <p>Tap to flip for QR code</p>
-          <div class="flip-hint"><span class="material-symbols-outlined">touch_app</span> Tap to flip</div>
+          <p data-en="Tap to flip for QR code" data-ml="QR കോഡിനായി ഫ്ലിപ്പ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക">Tap to flip for QR code</p>
+          <div class="flip-hint"><span class="material-symbols-outlined">touch_app</span> <span data-en="Tap to flip" data-ml="ഫ്ലിപ്പ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക">Tap to flip</span></div>
         </div>
         <div class="flip-back">
           <img src="img/bmc-qr.png" alt="BMC QR Code"/>
-          <div class="qr-label">Scan to support</div>
+          <div class="qr-label" data-en="Scan to support" data-ml="പിന്തുണയ്ക്കാൻ സ്കാൻ ചെയ്യുക">Scan to support</div>
           <div class="qr-link">buymeacoffee.com/cuppilocafe</div>
         </div>
       </div>
@@ -59,7 +59,7 @@
     <div class="sup-btn">
       <a href="https://buymeacoffee.com/cuppilocafe" target="_blank" rel="noopener">
         <span class="material-symbols-outlined" style="font-size:20px">local_cafe</span>
-        Buy me a Coffee
+        <span data-en="Buy me a Coffee" data-ml="എനിക്ക് ഒരു കാപ്പി തരൂ">Buy me a Coffee</span>
       </a>
     </div>
 
@@ -67,22 +67,22 @@
       <div class="report-card">
         <span class="material-symbols-outlined">local_cafe</span>
         <div class="value" id="report-coffees">--</div>
-        <div class="label">Coffees bought</div>
+        <div class="label" data-en="Coffees bought" data-ml="വാങ്ങിയ കാപ്പികൾ">Coffees bought</div>
       </div>
       <div class="report-card">
         <span class="material-symbols-outlined">payments</span>
         <div class="value" id="report-amount">--</div>
-        <div class="label">Total raised</div>
+        <div class="label" data-en="Total raised" data-ml="ആകെ ശേഖരിച്ചത്">Total raised</div>
       </div>
       <div class="report-card">
         <span class="material-symbols-outlined">group</span>
         <div class="value" id="report-supporters">--</div>
-        <div class="label">Supporters</div>
+        <div class="label" data-en="Supporters" data-ml="പിന്തുണക്കാർ">Supporters</div>
       </div>
     </div>
 
     <div class="sup-note">
-      <p><strong>Fully anonymous</strong> bought Coffee status = <strong>lifetime 10% on anything in Cuppilo</strong></p>
+      <p data-en="<strong>Fully anonymous</strong> bought Coffee status = <strong>lifetime 10% on anything in Cuppilo</strong>" data-ml="<strong>പൂർണ്ണ അജ്ഞാത</strong> കാപ്പി വാങ്ങിയ നില = <strong>CUPPILO-യിൽ എന്തിലും ജീവിതകാലം 10%</strong>"><strong>Fully anonymous</strong> bought Coffee status = <strong>lifetime 10% on anything in Cuppilo</strong></p>
     </div>
   </main>
 
@@ -110,10 +110,7 @@
         document.getElementById('report-supporters').textContent = '0';
       }
     }
-    document.addEventListener('DOMContentLoaded', function() {
-      initPage('support');
-      loadReports();
-    });
+    document.addEventListener('DOMContentLoaded', function() { initPage('support'); loadReports(); });
   </script>
 </body>
 </html>

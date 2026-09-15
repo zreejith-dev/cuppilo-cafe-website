@@ -57,10 +57,10 @@
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
       <span class="material-symbols-outlined" style="font-size:40px;color:var(--primary);margin-bottom:.75rem">waving_hand</span>
-      <h2>Welcome to CUPPILO</h2>
-      <p>What should we call you?</p>
+      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()">Get Started</button>
+      <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
     </div>
   </div>
 
@@ -68,22 +68,22 @@
 
   <main>
     <section class="wall-hero">
-      <div class="wall-badge"><span class="dot"></span> Live Wall</div>
-      <h1 class="wall-title">Founding Wall</h1>
-      <p class="wall-sub">These people helped build Cuppilo before the first cup.</p>
+      <div class="wall-badge"><span class="dot"></span> <span data-en="Live Wall" data-ml="ലൈവ് മതിൽ">Live Wall</span></div>
+      <h1 class="wall-title" data-en="Founding Wall" data-ml="സ്ഥാപക മതിൽ">Founding Wall</h1>
+      <p class="wall-sub" data-en="These people helped build Cuppilo before the first cup." data-ml="ആദ്യ കപ്പിന് മുമ്പ് ഇവർ CUPPILO നിർമ്മിക്കാൻ സഹായിച്ചു.">These people helped build Cuppilo before the first cup.</p>
     </section>
 
     <div class="wall-count">
       <div class="wall-count-num" id="wall-total">0</div>
-      <div class="wall-count-label">Founding Guests</div>
+      <div class="wall-count-label" data-en="Founding Guests" data-ml="സ്ഥാപക അതിഥികൾ">Founding Guests</div>
     </div>
 
     <div class="wall-grid" id="wall-grid">
       <div class="wall-empty" id="wall-empty">
         <span class="material-symbols-outlined">group</span>
-        <p>No founding guests yet. Be the first!</p>
+        <p data-en="No founding guests yet. Be the first!" data-ml="ഇപ്പോൾ ഒരു സ്ഥാപക അതിഥിയുമില്ല. ആദ്യത്തെ ആൾ ആകൂ!">No founding guests yet. Be the first!</p>
         <a href="index.html" class="btn btn-primary" style="margin-top:1rem">
-          Get Started
+          <span data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</span>
           <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
         </a>
       </div>
@@ -91,10 +91,10 @@
 
     <section class="wall-bottom">
       <div class="container">
-        <h2>You haven't visited Cuppilo yet.</h2>
-        <p>Because Cuppilo doesn't exist yet. Help us create it.</p>
+        <h2 data-en="You haven't visited Cuppilo yet." data-ml="നിങ്ങൾ ഇതുവരെ CUPPILO സന്ദർശിച്ചിട്ടില്ല.">You haven't visited Cuppilo yet.</h2>
+        <p data-en="Because Cuppilo doesn't exist yet. Help us create it." data-ml="കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.">Because Cuppilo doesn't exist yet. Help us create it.</p>
         <a href="index.html" class="btn btn-primary" style="padding:.875rem 2rem;font-size:1rem">
-          Join the Wall
+          <span data-en="Join the Wall" data-ml="മതിലിൽ ചേരുക">Join the Wall</span>
           <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
         </a>
       </div>
@@ -111,21 +111,13 @@
         var data = await sbSelect('survey_responses', 'display_name,founding_guest_number,created_at');
         var arr = Array.isArray(data) ? data : [];
         arr.sort(function(a, b) { return (a.founding_guest_number || 0) - (b.founding_guest_number || 0); });
-
         document.getElementById('wall-total').textContent = arr.length;
         var grid = document.getElementById('wall-grid');
         var empty = document.getElementById('wall-empty');
-
-        if (arr.length === 0) {
-          empty.style.display = '';
-          return;
-        }
+        if (arr.length === 0) { empty.style.display = ''; return; }
         empty.style.display = 'none';
-
-        // Check for ?guest= param to highlight
         var params = new URLSearchParams(window.location.search);
         var highlightGuest = parseInt(params.get('guest')) || 0;
-
         grid.innerHTML = arr.map(function(p) {
           var name = p.display_name || 'Anonymous';
           var initials = name.split(' ').map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
@@ -134,30 +126,14 @@
           var isHighlighted = num === highlightGuest;
           return '<div class="wall-person' + (isHighlighted ? ' highlighted' : '') + '">' +
             '<div class="wall-avatar">' + initials + '</div>' +
-            '<div class="wall-info">' +
-              '<div class="wall-name">' + name + '</div>' +
-              '<div class="wall-guest">' + numStr + '</div>' +
-            '</div>' +
+            '<div class="wall-info"><div class="wall-name">' + name + '</div><div class="wall-guest">' + numStr + '</div></div>' +
             (isHighlighted ? '<span class="material-symbols-outlined" style="color:var(--brass);font-size:20px">bookmark</span>' : '') +
           '</div>';
         }).join('');
-
-        // Scroll to highlighted guest
-        if (highlightGuest) {
-          setTimeout(function() {
-            var el = document.querySelector('.wall-person.highlighted');
-            if (el) el.scrollIntoView({behavior:'smooth',block:'center'});
-          }, 500);
-        }
-      } catch (e) {
-        console.error('Wall load error:', e);
-      }
+        if (highlightGuest) { setTimeout(function() { var el = document.querySelector('.wall-person.highlighted'); if (el) el.scrollIntoView({behavior:'smooth',block:'center'}); }, 500); }
+      } catch (e) { console.error('Wall load error:', e); }
     }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      initPage('wall');
-      loadWall();
-    });
+    document.addEventListener('DOMContentLoaded', function() { initPage('wall'); loadWall(); });
   </script>
 </body>
 </html>

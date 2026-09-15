@@ -32,10 +32,10 @@
   <div class="name-card-overlay" id="name-card-overlay">
     <div class="name-card">
       <span class="material-symbols-outlined" style="font-size:40px;color:var(--primary);margin-bottom:.75rem">waving_hand</span>
-      <h2>Welcome to CUPPILO</h2>
-      <p>What should we call you?</p>
+      <h2 data-en="Welcome to CUPPILO" data-ml="CUPPILO-യിലേക്ക് സ്വാഗതം">Welcome to CUPPILO</h2>
+      <p data-en="What should we call you?" data-ml="നിങ്ങളെ എന്താണ് വിളിക്കേണ്ടത്?">What should we call you?</p>
       <input type="text" id="name-card-input" class="input" placeholder="Your name" maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
-      <button class="btn btn-primary" onclick="submitName()">Get Started</button>
+      <button class="btn btn-primary" onclick="submitName()" data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</button>
     </div>
   </div>
 
@@ -43,76 +43,71 @@
 
   <main>
     <section class="about-hero">
-      <h1 data-en="The café that doesn't exist <em>...yet.</em>" data-ml="\u0D28\u0D3F\u0D35\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D32\u0D4D\u0D24\u0D4D \u0D15\u0D2B\u0D47 <em>...\u0D07\u0D24\u0D41\u0D35\u0D30\u0D46.</em>">The café that doesn't exist <em>...yet.</em></h1>
-      <p data-en="We're building Kerala's first community-born specialty café. Not by investors. Not by consultants. By you." data-ml="\u0D06\u0D35\u0D30\u0D4D \u0D15\u0D47\u0D30\u0D32\u0D3E\u0D24\u0D4D\u0D24\u0D3F\u0D32\u0D46 \u0D06\u0D26\u0D4D\u0D2F \u0D15\u0D2E\u0D4D\u0D2E\u0D4D\u0D2F\u0D42\u0D23\u0D3F\u0D1F\u0D3F-\u0D1C\u0D28\u0D3F\u0D1A\u0D4D\u0D1A \u0D38\u0D4D\u0D2A\u0D46\u0D37\u0D4D\u0D2F\u0D3E\u0D32\u0D4D\u0D3F \u0D15\u0D2B\u0D47 \u0D28\u0D3F\u0D30\u0D4D\u0D2E\u0D4D\u0D3F\u0D1A\u0D4D\u0D15\u0D4D\u0D15\u0D41\u0D28\u0D4D\u0D24\u0D41.">We're building Kerala's first community-born specialty café. Not by investors. Not by consultants. By you.</p>
+      <h1 data-en="The café that doesn't exist <em>...yet.</em>" data-ml="നിലവിലില്ലാത്ത കഫേ <em>...ഇതുവരെ.</em>">The café that doesn't exist <em>...yet.</em></h1>
+      <p data-en="We're building Kerala's first community-born specialty café. Not by investors. Not by consultants. By you." data-ml="ഞങ്ങൾ കേരളത്തിലെ ആദ്യ കമ്മ്യൂണിറ്റി-ജനിച്ച സ്പെഷ്യൽറ്റി കഫേ നിർമ്മിക്കുന്നു. നിക്ഷേപകരാലല്ല. കൺസൾട്ടന്റുമാരാലല്ല. നിങ്ങളാൽ.">We're building Kerala's first community-born specialty café. Not by investors. Not by consultants. By you.</p>
     </section>
 
-    <!-- The Concept -->
     <section class="about-section">
       <div class="container">
-        <h2 data-en="The Concept" data-ml="\u0D06\u0D36\u0D2F\u0D02">The Concept</h2>
-        <p data-en="Cupillo is a 1-year research campaign. We're asking Kerala what they actually want from a café — the drinks, the food, the vibe, the pricing. Every answer shapes what we build. When we open, the menu, ambiance, and prices will be exactly what the community asked for." data-ml="CUPPILO \u0D12\u0D30\u0D41-\u0D35\u0D30\u0D37\u0D24\u0D4D\u0D24\u0D46 \u0D17\u0D35\u0D47\u0D37\u0D23 \u0D15\u0D3E\u0D2E\u0D4D\u0D2A\u0D46\u0D2F\u0D4D\u0D28\u0D3E\u0D23\u0D4D. \u0D06\u0D35\u0D30\u0D4D \u0D1A\u0D4B\u0D26\u0D3F\u0D15\u0D4D\u0D15\u0D41\u0D28\u0D4D\u0D24\u0D41 \u0D15\u0D47\u0D30\u0D32\u0D3E \u0D2F\u0D3E\u0D25\u0D3E\u0D30\u0D4D\u0D24\u0D4D\u0D24 \u0D06\u0D17\u0D4D\u0D30\u0D39\u0D3F\u0D1A\u0D4D\u0D1A\u0D41\u0D28\u0D4D\u0D24\u0D41 \u0D1E\u0D3E\u0D15\u0D4D\u0D15 \u0D15\u0D2B\u0D47\u0D2F\u0D3F\u0D32\u0D3F\u0DC3\u0DD0\u0D1A\u0D41\u0D1F\u0DD0\u0D23\u0D4D \u0D07\u0D1F\u0D3F\u0D28\u0D4D\u0D24\u0D41 — \u0D2A\u0D3E\u0D28\u0D40\u0D2F\u0D19\u0D4D\u0D23\u0D3E\u0D32\u0D4D, \u0D2D\u0D15\u0D4D\u0D37\u0D23\u0D02, \u0D35\u0D48\u0D2A\u0D4D, \u0D35\u0D3F\u0D32.">Cupillo is a 1-year research campaign. We're asking Kerala what they actually want from a café — the drinks, the food, the vibe, the pricing. Every answer shapes what we build. When we open, the menu, ambiance, and prices will be exactly what the community asked for.</p>
+        <h2 data-en="The Concept" data-ml="ആശയം">The Concept</h2>
+        <p data-en="Cupillo is a 1-year research campaign. We're asking Kerala what they actually want from a café — the drinks, the food, the vibe, the pricing. Every answer shapes what we build. When we open, the menu, ambiance, and prices will be exactly what the community asked for." data-ml="CUPPILO ഒരു 1-വർഷത്തെ ഗവേഷണ കാമ്പെയ്‌നാണ്. കേരളം യഥാർത്ഥത്തിൽ ഒരു കഫേയിൽ നിന്ന് എന്താണ് ആഗ്രഹിക്കുന്നതെന്ന് ഞങ്ങൾ ചോദിക്കുന്നു — പാനീയങ്ങൾ, ഭക്ഷണം, വൈബ്, വില. ഓരോ ഉത്തരവും ഞങ്ങൾ നിർമ്മിക്കുന്നതിനെ രൂപപ്പെടുത്തുന്നു.">Cupillo is a 1-year research campaign. We're asking Kerala what they actually want from a café — the drinks, the food, the vibe, the pricing. Every answer shapes what we build. When we open, the menu, ambiance, and prices will be exactly what the community asked for.</p>
       </div>
     </section>
 
-    <!-- The Goal -->
     <section class="about-section" style="background:var(--surface-card)">
       <div class="container">
-        <h2 data-en="The Goal" data-ml="\u0D32\u0D15\u0D4D\u0D37\u0D4D\u0D2F\u0D02">The Goal</h2>
+        <h2 data-en="The Goal" data-ml="ലക്ഷ്യം">The Goal</h2>
         <div class="growth-track">
           <div class="growth-step">
             <div class="growth-num">200</div>
-            <div class="growth-label" data-en="First voices" data-ml="\u0D06\u0D26\u0D4D\u0D2F \u0D36\u0D2C\u0D4D\u0D26\u0D19\u0D4D\u0D23\u0D3E\u0D35\u0D39\u0D3E\u0D30\u0D3E\u0D35\u0D3F\u0D32\u0D4D">First voices</div>
+            <div class="growth-label" data-en="First voices" data-ml="ആദ്യ ശബ്ദങ്ങൾ">First voices</div>
           </div>
           <div class="growth-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
           <div class="growth-step">
             <div class="growth-num">500</div>
-            <div class="growth-label" data-en="Community" data-ml="\u0D38\u0D2E\u0D42\u0D39\u0D02">Community</div>
+            <div class="growth-label" data-en="Community" data-ml="സമൂഹം">Community</div>
           </div>
           <div class="growth-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
           <div class="growth-step">
             <div class="growth-num">1000</div>
-            <div class="growth-label" data-en="Ready to open" data-ml="\u0D24\u0D41\u0D31\u0D15\u0D4D\u0D15\u0D3E\u0D28\u0D4D \u0D24\u0D2F\u0D4D\u0D2F\u0D3E\u0D30\u0D4D">Ready to open</div>
+            <div class="growth-label" data-en="Ready to open" data-ml="തുറക്കാൻ തയ്യാർ">Ready to open</div>
           </div>
         </div>
-        <p style="text-align:center" data-en="Once we reach 1000 founding guests, we'll have enough data to open Kerala's most community-driven café." data-ml="1000 \u0D38\u0D4D\u0D25\u0D3E\u0D2A\u0D15 \u0D05\u0D24\u0D3F\u0D3F\u0D3F\u0D4D\u0D25\u0D3F\u0D35\u0D3F\u0D32\u0D3F\u0D3F\u0D32\u0D3F\u0D3E\u0D35\u0D3F\u0D32\u0D3F\u0D32\u0D3F\u0D3E\u0D35\u0D3F\u0D32\u0D3F\u0D4D \u0D05\u0D3F\u0D32\u0D3E\u0D32\u0D4D\u0D24\u0D4D, \u0D15\u0D47\u0D30\u0D32\u0D3E\u0D24\u0D4D\u0D24\u0D3F\u0D35\u0D3F\u0D32\u0D46 \u0D0F\u0D31\u0D4D\u0D31\u0D35\u0D3E\u0D2E\u0D3F \u0D15\u0D2E\u0D4D\u0D2E\u0D4D\u0D2F\u0D42\u0D23\u0D3F\u0D1F\u0D3F-\u0D1A\u0D3E\u0D32\u0D3F\u0D1A\u0D4D\u0D1A \u0D15\u0D2B\u0D47 \u0D24\u0D41\u0D31\u0D15\u0D3E\u0D28\u0D4D \u0D14\u0D34\u0D48 \u0D2E\u0D24\u0D3F\u0D3F\u0DAF \u0D21\u0D47\u0D1F\u0D3E \u0D09\u0D23\u0D4D\u0D1F\u0DC1\u0D2F\u0DD2\u0D02.">Once we reach 1000 founding guests, we'll have enough data to open Kerala's most community-driven café.</p>
+        <p style="text-align:center" data-en="Once we reach 1000 founding guests, we'll have enough data to open Kerala's most community-driven café." data-ml="1000 സ്ഥാപക അതിഥികളിലെത്തുമ്പോൾ, കേരളത്തിലെ ഏറ്റവും കമ്മ്യൂണിറ്റി-ചാലിച്ച കഫേ തുറക്കാൻ ഞങ്ങൾക്ക് മതിയായ ഡേറ്റ ഉണ്ടാകും.">Once we reach 1000 founding guests, we'll have enough data to open Kerala's most community-driven café.</p>
       </div>
     </section>
 
-    <!-- How It Works -->
     <section class="about-section">
       <div class="container">
-        <h2 data-en="How It Works" data-ml="\u0D0E\u0D39\u0D3E \u0D35\u0D3E\u0D1F\u0D41\u0D28\u0D4D\u0D24\u0D41">How It Works</h2>
+        <h2 data-en="How It Works" data-ml="എങ്ങനെ പ്രവർത്തിക്കുന്നു">How It Works</h2>
         <div class="steps-track" style="margin-top:1.5rem">
           <div class="step-item">
             <div class="step-num">01</div>
-            <div class="step-text"><h3>You Answer 5 Questions</h3><p>Café type, drinks, food, vibe, pricing — in under 2 minutes</p></div>
+            <div class="step-text"><h3 data-en="You Answer 5 Questions" data-ml="നിങ്ങൾ 5 ചോദ്യങ്ങൾക്ക് ഉത്തരിക്കുന്നു">You Answer 5 Questions</h3><p data-en="Café type, drinks, food, vibe, pricing — in under 2 minutes" data-ml="കഫേ തരം, പാനീയങ്ങൾ, ഭക്ഷണം, വൈബ്, വില — 2 മിനിറ്റിനുള്ളിൽ">Café type, drinks, food, vibe, pricing — in under 2 minutes</p></div>
           </div>
           <div class="step-item">
             <div class="step-num">02</div>
-            <div class="step-text"><h3>Get Your Founding Card</h3><p>A unique guest number and QR code that's yours forever</p></div>
+            <div class="step-text"><h3 data-en="Get Your Founding Card" data-ml="നിങ്ങളുടെ സ്ഥാപക കാർഡ് നേടുക">Get Your Founding Card</h3><p data-en="A unique guest number and QR code that's yours forever" data-ml="നിങ്ങളുടെ അതിഥി നമ്പറും QR കോഡും എല്ലായ്പ്പോഴും നിങ്ങളുടേതാണ്">A unique guest number and QR code that's yours forever</p></div>
           </div>
           <div class="step-item">
             <div class="step-num">03</div>
-            <div class="step-text"><h3>We Build What You Voted</h3><p>Your answers become our menu, ambiance, and pricing</p></div>
+            <div class="step-text"><h3 data-en="We Build What You Voted" data-ml="നിങ്ങൾ വോട്ട് ചെയ്തത് ഞങ്ങൾ നിർമ്മിക്കുന്നു">We Build What You Voted</h3><p data-en="Your answers become our menu, ambiance, and pricing" data-ml="നിങ്ങളുടെ ഉത്തരങ്ങൾ ഞങ്ങളുടെ മെനു, അന്തരീക്ഷം, വില ആകുന്നു">Your answers become our menu, ambiance, and pricing</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Quote -->
     <section class="about-section">
       <div class="container">
         <div class="about-quote">
-          <blockquote data-ml="&quot;\u0D28\u0D3F\u0D19\u0D4D\u0D19\u0D33\u0D4D \u0D07\u0D24\u0D41\u0D35\u0D30\u0D46 CUPPILO \u0D38\u0D28\u0D4D\u0D26\u0D30\u0D4D\u0D36\u0D3F\u0D1A\u0D4D\u0D1A\u0D3F\u0D1F\u0D4D\u0D1F\u0D3F\u0D32\u0D4D. \u0D15\u0D3E\u0D30\u0D23\u0D02 CUPPILO \u0D07\u0D2A\u0D4D\u0D2A\u0D4B\u0D32\u0D4D \u0D28\u0D3F\u0D35\u0D3F\u0D32\u0D3F\u0D35\u0D3F\u0D32\u0D3F\u0D35\u0D3F\u0D32\u0D3F\u0D35\u0D3F\u0D32\u0D4D\u0D24\u0D4D. \u0D05\u0D24\u0D4D \u0D38\u0D43\u0D37\u0D4D\u0D1F\u0D3F\u0D15\u0D4D\u0D15\u0D3E\u0D28\u0D4D \u0D38\u0D39\u0D3E\u0D2F\u0D3F\u0D15\u0D4D\u0D15\u0D42.&quot;">"You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it."</blockquote>
+          <blockquote data-en="&quot;You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it.&quot;" data-ml="&quot;നിങ്ങൾ ഇതുവരെ CUPPILO സന്ദർശിച്ചിട്ടില്ല. കാരണം CUPPILO ഇപ്പോൾ നിലവിലില്ല. അത് സൃഷ്ടിക്കാൻ സഹായിക്കൂ.&quot;">"You haven't visited Cuppilo yet. Because Cuppilo doesn't exist yet. Help us create it."</blockquote>
         </div>
       </div>
     </section>
 
-    <!-- Origin & Craft -->
     <section class="about-section" style="background:var(--surface-card)">
       <div class="container">
-        <h2 data-en="Origin & Craft" data-ml="\u0D09\u0D24\u0D4D\u0D2D\u0D35\u0D02 \u0D14\u0D30\u0D4D \u0D1A\u0D3F\u0DAF\u0D3E\u0D30\u0D4D\u0D24\u0D4D">Origin & Craft</h2>
+        <h2 data-en="Origin & Craft" data-ml="ഉത്ഭവവും കരകൗശലവും">Origin & Craft</h2>
         <div style="display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:1.5rem;max-width:640px;margin-left:auto;margin-right:auto">
           <div class="card">
             <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.75rem">
@@ -120,11 +115,11 @@
                 <span class="material-symbols-outlined" style="color:var(--on-p);font-size:22px">landscape</span>
               </div>
               <div>
-                <h3 style="font-size:1rem;font-weight:700">Wayanad & Munnar Arabica</h3>
-                <p style="font-size:.8125rem;color:var(--on-sv)">Shade-grown at 950m ASL</p>
+                <h3 style="font-size:1rem;font-weight:700" data-en="Wayanad & Munnar Arabica" data-ml="വയനാടും മൂന്നാറും അറബിക്ക">Wayanad & Munnar Arabica</h3>
+                <p style="font-size:.8125rem;color:var(--on-sv)" data-en="Shade-grown at 950m ASL" data-ml="950m ASL-ൽ നിഴലിൽ വളർന്നത്">Shade-grown at 950m ASL</p>
               </div>
             </div>
-            <p style="font-size:.875rem;color:var(--on-sv);line-height:1.6">Direct sourcing from agroforests in Wayanad and Munnar. Heritage South Indian varietals with fruit-forward body and nuanced cup profiles.</p>
+            <p style="font-size:.875rem;color:var(--on-sv);line-height:1.6" data-en="Direct sourcing from agroforests in Wayanad and Munnar. Heritage South Indian varietals with fruit-forward body." data-ml="വയനാടും മൂന്നാറും കൃഷിവനങ്ങളിൽ നിന്ന് നേരിട്ട് സോഴ്സിംഗ്. പഴം-ഫോർവേഡ് ബോഡിയുള്ള പാരമ്പര്യ ദക്ഷിണേന്ത്യൻ വൈവിധ്യങ്ങൾ.">Direct sourcing from agroforests in Wayanad and Munnar. Heritage South Indian varietals with fruit-forward body.</p>
           </div>
           <div class="card">
             <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.75rem">
@@ -132,11 +127,11 @@
                 <span class="material-symbols-outlined" style="color:var(--on-secondary);font-size:22px">handshake</span>
               </div>
               <div>
-                <h3 style="font-size:1rem;font-weight:700">Pledge to Growers</h3>
-                <p style="font-size:.8125rem;color:var(--on-sv)">32% over market rate</p>
+                <h3 style="font-size:1rem;font-weight:700" data-en="Pledge to Growers" data-ml="കർഷകർക്കുള്ള വാഗ്ദാനം">Pledge to Growers</h3>
+                <p style="font-size:.8125rem;color:var(--on-sv)" data-en="32% over market rate" data-ml="വിപണി നിരക്കിനേക്കാൾ 32%">32% over market rate</p>
               </div>
             </div>
-            <p style="font-size:.875rem;color:var(--on-sv);line-height:1.6">We pay 32% above standard market rate directly to smallholder family estates. Open ledger transparency published quarterly.</p>
+            <p style="font-size:.875rem;color:var(--on-sv);line-height:1.6" data-en="We pay 32% above standard market rate directly to smallholder family estates. Open ledger transparency." data-ml="ഞങ്ങൾ ചെറുകിട കുടുംബ എസ്റ്റേറ്റുകൾക്ക് സ്റ്റാൻഡേർഡ് മാർക്കറ്റ് നിരക്കിനേക്കാൾ 32% നേരിട്ട് നൽകുന്നു.">We pay 32% above standard market rate directly to smallholder family estates. Open ledger transparency.</p>
           </div>
           <div class="card">
             <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.75rem">
@@ -144,23 +139,22 @@
                 <span class="material-symbols-outlined" style="color:var(--cream);font-size:22px">coffee</span>
               </div>
               <div>
-                <h3 style="font-size:1rem;font-weight:700">Filter Meets Flat White</h3>
-                <p style="font-size:.8125rem;color:var(--on-sv)">Kerala decoction + modern craft</p>
+                <h3 style="font-size:1rem;font-weight:700" data-en="Filter Meets Flat White" data-ml="ഫിൽട്ടർ ഫ്ലാറ്റ് വൈറ്റുമായി കൂടിച്ചേരുന്നു">Filter Meets Flat White</h3>
+                <p style="font-size:.8125rem;color:var(--on-sv)" data-en="Kerala decoction + modern craft" data-ml="കേരള ഡെകോക്ഷൻ + ആധുനിക കരകൗശലം">Kerala decoction + modern craft</p>
               </div>
             </div>
-            <p style="font-size:.875rem;color:var(--on-sv);line-height:1.6">Reimagining Kerala's beloved morning decoction alongside pour-overs, nitro cold brews, and single-estate espresso pulls.</p>
+            <p style="font-size:.875rem;color:var(--on-sv);line-height:1.6" data-en="Reimagining Kerala's beloved morning decoction alongside pour-overs, nitro cold brews, and espresso pulls." data-ml="കേരളത്തിന്റെ പ്രിയപ്പെട്ട രാവിലെ ഡെകോക്ഷനെ പോർ-ഓവറുകൾ, നൈട്രോ കോൾഡ് ബ്രൂകൾ, എസ്പ്രെസ്സോ പുള്ളുകൾ എന്നിവയോടൊപ്പം വീണ്ടും സങ്കൽപ്പിക്കുന്നു.">Reimagining Kerala's beloved morning decoction alongside pour-overs, nitro cold brews, and espresso pulls.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="about-cta">
       <div class="container">
-        <h2 data-en="Be a Founding Guest" data-ml="\u0D12\u0D30\u0D41 \u0D38\u0D4D\u0D25\u0D3E\u0D2A\u0D15 \u0D05\u0D24\u0D3F\u0D3F\u0D3F\u0D4D\u0D25\u0D3F\u0D2F\u0D3E\u0D15\u0D4D\u0D15\u0D3E\u0D31\u0D4D\u0D15\u0D3E\u0D31\u0D4D">Be a Founding Guest</h2>
-        <p data-en="2 minutes. No login. Your voice shapes what Cuppilo becomes." data-ml="2 \u0D2E\u0D3F\u0D23\u0D3F\u0D1F\u0D4D. \u0D32\u0D4B\u0D17\u0D3F\u0D28\u0D4D \u0D07\u0D32\u0D4D\u0D32. \u0D28\u0D3F\u0D19\u0D4D\u0D19\u0D3D \u0D36\u0D2C\u0D4D\u0D26\u0D02 CUPPILO \u0D0E\u0D24\u0D4D\u0D24\u0D3E\u0D15\u0D23\u0D30\u0D4D \u0D30\u0D42\u0D2A\u0D2A\u0D4D\u0D2A\u0D46\u0D1F\u0D4D\u0D1F\u0D41\u0D28\u0D4D\u0D24\u0D41.">2 minutes. No login. Your voice shapes what Cuppilo becomes.</p>
+        <h2 data-en="Be a Founding Guest" data-ml="ഒരു സ്ഥാപക അതിഥിയാകൂ">Be a Founding Guest</h2>
+        <p data-en="2 minutes. No login. Your voice shapes what Cuppilo becomes." data-ml="2 മിനിറ്റ്. ലോഗിൻ ഇല്ല. നിങ്ങളുടെ ശബ്ദം CUPPILO എന്താകണമെന്ന് രൂപപ്പെടുത്തുന്നു.">2 minutes. No login. Your voice shapes what Cuppilo becomes.</p>
         <a href="index.html" class="btn btn-primary" style="padding:.875rem 2rem;font-size:1rem">
-          Get Started
+          <span data-en="Get Started" data-ml="ആരംഭിക്കുക">Get Started</span>
           <span class="material-symbols-outlined" style="font-size:20px">arrow_forward</span>
         </a>
       </div>
@@ -172,43 +166,26 @@
   <div class="phone-popup-overlay" id="phone-popup" style="position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center">
     <div style="background:var(--surface-card);border-radius:1.5rem;padding:2rem;max-width:360px;width:90%;text-align:center;box-shadow:0 25px 50px -12px rgba(0,0,0,.25)">
       <span class="material-symbols-outlined" style="font-size:36px;color:var(--primary);margin-bottom:.5rem">phone_android</span>
-      <h3 style="font-size:1.125rem;font-weight:800;margin-bottom:.25rem">Stay in the loop</h3>
-      <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:1rem">Get notified when Cuppilo opens. No spam, ever.</p>
+      <h3 style="font-size:1.125rem;font-weight:800;margin-bottom:.25rem" data-en="Stay in the loop" data-ml="ലൂപ്പിൽ തുടരുക">Stay in the loop</h3>
+      <p style="font-size:.8125rem;color:var(--on-sv);margin-bottom:1rem" data-en="Get notified when Cuppilo opens. No spam, ever." data-ml="CUPPILO തുറക്കുമ്പോൾ അറിയിക്കൂ. സ്പാം ഇല്ല, ഒരിക്കലും.">Get notified when Cuppilo opens. No spam, ever.</p>
       <form onsubmit="submitAboutPhone(event)" style="display:flex;gap:.5rem">
         <input type="tel" id="about-phone" class="input" placeholder="+91 XXXXX XXXXX" required style="flex:1"/>
-        <button type="submit" class="btn btn-primary">Notify</button>
+        <button type="submit" class="btn btn-primary" data-en="Notify" data-ml="അറിയിക്കൂ">Notify</button>
       </form>
-      <button onclick="closePhonePopup()" style="margin-top:.75rem;background:none;border:none;color:var(--on-sv);font-size:.8125rem;cursor:pointer">Maybe later</button>
+      <button onclick="closePhonePopup()" style="margin-top:.75rem;background:none;border:none;color:var(--on-sv);font-size:.8125rem;cursor:pointer" data-en="Maybe later" data-ml="പിന്നീട്">Maybe later</button>
     </div>
   </div>
 
   <script src="js/supabase-config.js"></script>
   <script src="js/shared.js"></script>
   <script>
-    function closePhonePopup() {
-      document.getElementById('phone-popup').style.display = 'none';
+    function closePhonePopup(){document.getElementById('phone-popup').style.display='none';}
+    async function submitAboutPhone(e){
+      e.preventDefault();var phone=document.getElementById('about-phone').value.trim();if(!phone)return;
+      try{await sbInsert('phone_subscribers',{phone:phone,created_at:new Date().toISOString()});closePhonePopup();showToast('Thanks! We\'ll notify you.','success');}catch(e){showToast('Something went wrong.','error');}
     }
-    async function submitAboutPhone(e) {
-      e.preventDefault();
-      var phone = document.getElementById('about-phone').value.trim();
-      if (!phone) return;
-      try {
-        await sbInsert('phone_subscribers', { phone: phone, created_at: new Date().toISOString() });
-        closePhonePopup();
-        showToast('Thanks! We\'ll notify you.', 'success');
-      } catch(e) {
-        showToast('Something went wrong.', 'error');
-      }
-    }
-    setTimeout(function() {
-      if (!localStorage.getItem('cuppilo_phone_asked')) {
-        document.getElementById('phone-popup').style.display = 'flex';
-        localStorage.setItem('cuppilo_phone_asked', '1');
-      }
-    }, 12000);
-    document.addEventListener('DOMContentLoaded', function() {
-      initPage('about');
-    });
+    setTimeout(function(){if(!localStorage.getItem('cuppilo_phone_asked')){document.getElementById('phone-popup').style.display='flex';localStorage.setItem('cuppilo_phone_asked','1');}},12000);
+    document.addEventListener('DOMContentLoaded',function(){initPage('about');});
   </script>
 </body>
 </html>

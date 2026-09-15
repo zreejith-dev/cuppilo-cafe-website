@@ -147,9 +147,9 @@ function initMobileMenu() {
 // ── NAVBAR (Support hidden — only accessible via footer BMC button) ──
 function renderNavbar(activePage) {
   var links = [
-    { id: 'index', href: 'index.html', en: 'Home', ml: '\u0D39\u0D4B\u0D2E\u0D4D' },
-    { id: 'about', href: 'about.html', en: 'About', ml: '\u0D15\u0D41\u0D31\u0D3F\u0D1A\u0D4D' },
-    { id: 'wall', href: 'founding-wall.html', en: 'Wall', ml: '\u0D2E\u0D24\u0D3F\u0D32\u0D4D' },
+    { id: 'index', href: 'index.html', en: 'Home', ml: 'ഹോം' },
+    { id: 'about', href: 'about.html', en: 'About', ml: 'കുറിച്ച്' },
+    { id: 'wall', href: 'founding-wall.html', en: 'Wall', ml: 'മതിൽ' },
   ];
   var dLinks = links.map(function (l) {
     return '<a href="' + l.href + '" class="nav-link ' + (activePage === l.id ? 'active' : '') + '" data-en="' + l.en + '" data-ml="' + l.ml + '">' + l.en + '</a>';
